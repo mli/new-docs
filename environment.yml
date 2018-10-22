@@ -1,0 +1,16 @@
+name: mxnet-docs
+dependencies:
+- python
+- jupyter
+- sphinx
+- sphinx_rtd_theme
+- matplotlib
+- pandas
+- notebook
+- pip:
+  - pyopenssl
+  - nbsphinx
+  - recommonmark
+  - notedown
+  - mxnet-cu90
+  - pypandoc

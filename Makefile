@@ -1,24 +1,29 @@
 all: html
 
-
-MARKDOWN = $(shell find . -name "*.md")
-RST = $(shell find . -name "*.rst")
+# markdown files that will not be evaluated, simply copy to build/
+PURE_MARKDOWN = ./README.md
+# markdown files that will be evaluated and then saved as ipynb files
+IPYNB_MARKDOWN = $(shell find . -not -path "./build/*" -name "*.md")
+# RST files will be simply coped to build/
+RST = $(shell find . -not -path "./build/*" -name "*.rst")
 
 OBJ = $(patsubst %.rst, build/%.rst, $(RST)) \
-	$(patsubst %.md, build/%.rst, $(MARKDOWN))
+	$(patsubst %.md, build/%.md, $(PURE_MARKDOWN)) \
+	$(patsubst %.md, build/%.ipynb, \
+		$(filter-out $(PURE_MARKDOWN), $(IPYNB_MARKDOWN)))
 
-build/%.rst: %.md
+build/%.ipynb: %.md
 	@mkdir -p $(@D)
-	python build/md2rst.py $< $@
+	python build/md2ipynb.py $< $@
 
 
-build/%.rst: %.rst
+build/%: %
 	@mkdir -p $(@D)
 	@cp -r $< $@
 
 html: $(OBJ)
-	echo $(OBJ)
-	# make -C build html
+	echo $(IPYNB_MARKDOWN)
+	make -C build html
 
 clean:
-	rm -rf build/chapter* build/_build $(DEPS)
+	rm -rf build/_build $(DEPS)
