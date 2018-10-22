@@ -145,18 +145,28 @@ suppress_warnings = [
 
 # -- Options for HTML output ---------------------------------------------------
 
+# Add any paths that contain custom themes here, relative to this directory.
+# html_theme_path = ['/home/ubuntu/sphinx_materialdesign_theme']
+
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-# html_theme = 'mxnet-theme'
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'sphinx_materialdesign_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+html_theme_options = {
+    'primary_color': 'blue',
+    'header_links' : [
+        ('Install', '#', False, ''),
+        ("Develop", "develop/index", False, ''),
+        ("API", "api/index", False, ''),
+        ("Ecosystem", "ecosystem", False, ''),
+        ("Community", "community", False, ''),
+        ("GitHub", "https://github.com/apache/incubator-mxnet/", True, '')
+    ]
+}
 
-# Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = ['_static']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".

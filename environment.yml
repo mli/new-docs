@@ -3,7 +3,6 @@ dependencies:
 - python
 - jupyter
 - sphinx
-- sphinx_rtd_theme
 - matplotlib
 - pandas
 - notebook
@@ -12,5 +11,6 @@ dependencies:
   - nbsphinx
   - recommonmark
   - notedown
-  - mxnet-cu90
+  - mxnet
   - pypandoc
+  - sphinx_materialdesign_theme
