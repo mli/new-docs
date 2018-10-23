@@ -164,7 +164,9 @@ html_theme_options = {
         ("Ecosystem", "ecosystem", False, ''),
         ("Community", "community", False, ''),
         ("GitHub", "https://github.com/apache/incubator-mxnet/", True, '')
-    ]
+    ],
+    # Render footer (Default: True)
+    'show_footer': False
 }
 
 
