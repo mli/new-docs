@@ -43,3 +43,20 @@ p {
     /* float: right; */
     margin: auto;
 }
+
+.mx-api.section .hidden-section {
+    display: none;
+}
+
+.mx-api h3.mdl-color-text--primary {
+    /* display: none; */
+
+    border-top-style: solid;
+    padding: 1em 0 0 0;
+    margin: 1em 0 0 0;
+    height: 0;
+    border-color: #ccc;
+}
+.section .hidden-section {
+    display: none;
+}

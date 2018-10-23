@@ -3,6 +3,7 @@ API
 
 .. toctree::
    :maxdepth: 1
+   :glob:
 
-   autograd
+   ndarray/index
    gluon/index

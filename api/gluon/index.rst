@@ -1,8 +1,8 @@
-Gluon
+gluon
 =====
 
 .. toctree::
    :maxdepth: 1
-   :glob:
 
-   *
+
+   nn

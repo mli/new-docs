@@ -1,85 +1,53 @@
-Gluon Neural Network Layers
-===========================
+.. raw:: html
 
-This document lists the neural network blocks in Gluon:
+   <div class="mx-api">
+
+.. role:: hidden
+    :class: hidden-section
+
+gluon.nn
+=========
 
 .. currentmodule:: mxnet.gluon.nn
-
 
 Basic Layers
 ------------
 
+:hidden:`Dense`
+~~~~~~~~~~~~~~~
 
-.. autosummary::
-    :nosignatures:
+.. autoclass:: Dense
+    :members:
 
-    Dense
-    Dropout
-    BatchNorm
-    InstanceNorm
-    LayerNorm
-    Embedding
-    Flatten
-    Lambda
-    HybridLambda
+:hidden:`Dropout`
+~~~~~~~~~~~~~~~~~
+
+.. autoclass:: Dropout
+    :members:
+
+:hidden:`BatchNorm`
+~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: BatchNorm
+    :members:
 
 
 Convolutional Layers
 --------------------
 
 
-.. autosummary::
-    :nosignatures:
+:hidden:`Conv1D`
+~~~~~~~~~~~~~~~~~~
 
-    Conv1D
-    Conv2D
-    Conv3D
-    Conv1DTranspose
-    Conv2DTranspose
-    Conv3DTranspose
-
-
-
-Pooling Layers
---------------
-
-
-.. autosummary::
-    :nosignatures:
-
-    MaxPool1D
-    MaxPool2D
-    MaxPool3D
-    AvgPool1D
-    AvgPool2D
-    AvgPool3D
-    GlobalMaxPool1D
-    GlobalMaxPool2D
-    GlobalMaxPool3D
-    GlobalAvgPool1D
-    GlobalAvgPool2D
-    GlobalAvgPool3D
-    ReflectionPad2D
-
-Activation Layers
------------------
-
-
-.. autosummary::
-    :nosignatures:
-
-    Activation
-    LeakyReLU
-    PReLU
-    ELU
-    SELU
-    Swish
-
-
-API Reference
-------------
-
-.. automodule:: mxnet.gluon.nn
+.. autoclass:: Conv1D
     :members:
-    :imported-members:
-    :exclude-members: Block, HybridBlock, SymbolBlock, Sequential, HybridSequential
+
+:hidden:`Conv2D`
+~~~~~~~~~~~~~~~~~
+
+.. autoclass:: Conv2D
+    :members:
+
+.. raw:: html
+
+   </div>
