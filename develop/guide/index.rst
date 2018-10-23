@@ -1,5 +1,37 @@
-MXNet Guide
-===========
+Guide
+=====
 
-The documents in this unit dive into the details MXNet works. The units are are
-as follows:
+The documents in this unit dive into the details MXNet works.
+
+Essential
+---------
+
+In-depth guidelines for how to use NDArray and Gluon:
+
+.. toctree::
+   :maxdepth: 2
+
+   ndarray
+   gluon/index
+
+Basic
+-----
+
+.. toctree::
+   :maxdepth: 1
+
+   mxboard
+   gpus
+
+Advanced
+--------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   symbol
+   record-io
+   sparse
+   control-flow
+   distributed-training

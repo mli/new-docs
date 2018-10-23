@@ -37,7 +37,7 @@ for mod_name in MOCK_MODULES:
 needs_sphinx = '1.5.6'
 
 # General information about the project.
-project = u'mxnet'
+project = u'Apache MXNet'
 author = u'%s developers' % project
 copyright = u'2015-2018, %s' % author
 github_doc_root = 'https://github.com/apache/incubator-mxnet/tree/master/docs/'
@@ -157,6 +157,7 @@ html_theme = 'sphinx_materialdesign_theme'
 # documentation.
 html_theme_options = {
     'primary_color': 'blue',
+    'accent_color': 'red',
     'header_links' : [
         ('Install', '#', False, ''),
         ("Develop", "develop/index", False, ''),
@@ -177,7 +178,7 @@ html_theme_options = {
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-#html_logo = None
+# html_logo = '_static/mxnet_logo_2.png'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
