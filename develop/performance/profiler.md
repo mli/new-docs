@@ -16,8 +16,8 @@ x = nd.random_uniform(shape=(2000,2000))
 y = nd.dot(x, x)
 print('Time for matrix multiplication: %f sec\n' % (time() - start))
 
-start = time()                                
-print(y.asnumpy())                                
+start = time()
+print(y.asnumpy())
 print('Time for printing the output: %f sec' % (time() - start))
 ```
 
@@ -41,7 +41,7 @@ print('Time for printing the output: %f sec' % (time() - start))
 **Time for printing the output: 0.167693 sec**<!--notebook-skip-line-->
 
 
-From the output above, it seems as if printing the output takes lot more time that multiplying two large matrices. That doesn't feel right. 
+From the output above, it seems as if printing the output takes lot more time that multiplying two large matrices. That doesn't feel right.
 
 This is because, in MXNet, all operations are executed asynchronously. So, when `nd.dot(x, x)` returns, the matrix multiplication is not complete, it has only been queued for execution. `asnumpy` in `print(y.asnumpy())` however, waits for the result to be computed and hence takes longer time.
 
@@ -110,19 +110,19 @@ softmax_cross_entropy = gluon.loss.SoftmaxCrossEntropyLoss()
 
 # A helper function to run one training iteration
 def run_training_iteration(data, label):
-    
+
     # Load data and label is the right context
     data = data.as_in_context(ctx)
     label = label.as_in_context(ctx)
-    
+
     # Run the forward pass
     with autograd.record():
         output = net(data)
         loss = softmax_cross_entropy(output, label)
-    
+
     # Run the backward pass
     loss.backward()
-    
+
     # Apply changes to parameters
     trainer.step(data.shape[0])
 ```
@@ -202,6 +202,3 @@ The above picture visualizes the sequence in which the operators were executed a
 
 - [Examples using MXNet profiler.](https://github.com/apache/incubator-mxnet/tree/master/example/profiler)
 - [Some tips for improving MXNet performance.](https://mxnet.incubator.apache.org/faq/perf.html)
-
-<!-- INSERT SOURCE DOWNLOAD BUTTONS -->
-
