@@ -44,19 +44,28 @@ p {
     margin: auto;
 }
 
-.mx-api.section .hidden-section {
+/* API section */
+
+.mx-api .section .hidden-section {
     display: none;
 }
 
 .mx-api h3.mdl-color-text--primary {
     /* display: none; */
 
-    border-top-style: solid;
+    /* border-top-style: solid; */
+    /* border-color: #ccc; */
+    /* border-top-width: 1px; */
     padding: 1em 0 0 0;
-    margin: 1em 0 0 0;
+    margin: 2em 0 0 0;
     height: 0;
-    border-color: #ccc;
 }
-.section .hidden-section {
-    display: none;
+
+.section .viewcode-link {
+    padding-left: 2em;
+    font-size: 80%;
+}
+
+.section .class dt {
+    padding-bottom: 1em;
 }

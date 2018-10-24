@@ -63,6 +63,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
+    # 'sphinxcontrib.fulltoc',
     'nbsphinx',
     'IPython.sphinxext.ipython_console_highlighting',
     # 'sphinx.ext.autodoc',
@@ -180,7 +181,7 @@ html_theme_options = {
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-# html_logo = '_static/mxnet_logo_2.png'
+html_logo = '_static/mxnet_logo_2.png'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32

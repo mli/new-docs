@@ -1,8 +1,19 @@
-gluon
-=====
+Gluon package
+=============
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
-
-   nn
+   construct
+   basic
+   conv
+   pooling
+   normalization
+   embedding
+   rnn-cell
+   rnn-layer
+   activation
+   losses
+   parameter
+   trainer
+   utils

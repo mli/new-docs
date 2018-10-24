@@ -17,6 +17,10 @@ build/%.ipynb: %.md
 	python build/md2ipynb.py $< $@
 
 
+# build/%.rst: %.rst
+	# @mkdir -p $(@D)
+	# python build/process_rst.py $< $@
+
 build/%: %
 	@mkdir -p $(@D)
 	@cp -r $< $@
