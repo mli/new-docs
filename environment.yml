@@ -11,7 +11,8 @@ dependencies:
   - nbsphinx
   - recommonmark
   - notedown
-  - mxnet
+  - mxnet-cu92
   - pypandoc
   - sphinx_materialdesign_theme
   - breathe
+  - mock
