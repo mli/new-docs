@@ -20,14 +20,14 @@ build/%.ipynb: %.md
 build/%.rst: %.rst
 	@mkdir -p $(@D)
 	python build/process_rst.py $< $@
-	sphinx-autogen $@ -t build/templates/
 
 build/%: %
 	@mkdir -p $(@D)
 	@cp -r $< $@
 
 html: $(OBJ)
+	sphinx-autogen build/api/*.rst build/api/*/*.rst  build/api/*/*.rst -t build/templates/
 	make -C build html
 
 clean:
-	rm -rf build/_build $(OBJ)
+	rm -rf build/_build $(OBJ) build/api
