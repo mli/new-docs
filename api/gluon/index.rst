@@ -2,7 +2,7 @@ Gluon package
 =============
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    construct
    basic

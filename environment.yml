@@ -14,3 +14,4 @@ dependencies:
   - mxnet
   - pypandoc
   - sphinx_materialdesign_theme
+  - breathe

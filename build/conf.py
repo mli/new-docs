@@ -71,12 +71,12 @@ extensions = [
     'sphinx.ext.napoleon',
     # 'sphinx.ext.mathjax',
     # 'sphinx.ext.viewcode',
-    # 'breathe',
+    'breathe',
 #    'mxdoc'
 ]
 
 # Use breathe to include doxygen documents
-breathe_projects = {'mxnet' : 'doxygen/xml/'}
+breathe_projects = {'mxnet' : '../docs/doxygen/xml/'}
 breathe_default_project = 'mxnet'
 
 autodoc_member_order = 'bysource'

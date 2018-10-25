@@ -8,7 +8,6 @@ how to build this doc.
    :maxdepth: 1
 
    develop/index
-   apis/mxnet
    api/index
    ecosystem
    community
