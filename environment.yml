@@ -15,3 +15,4 @@ dependencies:
   - pypandoc
   - sphinx_materialdesign_theme
   - breathe
+  - mock
