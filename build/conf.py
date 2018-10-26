@@ -157,7 +157,7 @@ html_theme = 'sphinx_materialdesign_theme'
 # documentation.
 html_theme_options = {
     'primary_color': 'blue',
-    'accent_color': 'red',
+    'accent_color': 'deep_orange',
     'header_links' : [
         ('Install', '#', False, ''),
         ("Develop", "develop/index", False, ''),
