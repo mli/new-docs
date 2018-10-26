@@ -1,5 +1,5 @@
-Construct Neural Networks
-=========================
+Build Models
+=============
 
 .. currentmodule:: mxnet.gluon
 
