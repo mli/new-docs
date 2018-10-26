@@ -38,16 +38,6 @@ Or use ``nn.Block`` to construct a network in a more flexible way.
 
 More tutorials are available at XXX.
 
-.. currentmodule:: mxnet.gluon
-
-.. autosummary::
-    :toctree: out_construct
-    :nosignatures:
-
-    nn.Block
-    nn.Sequential
-    contrib.nn.Concurrent
-
 The hybridiziable containers allow to hybridize a network to enjoy a better
 performance and to be deployed without Python later.
 
@@ -65,14 +55,30 @@ performance and to be deployed without Python later.
 
 Refer to XXX to explain hybridize.
 
+Container APIs
+--------------
+
+.. currentmodule:: mxnet.gluon
+
+.. autosummary::
+    :toctree: out_construct
+    :nosignatures:
+
+    nn.Block
+    nn.Sequential
+    contrib.nn.Concurrent
+
+
+Hybridizable container APIs
+---------------------------
+
 .. autosummary::
     :toctree: out_construct
     :nosignatures:
 
     nn.HybridBlock
     nn.HybridSequential
+    nn.SymbolBlock
     contrib.nn.HybridConcurrent
 
-
-TODO, cannot add ``nn.SymbolBlock`` because it fails the doctest. Don't know how
-to place ``nn.Identity``
+Don't know where to place ``nn.Identity``

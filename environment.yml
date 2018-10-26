@@ -16,3 +16,4 @@ dependencies:
   - sphinx_materialdesign_theme
   - breathe
   - mock
+  - awscli

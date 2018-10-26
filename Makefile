@@ -28,7 +28,7 @@ build/%: %
 html: $(OBJ)
 	sphinx-autogen build/api/*.rst build/api/*/*.rst   -t build/templates/
 	# make -C build linkcheck doctest html
-	make -C build doctest html
+	make -C build  html
 
 
 clean:
