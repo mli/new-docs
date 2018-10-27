@@ -1,19 +1,46 @@
 Layers
 ======
 
-Overview
---------
+Gluon provides a large number of build-in neural network layers in the following
+modules
 
-A layer is xxx.
+
+.. autosummary::
+    :toctree: out_layer
+    :nosignatures:
+
+    mxnet.gluon.nn
+    mxnet.gluon.rnn
+    mxnet.gluon.contrib.nn
+    mxnet.gluon.contrib.rnn
+
+The following codes shows a basic usage of a layer.
+
+.. doctest::
+
+   >>> from mxnet import nd
+   >>> from mxnet.gluon import nn
+   >>> layer = nn.Dense(2)  # construct a dense layers with 2 output units
+   >>> layer.initialize()  # intialize its parameters
+   >>> x = nd.random.uniform(shape=(4, 10))
+   >>> print(layer(x).shape)  # run a forward propogation and print output shape
+   (4, 2)
+   >>> print(layer.weight)  # get its weight parameters
+   Parameter dense3_weight (shape=(2, 10), dtype=float32)
+
+Refer to :doc:`../../develop/tutorials/index.rst` for how to use them to
+construct various neural networks
+
+In the reset of this secion, we group all build-in layers according to their
+categories.
 
 .. currentmodule:: mxnet.gluon
 
 Basic Layers
 ------------
 
-
 .. autosummary::
-    :toctree: out_basic
+    :toctree: out_layer
     :nosignatures:
 
     nn.Dense
@@ -27,7 +54,7 @@ Convolutional Layers
 --------------------
 
 .. autosummary::
-    :toctree: out_conv
+    :toctree: out_layer
     :nosignatures:
 
     nn.Conv1D
@@ -41,7 +68,7 @@ Pooling Layers
 --------------
 
 .. autosummary::
-    :toctree: out_pool
+    :toctree: out_layer
     :nosignatures:
 
     nn.MaxPool1D
@@ -62,7 +89,7 @@ Normalization Layers
 --------------------
 
 .. autosummary::
-    :toctree: out_normal
+    :toctree: out_layer
     :nosignatures:
 
     nn.BatchNorm
@@ -74,7 +101,7 @@ Embedding Layers
 ----------------
 
 .. autosummary::
-    :toctree: out_embed
+    :toctree: out_layer
     :nosignatures:
 
     nn.Embedding
@@ -84,7 +111,7 @@ Recurrent Cells
 ----------------
 
 .. autosummary::
-    :toctree: out_rnn_cell
+    :toctree: out_layer
     :nosignatures:
 
     rnn.LSTMCell
@@ -111,7 +138,7 @@ Recurrent Layers
 ----------------
 
 .. autosummary::
-    :toctree: out_rnn_layer
+    :toctree: out_layer
     :nosignatures:
 
     rnn.RNN
@@ -122,7 +149,7 @@ Advanced Activation Layers
 --------------------------
 
 .. autosummary::
-    :toctree: out_act
+    :toctree: out_layer
     :nosignatures:
 
     nn.LeakyReLU

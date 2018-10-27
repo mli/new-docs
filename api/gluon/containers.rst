@@ -1,84 +1,34 @@
 Containers
 ==========
 
-Containers are used to construct multi-layer neural network. For example, use
-``nn.Sequential`` to sequentially combine two dense layers:
+Sequential containers
+---------------------
 
-.. doctest::
+Besides inheriting :py:class:`mxnet.gluon.nn.Block` to create a neural network
+models, :py:mod:`mxnet.gluon.nn` provides two classes to construct a model by
+stacking layers sequentially. Refer to XXX for tutorials how to use them.
 
-    >>> from mxnet.gluon import nn
-    >>> net = nn.Sequential()
-    >>> net.add(nn.Dense(10, activation='relu'), nn.Dense(4))
-    >>> print(net)
-    Sequential(
-      (0): Dense(None -> 10, Activation(relu))
-      (1): Dense(None -> 4, linear)
-    )
-
-Or use ``nn.Block`` to construct a network in a more flexible way.
-
-.. doctest::
-
-    >>> from mxnet import nd
-    >>> from mxnet.gluon import nn
-    >>> class MLP(nn.Block):
-    ...     def __init__(self, **kwargs):
-    ...         super(MLP, self).__init__(**kwargs)
-    ...         self.hidden = nn.Dense(10)
-    ...         self.output = nn.Dense(2)
-    ...     def forward(self, x):
-    ...         y = nd.relu(self.hidden(x))
-    ...         return self.output(y).sum()
-    >>> net = MLP()
-    >>> print(net)
-    MLP(
-      (hidden): Dense(None -> 10, linear)
-      (output): Dense(None -> 2, linear)
-    )
-
-More tutorials are available at XXX.
-
-The hybridiziable containers allow to hybridize a network to enjoy a better
-performance and to be deployed without Python later.
-
-.. doctest::
-
-    >>> from mxnet.gluon import nn
-    >>> net = nn.HybridSequential()
-    >>> net.add(nn.Dense(10, activation='relu'), nn.Dense(4))
-    >>> net.hybridize()
-    >>> print(net)
-    HybridSequential(
-      (0): Dense(None -> 10, Activation(relu))
-      (1): Dense(None -> 4, linear)
-    )
-
-Refer to XXX to explain hybridize.
-
-Container APIs
---------------
-
-.. currentmodule:: mxnet.gluon
+.. currentmodule:: mxnet.gluon.nn
 
 .. autosummary::
-    :toctree: out_construct
+    :toctree: out_container
     :nosignatures:
 
-    nn.Block
     nn.Sequential
-    contrib.nn.Concurrent
+    nn.HybridSequential
+
+Concurrent containers
+---------------------
+
+The :py:mod:`mxnet.gluon.contrib.nn` package provides two additional containers
+to construct models with more than one path, such as the Residual block in
+ResNet and Inception block in GoogLeNet.
 
 
-Hybridizable container APIs
----------------------------
-
+.. currentmodule:: mxnet.gluon.contrib.nn
 .. autosummary::
     :toctree: out_construct
     :nosignatures:
 
-    nn.HybridBlock
-    nn.HybridSequential
-    nn.SymbolBlock
+    contrib.nn.Concurrent
     contrib.nn.HybridConcurrent
-
-Don't know where to place ``nn.Identity``
