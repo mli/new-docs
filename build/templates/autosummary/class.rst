@@ -1,7 +1,5 @@
 {{ objname | escape | underline}}
 
-{{ fullname | escape }}
-
 .. currentmodule:: {{ module }}
 
 .. autoclass:: {{ objname }}

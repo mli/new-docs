@@ -18,4 +18,3 @@ Losses
     loss.LogisticLoss
     loss.TripletLoss
     loss.CTCLoss
-    loss.PoissonNLLLoss

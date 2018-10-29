@@ -21,10 +21,9 @@ import mock
 from recommonmark.parser import CommonMarkParser
 from recommonmark.transform import AutoStructify
 
-curr_path = os.path.dirname(os.path.abspath(os.path.expanduser(__file__)))
+# curr_path = os.path.dirname(os.path.abspath(os.path.expanduser(__file__)))
 # libpath = os.path.join(curr_path, '../python/')
 # sys.path.insert(0, libpath)
-sys.path.insert(0, curr_path)
 
 # -- mock out modules
 MOCK_MODULES = ['scipy', 'scipy.sparse', 'sklearn']
@@ -117,7 +116,7 @@ master_doc = 'index'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = []
+exclude_patterns = ['templates', 'sphinx_materialdesign_theme']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -147,7 +146,7 @@ suppress_warnings = [
 # -- Options for HTML output ---------------------------------------------------
 
 # Add any paths that contain custom themes here, relative to this directory.
-# html_theme_path = ['/home/ubuntu/sphinx_materialdesign_theme']
+html_theme_path = ['sphinx_materialdesign_theme']
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
@@ -158,7 +157,7 @@ html_theme = 'sphinx_materialdesign_theme'
 # documentation.
 html_theme_options = {
     'primary_color': 'blue',
-    'accent_color': 'red',
+    'accent_color': 'deep_orange',
     'header_links' : [
         ('Install', '#', False, ''),
         ("Develop", "develop/index", False, ''),
@@ -186,7 +185,7 @@ html_logo = '_static/mxnet_logo_2.png'
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-#html_favicon = None
+html_favicon = '_static/mxnet-icon.png'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

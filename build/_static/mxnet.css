@@ -61,10 +61,10 @@ p {
     height: 0;
 }
 
-.section .viewcode-link {
-    padding-left: 2em;
-    font-size: 80%;
-}
+/* .section .viewcode-link { */
+/*     padding-left: 2em; */
+/*     font-size: 80%; */
+/* } */
 
 .section .class dt {
     padding-bottom: 1em;

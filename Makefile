@@ -26,8 +26,10 @@ build/%: %
 	@cp -r $< $@
 
 html: $(OBJ)
-	echo $(IPYNB_MARKDOWN)
-	make -C build html
+	sphinx-autogen build/api/*.rst build/api/*/*.rst   -t build/templates/
+	# make -C build linkcheck doctest html
+	make -C build  html
+
 
 clean:
-	rm -rf build/_build $(DEPS)
+	rm -rf build/_build $(OBJ) build/api build/develop

@@ -17,5 +17,4 @@ Random Distribution
     uniform
     multinomial
     shuffle
-    mxnet.random.seed
     randn
