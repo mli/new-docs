@@ -21,3 +21,6 @@ should be able to:
    ndarray
    nn
    autograd
+   train
+   predict
+   use_gpus
