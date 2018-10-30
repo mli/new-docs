@@ -8,6 +8,7 @@ NDArray package
 
    mxnet.ndarray.NDArray
    routines
+   contrib
 
 .. automodule:: mxnet.ndarray.sparse
 
