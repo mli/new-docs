@@ -7,7 +7,7 @@ module.
 .. automodule:: mxnet.gluon.loss
 
    .. autosummary::
-      :toctree: out_loss
+      :toctree: _autogen
       :nosignatures:
 
       Loss

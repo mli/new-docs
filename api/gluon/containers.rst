@@ -42,7 +42,7 @@ stacking layers sequentially. Refer to XXX for tutorials how to use them.
 .. currentmodule:: mxnet.gluon.nn
 
 .. autosummary::
-    :toctree: out_container
+    :toctree: _autogen
     :nosignatures:
 
     Sequential
@@ -59,7 +59,7 @@ ResNet and Inception block in GoogLeNet.
 .. currentmodule:: mxnet.gluon.contrib.nn
 
 .. autosummary::
-    :toctree: out_construct
+    :toctree: _autogen
     :nosignatures:
 
     Concurrent

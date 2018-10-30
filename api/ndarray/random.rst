@@ -6,7 +6,7 @@ Random Distribution
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_random
+    :toctree: _autogen
 
     exponential
     gamma

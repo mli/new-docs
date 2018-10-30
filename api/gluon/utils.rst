@@ -4,7 +4,7 @@
 .. automodule:: mxnet.gluon.utils
 
    .. autosummary::
-       :toctree: out_utils
+       :toctree: _autogen
        :nosignatures:
 
        split_data

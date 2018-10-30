@@ -5,7 +5,7 @@ Create Arrays
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_create
+    :toctree: _autogen
 
     array
     empty

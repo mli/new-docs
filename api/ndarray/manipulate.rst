@@ -9,7 +9,7 @@ Changing shape and type
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_manipulate
+    :toctree: _autogen
 
     cast
     shape_array
@@ -24,7 +24,7 @@ Expanding  elements
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_manipulate
+    :toctree: _autogen
 
     broadcast_to
     broadcast_axes
@@ -38,7 +38,7 @@ Rearranging elements
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_manipulate
+    :toctree: _autogen
 
     transpose
     swapaxes
@@ -51,7 +51,7 @@ Joining and splitting
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_manipulate
+    :toctree: _autogen
 
     concat
     split
@@ -62,7 +62,7 @@ Indexing
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_manipulate
+    :toctree: _autogen
 
     slice
     slice_axis

@@ -9,7 +9,7 @@ Parameter
    .. rubric:: Get and set parameters
 
    .. autosummary::
-      :toctree: out_param
+      :toctree: _autogen
 
       Parameter.initialize
       Parameter.data
@@ -23,7 +23,7 @@ Parameter
    .. rubric:: Get and set gradients associated with parameters
 
    .. autosummary::
-      :toctree: out_param
+      :toctree: _autogen
 
       Parameter.grad
       Parameter.list_grad
@@ -33,7 +33,7 @@ Parameter
    .. rubric:: Handle device contexts
 
    .. autosummary::
-      :toctree: out_param
+      :toctree: _autogen
 
       Parameter.cast
       Parameter.list_ctx
@@ -42,10 +42,10 @@ Parameter
    .. rubric:: Convert to symbol
 
    .. autosummary::
-      :toctree: out_param
+      :toctree: _autogen
       Parameter.var
 
    .. autosummary::
-      :toctree: out_param
+      :toctree: _autogen
 
 .. disqus::

@@ -12,7 +12,7 @@ HybridBlock
    .. rubric:: Symbol related methods
 
    .. autosummary::
-      :toctree: out_container
+      :toctree: _autogen
 
       HybridBlock.hybridize
       HybridBlock.hybrid_forward

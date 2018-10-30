@@ -8,7 +8,7 @@ ParameterDict
    .. rubric:: Load and save parameters
 
    .. autosummary::
-      :toctree: out_param
+      :toctree: _autogen
 
       ParameterDict.load
       ParameterDict.save
@@ -16,7 +16,7 @@ ParameterDict
    .. rubric:: Get a particular parameter
 
    .. autosummary::
-      :toctree: out_param
+      :toctree: _autogen
 
       ParameterDict.get
       ParameterDict.get_constant
@@ -24,7 +24,7 @@ ParameterDict
    .. rubric:: Get (name, paramter) pairs
 
    .. autosummary::
-      :toctree: out_param
+      :toctree: _autogen
 
       ParameterDict.items
       ParameterDict.keys
@@ -33,7 +33,7 @@ ParameterDict
    .. rubric:: Update parameters
 
    .. autosummary::
-      :toctree: out_param
+      :toctree: _autogen
 
       ParameterDict.initialize
       ParameterDict.setattr
@@ -43,7 +43,7 @@ ParameterDict
    .. rubric:: Set devices contexts and gradients
 
    .. autosummary::
-      :toctree: out_param
+      :toctree: _autogen
 
       ParameterDict.reset_ctx
       ParameterDict.zero_grad

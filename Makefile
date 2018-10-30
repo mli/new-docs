@@ -26,10 +26,10 @@ build/%: %
 	@cp -r $< $@
 
 html: $(OBJ)
-	#sphinx-autogen build/api/*.rst build/api/*/*.rst   -t build/templates/
+	sphinx-autogen build/api/*.rst build/api/*/*.rst   -t build/_templates/
 	# make -C build linkcheck doctest html
 	make -C build html
 
 
 clean:
-	rm -rf build/_build $(OBJ) build/api build/develop
+	rm -rf build/_build $(OBJ) build/api build/develop api/_autogen api/*/_autogen

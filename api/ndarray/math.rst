@@ -8,7 +8,7 @@ Arithmetic
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_math
+    :toctree: _autogen
 
     add
     subtract
@@ -25,7 +25,7 @@ Trigonometric
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_math
+    :toctree: _autogen
 
     sin
     cos
@@ -42,7 +42,7 @@ Hyperbolic
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_math
+    :toctree: _autogen
 
     sinh
     cosh
@@ -56,7 +56,7 @@ Reduce
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_math
+    :toctree: _autogen
 
     sum
     nansum
@@ -72,7 +72,7 @@ Rounding
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_math
+    :toctree: _autogen
 
     round
     rint
@@ -86,7 +86,7 @@ Exponents and logarithms
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_math
+    :toctree: _autogen
 
     exp
     expm1
@@ -100,7 +100,7 @@ Powers
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_math
+    :toctree: _autogen
 
     power
     sqrt
@@ -116,7 +116,7 @@ Comparison
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_math
+    :toctree: _autogen
 
     equal
     not_equal
@@ -130,7 +130,7 @@ Logical
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_math
+    :toctree: _autogen
 
     logical_and
     logical_or

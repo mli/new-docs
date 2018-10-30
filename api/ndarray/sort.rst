@@ -5,7 +5,7 @@ Sort and Search
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_sort
+    :toctree: _autogen
 
     sort
     topk

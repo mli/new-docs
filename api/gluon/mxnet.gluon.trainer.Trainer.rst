@@ -12,7 +12,7 @@ Trainer
    .. rubric:: Methods
 
    .. autosummary::
-      :toctree: out_trainer
+      :toctree: _autogen
 
       Trainer.allreduce_grads
       Trainer.load_states
@@ -28,7 +28,7 @@ Trainer
    .. rubric:: Attributes
 
    .. autosummary::
-      :toctree: out_trainer
+      :toctree: _autogen
 
       Trainer.learning_rate
 

@@ -6,7 +6,6 @@ modules
 
 
 .. autosummary::
-    :toctree: out_layer
     :nosignatures:
 
     mxnet.gluon.nn
@@ -40,7 +39,7 @@ Basic Layers
 ------------
 
 .. autosummary::
-    :toctree: out_layer
+    :toctree: _autogen
     :nosignatures:
 
     nn.Dense
@@ -54,7 +53,7 @@ Convolutional Layers
 --------------------
 
 .. autosummary::
-    :toctree: out_layer
+    :toctree: _autogen
     :nosignatures:
 
     nn.Conv1D
@@ -68,7 +67,7 @@ Pooling Layers
 --------------
 
 .. autosummary::
-    :toctree: out_layer
+   :toctree: _autogen
     :nosignatures:
 
     nn.MaxPool1D
@@ -89,7 +88,7 @@ Normalization Layers
 --------------------
 
 .. autosummary::
-    :toctree: out_layer
+    :toctree: _autogen
     :nosignatures:
 
     nn.BatchNorm
@@ -101,7 +100,7 @@ Embedding Layers
 ----------------
 
 .. autosummary::
-    :toctree: out_layer
+    :toctree: _autogen
     :nosignatures:
 
     nn.Embedding
@@ -111,7 +110,7 @@ Recurrent Cells
 ----------------
 
 .. autosummary::
-    :toctree: out_layer
+    :toctree: _autogen
     :nosignatures:
 
     rnn.LSTMCell
@@ -138,7 +137,7 @@ Recurrent Layers
 ----------------
 
 .. autosummary::
-    :toctree: out_layer
+    :toctree: _autogen
     :nosignatures:
 
     rnn.RNN
@@ -149,7 +148,7 @@ Advanced Activation Layers
 --------------------------
 
 .. autosummary::
-    :toctree: out_layer
+    :toctree: _autogen
     :nosignatures:
 
     nn.LeakyReLU

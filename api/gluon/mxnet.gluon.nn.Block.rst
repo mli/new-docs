@@ -13,7 +13,7 @@ Block
    .. rubric:: Handle model parameters:
 
    .. autosummary::
-      :toctree: out_container
+      :toctree: _autogen
 
       Block.initialize
       Block.save_parameters
@@ -25,14 +25,14 @@ Block
    .. rubric:: Run computation
 
    .. autosummary::
-      :toctree: out_container
+      :toctree: _autogen
 
       Block.forward
 
    .. rubric:: Debugging
 
    .. autosummary::
-      :toctree: out_container
+      :toctree: _autogen
 
       Block.summary
 
@@ -40,7 +40,7 @@ Block
 
 
    .. autosummary::
-      :toctree: out_container
+      :toctree: _autogen
 
       Block.name_scope
       Block.register_child
@@ -62,7 +62,7 @@ Block
       <https://github.com/apache/incubator-mxnet/releases/tag/1.2.1>`_.
 
       .. autosummary::
-          :toctree: out_container
+          :toctree: _autogen
 
           Block.save_params
           Block.load_params

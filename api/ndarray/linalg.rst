@@ -5,7 +5,7 @@ Linear Algebra
 
 .. autosummary::
     :nosignatures:
-    :toctree: out_linalg
+    :toctree: _autogen
 
     gemm
     gemm2
