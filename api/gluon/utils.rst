@@ -1,14 +1,14 @@
-Utilities
-=========
+``utils`` module
+=================
 
-.. currentmodule:: mxnet.gluon
+.. automodule:: mxnet.gluon.utils
 
-.. autosummary::
-    :toctree: out_basic
-    :nosignatures:
+   .. autosummary::
+       :toctree: out_utils
+       :nosignatures:
 
-    utils.split_data
-    utils.split_and_load
-    utils.clip_global_norm
-    utils.download
-    utils.check_sha1
+       split_data
+       split_and_load
+       clip_global_norm
+       download
+       check_sha1

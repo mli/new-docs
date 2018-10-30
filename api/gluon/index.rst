@@ -7,6 +7,6 @@ Gluon package
    containers
    layers
    losses
-   parameter
+   parameters
    trainer
    utils

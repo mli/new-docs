@@ -13,13 +13,7 @@ blocks for a neural network model:
 
 .. autosummary::
    :nosignatures:
-
-   Block
-   HybridBlock
-   SymbolBlock
-
-.. toctree::
-   :hidden:
+   :toctree: .
 
    Block
    HybridBlock
@@ -51,8 +45,8 @@ stacking layers sequentially. Refer to XXX for tutorials how to use them.
     :toctree: out_container
     :nosignatures:
 
-    nn.Sequential
-    nn.HybridSequential
+    Sequential
+    HybridSequential
 
 Concurrent containers
 ---------------------
@@ -63,11 +57,12 @@ ResNet and Inception block in GoogLeNet.
 
 
 .. currentmodule:: mxnet.gluon.contrib.nn
+
 .. autosummary::
     :toctree: out_construct
     :nosignatures:
 
-    contrib.nn.Concurrent
-    contrib.nn.HybridConcurrent
+    Concurrent
+    HybridConcurrent
 
 .. disqus::
