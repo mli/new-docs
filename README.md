@@ -13,7 +13,6 @@ evaluated. RST is used for sphinx-related document, such as index and API pages.
 
 TODO:
 
-- A new sphinx theme
 - Add other languages besides python
 - Port more contents from mxnet
 

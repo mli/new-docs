@@ -72,7 +72,14 @@ extensions = [
     # 'sphinx.ext.viewcode',
     'breathe',
 #    'mxdoc'
+    'sphinxcontrib.disqus'
 ]
+
+disqus_shortname = 'mxnet'
+
+doctest_global_setup = '''
+import mxnet as mx
+'''
 
 # Use breathe to include doxygen documents
 breathe_projects = {'mxnet' : '../docs/doxygen/xml/'}
