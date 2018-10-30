@@ -16,10 +16,23 @@ TODO:
 - Add other languages besides python
 - Port more contents from mxnet
 
-## How to build
+## Setup
 
 ```bash
 conda env create -f environment.yml
 source activate mxnet-docs
+```
+
+## Build
+
+To build without testing the notebooks:
+
+```bash
+make EVAL=0
+```
+
+To build with testing the notebooks (requires GPU):
+
+```bash
 make
 ```
