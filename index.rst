@@ -7,6 +7,7 @@ how to build this doc.
 .. toctree::
    :maxdepth: 1
 
+   install
    develop/index
    api/index
    ecosystem
