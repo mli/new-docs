@@ -26,6 +26,7 @@ $(document).ready(function () {
     function setTheme() {
         $('.opt-group .option').each(function(){
             $(this).addClass('mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised ');
+            $(this).attr('id', label($(this).text()));
         });
         $('.opt-group .active').each(function(){
             $(this).addClass('mdl-button--colored');

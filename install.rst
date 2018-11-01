@@ -48,6 +48,12 @@ Install
          :opt:`MKL-DNN`
          :opt:`CUDA + MKL-DNN`
 
+         .. raw:: html
+
+            <div class="mdl-tooltip" data-mdl-for="native">Build-in backend for CPU.</div>
+            <div class="mdl-tooltip" data-mdl-for="cuda">Required to run on Nvidia GPUs.</div>
+            <div class="mdl-tooltip" data-mdl-for="mkl-dnn">Accelarate Intel CPU performacne.</div>
+
       .. container:: pip docker
 
          .. admonition:: Prerequisite:
