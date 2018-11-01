@@ -1,118 +1,136 @@
 Install
 =======
 
-.. raw:: html
-
-    <script type="text/javascript" src='../_static/install-options.js'></script>
-    <script type="text/javascript" src='_static/install-options.js'></script>
+.. role:: title
+.. role:: opt
+   :class: option
+.. role:: act
+   :class: active option
+.. role:: dis
+   :class: disable option
 
 .. container:: install
 
    .. container:: opt-group
 
-      .. container:: title
-
-         OS:
-
-      .. container:: option
-
-         Linux
-
-      .. container:: option
-
-         Macos
-
-      .. container:: option
-
-         Windows
+      :title:`OS:`
+      :opt:`Linux`
+      :opt:`Macos`
+      :opt:`Windows`
 
    .. container:: opt-group
 
-      .. container:: title
+      :title:`Package:`
+      :act:`Pip`
+      :opt:`Docker`
+      :opt:`Source`
 
-         Package:
+   .. container:: pip docker opt-group
 
-      .. container:: option active
+      :title:`Backend:`
+      :act:`Native`
+      :opt:`CUDA`
+      :opt:`MKL-DNN`
+      :opt:`CUDA + MKL-DNN`
 
-         pip
+   .. container:: pip docker
 
-      .. container:: option
+      .. admonition:: Prerequisite:
 
-         docker
+         .. container:: docker
 
-      .. container:: option
+            - Assume `docker <https://docs.docker.com/install/>`_ is installed and
+              can be used by a non-root user.
 
-         source
+         .. container:: docker
 
+              .. container:: cuda cuda-mkl-dnn
 
-   .. container:: opt-group
+                 - You need to install `nvidia-docker
+                   <https://github.com/NVIDIA/nvidia-docker>`_
 
-      .. container:: title
+         .. container:: pip
 
-         Backend:
+            - A recent `pip <https://pip.pypa.io/en/stable/installing/>`_
+              >= 9 is required. Please refer to `Issue 8671
+              <https://github.com/apache/incubator-mxnet/issues/8671>`_ for all
+              variants and compiliations flags.
 
-      .. container:: option active
+         .. container:: cuda cuda-mkl-dnn
 
-         Native
+            - You need to install the according version CUDA to run on Nvidia
+              GPUs. All CUDA version can be found `here.
+              <https://developer.nvidia.com/cuda-toolkit-archive>`_
 
-      .. container:: option
+         .. container:: mkl-dnn cuda-mkl-dnn
 
-         CUDA 8.0
+            - The MKL-DNN variant provides accelerated performance on Intel CPUs. It
+              can be combined with CUDA as well, such as ``mxnet-cu92mkl``.
 
-      .. container:: option
+      .. admonition:: Command:
 
-         CUDA 9.0
+         .. container:: pip
 
-      .. container:: option
+            .. container:: native
 
-         CUDA 9.2
+               .. code-block:: bash
 
-      .. container:: option
+                  pip install mxnet
 
-         MKL-DNN
+            .. container:: cuda
 
+               .. code-block:: bash
 
-   .. container:: pip
+                  # Assume you installed CUDA 9.2, you may change the number
+                  # according to your own CUDA version
+                  pip install mxnet-cu92
 
-      .. container:: linux windows macos
+            .. container:: mkl-dnn
 
-         .. container:: native
+               .. code-block:: bash
 
-            .. code-block:: bash
+                  pip install mxnet-mkl
 
-               pip install mxnet
-               # you can append --pre tag to install the nightly version.
+            .. container:: cuda-mkl-dnn
 
-         .. container:: mkl-dnn
+               .. code-block:: bash
 
-            .. code-block:: bash
+                  # Assume you installed CUDA 9.2, you may change the number
+                  # according to your own CUDA version
+                  pip install mxnet-cu92mkl
 
-               pip install mxnet-mkldnn
+         .. container:: docker
 
-      .. container:: linux windows
+            .. container:: native
 
-         .. container:: cuda-8-0
+               .. code-block:: bash
 
-            .. code-block:: bash
+                  docker pull mxnet/python
 
-               pip install mxnet-cu80
+            .. container:: cuda
 
-         .. container:: cuda-9-0
+               .. code-block:: bash
 
-            .. code-block:: bash
+                  docker pull mxnet/python:gpu
 
-               pip install mxnet-cu90
+            .. container:: mkl-dnn
 
-         .. container:: cuda-9-2
+               .. code-block:: bash
 
-            .. code-block:: bash
+                  docker pull mxnet/python:1.3.0_cpu_mkl
 
-               pip install mxnet-cu90
+            .. container:: cuda-mkl-dnn
 
-      .. container:: macos
+               .. code-block:: bash
 
-         .. container:: cuda-8-0 cuda-9-0 cuda-9-2
+                   docker pull mxnet/python:1.3.0_gpu_cu90_mkl_py3
 
-            .. code-block:: bash
+   .. container:: source
 
-               # CUDA version is not supported in Macos
+      .. admonition:: Instruction:
+
+         Follow instructions at this URL: xxx
+
+.. raw:: html
+
+   <script type="text/javascript" src='_static/install-options.js'></script>

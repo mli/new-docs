@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
     function label(lbl) {
-        return $.trim(lbl.replace(/[ .]/g, '-').toLowerCase());
+        return $.trim(lbl.replace(/[ .]/g, '-').replace('+-', '').toLowerCase());
     }
 
     // find the user os, and set the according option to active
@@ -37,11 +37,12 @@ $(document).ready(function () {
     // show the command according to the active options
     function showCommand() {
         $('.opt-group .option').each(function(){
-            console.log(label($(this).text()));
             $('.'+label($(this).text())).hide();
+            // console.log('disable '+label($(this).text()));
         });
-        $('.install .active').each(function(){
+        $('.opt-group .active').each(function(){
             $('.'+label($(this).text())).show();
+            // console.log('enable '+label($(this).text()));
         });
     }
     showCommand();
@@ -52,6 +53,8 @@ $(document).ready(function () {
         el.siblings().removeClass('mdl-button--colored');
         el.addClass('active');
         el.addClass('mdl-button--colored');
+        // console.log('enable'+el.text())
+        // console.log('disable'+el.siblings().text())
         showCommand();
     }
 
