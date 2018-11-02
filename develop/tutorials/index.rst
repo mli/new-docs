@@ -7,9 +7,8 @@ Tutorials
         :width: 200 px
         :align: left
 
-        If you would like to learn deep learning algorithms, please refer to
-        "dive into deep learning" book. It explain every algorithm from the
-        beggining, and implements them from scratch with MXNet.
+        To learn deep learning from scratch, you can refer to the
+        **interactive** dive into deep learning book.
 
 In this unit, we will go thourgh how to use MXNet to implement various deep
 learning algorithms.

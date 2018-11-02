@@ -1,0 +1,39 @@
+.mdl-card {
+    margin: 1em 1.5em 1em 0;
+    display: inline-block;
+    width: 250px;
+    min-height: 140px;
+    padding: 18px;
+}
+.mdl-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25), 0 6px 6px rgba(0,0,0,0.22);
+    color: #000;
+    cursor: pointer;
+}
+.mdl-card__title {
+    padding: 0 0 1em 0;
+    font-size: 18px;
+    color: #444;
+}
+
+.mdl-card__supporting-text:hover {
+    /* color: #000; */
+    /* color: #444; */
+    /* margin-top: 20px; */
+    /* padding: 18px; */
+}
+
+.head-card.mdl-card {
+    width: 800px;
+}
+.head-card > .mdl-card__title {
+    margin-left: 16px;
+    padding-bottom: 0px;
+    height: 60px;
+}
+.head-card > .mdl-card__menu {
+    color: #fff;
+}
+.head-card > .mdl-card__actions {
+    padding: 0;
+}
