@@ -1,7 +1,7 @@
 all: html
 
 # markdown files that will not be evaluated, simply copy to build/
-PURE_MARKDOWN = ./README.md
+PURE_MARKDOWN = ./README.md $(wildcard ./blog/*.md)
 # markdown files that will be evaluated and then saved as ipynb files
 IPYNB_MARKDOWN = $(shell find . -not -path "./build/*" -name "*.md")
 # RST files will be simply coped to build/
@@ -14,7 +14,7 @@ OBJ = $(patsubst %.rst, build/%.rst, $(RST)) \
 
 build/%.ipynb: %.md
 	@mkdir -p $(@D)
-	python build/md2ipynb.py $< $@
+	export EVAL=0; python build/md2ipynb.py $< $@
 
 
 build/%.rst: %.rst
@@ -24,6 +24,11 @@ build/%.rst: %.rst
 build/%: %
 	@mkdir -p $(@D)
 	@cp -r $< $@
+
+# debug:
+# 	@echo $(PURE_MARKDOWN)
+# 	@echo $(IPYNB_MARKDOWN)
+# 	@echo $(filter-out $(PURE_MARKDOWN), $(IPYNB_MARKDOWN))
 
 html: $(OBJ)
 	sphinx-autogen build/api/*.rst build/api/*/*.rst   -t build/_templates/
