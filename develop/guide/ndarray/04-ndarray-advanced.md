@@ -1,4 +1,4 @@
-# NDArray: manipulate multi-dimensional arrays
+# NDArray for Advanced Users
 
 In _MXNet_, `NDArray` is the core data structure for all mathematical
 computations.  An `NDArray` represents a multidimensional, fixed-size homogenous
