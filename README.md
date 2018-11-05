@@ -64,3 +64,11 @@ Each build may take a few minutes even without evaluation. To accelearte it, we 
 
 1. open `build/conf.py`, add the folders you want to skip into `exclude_patterns`, such as `exclude_patterns = ['templates', 'sphinx_materialdesign_theme', 'api', 'develop', 'blog']`. 
 2. move the files into a different folder, such as `mv api /tmp/`, and then `make clean`.
+
+## Check results
+
+If you build docs in a remote machine, you can 
+
+1. start a http server: `cd build/_build/html; python -m http.server`
+2. ssh to your machine with port forwarding: `ssh -L8000:localhost:8000 your_machine`
+3. Open http://localhost:8000 in your local machine
