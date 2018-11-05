@@ -72,3 +72,12 @@ If you build docs in a remote machine, you can
 1. start a http server: `cd build/_build/html; python -m http.server`
 2. ssh to your machine with port forwarding: `ssh -L8000:localhost:8000 your_machine`
 3. Open http://localhost:8000 in your local machine
+
+
+## Run tutorials 
+
+In addition to view the built html pages, you can run the Jupyter notebook from a remote machine. 
+1. Install `notedown` plugin: `pip install https://github.com/mli/notedown/tarball/master` in remote server
+2. Start Jupyter notebook `cd develop/tutorials/; jupyter notebook --NotebookApp.contents_manager_class='notedown.NotedownContentsManager'` in remote server
+3. ssh to your machine with port forwarding: `ssh -L8888:localhost:8888 your_machine`
+4. Open http://localhost:8888 in your local machine and run the md files directly
