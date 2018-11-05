@@ -1,6 +1,6 @@
 # README
 
-## New
+## What's new
 
 Started from scratch: removed all HTML/JS hacks, and used a default theme
 instead of the customized mxdoc theme. I created the mxdoc theme a few years
@@ -18,7 +18,10 @@ TODO:
 
 ## Setup
 
+You need to have CUDA 9.2 installed. If you prefer to skip evaluation on GPUs, you can change `mxnet-cu92` into `mxnet` in the `environment.yml` file. 
+
 ```bash
+git submodule update --init --recursive
 conda env create -f environment.yml
 source activate mxnet-docs
 ```
