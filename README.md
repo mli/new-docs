@@ -2,19 +2,35 @@
 
 ## What's new
 
-Started from scratch: removed all HTML/JS hacks, and used a default theme
-instead of the customized mxdoc theme. I created the mxdoc theme a few years
-ago without quite understand how to make a customized theme, we need to
-re-design it later.
+This is a total new design of the mxnet webiste. Major changes includes:
 
-Use two file formats: markdown and RST. Markdown is for articles and notebooks,
-in default, each markdown will be converted into a jupyter notebook and be
-evaluated. RST is used for sphinx-related document, such as index and API pages.
+1. used a relative simple build pipeline with a new theme. Removed a bunch of html/js hacks.
+2. easier to add contents without using HTML. such as adding a new card on the frontpage:
 
-TODO:
+   ```rst
+   .. container:: mx-card
 
-- Add other languages besides python
-- Port more contents from mxnet
+      :card-title:`GluonCV`
+      :card-text:`A deep learning toolkit for computer vision.`
+      :card-link:`https://gluon-cv.mxnet.io`
+   ```
+   
+   or install options:
+   
+   ```rst
+   .. container:: opt-group
+
+      :title:`Platform:`
+      :opt:`Linux`
+      :opt:`Macos`
+      :opt:`Windows`
+      :opt:`Cloud`
+   ```
+3. reorgized all documents by following tensorflow and pytorch. All tutorials go to develop/ and APIs go to api/. 
+4. Any tutorial under the develop/ page should be evaluated to get real outputs during build.
+5. Enabled right TOC, it's useful to navigate within the current page. 
+6. Each API function has a single page, instead of stacking all of them in a long page. All APIs can be accessed on the right toc panel. 
+7. Added disqus links so that readers can ask questions easily 
 
 ## Setup
 
