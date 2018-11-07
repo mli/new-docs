@@ -1,5 +1,5 @@
-RowSparseNDArray
-================
+``class RowSparseNDArray``
+==========================
 
 .. currentmodule:: mxnet.ndarray.sparse
 

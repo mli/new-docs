@@ -1,10 +1,10 @@
-``trainer`` module
+Trainer
 ==================
 
-.. automodule:: mxnet.gluon.trainer
+.. currentmodule:: mxnet.gluon
 
-   .. autosummary::
-      :nosignatures:
-      :toctree: .
+.. autosummary::
+   :nosignatures:
+   :toctree: .
 
-      Trainer
+   Trainer

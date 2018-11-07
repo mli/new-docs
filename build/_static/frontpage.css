@@ -24,8 +24,11 @@
 }
 
 .head-card.mdl-card {
-    width: 800px;
+    width: auto;
+    display: block;
+    max-width: 800px;
 }
+
 .head-card > .mdl-card__title {
     margin-left: 16px;
     padding-bottom: 0px;
@@ -36,4 +39,14 @@
 }
 .head-card > .mdl-card__actions {
     padding: 0;
+}
+
+.new-site {
+    width: auto;
+    display: block;
+    max-width: 800px;
+}
+
+.new-site .admonition-title {
+    display: none;
 }

@@ -1,5 +1,5 @@
-NDArray package
-===============
+NDArray: ``mxnet.ndarray``
+==========================
 
 .. automodule:: mxnet.ndarray
 

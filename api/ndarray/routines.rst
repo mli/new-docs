@@ -1,5 +1,5 @@
-Routines
-========
+Routines in ``mxnet.ndarray``
+====================================
 
 Create Arrays
 -------------

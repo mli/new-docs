@@ -1,5 +1,5 @@
-Containers
-==========
+Containers (such as ``class nn.Block``)
+=======================================
 
 This section covers the classes to construct neural network models.
 

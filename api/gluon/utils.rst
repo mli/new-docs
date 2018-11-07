@@ -1,4 +1,4 @@
-``utils`` module
+Utils
 =================
 
 .. automodule:: mxnet.gluon.utils

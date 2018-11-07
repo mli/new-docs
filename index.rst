@@ -1,11 +1,29 @@
-MXNet Documents
-===============
+Apache MXNet (incubating) Documents
+====================================
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   install
+   develop/index
+   api/index
+   ecosystem
+   community
+
+.. container:: new-site
+
+   .. note::
+
+      This an experimental new document site for Apache MXNet with a focus on
+      the python frontend. Click `here <http://mxnet.incubator.apache.org>`_ to
+      visit the original site and other frontend languages.
 
 .. raw:: html
 
    <script type="text/javascript" src='_static/frontpage.js'></script>
    <link rel="stylesheet" type="text/css" href="_static/frontpage.css" />
-
+   <script> $('h1').hide(); </script>
    <div class="head-card mdl-card mdl-shadow--2dp">
      <div class="mdl-card__title">
        <h2 class="mdl-card__title-text">Welcome</h2>
@@ -15,9 +33,9 @@ MXNet Documents
        designed for both research and products...
      </div>
      <div class="mdl-card__actions ">
-           <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="./install.html"> Get Started </a>
+           <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="./develop/tutorials/index.html"> Get Started </a>
      </div>
-     <div class="card-link">./install.html</div>
+     <div class="card-link">develop/tutorials/index.html</div>
      </div>
 
 Install
@@ -25,6 +43,7 @@ Install
 
 .. include:: install-include.rst
 
+Check :doc:`install` for more installation instructions and options.
 
 Documents
 ---------
@@ -73,13 +92,32 @@ Ecosystem
    :card-text:`An end to end deep learning compiler stack for CPUs, GPUs and specialized accelerators`
    :card-link:`https://tvm.ai/`
 
+Check :doc:`ecosystem` for more projects.
 
-.. toctree::
-   :maxdepth: 1
-   :hidden:
+Community
+---------
 
-   install
-   develop/index
-   api/index
-   ecosystem
-   community
+.. container:: mx-card
+
+   :card-title:`Github`
+   :card-text:`Reports bugs, request features, discuss issues, and more`
+   :card-link:`https://github.com/apache/incubator-mxnet/`
+
+.. container:: mx-card
+
+   :card-title:`Forum`
+   :card-text:`Browse and join discussion on deep learning with MXNet`
+   :card-link:`https://discuss.mxnet.io/`
+
+.. container:: mx-card
+
+   :card-title:`Slack`
+   :card-text:`Get questions answered. Email dev@mxnet.apache.org for access.`
+   :card-link:`./`
+
+Check :doc:`community` for more options to join our community.
+
+Adoptions
+--------------------------------------
+
+Companies and universities using MXNet. Put 50 logos here.

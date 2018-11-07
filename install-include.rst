@@ -25,8 +25,13 @@
 
          .. admonition:: Instruction:
 
-            - Deep Learning AMI
-            - Sagemaer
+            There are several options you can access MXNet at AWS:
+
+            - `Deep Learning AMI
+              <https://aws.amazon.com/machine-learning/amis/>`_, with MXNet
+              pre-installed on Ubuntu, Amazon Linux, and Windows 2016.
+            - `Sagemaer <https://aws.amazon.com/sagemaker/>`_ a fully-managed
+              platform with MXNet integrated.
 
    .. container:: linux macos windows
 
@@ -57,33 +62,40 @@
 
             .. container:: docker
 
-               - Assume `docker <https://docs.docker.com/install/>`_ is installed and
-                 can be used by a non-root user.
+               - Require `docker <https://docs.docker.com/install/>`_ is
+                 installed and it can be used by a non-root user.
 
             .. container:: docker
 
                  .. container:: cuda cuda-mkl-dnn
 
-                    - You need to install `nvidia-docker
-                      <https://github.com/NVIDIA/nvidia-docker>`_
+                    - `nvidia-docker
+                      <https://github.com/NVIDIA/nvidia-docker>`_ is required to
+                      run on Nvidia GPUs.
 
             .. container:: pip
 
-               - A recent `pip <https://pip.pypa.io/en/stable/installing/>`_
-                 >= 9 is required. Please refer to `Issue 8671
-                 <https://github.com/apache/incubator-mxnet/issues/8671>`_ for all
-                 variants and compiliations flags.
+               - Require `pip
+                 >= 9. <https://pip.pypa.io/en/stable/installing/>`_ is
+                 installed. Both Python 2 and Python 3 are supported.
+               - Hint: append the flag ``--pre`` at the end of the command will
+                 install the nightly build.
+               - Hint: refer to `Issue 8671
+                 <https://github.com/apache/incubator-mxnet/issues/8671>`_ for
+                 all MXNet variants that available for pip.
 
             .. container:: cuda cuda-mkl-dnn
 
-               - You need to install the according version CUDA to run on Nvidia
-                 GPUs. All CUDA version can be found `here.
-                 <https://developer.nvidia.com/cuda-toolkit-archive>`_
+               - Require `CUDA
+                 <https://developer.nvidia.com/cuda-toolkit-archive>`_ is
+                 installed. Supported versions include 8.0, 9.0, 9.1, and 9.2.
+               - `cuDNN <https://developer.nvidia.com/cudnn>`_ is already
+                 included in the MXNet binary, you don't need to install it.
 
             .. container:: mkl-dnn cuda-mkl-dnn
 
-               - The MKL-DNN variant provides accelerated performance on Intel CPUs. It
-                 can be combined with CUDA as well, such as ``mxnet-cu92mkl``.
+               - `MKL-DNN <https://01.org/mkl-dnn>`_ is already included in
+                 the MXNet binary, you don't need to install it.
 
          .. admonition:: Command:
 
@@ -99,8 +111,9 @@
 
                   .. code-block:: bash
 
-                     # Assume you installed CUDA 9.2, you may change the number
-                     # according to your own CUDA version
+                     # Here we assume CUDA 9.2 is installed. You can change the number
+                     # according to your own CUDA version.
+
                      pip install mxnet-cu92
 
                .. container:: mkl-dnn
@@ -113,8 +126,9 @@
 
                   .. code-block:: bash
 
-                     # Assume you installed CUDA 9.2, you may change the number
-                     # according to your own CUDA version
+                     # Here we assume CUDA 9.2 is installed. You can change the number
+                     # according to your own CUDA version.
+
                      pip install mxnet-cu92mkl
 
             .. container:: docker
@@ -147,7 +161,7 @@
 
          .. admonition:: Instruction:
 
-            Follow instructions at this URL: xxx
+            Follow instructions at this URL: TODO.
 
 .. raw:: html
 

@@ -1,4 +1,4 @@
-``loss`` module
+Losses
 ===============
 
 Gluon provides pre-defined loss functions in the :py:mod:`mxnet.gluon.parameter`

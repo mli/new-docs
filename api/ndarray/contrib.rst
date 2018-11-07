@@ -1,5 +1,5 @@
-Contrib NDArray
-===============
+Contributed routines in ``mxnet.ndarray.contrib``
+=================================================
 
 .. automodule:: mxnet.ndarray.contrib
 

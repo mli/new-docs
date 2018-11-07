@@ -84,3 +84,11 @@ p {
 .install .option {
     margin: 5px;
 }
+
+@media (max-width: 650px) {
+.install .option, .install .title {
+    width: 90%;
+}
+.install .title {
+    margin-top: 1em;
+}

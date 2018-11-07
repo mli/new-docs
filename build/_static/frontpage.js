@@ -18,7 +18,6 @@ $(document).ready(function () {
         $(this).hide();
     });
 
-    $('h1').hide();
 
     $('.mdl-card').each(function(){
         $(this).click(function() {

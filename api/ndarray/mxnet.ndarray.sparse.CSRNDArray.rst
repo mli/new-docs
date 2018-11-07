@@ -1,5 +1,5 @@
-CSRNDArray
-==========
+``class CSRNDArray``
+====================
 
 .. currentmodule:: mxnet.ndarray.sparse
 

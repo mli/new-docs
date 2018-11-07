@@ -1,5 +1,5 @@
-NDArray
-=======
+``class NDArray``
+=================
 
 .. currentmodule:: mxnet.ndarray
 

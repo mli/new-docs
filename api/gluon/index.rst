@@ -1,5 +1,5 @@
-Gluon package
-=============
+Gluon: ``mxnet.gluon``
+=======================
 
 .. toctree::
    :maxdepth: 2
@@ -10,3 +10,6 @@ Gluon package
    parameters
    trainer
    utils
+
+   mxnet.gluon.data
+   mxnet.gluon.model_zoo

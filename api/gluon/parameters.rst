@@ -1,14 +1,15 @@
-``parameter`` module
+Parameters
 =====================
 
-.. automodule:: mxnet.gluon.parameter
+.. currentmodule:: mxnet.gluon
 
-   .. autosummary::
-      :toctree: .
 
-      Parameter
-      Constant
-      ParameterDict
+.. autosummary::
+   :toctree: .
+
+   Parameter
+   Constant
+   ParameterDict
 
 where
 
