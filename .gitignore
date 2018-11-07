@@ -4,4 +4,4 @@ build/**/*.ipynb
 build/**/*.md
 __pycache__
 /build.sh
-out_*
+_autogen
