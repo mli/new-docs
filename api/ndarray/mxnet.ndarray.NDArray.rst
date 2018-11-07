@@ -1,4 +1,4 @@
-``NDArray``
+NDArray
 =================
 
 .. currentmodule:: mxnet.ndarray
@@ -30,8 +30,11 @@ Array creation
    NDArray.zeros_like
    NDArray.ones_like
 
+Manipulation
+-------------
+
 Array conversion
-----------------------------
+^^^^^^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: _autogen
@@ -44,8 +47,8 @@ Array conversion
    NDArray.astype
    NDArray.tostype
 
-Change shape
-----------------------------
+Changing shape
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: _autogen
@@ -59,8 +62,8 @@ Change shape
    NDArray.split
    NDArray.diag
 
-Expand elements
-----------------------------
+Expanding elements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: _autogen
@@ -73,7 +76,7 @@ Expand elements
    NDArray.pad
 
 Rearrange elements
-----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: _autogen
@@ -85,36 +88,9 @@ Rearrange elements
    NDArray.depth_to_space
    NDArray.space_to_depth
 
-Reduction
-----------------------------
 
-.. autosummary::
-   :toctree: _autogen
-
-   NDArray.sum
-   NDArray.nansum
-   NDArray.prod
-   NDArray.nanprod
-   NDArray.mean
-   NDArray.max
-   NDArray.min
-   NDArray.norm
-
-Round
-----------------------------
-
-.. autosummary::
-   :toctree: _autogen
-
-   NDArray.round
-   NDArray.rint
-   NDArray.fix
-   NDArray.floor
-   NDArray.ceil
-   NDArray.trunc
-
-Sort and search
-----------------------------
+Sorting and searching
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: _autogen
@@ -126,8 +102,34 @@ Sort and search
    NDArray.argmax
    NDArray.argmax_channel
 
-Arithmetic
-----------------------------
+Indexing
+^^^^^^^^^^
+
+.. autosummary::
+   :toctree: _autogen
+
+   NDArray.__getitem__
+   NDArray.__setitem__
+   NDArray.slice
+   NDArray.slice_axis
+   NDArray.slice_like
+   NDArray.take
+   NDArray.one_hot
+   NDArray.pick
+
+Lazy evaluation
+^^^^^^^^^^^^^^^^
+
+.. autosummary::
+   :toctree: _autogen
+
+   NDArray.wait_to_read
+
+Math
+----
+
+Arithmetic operations
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: _autogen
@@ -143,8 +145,61 @@ Arithmetic
    NDArray.__rmod__
    NDArray.__pow__
 
-Trigonometric
-----------------------------
+Rounding
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autosummary::
+   :toctree: _autogen
+
+   NDArray.round
+   NDArray.rint
+   NDArray.fix
+   NDArray.floor
+   NDArray.ceil
+   NDArray.trunc
+
+Reduction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autosummary::
+   :toctree: _autogen
+
+   NDArray.sum
+   NDArray.nansum
+   NDArray.prod
+   NDArray.nanprod
+   NDArray.mean
+   NDArray.max
+   NDArray.min
+   NDArray.norm
+
+In^place arithmetic operations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autosummary::
+   :toctree: _autogen
+
+   NDArray.__iadd__
+   NDArray.__isub__
+   NDArray.__imul__
+   NDArray.__idiv__
+   NDArray.__imod__
+
+Comparison operators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autosummary::
+   :toctree: _autogen
+
+   NDArray.__lt__
+   NDArray.__le__
+   NDArray.__gt__
+   NDArray.__ge__
+   NDArray.__eq__
+   NDArray.__ne__
+
+Trigonometric functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: _autogen
@@ -158,8 +213,8 @@ Trigonometric
    NDArray.degrees
    NDArray.radians
 
-Hyperbolic
-----------------------------
+Hyperbolic functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: _autogen
@@ -172,7 +227,7 @@ Hyperbolic
    NDArray.tanh
 
 Exponents and logarithms
-----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: _autogen
@@ -185,7 +240,7 @@ Exponents and logarithms
    NDArray.log1p
 
 Powers
-----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
    :toctree: _autogen
@@ -197,8 +252,17 @@ Powers
    NDArray.square
    NDArray.reciprocal
 
-Basic neural network
-----------------------------
+Miscellaneous
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autosummary::
+   :toctree: _autogen
+
+   NDArray.clip
+   NDArray.sign
+
+Neural network
+------------------
 
 .. autosummary::
    :toctree: _autogen
@@ -208,62 +272,8 @@ Basic neural network
    NDArray.softmax
    NDArray.log_softmax
 
-In-place arithmetic operations
-----------------------------
 
-.. autosummary::
-   :toctree: _autogen
 
-   NDArray.__iadd__
-   NDArray.__isub__
-   NDArray.__imul__
-   NDArray.__idiv__
-   NDArray.__imod__
-
-Comparison operators
-----------------------------
-
-.. autosummary::
-   :toctree: _autogen
-
-   NDArray.__lt__
-   NDArray.__le__
-   NDArray.__gt__
-   NDArray.__ge__
-   NDArray.__eq__
-   NDArray.__ne__
-
-Indexing
-----------------------------
-
-.. autosummary::
-   :toctree: _autogen
-
-   NDArray.__getitem__
-   NDArray.__setitem__
-   NDArray.slice
-   NDArray.slice_axis
-   NDArray.slice_like
-   NDArray.take
-   NDArray.one_hot
-   NDArray.pick
-
-Lazy evaluation
-----------------------------
-
-.. autosummary::
-   :toctree: _autogen
-
-   NDArray.wait_to_read
-
-Miscellaneous
-----------------------------
-
-.. autosummary::
-   :toctree: _autogen
-
-   NDArray.clip
-   NDArray.sign
 
 .. disqus::
    :disqus_identifier: mxnet.ndarray.NDArray

@@ -6,19 +6,18 @@ module.
 
 .. automodule:: mxnet.gluon.loss
 
-   .. autosummary::
-      :toctree: _autogen
-      :nosignatures:
+.. autosummary::
+   :toctree: _autogen
 
-      Loss
-      L2Loss
-      L1Loss
-      SigmoidBinaryCrossEntropyLoss
-      SoftmaxCrossEntropyLoss
-      KLDivLoss
-      HuberLoss
-      HingeLoss
-      SquaredHingeLoss
-      LogisticLoss
-      TripletLoss
-      CTCLoss
+   Loss
+   L2Loss
+   L1Loss
+   SigmoidBinaryCrossEntropyLoss
+   SoftmaxCrossEntropyLoss
+   KLDivLoss
+   HuberLoss
+   HingeLoss
+   SquaredHingeLoss
+   LogisticLoss
+   TripletLoss
+   CTCLoss

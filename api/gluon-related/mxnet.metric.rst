@@ -3,47 +3,41 @@ mxnet.metric
 
 .. automodule:: mxnet.metric
 
-   
-   
-   .. rubric:: Functions
 
-   .. autosummary::
-   
-      check_label_shapes
-      create
-      np
-   
-   
+Metrics
+-------
 
-   
-   
-   .. rubric:: Classes
+.. autosummary::
+   :toctree: _autogen
 
-   .. autosummary::
-   
-      Accuracy
-      Caffe
-      CompositeEvalMetric
-      CrossEntropy
-      CustomMetric
-      EvalMetric
-      F1
-      Loss
-      MAE
-      MCC
-      MSE
-      NegativeLogLikelihood
-      PearsonCorrelation
-      Perplexity
-      RMSE
-      TopKAccuracy
-      Torch
-   
-   
+   Accuracy
+   Caffe
+   CompositeEvalMetric
+   CrossEntropy
+   CustomMetric
+   EvalMetric
+   F1
+   Loss
+   MAE
+   MCC
+   MSE
+   NegativeLogLikelihood
+   PearsonCorrelation
+   Perplexity
+   RMSE
+   TopKAccuracy
+   Torch
 
-   
-   
-   
+
+Helper functions
+-----------------
+
+.. autosummary::
+   :toctree: _autogen
+
+   check_label_shapes
+   create
+   np
 
 .. disqus::
    :disqus_identifier: mxnet.metric

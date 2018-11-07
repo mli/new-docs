@@ -1,16 +1,14 @@
-``rnn`` and ``contrib.rnn``
+rnn and contrib.rnn
 ============================
 
+Build-in recurrent neural network layers are provided in the following two modules:
 
-Gluon provides build-in recurrent neural network layers in the following
-modules
 
 .. autosummary::
     :nosignatures:
 
     mxnet.gluon.rnn
     mxnet.gluon.contrib.rnn
-
 
 .. currentmodule:: mxnet.gluon
 

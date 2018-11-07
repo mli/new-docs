@@ -1,38 +1,38 @@
-``Trainer``
+Trainer
 ===========
 
-.. currentmodule:: mxnet.gluon.trainer
+.. currentmodule:: mxnet.gluon
 
 .. autoclass:: Trainer
 
+Updating parameters
+-------------------
 
-   .. automethod:: __init__
+.. autosummary::
+   :toctree: _autogen
 
+   Trainer.step
+   Trainer.allreduce_grads
+   Trainer.update
 
-   .. rubric:: Methods
+Trainer States
+--------------
 
-   .. autosummary::
-      :toctree: _autogen
+.. autosummary::
+   :toctree: _autogen
 
-      Trainer.allreduce_grads
-      Trainer.load_states
-      Trainer.save_states
-      Trainer.set_learning_rate
-      Trainer.step
-      Trainer.update
+   Trainer.load_states
+   Trainer.save_states
 
+Learning rate
+--------------
 
+.. autosummary::
+   :toctree: _autogen
 
-
-
-   .. rubric:: Attributes
-
-   .. autosummary::
-      :toctree: _autogen
-
-      Trainer.learning_rate
-
+   Trainer.learning_rate
+   Trainer.set_learning_rate
 
 
 .. disqus::
-   :disqus_identifier: mxnet.gluon.trainer.Trainer
+   :disqus_identifier: mxnet.gluon.Trainer

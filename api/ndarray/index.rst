@@ -1,4 +1,4 @@
-``mxnet.ndarray``
+mxnet.ndarray
 ==========================
 
 .. automodule:: mxnet.ndarray

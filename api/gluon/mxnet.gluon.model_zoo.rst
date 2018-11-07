@@ -1,37 +1,18 @@
-``model_zoo``
-==================
+model_zoo.vision
+=================
 
-.. currentmodule:: mxnet.gluon.model_zoo
-
-## Overview
-
-This document lists the model APIs in Gluon:
-
-.. autosummary::
-    :nosignatures:
-
-    mxnet.gluon.model_zoo
-    mxnet.gluon.model_zoo.vision
-
-The `Gluon Model Zoo` API, defined in the `gluon.model_zoo` package, provides pre-defined
-and pre-trained models to help bootstrap machine learning applications.
-
-In the rest of this document, we list routines provided by the `gluon.model_zoo` package.
-
-### Vision
-
-.. currentmodule:: mxnet.gluon.model_zoo.vision
 .. automodule:: mxnet.gluon.model_zoo.vision
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     get_model
 
-#### ResNet
+ResNet
+------
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     resnet18_v1
     resnet34_v1
@@ -45,7 +26,7 @@ In the rest of this document, we list routines provided by the `gluon.model_zoo`
     resnet152_v2
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     ResNetV1
     ResNetV2
@@ -55,10 +36,11 @@ In the rest of this document, we list routines provided by the `gluon.model_zoo`
     BottleneckV2
     get_resnet
 
-#### VGG
+VGG
+---
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     vgg11
     vgg13
@@ -70,32 +52,31 @@ In the rest of this document, we list routines provided by the `gluon.model_zoo`
     vgg19_bn
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     VGG
     get_vgg
 
-#### Alexnet
+Alexnet
+--------
 
-val_rst
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     alexnet
 
-
-
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     AlexNet
 
 
-#### DenseNet
+DenseNet
+--------
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     densenet121
     densenet161
@@ -105,16 +86,17 @@ val_rst
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     DenseNet
 
 
-#### SqueezeNet
+SqueezeNet
+------------
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     squeezenet1_0
     squeezenet1_1
@@ -122,32 +104,34 @@ val_rst
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     SqueezeNet
 
 
-#### Inception
+Inception
+---------
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     inception_v3
 
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Inception3
 
 
-#### MobileNet
+MobileNet
+---------
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     mobilenet1_0
     mobilenet0_75
@@ -159,9 +143,8 @@ val_rst
     mobilenet_v2_0_25
 
 
-
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     MobileNet
     MobileNetV2

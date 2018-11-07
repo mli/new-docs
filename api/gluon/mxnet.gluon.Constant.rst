@@ -1,8 +1,9 @@
 Constant
 ========
 
-.. currentmodule:: mxnet.gluon.parameter
+.. currentmodule:: mxnet.gluon
 
 .. autoclass:: Constant
 
 .. disqus::
+   :disqus_identifier: mxnet.gluon.Parameter

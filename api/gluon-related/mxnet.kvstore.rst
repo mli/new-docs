@@ -3,29 +3,11 @@ mxnet.kvstore
 
 .. automodule:: mxnet.kvstore
 
-   
-   
-   .. rubric:: Functions
-
    .. autosummary::
-   
+      :toctree: .
+
       create
-   
-   
-
-   
-   
-   .. rubric:: Classes
-
-   .. autosummary::
-   
       KVStore
-   
-   
-
-   
-   
-   
 
 .. disqus::
    :disqus_identifier: mxnet.kvstore

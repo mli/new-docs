@@ -3,23 +3,20 @@ mxnet.random
 
 .. automodule:: mxnet.random
 
-   
-   
-   .. rubric:: Functions
+.. autosummary::
+   :toctree: _autogen
 
-   .. autosummary::
-   
-      seed
-   
-   
+   seed
 
-   
-   
-   
 
-   
-   
-   
+
+
+
+
+
+
+
+
 
 .. disqus::
    :disqus_identifier: mxnet.random

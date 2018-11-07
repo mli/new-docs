@@ -3,34 +3,26 @@ mxnet.recordio
 
 .. automodule:: mxnet.recordio
 
-   
-   
-   .. rubric:: Functions
+Iterators
+---------
 
-   .. autosummary::
-   
-      pack
-      pack_img
-      unpack
-      unpack_img
-   
-   
+.. autosummary::
+   :toctree: _autogen
 
-   
-   
-   .. rubric:: Classes
+   MXIndexedRecordIO
+   MXRecordIO
 
-   .. autosummary::
-   
-      IRHeader
-      MXIndexedRecordIO
-      MXRecordIO
-   
-   
+Read and write RecordIO files
+------------------------------------------
 
-   
-   
-   
+.. autosummary::
+   :toctree: _autogen
+
+   IRHeader
+   pack
+   pack_img
+   unpack
+   unpack_img
 
 .. disqus::
    :disqus_identifier: mxnet.recordio

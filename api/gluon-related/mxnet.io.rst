@@ -3,42 +3,37 @@ mxnet.io
 
 .. automodule:: mxnet.io
 
-   
-   
-   .. rubric:: Functions
 
-   .. autosummary::
-   
-      CSVIter
-      ImageDetRecordIter
-      ImageRecordIter
-      ImageRecordIter_v1
-      ImageRecordUInt8Iter
-      ImageRecordUInt8Iter_v1
-      LibSVMIter
-      MNISTIter
-   
-   
+Iterators
+---------
 
-   
-   
-   .. rubric:: Classes
+.. autosummary::
+   :toctree: _autogen
 
-   .. autosummary::
-   
-      DataBatch
-      DataDesc
-      DataIter
-      MXDataIter
-      NDArrayIter
-      PrefetchingIter
-      ResizeIter
-   
-   
+   NDArrayIter
+   CSVIter
+   LibSVMIter
+   MNISTIter
+   ImageDetRecordIter
+   ImageRecordIter
+   ImageRecordIter_v1
+   ImageRecordUInt8Iter
+   ImageRecordUInt8Iter_v1
 
-   
-   
-   
+
+Helper classes and functions
+----------------------------
+
+.. autosummary::
+   :toctree: _autogen
+
+   DataBatch
+   DataDesc
+   DataIter
+   MXDataIter
+   PrefetchingIter
+   ResizeIter
+
 
 .. disqus::
    :disqus_identifier: mxnet.io

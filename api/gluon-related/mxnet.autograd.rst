@@ -1,39 +1,22 @@
 mxnet.autograd
-==============
+===================
 
 .. automodule:: mxnet.autograd
 
-   
-   
-   .. rubric:: Functions
+.. autosummary::
+   :toctree: _autogen
 
-   .. autosummary::
-   
-      backward
-      get_symbol
-      grad
-      is_recording
-      is_training
-      mark_variables
-      pause
-      predict_mode
-      record
-      set_recording
-      set_training
-      train_mode
-   
-   
 
-   
-   
-   .. rubric:: Classes
-
-   .. autosummary::
-   
-      Function
-   
-   
-
-   
-   
-   
+   backward
+   get_symbol
+   grad
+   is_recording
+   is_training
+   mark_variables
+   pause
+   predict_mode
+   record
+   set_recording
+   set_training
+   train_mode
+   Function

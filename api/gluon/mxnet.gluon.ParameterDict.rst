@@ -1,57 +1,65 @@
 ParameterDict
 =============
 
-.. currentmodule:: mxnet.gluon.parameter
+.. currentmodule:: mxnet.gluon
 
 .. autoclass:: ParameterDict
 
-   .. rubric:: Load and save parameters
+Load and save parameters
+--------------------------
 
-   .. autosummary::
-      :toctree: _autogen
+.. autosummary::
+   :toctree: _autogen
 
-      ParameterDict.load
-      ParameterDict.save
+   ParameterDict.load
+   ParameterDict.save
 
-   .. rubric:: Get a particular parameter
+Get a particular parameter
+--------------------------
 
-   .. autosummary::
-      :toctree: _autogen
+.. autosummary::
+   :toctree: _autogen
 
-      ParameterDict.get
-      ParameterDict.get_constant
+   ParameterDict.get
+   ParameterDict.get_constant
 
-   .. rubric:: Get (name, paramter) pairs
+Get (name, paramter) pairs
+--------------------------
 
-   .. autosummary::
-      :toctree: _autogen
+.. autosummary::
+   :toctree: _autogen
 
-      ParameterDict.items
-      ParameterDict.keys
-      ParameterDict.values
+   ParameterDict.items
+   ParameterDict.keys
+   ParameterDict.values
 
-   .. rubric:: Update parameters
+Update parameters
+--------------------------
 
-   .. autosummary::
-      :toctree: _autogen
+.. autosummary::
+   :toctree: _autogen
 
-      ParameterDict.initialize
-      ParameterDict.setattr
-      ParameterDict.update
+   ParameterDict.initialize
+   ParameterDict.setattr
+   ParameterDict.update
 
 
-   .. rubric:: Set devices contexts and gradients
+Set devices contexts and gradients
+---------------------------------------
 
-   .. autosummary::
-      :toctree: _autogen
+.. autosummary::
+   :toctree: _autogen
 
-      ParameterDict.reset_ctx
-      ParameterDict.zero_grad
+   ParameterDict.reset_ctx
+   ParameterDict.zero_grad
 
-   .. rubric:: Attributes
+Attributes
+---------------------------------------
 
-   .. autosummary::
 
-      ParameterDict.prefix
+.. autosummary::
+
+   ParameterDict.prefix
 
 .. disqus::
+   :disqus_identifier: mxnet.gluon.ParameterDict

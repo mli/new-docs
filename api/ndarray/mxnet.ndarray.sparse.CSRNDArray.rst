@@ -1,4 +1,4 @@
-``CSRNDArray``
+CSRNDArray
 ====================
 
 .. currentmodule:: mxnet.ndarray.sparse
@@ -21,8 +21,20 @@ Array attributes
     CSRNDArray.indices
     CSRNDArray.indptr
 
+Array creation
+--------------
+
+.. autosummary::
+    :nosignatures:
+    :toctree: _autogen
+
+    CSRNDArray.zeros_like
+
+Manipulation
+-------------
+
 Array conversion
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
     :nosignatures:
@@ -38,7 +50,7 @@ Array conversion
     CSRNDArray.tostype
 
 Array inspection
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
     :nosignatures:
@@ -46,17 +58,9 @@ Array inspection
 
     CSRNDArray.check_format
 
-Array creation
----------------------
-
-.. autosummary::
-    :nosignatures:
-    :toctree: _autogen
-
-    CSRNDArray.zeros_like
 
 Array reduction
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
     :nosignatures:
@@ -66,8 +70,40 @@ Array reduction
     CSRNDArray.mean
     CSRNDArray.norm
 
+Indexing
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autosummary::
+    :nosignatures:
+    :toctree: _autogen
+
+    CSRNDArray.__getitem__
+    CSRNDArray.__setitem__
+    CSRNDArray.slice
+
+Joining arrays
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autosummary::
+    :nosignatures:
+    :toctree: _autogen
+
+    concat
+
+Lazy evaluation
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autosummary::
+    :nosignatures:
+    :toctree: _autogen
+
+    CSRNDArray.wait_to_read
+
+Math
+----
+
 Array rounding
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
     :nosignatures:
@@ -81,7 +117,7 @@ Array rounding
     CSRNDArray.trunc
 
 Trigonometric functions
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
     :nosignatures:
@@ -95,7 +131,7 @@ Trigonometric functions
     CSRNDArray.radians
 
 Hyperbolic functions
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
     :nosignatures:
@@ -107,7 +143,7 @@ Hyperbolic functions
     CSRNDArray.arctanh
 
 Exponents and logarithms
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
     :nosignatures:
@@ -117,7 +153,7 @@ Exponents and logarithms
     CSRNDArray.log1p
 
 Powers
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
     :nosignatures:
@@ -126,28 +162,9 @@ Powers
     CSRNDArray.sqrt
     CSRNDArray.square
 
-Joining arrays
--------------------------
-
-.. autosummary::
-    :nosignatures:
-    :toctree: _autogen
-
-    concat
-
-Indexing
--------------------------
-
-.. autosummary::
-    :nosignatures:
-    :toctree: _autogen
-
-    CSRNDArray.__getitem__
-    CSRNDArray.__setitem__
-    CSRNDArray.slice
 
 Miscellaneous
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autosummary::
     :nosignatures:
@@ -157,14 +174,6 @@ Miscellaneous
     CSRNDArray.clip
     CSRNDArray.sign
 
-Lazy evaluation
--------------------------
-
-.. autosummary::
-    :nosignatures:
-    :toctree: _autogen
-
-    CSRNDArray.wait_to_read
 
 
 .. disqus::
