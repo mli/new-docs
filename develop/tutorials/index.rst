@@ -38,9 +38,16 @@ a hand-written digit classifier using the [MNIST](https://en.wikipedia.org/wiki/
 
    mnist
 
-Texts
+Text
 -----
 
+In this tutorial, we are going to train Google NMT on IWSLT 2015 English-Vietnamese
+Dataset.
+
+.. toctree::
+   :maxdepth: 1
+
+   gnmt
 
 Generative models
 -----------------
