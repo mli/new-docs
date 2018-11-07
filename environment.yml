@@ -17,3 +17,4 @@ dependencies:
   - breathe
   - mock
   - awscli
+  - git+https://github.com/rmk135/sphinxcontrib-disqus
