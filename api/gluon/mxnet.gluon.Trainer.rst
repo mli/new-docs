@@ -1,5 +1,5 @@
-Trainer
-=======
+``Trainer``
+===========
 
 .. currentmodule:: mxnet.gluon.trainer
 

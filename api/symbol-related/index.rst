@@ -1,5 +1,5 @@
-Symbol related
-===============
+Symbol related modules
+======================
 
 
 .. toctree::

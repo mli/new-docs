@@ -1,17 +1,14 @@
-Layers
-======
+``nn`` and ``contrib.nn``
+=========================
 
 Gluon provides a large number of build-in neural network layers in the following
 modules
-
 
 .. autosummary::
     :nosignatures:
 
     mxnet.gluon.nn
-    mxnet.gluon.rnn
     mxnet.gluon.contrib.nn
-    mxnet.gluon.contrib.rnn
 
 The following codes shows a basic usage of a layer.
 
@@ -34,6 +31,64 @@ In the reset of this secion, we group all build-in layers according to their
 categories.
 
 .. currentmodule:: mxnet.gluon
+
+Blocks
+------
+
+The :py:mod:`mxnet.gluon.nn` module provides three classes to construct basc
+blocks for a neural network model:
+
+.. autosummary::
+   :nosignatures:
+   :toctree: .
+
+   nn.Block
+   nn.HybridBlock
+   nn.SymbolBlock
+
+The difference between these three classes:
+
+- :py:class:`Block`: the bass class for any neural nework layers and models.
+- :py:class:`HybridBlock`: a subclass of :py:class:`Block` that allows to
+  hybridize a model. It constraints operations can be run in the ``forward``
+  method, e.g. the `print` function doesn't work any more. Check tutorial XXX
+  for more details.
+
+- :py:class:`SymbolBlock`: a sublcass of :py:class:`Block` that is able to wrap
+  a :py:class:`mxnet.symbol.Symbol` instance into a :py:class:`Block`
+  instance. Check XXX-Symbol tutorials and how to XXX to use this class.
+
+
+Sequential containers
+---------------------
+
+Besides inheriting :py:class:`mxnet.gluon.nn.Block` to create a neural network
+models, :py:mod:`mxnet.gluon.nn` provides two classes to construct a model by
+stacking layers sequentially. Refer to XXX for tutorials how to use them.
+
+
+.. autosummary::
+    :toctree: _autogen
+    :nosignatures:
+
+    nn.Sequential
+    nn.HybridSequential
+
+Concurrent containers
+---------------------
+
+The :py:mod:`mxnet.gluon.contrib.nn` package provides two additional containers
+to construct models with more than one path, such as the Residual block in
+ResNet and Inception block in GoogLeNet.
+
+
+.. autosummary::
+    :toctree: _autogen
+    :nosignatures:
+
+    contrib.nn.Concurrent
+    contrib.nn.HybridConcurrent
+
 
 Basic Layers
 ------------
@@ -106,43 +161,6 @@ Embedding Layers
     nn.Embedding
     contrib.nn.SparseEmbedding
 
-Recurrent Cells
-----------------
-
-.. autosummary::
-    :nosignatures:
-    :toctree: _autogen
-
-    rnn.LSTMCell
-    rnn.GRUCell
-    rnn.RecurrentCell
-    rnn.SequentialRNNCell
-    rnn.BidirectionalCell
-    rnn.DropoutCell
-    rnn.ZoneoutCell
-    rnn.ResidualCell
-    contrib.rnn.Conv1DRNNCell
-    contrib.rnn.Conv2DRNNCell
-    contrib.rnn.Conv3DRNNCell
-    contrib.rnn.Conv1DLSTMCell
-    contrib.rnn.Conv2DLSTMCell
-    contrib.rnn.Conv3DLSTMCell
-    contrib.rnn.Conv1DGRUCell
-    contrib.rnn.Conv2DGRUCell
-    contrib.rnn.Conv3DGRUCell
-    contrib.rnn.VariationalDropoutCell
-    contrib.rnn.LSTMPCell
-
-Recurrent Layers
-----------------
-
-.. autosummary::
-    :nosignatures:
-    :toctree: _autogen
-
-    rnn.RNN
-    rnn.LSTM
-    rnn.GRU
 
 Advanced Activation Layers
 --------------------------

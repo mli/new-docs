@@ -6,11 +6,12 @@ Overivew
 
 This API section details functions, modules, and objects included in MXNet,
 describing what they are and what they do. We grouped all APIs into the
-following 5 categories.
+following 6 categories.
 
 
 .. raw:: html
 
+   <script> $('h1').hide(); </script>
    <script type="text/javascript" src='../_static/frontpage.js'></script>
    <link rel="stylesheet" type="text/css" href="../_static/frontpage.css" />
 
@@ -33,8 +34,8 @@ following 5 categories.
 .. container:: mx-card
 
    :card-title:`Gluon-related modules`
-   :card-text:`Modules including context and optimizer that Gluon relies.`
-   :card-link:`./gluon/index.html`
+   :card-text:`Modules including context and optimizer can be used with Gluon.`
+   :card-link:`./gluon-related/index.html`
 
 .. container:: mx-card
 
@@ -46,17 +47,17 @@ following 5 categories.
 
    :card-title:`Symbol-related modules`
    :card-text:`Modules to train and visualize symbolic neural network models.`
-   :card-link:`./xx`
+   :card-link:`./symbol-related/index.html`
 
 .. container:: mx-card
 
    :card-title:`Advanced modules`
    :card-text:`Advanced APIs for hackers`
-   :card-link:`./symbol/index.html`
+   :card-link:`./advanced/index.html`
 
 
-Table of contents
------------------
+All modules
+-----------
 
 .. toctree::
    :maxdepth: 2

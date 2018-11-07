@@ -1,4 +1,4 @@
-NDArray: ``mxnet.ndarray``
+``mxnet.ndarray``
 ==========================
 
 .. automodule:: mxnet.ndarray
@@ -8,7 +8,6 @@ NDArray: ``mxnet.ndarray``
 
    mxnet.ndarray.NDArray
    routines
-   contrib
 
 .. automodule:: mxnet.ndarray.sparse
 

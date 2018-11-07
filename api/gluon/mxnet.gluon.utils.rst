@@ -1,5 +1,5 @@
-Utils
-=================
+``utils``
+=========
 
 .. automodule:: mxnet.gluon.utils
 

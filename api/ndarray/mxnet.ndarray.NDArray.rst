@@ -1,4 +1,4 @@
-``class NDArray``
+``NDArray``
 =================
 
 .. currentmodule:: mxnet.ndarray

@@ -1,4 +1,4 @@
-Gluon Model Zoo
+``model_zoo``
 ==================
 
 .. currentmodule:: mxnet.gluon.model_zoo

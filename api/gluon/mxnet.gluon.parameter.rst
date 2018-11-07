@@ -1,5 +1,5 @@
-Parameters
-=====================
+``parameter``
+=============
 
 .. currentmodule:: mxnet.gluon
 

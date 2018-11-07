@@ -1,4 +1,4 @@
-Routines in ``mxnet.ndarray.sparse``
+Sparse routines
 =====================================
 
 .. currentmodule:: mxnet.ndarray.sparse

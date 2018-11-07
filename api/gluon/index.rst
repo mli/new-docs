@@ -1,15 +1,14 @@
-Gluon: ``mxnet.gluon``
+``mxnet.gluon``
 =======================
 
 .. toctree::
    :maxdepth: 2
 
-   containers
-   layers
-   losses
-   parameters
-   trainer
-   utils
-
+   nn
+   rnn
+   mxnet.gluon.losse
+   mxnet.gluon.parameter
+   mxnet.gluon.Trainer
    mxnet.gluon.data
    mxnet.gluon.model_zoo
+   mxnet.gluon.utils

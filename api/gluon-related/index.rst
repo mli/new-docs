@@ -1,4 +1,4 @@
-Gluon-related packages
+Gluon-related modules
 ======================
 
 .. toctree::
