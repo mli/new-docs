@@ -17,8 +17,7 @@ $(document).ready(function () {
     $('.card-link').each(function(){
         $(this).hide();
     });
-
-
+    $('h1').hide();
     $('.mdl-card').each(function(){
         $(this).click(function() {
             window.location = $(this).find('.card-link').text();

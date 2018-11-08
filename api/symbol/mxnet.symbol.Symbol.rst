@@ -1,5 +1,5 @@
-``class Symbol``
-==================
+Symbol
+======
 
 Composition
 ------------------
@@ -8,7 +8,7 @@ Composite multiple symbols into a new one by an operator.
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.__call__
 
@@ -18,7 +18,8 @@ Arithmetic operations
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
+   :toctree: _autogen
 
     Symbol.__add__
     Symbol.__sub__
@@ -37,7 +38,7 @@ Trigonometric functions
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.sin
     Symbol.cos
@@ -54,7 +55,7 @@ Hyperbolic functions
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.sinh
     Symbol.cosh
@@ -69,7 +70,7 @@ Exponents and logarithms
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.exp
     Symbol.expm1
@@ -84,7 +85,7 @@ Powers
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.sqrt
     Symbol.rsqrt
@@ -98,7 +99,7 @@ Basic neural network functions
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.relu
     Symbol.sigmoid
@@ -111,7 +112,7 @@ Comparison operators
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.__lt__
     Symbol.__le__
@@ -126,7 +127,7 @@ Symbol creation
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.zeros_like
     Symbol.ones_like
@@ -138,7 +139,7 @@ Changing shape and type
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.astype
     Symbol.shape_array
@@ -154,7 +155,7 @@ Expanding elements
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.broadcast_to
     Symbol.broadcast_axes
@@ -168,7 +169,7 @@ Rearranging elements
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.transpose
     Symbol.swapaxes
@@ -182,7 +183,7 @@ Reduce functions
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.sum
     Symbol.nansum
@@ -199,7 +200,7 @@ Rounding
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.round
     Symbol.rint
@@ -214,7 +215,7 @@ Sorting and searching
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.sort
     Symbol.argsort
@@ -229,7 +230,7 @@ Query information
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.name
     Symbol.list_arguments
@@ -245,7 +246,7 @@ Indexing
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.slice
     Symbol.slice_axis
@@ -262,7 +263,7 @@ Get internal and output symbol
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.__getitem__
     Symbol.__iter__
@@ -275,7 +276,7 @@ Inference type and shape
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.infer_type
     Symbol.infer_shape
@@ -288,7 +289,7 @@ Bind
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.bind
     Symbol.simple_bind
@@ -299,7 +300,7 @@ Save
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.save
     Symbol.tojson
@@ -311,7 +312,7 @@ Miscellaneous
 
 
 .. autosummary::
-    :nosignatures:
+   :toctree: _autogen
 
     Symbol.clip
     Symbol.sign
