@@ -1,8 +1,8 @@
-Develop
+Guide
 =======
 
-Overview
---------
+Getting started
+---------------
 
 .. raw:: html
 
@@ -15,13 +15,38 @@ Overview
 
 .. container:: mx-card
 
-   :card-title:`Tutorials`
-   :card-text:`How to use MXNet to implement various deep learning algorithms.`
-   :card-link:`tutorials/index.html`
+   :card-title:`A 60-minute crash course`
+   :card-text:`A quick overview of the core concept of MXNet`
+   :card-link:`crash-course/index.html`
 
 .. container:: mx-card
 
-   :card-title:`Guide`
+   :card-title:`For PyTorch users`
+   :card-text:`Compare MXNet and PyTorch to implement a MLP to train MNIST.`
+   :card-link:`pytorch/pytorch-to-gluon.html`
+
+
+MXNet for deep learning algorithms
+----------------------------------
+
+.. container:: mx-card
+
+   :card-title:`Image`
+   :card-text:`Deep learning models for images.`
+   :card-link:`image/index.html`
+
+.. container:: mx-card
+
+   :card-title:`Text`
+   :card-text:`Deep learning models for texts.`
+   :card-link:`text/index.html`
+
+Learning MXNet
+-----------------
+
+.. container:: mx-card
+
+   :card-title:`Module`
    :card-text:`How to use each module in MXNet.`
    :card-link:`guide/index.html`
 
@@ -43,14 +68,15 @@ Overview
    :card-text:`How to add functionality to MXNet.`
    :card-link:`extend/index.html`
 
-Contents
---------
-
 .. toctree::
-   :maxdepth: 2
+   :hidden:
+   :maxdepth: 1
 
-   tutorials/index
-   guide/index
+   crash-course/index
+   pytorch/pytorch-to-gluon
+   image/index
+   text/index
+   module/index
    performance/index
    deploy/index
    extend/index

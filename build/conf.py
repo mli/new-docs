@@ -17,7 +17,6 @@
 
 # -*- coding: utf-8 -*-
 import sys, os, re, subprocess
-import mock
 from recommonmark.parser import CommonMarkParser
 from recommonmark.transform import AutoStructify
 
@@ -27,8 +26,6 @@ from recommonmark.transform import AutoStructify
 
 # -- mock out modules
 MOCK_MODULES = ['scipy', 'scipy.sparse', 'sklearn']
-for mod_name in MOCK_MODULES:
-    sys.modules[mod_name] = mock.Mock()
 
 # -- General configuration -----------------------------------------------------
 
@@ -123,7 +120,10 @@ master_doc = 'index'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['templates', 'sphinx_materialdesign_theme']
+exclude_patterns = ['templates', 'sphinx_materialdesign_theme',
+                    #'api', 'guide/guide', 'guide/performance',
+                    #'guide/deploy', 'guide/extend',# 'api',
+                    'blog']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -166,15 +166,15 @@ html_theme_options = {
     'primary_color': 'blue',
     'accent_color': 'deep_orange',
     'header_links' : [
-        ('Install', '#', False, ''),
-        ("Develop", "develop/index", False, ''),
+        ('Install', 'install', False, ''),
+        ("Guide", "guide/index", False, ''),
         ("API", "api/index", False, ''),
         ("Ecosystem", "ecosystem", False, ''),
         ("Community", "community", False, ''),
         ("GitHub", "https://github.com/apache/incubator-mxnet/", True, '')
     ],
     # Render footer (Default: True)
-    'show_footer': False
+    'show_footer': True
 }
 
 
@@ -187,7 +187,7 @@ html_theme_options = {
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = '_static/mxnet_logo_2.png'
+html_logo = '_static/mxnet-logo-3.png'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -254,5 +254,5 @@ def setup(app):
     app.add_transform(AutoStructify)
     app.add_config_value('recommonmark_config', {
     }, True)
-    # app.add_javascript('google_analytics.js')
+    app.add_javascript('google_analytics.js')
     app.add_stylesheet('mxnet.css')

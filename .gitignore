@@ -5,3 +5,5 @@ build/**/*.md
 __pycache__
 /build.sh
 _autogen
+*ndarray
+*pickle
