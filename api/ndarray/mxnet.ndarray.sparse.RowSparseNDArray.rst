@@ -5,6 +5,7 @@ RowSparseNDArray
 
 .. autoclass:: RowSparseNDArray
 
+
 Array attributes
 -------------------------------
 
@@ -12,12 +13,13 @@ Array attributes
     :nosignatures:
     :toctree: _autogen
 
-    RowSparseNDArray.shape
     RowSparseNDArray.context
-    RowSparseNDArray.dtype
-    RowSparseNDArray.stype
     RowSparseNDArray.data
+    RowSparseNDArray.dtype
     RowSparseNDArray.indices
+    RowSparseNDArray.shape
+    RowSparseNDArray.stype
+
 
 Array conversion
 -------------------------------
@@ -26,13 +28,14 @@ Array conversion
     :nosignatures:
     :toctree: _autogen
 
-    RowSparseNDArray.copy
-    RowSparseNDArray.copyto
     RowSparseNDArray.as_in_context
     RowSparseNDArray.asnumpy
     RowSparseNDArray.asscalar
     RowSparseNDArray.astype
+    RowSparseNDArray.copy
+    RowSparseNDArray.copyto
     RowSparseNDArray.tostype
+
 
 Array inspection
 -------------------------------
@@ -43,6 +46,7 @@ Array inspection
 
     RowSparseNDArray.check_format
 
+
 Array creation
 -------------------------------
 
@@ -51,6 +55,7 @@ Array creation
     :toctree: _autogen
 
     RowSparseNDArray.zeros_like
+
 
 Array reduction
 -------------------------------
@@ -61,6 +66,7 @@ Array reduction
 
     RowSparseNDArray.norm
 
+
 Array rounding
 -------------------------------
 
@@ -68,12 +74,13 @@ Array rounding
     :nosignatures:
     :toctree: _autogen
 
-    RowSparseNDArray.round
-    RowSparseNDArray.rint
+    RowSparseNDArray.ceil
     RowSparseNDArray.fix
     RowSparseNDArray.floor
-    RowSparseNDArray.ceil
+    RowSparseNDArray.rint
+    RowSparseNDArray.round
     RowSparseNDArray.trunc
+
 
 Trigonometric functions
 -------------------------------
@@ -82,12 +89,13 @@ Trigonometric functions
     :nosignatures:
     :toctree: _autogen
 
-    RowSparseNDArray.sin
-    RowSparseNDArray.tan
     RowSparseNDArray.arcsin
     RowSparseNDArray.arctan
     RowSparseNDArray.degrees
     RowSparseNDArray.radians
+    RowSparseNDArray.sin
+    RowSparseNDArray.tan
+
 
 Hyperbolic functions
 -------------------------------
@@ -96,10 +104,11 @@ Hyperbolic functions
     :nosignatures:
     :toctree: _autogen
 
-    RowSparseNDArray.sinh
-    RowSparseNDArray.tanh
     RowSparseNDArray.arcsinh
     RowSparseNDArray.arctanh
+    RowSparseNDArray.sinh
+    RowSparseNDArray.tanh
+
 
 Exponents and logarithms
 -------------------------------
@@ -111,6 +120,7 @@ Exponents and logarithms
     RowSparseNDArray.expm1
     RowSparseNDArray.log1p
 
+
 Powers
 -------------------------------
 
@@ -120,6 +130,7 @@ Powers
 
     RowSparseNDArray.sqrt
     RowSparseNDArray.square
+
 
 Indexing
 -------------------------------
@@ -132,6 +143,7 @@ Indexing
     RowSparseNDArray.__setitem__
     RowSparseNDArray.retain
 
+
 Lazy evaluation
 -------------------------------
 
@@ -140,6 +152,7 @@ Lazy evaluation
     :toctree: _autogen
 
     RowSparseNDArray.wait_to_read
+
 
 Miscellaneous
 -------------------------------
