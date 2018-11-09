@@ -11,15 +11,15 @@ Create Arrays
     :toctree: _autogen
 
     array
+    csr_matrix
     empty
+    row_sparse_array
     zeros
     zeros_like
-    csr_matrix
-    row_sparse_array
+
 
 Manipulate
 ------------
-
 
 Change shape and type
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -30,6 +30,7 @@ Change shape and type
 
     cast_storage
 
+
 Index
 ^^^^^^^^
 
@@ -37,9 +38,10 @@ Index
     :nosignatures:
     :toctree: _autogen
 
-    slice
     retain
+    slice
     where
+
 
 Math
 ----
@@ -51,16 +53,17 @@ Arithmetic
     :nosignatures:
     :toctree: _autogen
 
-    elemwise_add
-    elemwise_sub
-    elemwise_mul
-    broadcast_add
-    broadcast_sub
-    broadcast_mul
-    broadcast_div
-    negative
-    dot
     add_n
+    broadcast_add
+    broadcast_div
+    broadcast_mul
+    broadcast_sub
+    dot
+    elemwise_add
+    elemwise_mul
+    elemwise_sub
+    negative
+
 
 Trigonometric
 ^^^^^^^^^^^^^
@@ -69,12 +72,13 @@ Trigonometric
     :nosignatures:
     :toctree: _autogen
 
-    sin
-    tan
     arcsin
     arctan
     degrees
     radians
+    sin
+    tan
+
 
 Hyperbolic
 ^^^^^^^^^^
@@ -83,10 +87,11 @@ Hyperbolic
     :nosignatures:
     :toctree: _autogen
 
-    sinh
-    tanh
     arcsinh
     arctanh
+    sinh
+    tanh
+
 
 Reduce
 ^^^^^^
@@ -95,9 +100,10 @@ Reduce
     :nosignatures:
     :toctree: _autogen
 
-    sum
     mean
     norm
+    sum
+
 
 Round
 ^^^^^
@@ -106,12 +112,13 @@ Round
     :nosignatures:
     :toctree: _autogen
 
-    round
-    rint
+    ceil
     fix
     floor
-    ceil
+    rint
+    round
     trunc
+
 
 Exponents and logarithms
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -123,6 +130,7 @@ Exponents and logarithms
     expm1
     log1p
 
+
 Powers
 ^^^^^^
 
@@ -132,6 +140,7 @@ Powers
 
     sqrt
     square
+
 
 Miscellaneous
 ^^^^^^^^^^^^^
@@ -143,6 +152,7 @@ Miscellaneous
     abs
     sign
 
+
 Neural network
 ---------------
 
@@ -153,10 +163,11 @@ Updater
     :nosignatures:
     :toctree: _autogen
 
-    sgd_update
-    sgd_mom_update
     adam_update
     adagrad_update
+    sgd_mom_update
+    sgd_update
+
 
 More
 ^^^^
@@ -165,8 +176,8 @@ More
     :nosignatures:
     :toctree: _autogen
 
-    make_loss
-    stop_gradient
     Embedding
     LinearRegressionOutput
     LogisticRegressionOutput
+    make_loss
+    stop_gradient
