@@ -6,7 +6,7 @@ Apache MXNet (incubating) Documents
    :hidden:
 
    install
-   develop/index
+   guide/index
    api/index
    ecosystem
    community
@@ -32,9 +32,9 @@ Apache MXNet (incubating) Documents
        designed for both research and products...
      </div>
      <div class="mdl-card__actions ">
-           <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="./develop/tutorials/index.html"> Get Started </a>
+           <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="./guide/tutorials/index.html"> Get Started </a>
      </div>
-     <div class="card-link">develop/tutorials/index.html</div>
+     <div class="card-link">guide/tutorials/index.html</div>
      </div>
 
 Install
@@ -61,7 +61,7 @@ Documents
 
    :card-title:`A Gluon Crash Course`
    :card-text:`Learn how to use Gluon, the flexible imperative frontend of mxnet, in 60-min.`
-   :card-link:`./develop/tutorials/crash-course/index.html`
+   :card-link:`./guide/tutorials/crash-course/index.html`
 
 Ecosystem
 ---------

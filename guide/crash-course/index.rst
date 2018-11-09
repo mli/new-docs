@@ -14,3 +14,17 @@ arrays and train neural networks, respectively:
    train
    predict
    use_gpus
+
+You can also watch the video tutorials for this crash course. Note that two APIs
+described in vidoes have changes:
+
+- ``with name_scope`` is not necessary any more.
+- use ``save_parameters/load_parameters`` instead of ``save_params/load_params``
+
+.. raw:: html
+
+   <style> iframe {width: 448px; height: 252px; margin: 1em 0;} </style>
+
+   <iframe src="https://www.youtube.com/embed/r4-Ynxw0X5w" frameborder="0"
+   allow="accelerometer; autoplay; encrypted-media; gyroscope;
+   picture-in-picture" allowfullscreen></iframe>
