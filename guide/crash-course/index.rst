@@ -5,6 +5,10 @@ This crash course will give you a quick overview of the core concept of NDArray
 and Gluon, which is are imperative frontend to manipulate multiple dimensional
 arrays and train neural networks, respectively:
 
+Gluon is an imperative frontend to train neural networks. This is a good place
+to start if you are already familiar with machine Learning or other deep
+learning frameworks.
+
 .. toctree::
    :maxdepth: 1
 
