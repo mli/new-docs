@@ -6,6 +6,9 @@ Composition
 
 Composite multiple symbols into a new one by an operator.
 
+.. currentmodule:: mxnet.symbol
+
+.. autoclass:: Symbol
 
 .. autosummary::
    :toctree: _autogen
@@ -18,7 +21,6 @@ Arithmetic operations
 
 
 .. autosummary::
-   :toctree: _autogen
    :toctree: _autogen
 
     Symbol.__add__
@@ -254,8 +256,6 @@ Indexing
     Symbol.take
     Symbol.one_hot
     Symbol.pick
-    Symbol.ravel_multi_index
-    Symbol.unravel_index
 
 
 Get internal and output symbol

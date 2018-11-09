@@ -39,17 +39,6 @@ Helper functions
    get_updater
    register
 
-mxnet.contrib.optimizer
------------------------
-
-.. automodule:: mxnet.contrib.optimizer
-
-
-.. autosummary::
-   :toctree: _autogen
-
-    GroupAdaGrad
-
 
 .. disqus::
    :disqus_identifier: mxnet.optimizer
