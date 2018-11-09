@@ -5,21 +5,23 @@ NDArray
 
 .. autoclass:: NDArray
 
+
 Attributes
 ----------
 
 .. autosummary::
    :toctree: _autogen
 
-   NDArray.shape
-   NDArray.ndim
-   NDArray.size
    NDArray.context
    NDArray.dtype
-   NDArray.stype
    NDArray.grad
    NDArray.handle
+   NDArray.ndim
+   NDArray.shape
+   NDArray.size
+   NDArray.stype
    NDArray.writable
+
 
 Array creation
 --------------
@@ -27,8 +29,9 @@ Array creation
 .. autosummary::
    :toctree: _autogen
 
-   NDArray.zeros_like
    NDArray.ones_like
+   NDArray.zeros_like
+
 
 Manipulation
 -------------
@@ -39,13 +42,14 @@ Array conversion
 .. autosummary::
    :toctree: _autogen
 
-   NDArray.copy
-   NDArray.copyto
    NDArray.as_in_context
    NDArray.asnumpy
    NDArray.asscalar
    NDArray.astype
+   NDArray.copy
+   NDArray.copyto
    NDArray.tostype
+
 
 Changing shape
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -53,14 +57,15 @@ Changing shape
 .. autosummary::
    :toctree: _autogen
 
-   NDArray.shape_array
-   NDArray.size_array
+   NDArray.diag
+   NDArray.expand_dims
+   NDArray.flatten
    NDArray.reshape
    NDArray.reshape_like
-   NDArray.flatten
-   NDArray.expand_dims
+   NDArray.shape_array
+   NDArray.size_array
    NDArray.split
-   NDArray.diag
+
 
 Expanding elements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -71,9 +76,10 @@ Expanding elements
    NDArray.broadcast_to
    NDArray.broadcast_axes
    NDArray.broadcast_like
+   NDArray.pad
    NDArray.repeat
    NDArray.tile
-   NDArray.pad
+
 
 Rearrange elements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -81,12 +87,12 @@ Rearrange elements
 .. autosummary::
    :toctree: _autogen
 
+   NDArray.depth_to_space
+   NDArray.flip
+   NDArray.swapaxes
+   NDArray.space_to_depth
    NDArray.T
    NDArray.transpose
-   NDArray.swapaxes
-   NDArray.flip
-   NDArray.depth_to_space
-   NDArray.space_to_depth
 
 
 Sorting and searching
@@ -95,12 +101,13 @@ Sorting and searching
 .. autosummary::
    :toctree: _autogen
 
-   NDArray.sort
-   NDArray.argsort
-   NDArray.topk
-   NDArray.argmin
    NDArray.argmax
    NDArray.argmax_channel
+   NDArray.argmin
+   NDArray.argsort
+   NDArray.sort
+   NDArray.topk
+
 
 Indexing
 ^^^^^^^^^^
@@ -110,12 +117,13 @@ Indexing
 
    NDArray.__getitem__
    NDArray.__setitem__
+   NDArray.one_hot
+   NDArray.pick
    NDArray.slice
    NDArray.slice_axis
    NDArray.slice_like
    NDArray.take
-   NDArray.one_hot
-   NDArray.pick
+
 
 Lazy evaluation
 ^^^^^^^^^^^^^^^^
@@ -124,6 +132,7 @@ Lazy evaluation
    :toctree: _autogen
 
    NDArray.wait_to_read
+
 
 Math
 ----
@@ -135,15 +144,16 @@ Arithmetic operations
    :toctree: _autogen
 
    NDArray.__add__
-   NDArray.__sub__
-   NDArray.__rsub__
-   NDArray.__neg__
-   NDArray.__mul__
    NDArray.__div__
-   NDArray.__rdiv__
+   NDArray.__neg__
    NDArray.__mod__
-   NDArray.__rmod__
+   NDArray.__mul__
    NDArray.__pow__
+   NDArray.__rdiv__
+   NDArray.__rmod__
+   NDArray.__rsub__
+   NDArray.__sub__
+
 
 Rounding
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -151,12 +161,13 @@ Rounding
 .. autosummary::
    :toctree: _autogen
 
-   NDArray.round
-   NDArray.rint
+   NDArray.ceil
    NDArray.fix
    NDArray.floor
-   NDArray.ceil
+   NDArray.rint
+   NDArray.round
    NDArray.trunc
+
 
 Reduction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -164,14 +175,15 @@ Reduction
 .. autosummary::
    :toctree: _autogen
 
-   NDArray.sum
-   NDArray.nansum
-   NDArray.prod
-   NDArray.nanprod
-   NDArray.mean
    NDArray.max
+   NDArray.mean
    NDArray.min
+   NDArray.nanprod
+   NDArray.nansum
    NDArray.norm
+   NDArray.prod
+   NDArray.sum
+
 
 In^place arithmetic operations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -180,10 +192,11 @@ In^place arithmetic operations
    :toctree: _autogen
 
    NDArray.__iadd__
-   NDArray.__isub__
-   NDArray.__imul__
    NDArray.__idiv__
    NDArray.__imod__
+   NDArray.__imul__
+   NDArray.__isub__
+
 
 Comparison operators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -191,12 +204,13 @@ Comparison operators
 .. autosummary::
    :toctree: _autogen
 
-   NDArray.__lt__
-   NDArray.__le__
-   NDArray.__gt__
-   NDArray.__ge__
    NDArray.__eq__
+   NDArray.__ge__
+   NDArray.__gt__
+   NDArray.__le__
+   NDArray.__lt__
    NDArray.__ne__
+
 
 Trigonometric functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -204,14 +218,15 @@ Trigonometric functions
 .. autosummary::
    :toctree: _autogen
 
-   NDArray.sin
-   NDArray.cos
-   NDArray.tan
    NDArray.arccos
    NDArray.arcsin
    NDArray.arctan
+   NDArray.cos
    NDArray.degrees
    NDArray.radians
+   NDArray.sin
+   NDArray.tan
+
 
 Hyperbolic functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -219,12 +234,13 @@ Hyperbolic functions
 .. autosummary::
    :toctree: _autogen
 
-   NDArray.sinh
-   NDArray.cosh
    NDArray.arccosh
    NDArray.arcsinh
    NDArray.arctanh
+   NDArray.cosh
+   NDArray.sinh
    NDArray.tanh
+
 
 Exponents and logarithms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -235,9 +251,10 @@ Exponents and logarithms
    NDArray.exp
    NDArray.expm1
    NDArray.log
-   NDArray.log2
-   NDArray.log10
    NDArray.log1p
+   NDArray.log10
+   NDArray.log2
+
 
 Powers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -245,12 +262,13 @@ Powers
 .. autosummary::
    :toctree: _autogen
 
-   NDArray.sqrt
-   NDArray.rsqrt
    NDArray.cbrt
    NDArray.rcbrt
-   NDArray.square
    NDArray.reciprocal
+   NDArray.rsqrt
+   NDArray.square
+   NDArray.sqrt
+
 
 Miscellaneous
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -261,17 +279,17 @@ Miscellaneous
    NDArray.clip
    NDArray.sign
 
+
 Neural network
 ------------------
 
 .. autosummary::
    :toctree: _autogen
 
+   NDArray.log_softmax
    NDArray.relu
    NDArray.sigmoid
    NDArray.softmax
-   NDArray.log_softmax
-
 
 
 
