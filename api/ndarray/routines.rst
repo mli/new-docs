@@ -420,7 +420,6 @@ Neural network
 
     AdaptiveAvgPooling2D
     BilinearResize2D
-    CTCLoss
     ctc_loss
     DeformableConvolution
     DeformablePSROIPooling
