@@ -10,37 +10,37 @@ Create Arrays
     :nosignatures:
     :toctree: _autogen
 
+    arange
     array
+    diag
     empty
-    zeros
-    zeros_like
+    full
+    load
     ones
     ones_like
-    full
-    arange
-    diag
-    load
     save
+    zeros
+    zeros_like
+
 
 Manipulate
 ------------
 
-
 Change shape and type
 ^^^^^^^^^^^^^^^^^^^^^^^
-
 
 .. autosummary::
     :nosignatures:
     :toctree: _autogen
 
     cast
-    shape_array
-    size_array
-    reshape
-    reshape_like
     flatten
     expand_dims
+    reshape
+    reshape_like
+    shape_array
+    size_array
+
 
 Expand  elements
 ^^^^^^^^^^^^^^^^^^^
@@ -49,12 +49,13 @@ Expand  elements
     :nosignatures:
     :toctree: _autogen
 
-    broadcast_to
     broadcast_axes
     broadcast_like
+    broadcast_to
+    pad
     repeat
     tile
-    pad
+
 
 Rearrange elements
 ^^^^^^^^^^^^^^^^^^^^
@@ -63,11 +64,12 @@ Rearrange elements
     :nosignatures:
     :toctree: _autogen
 
-    transpose
-    swapaxes
-    flip
     depth_to_space
+    flip
     space_to_depth
+    swapaxes
+    transpose
+
 
 Join and split
 ^^^^^^^^^^^^^^^^^^^^^
@@ -80,6 +82,7 @@ Join and split
     split
     stack
 
+
 Index
 ^^^^^^^^
 
@@ -87,16 +90,16 @@ Index
     :nosignatures:
     :toctree: _autogen
 
+    batch_take
+    one_hot
+    pick
+    ravel_multi_index
     slice
     slice_axis
     slice_like
     take
-    batch_take
-    one_hot
-    pick
-    where
-    ravel_multi_index
     unravel_index
+    where
 
 
 Sequence
@@ -111,6 +114,7 @@ Sequence
     SequenceMask
     SequenceReverse
 
+
 Math
 ----
 
@@ -122,14 +126,15 @@ Arithmetic
     :toctree: _autogen
 
     add
-    subtract
-    negative
-    multiply
-    divide
-    modulo
-    dot
-    batch_dot
     add_n
+    batch_dot
+    divide
+    dot
+    modulo
+    multiply
+    negative
+    subtract
+
 
 Trigonometric
 ^^^^^^^^^^^^^
@@ -138,15 +143,16 @@ Trigonometric
     :nosignatures:
     :toctree: _autogen
 
-    sin
-    cos
-    tan
-    arcsin
     arccos
+    arcsin
     arctan
     broadcast_hypot
     degrees
+    cos
     radians
+    sin
+    tan
+
 
 Hyperbolic
 ^^^^^^^^^^
@@ -155,12 +161,13 @@ Hyperbolic
     :nosignatures:
     :toctree: _autogen
 
-    sinh
-    cosh
-    tanh
     arcsinh
     arccosh
     arctanh
+    cosh
+    sinh
+    tanh
+
 
 Reduce
 ^^^^^^
@@ -169,14 +176,15 @@ Reduce
     :nosignatures:
     :toctree: _autogen
 
-    sum
-    nansum
-    prod
-    nanprod
-    mean
     max
     min
+    mean
+    nanprod
+    nansum
     norm
+    prod
+    sum
+
 
 Round
 ^^^^^^^^
@@ -185,12 +193,13 @@ Round
     :nosignatures:
     :toctree: _autogen
 
-    round
-    rint
+    ceil
     fix
     floor
-    ceil
+    round
+    rint
     trunc
+
 
 Exponents and logarithms
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -202,9 +211,10 @@ Exponents and logarithms
     exp
     expm1
     log
+    log1p
     log10
     log2
-    log1p
+
 
 Powers
 ^^^^^^^
@@ -213,28 +223,29 @@ Powers
     :nosignatures:
     :toctree: _autogen
 
-    power
-    sqrt
-    rsqrt
     cbrt
+    power
     rcbrt
-    square
     reciprocal
+    rsqrt
+    square
+    sqrt
+
 
 Compare
 ^^^^^^^^^^
-
 
 .. autosummary::
     :nosignatures:
     :toctree: _autogen
 
     equal
-    not_equal
     greater
     greater_equal
     lesser
     lesser_equal
+    not_equal
+
 
 Logical
 ^^^^^^^
@@ -244,9 +255,10 @@ Logical
     :toctree: _autogen
 
     logical_and
+    logical_not
     logical_or
     logical_xor
-    logical_not
+
 
 Sort and Search
 ^^^^^^^^^^^^^^^
@@ -254,11 +266,12 @@ Sort and Search
 .. autosummary::
     :toctree: _autogen
 
-    sort
-    topk
-    argsort
     argmax
     argmin
+    argsort
+    sort
+    topk
+
 
 Random Distribution
 ^^^^^^^^^^^^^^^^^^^^
@@ -268,35 +281,35 @@ Random Distribution
     :nosignatures:
     :toctree: _autogen
 
-    random.randn
     random.exponential
     random.gamma
     random.generalized_negative_binomial
+    random.multinomial
     random.negative_binomial
     random.normal
     random.poisson
-    random.uniform
-    random.multinomial
+    random.randn
     random.shuffle
+    random.uniform
+
 
 Linear Algebra
 ^^^^^^^^^^^^^^
-
 
 .. autosummary::
     :nosignatures:
     :toctree: _autogen
 
+    linalg.gelqf
     linalg.gemm
     linalg.gemm2
     linalg.potrf
     linalg.potri
+    linalg.sumlogdiag
+    linalg.syevd
+    linalg.syrk
     linalg.trmm
     linalg.trsm
-    linalg.sumlogdiag
-    linalg.syrk
-    linalg.gelqf
-    linalg.syevd
 
 
 Miscellaneous
@@ -305,13 +318,14 @@ Miscellaneous
 .. autosummary::
     :toctree: _autogen
 
-    maximum
-    minimum
-    clip
     abs
-    sign
+    clip
     gamma
     gammaln
+    maximum
+    minimum
+    sign
+
 
 Neural Network
 --------------
@@ -319,42 +333,42 @@ Neural Network
 .. autosummary::
     :toctree: _autogen
 
-    FullyConnected
-    Convolution
     Activation
     BatchNorm
-    Pooling
-    SoftmaxOutput
-    softmax
-    log_softmax
-    relu
-    sigmoid
-    Correlation
-    Deconvolution
-    RNN
-    Embedding
-    LeakyReLU
-    InstanceNorm
-    LayerNorm
-    L2Normalization
-    LRN
-    ROIPooling
-    SoftmaxActivation
-    Dropout
     BilinearSampler
-    GridGenerator
-    UpSampling
-    SpatialTransformer
-    LinearRegressionOutput
-    LogisticRegressionOutput
-    MAERegressionOutput
-    SVMOutput
-    softmax_cross_entropy
-    smooth_l1
-    IdentityAttachKLSparseReg
-    MakeLoss
     BlockGrad
+    Convolution
+    Correlation
     Custom
+    Deconvolution
+    Dropout
+    Embedding
+    FullyConnected
+    GridGenerator
+    IdentityAttachKLSparseReg
+    InstanceNorm
+    L2Normalization
+    LayerNorm
+    LeakyReLU
+    LinearRegressionOutput
+    log_softmax
+    LogisticRegressionOutput
+    LRN
+    MAERegressionOutput
+    MakeLoss
+    Pooling
+    relu
+    ROIPooling
+    RNN
+    sigmoid
+    smooth_l1
+    softmax
+    softmax_cross_entropy
+    SoftmaxOutput
+    SoftmaxActivation
+    SpatialTransformer
+    SVMOutput
+    UpSampling
 
 Contributed routines
 --------------------
@@ -370,9 +384,9 @@ Manipulate
     :nosignatures:
     :toctree: _autogen
 
+    count_sketch
     getnnz
     index_copy
-    count_sketch
 
 
 FFT
@@ -396,7 +410,8 @@ Quantization
     dequantize
     quantize
 
-Nueral network
+
+Neural network
 ^^^^^^^^^^^^^^^
 
 .. autosummary::
@@ -405,17 +420,18 @@ Nueral network
 
     AdaptiveAvgPooling2D
     BilinearResize2D
+    CTCLoss
+    ctc_loss
     DeformableConvolution
     DeformablePSROIPooling
     MultiBoxDetection
     MultiBoxPrior
     MultiBoxTarget
     MultiProposal
-    PSROIPooling
     Proposal
+    PSROIPooling
     ROIAlign
-    CTCLoss
-    ctc_loss
+
 
 Control flow
 ^^^^^^^^^^^^^
@@ -424,6 +440,6 @@ Control flow
     :nosignatures:
     :toctree: _autogen
 
+    cond
     foreach
     while_loop
-    cond
