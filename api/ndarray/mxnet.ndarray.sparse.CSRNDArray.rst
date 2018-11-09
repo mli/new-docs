@@ -13,13 +13,14 @@ Array attributes
     :nosignatures:
     :toctree: _autogen
 
-    CSRNDArray.shape
     CSRNDArray.context
-    CSRNDArray.dtype
-    CSRNDArray.stype
     CSRNDArray.data
+    CSRNDArray.dtype
     CSRNDArray.indices
     CSRNDArray.indptr
+    CSRNDArray.shape
+    CSRNDArray.stype
+
 
 Array creation
 --------------
@@ -29,6 +30,7 @@ Array creation
     :toctree: _autogen
 
     CSRNDArray.zeros_like
+
 
 Manipulation
 -------------
@@ -40,14 +42,15 @@ Array conversion
     :nosignatures:
     :toctree: _autogen
 
-    CSRNDArray.copy
-    CSRNDArray.copyto
     CSRNDArray.as_in_context
-    CSRNDArray.asscipy
     CSRNDArray.asnumpy
     CSRNDArray.asscalar
+    CSRNDArray.asscipy
     CSRNDArray.astype
+    CSRNDArray.copy
+    CSRNDArray.copyto
     CSRNDArray.tostype
+
 
 Array inspection
 ^^^^^^^^^^^^^^^^^^^^^
@@ -66,9 +69,10 @@ Array reduction
     :nosignatures:
     :toctree: _autogen
 
-    CSRNDArray.sum
     CSRNDArray.mean
     CSRNDArray.norm
+    CSRNDArray.sum
+
 
 Indexing
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -81,6 +85,7 @@ Indexing
     CSRNDArray.__setitem__
     CSRNDArray.slice
 
+
 Joining arrays
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -90,6 +95,7 @@ Joining arrays
 
     concat
 
+
 Lazy evaluation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -98,6 +104,7 @@ Lazy evaluation
     :toctree: _autogen
 
     CSRNDArray.wait_to_read
+
 
 Math
 ----
@@ -109,12 +116,13 @@ Array rounding
     :nosignatures:
     :toctree: _autogen
 
-    CSRNDArray.round
-    CSRNDArray.rint
+    CSRNDArray.ceil
     CSRNDArray.fix
     CSRNDArray.floor
-    CSRNDArray.ceil
+    CSRNDArray.round
+    CSRNDArray.rint
     CSRNDArray.trunc
+
 
 Trigonometric functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -123,12 +131,13 @@ Trigonometric functions
     :nosignatures:
     :toctree: _autogen
 
-    CSRNDArray.sin
-    CSRNDArray.tan
     CSRNDArray.arcsin
     CSRNDArray.arctan
     CSRNDArray.degrees
     CSRNDArray.radians
+    CSRNDArray.sin
+    CSRNDArray.tan
+
 
 Hyperbolic functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -137,10 +146,11 @@ Hyperbolic functions
     :nosignatures:
     :toctree: _autogen
 
-    CSRNDArray.sinh
-    CSRNDArray.tanh
     CSRNDArray.arcsinh
     CSRNDArray.arctanh
+    CSRNDArray.sinh
+    CSRNDArray.tanh
+
 
 Exponents and logarithms
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -151,6 +161,7 @@ Exponents and logarithms
 
     CSRNDArray.expm1
     CSRNDArray.log1p
+
 
 Powers
 ^^^^^^^^^^^^^^^^^^^^^^^^^
