@@ -120,7 +120,7 @@ master_doc = 'index'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['templates', 'sphinx_materialdesign_theme',
+exclude_patterns = ['templates',
                     #'api', 'guide/guide', 'guide/performance',
                     #'guide/deploy', 'guide/extend',# 'api',
                     'blog']
@@ -153,11 +153,12 @@ suppress_warnings = [
 # -- Options for HTML output ---------------------------------------------------
 
 # Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = ['sphinx_materialdesign_theme']
+import mxtheme
+html_theme_path = ['mxtheme']
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'sphinx_materialdesign_theme'
+html_theme = 'mxtheme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
