@@ -8,3 +8,4 @@ a hand-written digit classifier using the `MNIST <https://en.wikipedia.org/wiki/
    :maxdepth: 1
 
    mnist
+   pretrained_models
