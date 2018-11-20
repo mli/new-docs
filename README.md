@@ -8,11 +8,11 @@ This is a total new design of the MXNet website. Major changes includes:
 2. easier to add contents without using HTML. such as adding a new card on the front page:
 
    ```rst
-   .. container:: mx-card
+   .. card::
+      :title: GluonCV
+      :link: https://gluon-cv.mxnet.io
 
-      :card-title:`GluonCV`
-      :card-text:`A deep learning toolkit for computer vision.`
-      :card-link:`https://gluon-cv.mxnet.io`
+      A deep learning toolkit for computer vision.
    ```
 
    or install options:

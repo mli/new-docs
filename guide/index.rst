@@ -1,5 +1,5 @@
 Guide
-=======
+=====
 
 Getting started
 ---------------
@@ -9,64 +9,67 @@ Getting started
    <script type="text/javascript" src='../_static/frontpage.js'></script>
    <link rel="stylesheet" type="text/css" href="../_static/frontpage.css" />
 
-.. role:: card-title
-.. role:: card-text
-.. role:: card-link
+.. container:: cards
 
-.. container:: mx-card
+   .. card::
+      :title: A 60-minute crash course
+      :link: crash-course/index.html
 
-   :card-title:`A 60-minute crash course`
-   :card-text:`A quick overview of the core concept of MXNet`
-   :card-link:`crash-course/index.html`
+      A quick overview of the core concept of MXNet.
 
-.. container:: mx-card
+   .. card::
+      :title: For PyTorch users
+      :link: pytorch/pytorch-to-gluon.html
 
-   :card-title:`For PyTorch users`
-   :card-text:`Compare MXNet and PyTorch to implement a MLP to train MNIST.`
-   :card-link:`pytorch/pytorch-to-gluon.html`
+      Compare MXNet and PyTorch to implement a MLP to train MNIST.
 
 
 MXNet for deep learning algorithms
 ----------------------------------
 
-.. container:: mx-card
+.. container:: cards
 
-   :card-title:`Image`
-   :card-text:`Deep learning models for images.`
-   :card-link:`image/index.html`
+   .. card::
+      :title: Image
+      :link: image/index.html
 
-.. container:: mx-card
+      Deep learning models for images.
 
-   :card-title:`Text`
-   :card-text:`Deep learning models for texts.`
-   :card-link:`text/index.html`
+   .. card::
+      :title: Text
+      :link: text/index.html
+
+      Deep learning models for texts.
+
 
 Learning MXNet
 -----------------
 
-.. container:: mx-card
+.. container:: cards
 
-   :card-title:`Module`
-   :card-text:`How to use each module in MXNet.`
-   :card-link:`guide/index.html`
+   .. card::
+      :title: Module
+      :link: module/index.html
 
-.. container:: mx-card
+      How to use each module in MXNet.
 
-   :card-title:`Performance`
-   :card-text:`How to get the best performance from MXNet.`
-   :card-link:`performance/index.html`
+   .. card::
+      :title: Performance
+      :link: performance/index.html
 
-.. container:: mx-card
+      How to get the best performance from MXNet.
 
-   :card-title:`Deploy`
-   :card-text:`How to deploy MXNet to various platforms`
-   :card-link:`deploy/index.html`
+   .. card::
+      :title: Deploy
+      :link: deploy/index.html
 
-.. container:: mx-card
+      How to deploy MXNet to various platforms.
 
-   :card-title:`Extend`
-   :card-text:`How to add functionality to MXNet.`
-   :card-link:`extend/index.html`
+   .. card::
+      :title: Extend
+      :link: extend/index.html
+
+      How to add functionality to MXNet.
 
 .. toctree::
    :hidden:

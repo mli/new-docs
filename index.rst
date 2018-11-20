@@ -23,19 +23,14 @@ Apache MXNet (incubating) Documents
 
    <script type="text/javascript" src='_static/frontpage.js'></script>
    <link rel="stylesheet" type="text/css" href="_static/frontpage.css" />
-   <div class="head-card mdl-card mdl-shadow--2dp">
-     <div class="mdl-card__title">
-       <h2 class="mdl-card__title-text">Welcome</h2>
-     </div>
-     <div class="mdl-card__supporting-text">
-       MXNet is a flexible and efficient library for deep learning. It's
-       designed for both research and products...
-     </div>
-     <div class="mdl-card__actions ">
-           <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="./guide/tutorials/index.html"> Get Started </a>
-     </div>
-     <div class="card-link">guide/tutorials/index.html</div>
-     </div>
+
+
+.. card::
+   :title: Welcome
+   :link: guide/crash-course/index.html
+   :is_head: true
+
+   MXNet is a flexible and efficient library for deep learning. It's designed for both research and products...
 
 Install
 -------
@@ -47,72 +42,72 @@ Check :doc:`install` for more installation instructions and options.
 Documents
 ---------
 
-.. role:: card-title
-.. role:: card-text
-.. role:: card-link
+.. container:: cards
 
-.. container:: mx-card
+   .. card::
+      :title: Dive into Deep Learning
+      :link: https://diveintodeeplearning.org
 
-   :card-title:`Dive into Deep Learning`
-   :card-text:`An interactive book to learn deep learning for students and engineers.`
-   :card-link:`https://diveintodeeplearning.org`
+      An interactive book to learn deep learning for students and engineers.
 
-.. container:: mx-card
+   .. card::
+      :title: A Gluon Crash Course
+      :link: guide/crash-course/index.html
 
-   :card-title:`A Gluon Crash Course`
-   :card-text:`Learn how to use Gluon, the flexible imperative frontend of mxnet, in 60-min.`
-   :card-link:`./guide/tutorials/crash-course/index.html`
+      Learn how to use Gluon, the flexible imperative frontend of mxnet, in 60-min.
 
 Ecosystem
 ---------
 
-.. container:: mx-card
+.. container:: cards
 
-   :card-title:`GluonCV`
-   :card-text:`A deep learning toolkit for computer vision.`
-   :card-link:`https://gluon-cv.mxnet.io`
+   .. card::
+      :title: GluonCV
+      :link: https://gluon-cv.mxnet.io
 
-.. container:: mx-card
+      A deep learning toolkit for computer vision.
 
-   :card-title:`GluonNLP`
-   :card-text:`A deep learning toolkit for natural language processing`
-   :card-link:`https://gluon-nlp.mxnet.io`
+   .. card::
+      :title: GluonNLP
+      :link: https://gluon-nlp.mxnet.io
 
+      A deep learning toolkit for natural language processing
 
-.. container:: mx-card
+   .. card::
+      :title: Sockeye
+      :link: https://awslabs.github.io/sockeye/
 
-   :card-title:`Sockeye`
-   :card-text:`A seq2seq toolkit with a focus on Neural Machine Translation`
-   :card-link:`https://awslabs.github.io/sockeye/`
+      A seq2seq toolkit with a focus on Neural Machine Translation
 
-.. container:: mx-card
+   .. card::
+      :title: TVM
+      :link: https://tvm.ai/
 
-   :card-title:`TVM`
-   :card-text:`An end to end deep learning compiler stack for CPUs, GPUs and specialized accelerators`
-   :card-link:`https://tvm.ai/`
+      An end to end deep learning compiler stack for CPUs, GPUs and specialized accelerators
 
 Check :doc:`ecosystem` for more projects.
 
 Community
 ---------
 
-.. container:: mx-card
+.. container:: cards
 
-   :card-title:`Github`
-   :card-text:`Reports bugs, request features, discuss issues, and more`
-   :card-link:`https://github.com/apache/incubator-mxnet/`
+   .. card::
+      :title: Github
+      :link: https://github.com/apache/incubator-mxnet/
 
-.. container:: mx-card
+      Reports bugs, request features, discuss issues, and more.
 
-   :card-title:`Forum`
-   :card-text:`Browse and join discussion on deep learning with MXNet`
-   :card-link:`https://discuss.mxnet.io/`
+   .. card::
+      :title: Forum
+      :link: https://discuss.mxnet.io/
 
-.. container:: mx-card
+      Browse and join discussion on deep learning with MXNet.
 
-   :card-title:`Slack`
-   :card-text:`Get questions answered. Email dev@mxnet.apache.org for access.`
-   :card-link:`./`
+   .. card::
+      :title: Slack
+
+      Get questions answered. Email `dev list <mailto:dev@mxnet.apache.org>`_ for access.
 
 Check :doc:`community` for more options to join our community.
 

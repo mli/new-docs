@@ -153,7 +153,6 @@ suppress_warnings = [
 # -- Options for HTML output ---------------------------------------------------
 
 # Add any paths that contain custom themes here, relative to this directory.
-import mxtheme
 html_theme_path = ['mxtheme']
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -257,3 +256,6 @@ def setup(app):
     }, True)
     app.add_javascript('google_analytics.js')
     app.add_stylesheet('mxnet.css')
+
+    import mxtheme
+    app.add_directive('card', mxtheme.CardDirective)
