@@ -52,95 +52,6 @@ We can look at the description of the MobileNet network for example, which has a
 print(mobileNet)
 ```
 
-    MobileNet(
-      (features): HybridSequential(
-        (0): Conv2D(3 -> 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
-        (1): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=16)
-        (2): Activation(relu)
-        (3): Conv2D(1 -> 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=16, bias=False)
-        (4): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=16)
-        (5): Activation(relu)
-        (6): Conv2D(16 -> 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (7): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=32)
-        (8): Activation(relu)
-        (9): Conv2D(1 -> 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=32, bias=False)
-        (10): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=32)
-        (11): Activation(relu)
-        (12): Conv2D(32 -> 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (13): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=64)
-        (14): Activation(relu)
-        (15): Conv2D(1 -> 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
-        (16): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=64)
-        (17): Activation(relu)
-        (18): Conv2D(64 -> 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (19): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=64)
-        (20): Activation(relu)
-        (21): Conv2D(1 -> 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
-        (22): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=64)
-        (23): Activation(relu)
-        (24): Conv2D(64 -> 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (25): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=128)
-        (26): Activation(relu)
-        (27): Conv2D(1 -> 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128, bias=False)
-        (28): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=128)
-        (29): Activation(relu)
-        (30): Conv2D(128 -> 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (31): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=128)
-        (32): Activation(relu)
-        (33): Conv2D(1 -> 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=128, bias=False)
-        (34): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=128)
-        (35): Activation(relu)
-        (36): Conv2D(128 -> 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (37): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=256)
-        (38): Activation(relu)
-        (39): Conv2D(1 -> 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256, bias=False)
-        (40): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=256)
-        (41): Activation(relu)
-        (42): Conv2D(256 -> 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (43): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=256)
-        (44): Activation(relu)
-        (45): Conv2D(1 -> 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256, bias=False)
-        (46): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=256)
-        (47): Activation(relu)
-        (48): Conv2D(256 -> 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (49): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=256)
-        (50): Activation(relu)
-        (51): Conv2D(1 -> 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256, bias=False)
-        (52): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=256)
-        (53): Activation(relu)
-        (54): Conv2D(256 -> 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (55): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=256)
-        (56): Activation(relu)
-        (57): Conv2D(1 -> 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256, bias=False)
-        (58): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=256)
-        (59): Activation(relu)
-        (60): Conv2D(256 -> 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (61): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=256)
-        (62): Activation(relu)
-        (63): Conv2D(1 -> 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256, bias=False)
-        (64): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=256)
-        (65): Activation(relu)
-        (66): Conv2D(256 -> 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (67): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=256)
-        (68): Activation(relu)
-        (69): Conv2D(1 -> 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=256, bias=False)
-        (70): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=256)
-        (71): Activation(relu)
-        (72): Conv2D(256 -> 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (73): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=512)
-        (74): Activation(relu)
-        (75): Conv2D(1 -> 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512, bias=False)
-        (76): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=512)
-        (77): Activation(relu)
-        (78): Conv2D(512 -> 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (79): BatchNorm(axis=1, eps=1e-05, momentum=0.9, fix_gamma=False, use_global_stats=False, in_channels=512)
-        (80): Activation(relu)
-        (81): GlobalAvgPool2D(size=(1, 1), stride=(1, 1), padding=(0, 0), ceil_mode=True)
-        (82): Flatten
-      )
-      (output): Dense(512 -> 1000, linear)
-    )
-
 
 Let's have a closer look at the first convolution layer:
 
@@ -148,9 +59,6 @@ Let's have a closer look at the first convolution layer:
 ```python
 print(mobileNet.features[0].params)
 ```
-
-`mobilenet1_conv0_ (Parameter mobilenet1_conv0_weight (shape=(16, 3, 3, 3), dtype=<class 'numpy.float32'>))`<!--notebook-skip-line-->
-
 
 The first layer applies **`16`** different convolutional masks, of size **`InputChannels x 3 x 3`**. For the first convolution, there are **`3`** input channels, the `R`, `G`, `B` channels of the input image. That gives us the weight matrix of shape **`16 x 3 x 3 x 3`**. There is no bias applied in this convolution.
 
@@ -160,8 +68,6 @@ Let's have a look at the output layer now:
 ```python
 print(mobileNet.output)
 ```
-
-`Dense(512 -> 1000, linear)`<!--notebook-skip-line-->
 
 
 Did you notice the shape of layer? The weight matrix is **1000 x 512**. This layer contains 1,000 neurons: each of them will store an activation representative of the probability of the image belonging to a specific category. Each neuron is also fully connected to all 512 neurons in the previous layer.
@@ -178,9 +84,6 @@ mx.test_utils.download('https://raw.githubusercontent.com/dmlc/web-data/master/m
 categories = np.array(json.load(open('image_net_labels.json', 'r')))
 print(categories[4])
 ```
-
-`hammerhead, hammerhead shark` <!--notebook-skip-line-->
-
 
 Get a test image
 
@@ -203,9 +106,6 @@ Load the image as a NDArray
 image = mx.image.imread(filename)
 plt.imshow(image.asnumpy())
 ```
-
-![png](https://github.com/dmlc/web-data/blob/master/mxnet/doc/tutorials/onnx/images/dog.jpg?raw=true)<!--notebook-skip-line-->
-
 
 Neural network expects input in a specific format. Usually images comes in the `Width x Height x Channels` format. Where channels are the RGB channels.
 This network accepts images in the `BatchSize x 3 x 224 x 224`. `224 x 224` is the image resolution, that's how the model was trained. `3` is the number of channels : Red, Green and Blue (in this order). In this case we use a `BatchSize` of `1` since we are predicting one image at a time.
@@ -241,8 +141,6 @@ predictions = resnet18(transform(image)).softmax()
 print(predictions.shape)
 ```
 
-`(1, 1000)`<!--notebook-skip-line-->
-
 
 We then take the top `k` predictions for our image, here the top `3`.
 
@@ -260,13 +158,6 @@ for index in top_pred:
     category = categories[int(index)]
     print("{}: {:.2f}%".format(category, probability.asscalar()*100))
 ```
-
-
-`boxer: 93.03%` <!--notebook-skip-line-->
-
-`bull mastiff: 5.73%`<!--notebook-skip-line-->
-
-`Staffordshire bullterrier, Staffordshire bull terrier: 0.58%` <!--notebook-skip-line-->
 
 
 Let's turn this into a function. Our parameters are an image, a model, a list of categories and the number of top categories we'd like to print. 
@@ -291,17 +182,6 @@ def predict(model, image, categories, k):
 predict(densenet121, image, categories, 3)
 ```
 
-`boxer: 94.77%`<!--notebook-skip-line-->
-
-`bull mastiff: 2.26%`<!--notebook-skip-line-->
-
-`American Staffordshire terrier, Staffordshire terrier, American pit bull terrier, pit bull terrier: 1.69%`<!--notebook-skip-line-->
-    
-
-`CPU times: user 360 ms, sys: 0 ns, total: 360 ms`<!--notebook-skip-line-->
-
-`Wall time: 165 ms`<!--notebook-skip-line-->
-
 
 ### MobileNet
 
@@ -311,18 +191,6 @@ predict(densenet121, image, categories, 3)
 predict(mobileNet, image, categories, 3)
 ```
 
-`boxer: 84.02%` <!--notebook-skip-line-->
-
-`bull mastiff: 13.63%` <!--notebook-skip-line-->
-
-`Rhodesian ridgeback: 0.66%` <!--notebook-skip-line-->
-
-
-`CPU times: user 72 ms, sys: 0 ns, total: 72 ms` <!--notebook-skip-line-->
-
-`Wall time: 31.2 ms` <!--notebook-skip-line-->
-
-
 ### Resnet-18
 
 
@@ -330,18 +198,6 @@ predict(mobileNet, image, categories, 3)
 %%time
 predict(resnet18, image, categories, 3)
 ```
-
-`boxer: 93.03%` <!--notebook-skip-line-->
-
-`bull mastiff: 5.73%` <!--notebook-skip-line-->
-
-`Staffordshire bullterrier, Staffordshire bull terrier: 0.58%` <!--notebook-skip-line-->
-
-
-`CPU times: user 156 ms, sys: 0 ns, total: 156 ms` <!--notebook-skip-line-->
-
-`Wall time: 77.1 ms` <!--notebook-skip-line-->
-
 
 As you can see, pre-trained networks produce slightly different predictions, and have different run-time. In this case, MobileNet is almost **5 times faster** than DenseNet!
 
@@ -360,8 +216,6 @@ with resnet18.name_scope():
 ```python
 print(resnet18.output)
 ```
-
-`Dense(None -> 10, linear)` <!--notebook-skip-line-->
 
 
 Now you can train your model on your new data using the pre-trained weights as initialization. This is called transfer learning and it has proved to be very useful especially in the cases where you only have access to a small dataset. Your network will have already learned how to perform general pattern detection and feature extraction on the larger dataset.
