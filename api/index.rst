@@ -15,45 +15,43 @@ following 6 categories.
    <script type="text/javascript" src='../_static/frontpage.js'></script>
    <link rel="stylesheet" type="text/css" href="../_static/frontpage.css" />
 
-.. role:: card-title
-.. role:: card-text
-.. role:: card-link
+.. container:: cards
 
-.. container:: mx-card
+   .. card::
+      :title: NDArray module
+      :link: ndarray/index.html
 
-   :card-title:`NDArray module`
-   :card-text:`Imperative APIs to manipulate multi-dimentional arrays.`
-   :card-link:`./ndarray/index.html`
+      Imperative APIs to manipulate multi-dimentional arrays.
 
-.. container:: mx-card
+   .. card::
+      :title: Gluon module
+      :link: gluon/index.html
 
-   :card-title:`Gluon module`
-   :card-text:`Imperative APIs to load data, construct and train neural networks.`
-   :card-link:`./gluon/index.html`
+      Imperative APIs to load data, construct and train neural networks.
 
-.. container:: mx-card
+   .. card::
+      :title: Gluon-related modules
+      :link: gluon-related/index.html
 
-   :card-title:`Gluon-related modules`
-   :card-text:`Modules including context and optimizer can be used with Gluon.`
-   :card-link:`./gluon-related/index.html`
+      Modules including context and optimizer can be used with Gluon.
 
-.. container:: mx-card
+   .. card::
+      :title: Symbol module
+      :link: symbol/index.html
 
-   :card-title:`Symbol module`
-   :card-text:`Symbolic APIs for multi-dimentional arrays and neural network layers.`
-   :card-link:`./symbol/index.html`
+      Symbolic APIs for multi-dimentional arrays and neural network layers.
 
-.. container:: mx-card
+   .. card::
+      :title: Symbol-related modules
+      :link: symbol-related/index.html
 
-   :card-title:`Symbol-related modules`
-   :card-text:`Modules to train and visualize symbolic neural network models.`
-   :card-link:`./symbol-related/index.html`
+      Modules to train and visualize symbolic neural network models.
 
-.. container:: mx-card
+   .. card::
+      :title: Advanced modules
+      :link: advanced/index.html
 
-   :card-title:`Advanced modules`
-   :card-text:`Advanced APIs for hackers`
-   :card-link:`./advanced/index.html`
+      Advanced APIs for hackers.
 
 
 All modules

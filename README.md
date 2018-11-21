@@ -8,11 +8,11 @@ This is a total new design of the MXNet website. Major changes includes:
 2. easier to add contents without using HTML. such as adding a new card on the front page:
 
    ```rst
-   .. container:: mx-card
+   .. card::
+      :title: GluonCV
+      :link: https://gluon-cv.mxnet.io
 
-      :card-title:`GluonCV`
-      :card-text:`A deep learning toolkit for computer vision.`
-      :card-link:`https://gluon-cv.mxnet.io`
+      A deep learning toolkit for computer vision.
    ```
 
    or install options:
@@ -39,7 +39,6 @@ You need to have CUDA 9.2 installed. If you prefer to skip evaluation on GPUs, y
 Run the following commands to setup the environment.
 
 ```bash
-git submodule update --init --recursive
 conda env create -f environment.yml
 source activate mxnet-docs
 ```
@@ -62,7 +61,7 @@ The build docs will be available at `build/_build/html`.
 
 Each build may take a few minutes even without evaluation. To accelerate it, we can use one of the following ways:
 
-1. open `build/conf.py`, add the folders you want to skip into `exclude_patterns`, such as `exclude_patterns = ['templates', 'sphinx_materialdesign_theme', 'api', 'develop', 'blog']`.
+1. open `build/conf.py`, add the folders you want to skip into `exclude_patterns`, such as `exclude_patterns = ['templates', 'api', 'develop', 'blog']`.
 2. move the files into a different folder, such as `mv api /tmp/`, and then `make clean`.
 
 ## Check results
@@ -90,11 +89,6 @@ is not existing by run `jupyter notebook --generate-config`
 
 ## Troubleshooting
 Dependencies and the setup steps for this website are changing often. Here are some troubleshooting tips.
-
-* You might need to init and update your submodules.
-```bash
-git submodule update --init --recursive
-```
 
 * You might need to update the environment for the latest modules.
 ```bash
