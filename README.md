@@ -78,10 +78,15 @@ If you build docs in a remote machine, you can
 
 In addition to view the built html pages, you can run the Jupyter notebook from a remote machine.
 1. Install `notedown` plugin: `pip install https://github.com/mli/notedown/tarball/master` in remote server
-2. Start Jupyter notebook `cd develop/tutorials/; jupyter notebook --NotebookApp.contents_manager_class='notedown.NotedownContentsManager'` in remote server
+2. Start Jupyter notebook `jupyter notebook --NotebookApp.contents_manager_class='notedown.NotedownContentsManager'` in remote server
 3. ssh to your machine with port forwarding: `ssh -L8888:localhost:8888 your_machine`
 4. Open http://localhost:8888 in your local machine and run the md files directly
 
+Optionally, one can run the following to launch the notedown plugin automatically when starting jupyter notebook. 
+1. Generate the jupyter configure file `~/.jupyter/jupyter_notebook_config.py` if it
+is not existing by run `jupyter notebook --generate-config`
+2. Add `c.NotebookApp.contents_manager_class = 'notedown.NotedownContentsManager'` to `~/.jupyter/jupyter_notebook_config.py`
+3. Simply run `jupyter notebook`
 
 ## Troubleshooting
 Dependencies and the setup steps for this website are changing often. Here are some troubleshooting tips.
