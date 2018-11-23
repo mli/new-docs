@@ -11,29 +11,39 @@ Apache MXNet (incubating) Documents
    ecosystem
    community
 
+
+.. a warning, will remove it later
+
 .. container:: new-site
 
    .. note::
 
-      This an experimental new document site for Apache MXNet with a focus on
-      the python frontend. Click `here <http://mxnet.incubator.apache.org>`_ to
+      This a preview site for Apache MXNet with a focus on the python
+      frontend. Click `https://mxnet.apache.org <https://mxnet.apache.org>`_ to
       visit the original site and other frontend languages.
 
 .. raw:: html
 
-   <script type="text/javascript" src='_static/frontpage.js'></script>
-   <link rel="stylesheet" type="text/css" href="_static/frontpage.css" />
-
+   <style>.note {max-width: 756px;}</style>
 
 .. card::
    :title: Welcome
    :link: guide/crash-course/index.html
    :is_head: true
 
-   MXNet is a flexible and efficient library for deep learning. It's designed for both research and products...
+   Apache MXNet (incubating) aims for a flexible and efficient library for deep
+   learning. It's designed for both researcher to fast prototype ideas and
+   engineers to apply deep learning technologies to products.
 
 Install
 -------
+
+.. Ignore prerequisite to make the index page concise, which will be shown at
+   the install page
+
+.. raw:: html
+
+   <style>.admonition-prerequisite {display: none;}</style>
 
 .. include:: install-include.rst
 
@@ -118,7 +128,7 @@ Companies and universities using MXNet:
 
 .. raw:: html
 
-   <style>.section img { margin: 1em; max-width: 120px; }</style>
+   <style>.section img { display: inline; margin: 1em; max-width: 120px; }</style>
 
 
 .. image:: https://d1.awsstatic.com/Deep%20Learning/Amazon.2f27bf2d14679b69e67745757101e49d0bb92183.png

@@ -34,6 +34,7 @@ html: $(OBJ)
 	sphinx-autogen build/api/*.rst build/api/*/*.rst   -t build/_templates/
 	# make -C build linkcheck doctest html
 	make -C build html
+	sed -i.bak 's/33\,150\,243/23\,141\,201/g'  build/_build/html/_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css
 
 
 clean:

@@ -1,8 +1,24 @@
-
 $(document).ready(function () {
 
     function label(lbl) {
         return $.trim(lbl.replace(/[ .]/g, '-').replace('+-', '').toLowerCase());
+    }
+
+    // a hack: macos doesn't support cuda, so disable all cuda options when it
+    // is selected.
+    function disableCuda() {
+        $('.install .option').each(function(){
+            if (label($(this).text()).indexOf("cuda") != -1) {
+                $(this).addClass('disabled');
+            }
+        });
+    }
+    function enableCuda() {
+        $('.install .option').each(function(){
+            if (label($(this).text()).indexOf("cuda") != -1) {
+                $(this).removeClass('disabled');
+            }
+        });
     }
 
     // find the user os, and set the according option to active
@@ -14,12 +30,16 @@ $(document).ready(function () {
         } else if (agent.indexOf("mac") != -1) {
             os = "macos"
         }
+        if (os == "macos") {
+            disableCuda();
+        }
         $('.install .option').each(function(){
             if (label($(this).text()).indexOf(os) != -1) {
                 $(this).addClass('active');
             }
         });
     }
+
     setActiveOSButton();
 
     // apply theme
@@ -56,6 +76,12 @@ $(document).ready(function () {
         el.addClass('mdl-button--colored');
         // console.log('enable'+el.text())
         // console.log('disable'+el.siblings().text())
+        console.log($('.install #macos').hasClass('active') )
+        if ($('.install #macos').hasClass('active') == true) {
+            disableCuda();
+        } else {
+            enableCuda();
+        }
         showCommand();
     }
 
