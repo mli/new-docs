@@ -121,8 +121,8 @@ master_doc = 'index'
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 exclude_patterns = ['templates',
-                    #'api', 'guide/guide', 'guide/performance',
-                    #'guide/deploy', 'guide/extend',# 'api',
+                    'api','guide/module', 'guide/guide', 'guide/performance',
+                    'guide/deploy', 'guide/extend',# 'api',
                     'blog']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
@@ -169,9 +169,7 @@ html_theme_options = {
         ('Install', 'install', False, ''),
         ("Guide", "guide/index", False, ''),
         ("API", "api/index", False, ''),
-        ("Ecosystem", "ecosystem", False, ''),
-        ("Community", "community", False, ''),
-        ("GitHub", "https://github.com/apache/incubator-mxnet/", True, '')
+        ("GitHub", "https://github.com/apache/incubator-mxnet/", True, 'fab fa-github')
     ],
     # Render footer (Default: True)
     'show_footer': True
@@ -187,12 +185,12 @@ html_theme_options = {
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = '_static/mxnet-logo-3.png'
+html_logo = '_static/mxnet-logo.svg'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = '_static/mxnet-icon.png'
+html_favicon = '_static/mxnet-icon.svg'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

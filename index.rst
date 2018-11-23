@@ -95,7 +95,11 @@ Ecosystem
 
       An end to end deep learning compiler stack for CPUs, GPUs and specialized accelerators
 
-Check :doc:`ecosystem` for more projects.
+   .. card::
+      :title: Keras
+      :link: https://github.com/awslabs/keras-apache-mxnet/wiki
+
+      Keras with Apache MXNet backend.
 
 Community
 ---------
@@ -106,7 +110,14 @@ Community
       :title: Github
       :link: https://github.com/apache/incubator-mxnet/
 
-      Reports bugs, request features, discuss issues, and more.
+      Report bugs, request features, discuss issues, and more.
+
+   .. card::
+      :title: Disqus
+      :link: https://mxnet.disqus.com
+
+      Comment and discuss this site to help us improve the document
+      quality.
 
    .. card::
       :title: Forum
@@ -116,10 +127,9 @@ Community
 
    .. card::
       :title: Slack
+      :link: mailto:dev@mxnet.apache.org
 
-      Get questions answered. Email `dev list <mailto:dev@mxnet.apache.org>`_ for access.
-
-Check :doc:`community` for more options to join our community.
+      Get questions answered. Email `dev@mxnet.apache.org <mailto:dev@mxnet.apache.org>`_ for access.
 
 Adoptions
 --------------------------------------
