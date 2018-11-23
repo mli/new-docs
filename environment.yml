@@ -11,10 +11,10 @@ dependencies:
   - nbsphinx
   - recommonmark
   - notedown
-  - mxnet
+  - mxnet-cu92
   - pypandoc
   - breathe
   - mock
   - awscli
   - git+https://github.com/rmk135/sphinxcontrib-disqus
-  - https://github.com/szha/mx-theme/tarball/card
+  - https://github.com/mli/mx-theme/tarball/master
