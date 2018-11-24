@@ -16,55 +16,59 @@ Getting started
       :title: For PyTorch users
       :link: to-mxnet/pytorch.html
 
-      Compare MXNet and PyTorch on implemeting a hadto train a hadimplement a MLP model to train MNIST.
+      Compare MXNet and PyTorch on implemeting a simple handwritten digits classifier.
+
+.. raw:: html
+
+   <style> h1 {display: none;} </style>
+
+..
+   MXNet for deep learning algorithms
+   ----------------------------------
+
+   .. container:: cards
+
+      .. card::
+         :title: Image
+         :link: image/index.html
+
+         Deep learning models for images.
+
+      .. card::
+         :title: Text
+         :link: text/index.html
+
+         Deep learning models for texts.
 
 
-MXNet for deep learning algorithms
-----------------------------------
+   Learning MXNet
+   -----------------
 
-.. container:: cards
+   .. container:: cards
 
-   .. card::
-      :title: Image
-      :link: image/index.html
+      .. card::
+         :title: Module
+         :link: module/index.html
 
-      Deep learning models for images.
+         How to use each module in MXNet.
 
-   .. card::
-      :title: Text
-      :link: text/index.html
+      .. card::
+         :title: Performance
+         :link: performance/index.html
 
-      Deep learning models for texts.
+         How to get the best performance from MXNet.
 
+      .. card::
+         :title: Deploy
+         :link: deploy/index.html
 
-Learning MXNet
------------------
+         How to deploy MXNet to various platforms.
 
-.. container:: cards
+      .. card::
+         :title: Extend
+         :link: extend/index.html
 
-   .. card::
-      :title: Module
-      :link: module/index.html
-
-      How to use each module in MXNet.
-
-   .. card::
-      :title: Performance
-      :link: performance/index.html
-
-      How to get the best performance from MXNet.
-
-   .. card::
-      :title: Deploy
-      :link: deploy/index.html
-
-      How to deploy MXNet to various platforms.
-
-   .. card::
-      :title: Extend
-      :link: extend/index.html
-
-      How to add functionality to MXNet.
+         How to add functionality to MXNet.
 
 .. toctree::
    :hidden:
@@ -72,11 +76,12 @@ Learning MXNet
 
    crash-course/index
    to-mxnet/index
-   image/index
-   text/index
-   module/index
-   performance/index
-   deploy/index
-   extend/index
+   ..
+      image/index
+      text/index
+      module/index
+      performance/index
+      deploy/index
+      extend/index
 
 .. disqus::

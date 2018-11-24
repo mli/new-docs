@@ -18,9 +18,12 @@ Apache MXNet (incubating) Documents
 
    .. note::
 
-      This a preview site for Apache MXNet with a focus on the python
-      frontend. Click `https://mxnet.apache.org <https://mxnet.apache.org>`_ to
-      visit the original site and other frontend languages.
+      This a preview site for Apache MXNet aiming to replace the contents on
+      `https://mxnet.apache.org <https://mxnet.apache.org>`_. Currently, this
+      site only covers the Python frontend with a subset of tutorials. It is
+      under fast developing. Check `What's new
+      <https://github.com/mli/new-docs/wiki/What's-new>`_ for a summary about
+      what are changed and the `roadmap <https://github.com/mli/new-docs/projects/1>` towards mature.
 
 .. raw:: html
 
