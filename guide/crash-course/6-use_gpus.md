@@ -4,21 +4,19 @@ We often use GPUs to train and deploy neural networks, because it offers signifi
 
 First, make sure you have at least one Nvidia GPU in your machine and CUDA
 properly installed. Other GPUs such as AMD and Intel GPUs are not supported
-yet. Then be sure you have
-[installed the GPU-enabled version of MXNet](mxnet_packages.md).
+yet. Then be sure you have installed the GPU-enabled version of MXNet.
 
 ```{.python .input  n=15}
 # If you pip installed the plain `mxnet` before, uncomment the
 # following two lines to install the GPU version. You may need to
-# replace `cu91` according to your CUDA version.
-#
+# replace `cu92` according to your CUDA version.
 # !pip uninstall mxnet
-# !pip install mxnet-cu91
+# !pip install mxnet-cu92
 
 from mxnet import nd, gpu, gluon, autograd
 from mxnet.gluon import nn
 from mxnet.gluon.data.vision import datasets, transforms
-from time import time
+import time
 ```
 
 ## Allocate data to a GPU
@@ -88,19 +86,15 @@ Let's first copy the data definitions and the transform function from the [previ
 
 ```{.python .input}
 batch_size = 256
-
 transformer = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(0.13, 0.31)])
-
 train_data = gluon.data.DataLoader(
     datasets.FashionMNIST(train=True).transform_first(transformer),
     batch_size, shuffle=True, num_workers=4)
-
 valid_data = gluon.data.DataLoader(
     datasets.FashionMNIST(train=False).transform_first(transformer),
     batch_size, shuffle=False, num_workers=4)
-
 ```
 
 The training loop is quite similar to what we introduced before. The major differences are highlighted in the following code.
@@ -108,22 +102,18 @@ The training loop is quite similar to what we introduced before. The major diffe
 ```{.python .input}
 # Diff 1: Use two GPUs for training.
 devices = [gpu(0), gpu(1)]
-
 # Diff 2: reinitialize the parameters and place them on multiple GPUs
 net.collect_params().initialize(force_reinit=True, ctx=devices)
-
 # Loss and trainer are the same as before
 softmax_cross_entropy = gluon.loss.SoftmaxCrossEntropyLoss()
 trainer = gluon.Trainer(net.collect_params(), 'sgd', {'learning_rate': 0.1})
-
 for epoch in range(10):
     train_loss = 0.
-    tic = time()
+    tic = time.time()
     for data, label in train_data:
         # Diff 3: split batch and load into corresponding devices
         data_list = gluon.utils.split_and_load(data, devices)
         label_list = gluon.utils.split_and_load(label, devices)
-
         # Diff 4: run forward and backward on each devices.
         # MXNet will automatically run them in parallel
         with autograd.record():
@@ -131,12 +121,9 @@ for epoch in range(10):
                       for X, y in zip(data_list, label_list)]
         for l in losses:
             l.backward()
-
         trainer.step(batch_size)
-
         # Diff 5: sum losses over all devices
         train_loss += sum([l.sum().asscalar() for l in losses])
-
-    print("Epoch %d: Loss: %.3f, Time %.1f sec" % (
-        epoch, train_loss/len(train_data)/batch_size, time()-tic))
+    print("Epoch %d: loss %.3f, in %.1f sec" % (
+        epoch, train_loss/len(train_data)/batch_size, time.time()-tic))
 ```

@@ -9,8 +9,9 @@ In this section, we will discuss how to train the previously defined network wit
 from mxnet import nd, gluon, init, autograd
 from mxnet.gluon import nn
 from mxnet.gluon.data.vision import datasets, transforms
+from IPython import display
 import matplotlib.pyplot as plt
-from time import time
+import time
 ```
 
 ## Get data
@@ -30,19 +31,18 @@ Each example in this dataset is a $28\times 28$ size grey image, which is presen
 Next, we visualize the first six examples.
 
 ```{.python .input  n=3}
-text_labels = [
-    't-shirt', 'trouser', 'pullover', 'dress', 'coat',
-    'sandal', 'shirt', 'sneaker', 'bag', 'ankle boot'
-]
-X, y = mnist_train[0:6]
+text_labels = ['t-shirt', 'trouser', 'pullover', 'dress', 'coat',
+               'sandal', 'shirt', 'sneaker', 'bag', 'ankle boot']
+X, y = mnist_train[0:10]
 # plot images
+display.set_matplotlib_formats('svg')
 _, figs = plt.subplots(1, X.shape[0], figsize=(15, 15))
 for f,x,yi in zip(figs, X,y):
     # 3D->2D by removing the last channel dim
     f.imshow(x.reshape((28,28)).asnumpy())
     ax = f.axes
     ax.set_title(text_labels[int(yi)])
-    ax.title.set_fontsize(20)
+    ax.title.set_fontsize(14)
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
 plt.show()
@@ -54,7 +54,6 @@ In order to feed data into a Gluon model, we need to convert the images to the `
 transformer = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(0.13, 0.31)])
-
 mnist_train = mnist_train.transform_first(transformer)
 ```
 
@@ -62,7 +61,6 @@ mnist_train = mnist_train.transform_first(transformer)
 
 ```{.python .input  n=5}
 batch_size = 256
-
 train_data = gluon.data.DataLoader(
     mnist_train, batch_size=batch_size, shuffle=True, num_workers=4)
 ```
@@ -123,7 +121,7 @@ We create an auxiliary function to calculate the model accuracy.
 def acc(output, label):
     # output: (batch, num_output) float32 ndarray
     # label: (batch, ) int32 ndarray
-    return (output.argmax(axis=1) == 
+    return (output.argmax(axis=1) ==
             label.astype('float32')).mean().asscalar()
 ```
 
@@ -132,7 +130,7 @@ Now we can implement the complete training loop.
 ```{.python .input  n=12}
 for epoch in range(10):
     train_loss, train_acc, valid_acc = 0., 0., 0.
-    tic = time()
+    tic = time.time()
     for data, label in train_data:
         # forward + backward
         with autograd.record():
@@ -144,16 +142,12 @@ for epoch in range(10):
         # calculate training metrics
         train_loss += loss.mean().asscalar()
         train_acc += acc(output, label)
-
     # calculate validation accuracy
     for data, label in valid_data:
         valid_acc += acc(net(data), label)
-
-    print("Epoch %d: Loss: %.3f, Train acc %.3f, Test acc %.3f, \
-Time %.1f sec" % (
-        epoch, train_loss/len(train_data),
-        train_acc/len(train_data),
-        valid_acc/len(valid_data), time()-tic))
+    print("Epoch %d: loss %.3f, train acc %.3f, test acc %.3f, in %.1f sec" % (
+            epoch, train_loss/len(train_data), train_acc/len(train_data),
+            valid_acc/len(valid_data), time.time()-tic))
 ```
 
 ## Save the model

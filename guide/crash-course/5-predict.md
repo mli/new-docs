@@ -11,6 +11,7 @@ from mxnet import nd
 from mxnet import gluon
 from mxnet.gluon import nn
 from mxnet.gluon.data.vision import datasets, transforms
+from IPython import display
 import matplotlib.pyplot as plt
 ```
 
@@ -48,8 +49,8 @@ Now let's try to predict the first six images in the validation dataset and stor
 
 ```{.python .input  n=5}
 mnist_valid = datasets.FashionMNIST(train=False)
-X, y = mnist_valid[:6]
-preds = []  
+X, y = mnist_valid[:10]
+preds = []
 for x in X:
     x = transformer(x).expand_dims(axis=0)
     pred = net(x).argmax(axis=1)
@@ -59,16 +60,15 @@ for x in X:
 Finally, we visualize the images and compare the prediction with the ground truth.
 
 ```{.python .input  n=15}
-_, figs = plt.subplots(1, 6, figsize=(15, 15))
-text_labels = [
-    't-shirt', 'trouser', 'pullover', 'dress', 'coat',
-    'sandal', 'shirt', 'sneaker', 'bag', 'ankle boot'
-]
+_, figs = plt.subplots(1, 10, figsize=(15, 15))
+text_labels = ['t-shirt', 'trouser', 'pullover', 'dress', 'coat',
+               'sandal', 'shirt', 'sneaker', 'bag', 'ankle boot']
+display.set_matplotlib_formats('svg')
 for f,x,yi,pyi in zip(figs, X, y, preds):
     f.imshow(x.reshape((28,28)).asnumpy())
     ax = f.axes
     ax.set_title(text_labels[yi]+'\n'+text_labels[pyi])
-    ax.title.set_fontsize(20)
+    ax.title.set_fontsize(14)
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
 plt.show()
@@ -110,8 +110,6 @@ Following the conventional way of preprocessing ImageNet data:
 
 1. Resize the short edge into 256 pixes,
 2. And then perform a center crop to obtain a 224-by-224 image.
-
-The following code uses the image processing functions provided in the MXNet [image module](https://mxnet.incubator.apache.org/api/python/image/image.html).
 
 ```{.python .input  n=10}
 x = image.resize_short(x, 256)

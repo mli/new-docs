@@ -4,11 +4,6 @@ Guide
 Getting started
 ---------------
 
-.. raw:: html
-
-   <script type="text/javascript" src='../_static/frontpage.js'></script>
-   <link rel="stylesheet" type="text/css" href="../_static/frontpage.css" />
-
 .. container:: cards
 
    .. card::
@@ -21,7 +16,7 @@ Getting started
       :title: For PyTorch users
       :link: pytorch/pytorch-to-gluon.html
 
-      Compare MXNet and PyTorch to implement a MLP to train MNIST.
+      Compare MXNet and PyTorch to implement a MLP model to train MNIST.
 
 
 MXNet for deep learning algorithms

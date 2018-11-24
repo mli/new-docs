@@ -1,18 +1,15 @@
 # Manipulate data with `ndarray`
 
-We’ll start by introducing the `NDArray`, MXNet’s primary tool for storing and transforming data. If you’ve worked with `NumPy` before, you’ll notice that a NDArray is, by design, similar to NumPy’s multi-dimensional array. 
+We'll start by introducing the `NDArray`, MXNet’s primary tool for storing and transforming data. If you’ve worked with `NumPy` before, you’ll notice that a NDArray is, by design, similar to NumPy’s multi-dimensional array.
 
 ## Get started
 
 To get started, let's import the `ndarray` package (`nd` is shortform) from MXNet.
 
-<!-- we can remove the --pre flag after release 1.2 -->
-
 ```{.python .input  n=1}
-# Uncomment the following line to install the latest MXNet
-# !pip install --pre mxnet
-# Or use the following version to accelerate Intel CPU performance.
-# !pip install --pre mxnet-mkl
+# If you hasn't install MXNet yet, you can uncomment the following line to
+# install the latest stable release
+# !pip install -U mxnet
 
 from mxnet import nd
 ```
