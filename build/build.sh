@@ -7,7 +7,3 @@ conda activate mxnet-docs
 
 rm -rf build/_build/
 make html
-
-if [[ ${env.BRANCH_NAME} == master ]]; then
-    aws s3 sync --delete build/_build/html/ s3://beta.mxnet.io/ --acl public-read
-fi
