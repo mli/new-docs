@@ -3,7 +3,7 @@ all: html
 # markdown files that will not be evaluated, simply copy to build/
 PURE_MARKDOWN = ./README.md $(wildcard ./blog/*.md)
 # markdown files that will be evaluated and then saved as ipynb files
-IPYNB_MARKDOWN = $(shell find . -not -path "./build/*" -name "*.md")
+IPYNB_MARKDOWN = $(shell find . -not -path "./build/*" -name "*.md" | sort -h)
 # RST files will be simply coped to build/
 RST = $(shell find . -not -path "./build/*" -name "*.rst")
 
@@ -14,7 +14,7 @@ OBJ = $(patsubst %.rst, build/%.rst, $(RST)) \
 
 build/%.ipynb: %.md
 	@mkdir -p $(@D)
-	export EVAL=0; python build/md2ipynb.py $< $@
+	python build/md2ipynb.py $< $@
 
 
 build/%.rst: %.rst
@@ -25,9 +25,9 @@ build/%: %
 	@mkdir -p $(@D)
 	@cp -r $< $@
 
-# debug:
+#debug:
 # 	@echo $(PURE_MARKDOWN)
-# 	@echo $(IPYNB_MARKDOWN)
+#	@echo $(IPYNB_MARKDOWN)
 # 	@echo $(filter-out $(PURE_MARKDOWN), $(IPYNB_MARKDOWN))
 
 html: $(OBJ)
