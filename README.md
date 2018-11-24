@@ -1,40 +1,13 @@
 # README
 
-## What's new
+## [What's new](https://github.com/mli/new-docs/wiki/What's-new)
 
-This is a total new design of the MXNet website. Major changes includes:
+## [Roadmap](https://github.com/mli/new-docs/projects/1)
 
-1. used a relative simple build pipeline with a new theme. Removed a bunch of html/js hacks.
-2. easier to add contents without using HTML. such as adding a new card on the front page:
-
-   ```rst
-   .. card::
-      :title: GluonCV
-      :link: https://gluon-cv.mxnet.io
-
-      A deep learning toolkit for computer vision.
-   ```
-
-   or install options:
-
-   ```rst
-   .. container:: opt-group
-
-      :title:`Platform:`
-      :opt:`Linux`
-      :opt:`Macos`
-      :opt:`Windows`
-      :opt:`Cloud`
-   ```
-3. reorganized all documents by following tensorflow and pytorch. All tutorials go to develop/ and APIs go to api/.
-4. Any tutorial under the develop/ page should be evaluated to get real outputs during build.
-5. Enabled right TOC, it's useful to navigate within the current page.
-6. Each API function has a single page, instead of stacking all of them in a long page. All APIs can be accessed on the right toc panel.
-7. Added disqus links so that readers can ask questions easily
 
 ## Setup
 
-You need to have CUDA 9.2 installed. If you prefer to skip evaluation on GPUs, you can change `mxnet-cu92` into `mxnet` in the `environment.yml` file.
+You need to have CUDA 9.0 installed. If you prefer to skip evaluation on GPUs, you can change `mxnet-cu90` into `mxnet` in the `environment.yml` file.
 
 Run the following commands to setup the environment.
 
