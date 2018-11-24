@@ -4,7 +4,7 @@ Crash course
 This crash course will give you a quick overview of the core concept of NDArray
 (manipulating multiple dimensional arrays) and Gluon (create and train neural
 networks). This is a good place to start if you are already familiar with
-machine Learning or other deep learning frameworks.
+machine learning or other deep learning frameworks.
 
 .. toctree::
    :maxdepth: 1
@@ -16,6 +16,9 @@ machine Learning or other deep learning frameworks.
    4-train
    5-predict
    6-use_gpus
+
+Next steps
+----------
 
 ..
    # add back the videos until apis are updated.

@@ -10,3 +10,5 @@ _autogen
 /365px-Golden_Retriever_medium-to-light-coat.jpg
 /net.params
 /synset.txt
+*.pt
+**/raw/*-ubyte

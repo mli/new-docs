@@ -14,9 +14,9 @@ Getting started
 
    .. card::
       :title: For PyTorch users
-      :link: pytorch/pytorch-to-gluon.html
+      :link: to-mxnet/pytorch.html
 
-      Compare MXNet and PyTorch to implement a MLP model to train MNIST.
+      Compare MXNet and PyTorch on implemeting a hadto train a hadimplement a MLP model to train MNIST.
 
 
 MXNet for deep learning algorithms
@@ -71,7 +71,7 @@ Learning MXNet
    :maxdepth: 1
 
    crash-course/index
-   pytorch/pytorch-to-gluon
+   to-mxnet/index
    image/index
    text/index
    module/index

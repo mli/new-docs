@@ -1,4 +1,6 @@
 name: mxnet-docs
+channels:
+- pytorch
 dependencies:
 - python
 - jupyter
@@ -6,8 +8,9 @@ dependencies:
 - matplotlib
 - pandas
 - notebook
+- pytorch-cpu
+- torchvision-cpu
 - pip:
-  - pyopenssl
   - nbsphinx
   - recommonmark
   - notedown
