@@ -19,7 +19,8 @@ build/%.ipynb: %.md
 
 build/%.rst: %.rst
 	@mkdir -p $(@D)
-	python build/process_rst.py $< $@
+	# python build/process_rst.py $< $@
+	cp $< $@
 
 build/%: %
 	@mkdir -p $(@D)

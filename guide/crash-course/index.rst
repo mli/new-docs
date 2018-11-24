@@ -1,4 +1,4 @@
-Crash course
+Crash Course
 ============
 
 This crash course will give you a quick overview of the core concept of NDArray

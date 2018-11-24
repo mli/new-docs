@@ -9,12 +9,6 @@ describing what they are and what they do. We grouped all APIs into the
 following 6 categories.
 
 
-.. raw:: html
-
-   <script> $('h1').hide(); </script>
-   <script type="text/javascript" src='../_static/frontpage.js'></script>
-   <link rel="stylesheet" type="text/css" href="../_static/frontpage.css" />
-
 .. container:: cards
 
    .. card::
