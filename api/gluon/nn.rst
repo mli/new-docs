@@ -4,6 +4,10 @@ nn and contrib.nn
 Gluon provides a large number of build-in neural network layers in the following
 two modules:
 
+..
+   Don't add toctree to these two modules, otherwise it will generate two pages in
+   the global TOC
+
 .. autosummary::
     :nosignatures:
 
@@ -133,3 +137,6 @@ Advanced Activation Layers
     nn.ELU
     nn.SELU
     nn.Swish
+
+.. disqus::
+   :disqus_identifier: mxnet.gluon.nn

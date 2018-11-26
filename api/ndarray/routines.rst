@@ -442,3 +442,6 @@ Control flow
     cond
     foreach
     while_loop
+
+.. disqus::
+   :disqus_identifier: mxnet.ndarray.routines

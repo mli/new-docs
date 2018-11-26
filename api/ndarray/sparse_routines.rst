@@ -181,3 +181,6 @@ More
     LogisticRegressionOutput
     make_loss
     stop_gradient
+
+.. disqus::
+   :disqus_identifier: mxnet.ndarray.sparse.routines

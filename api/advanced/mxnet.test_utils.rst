@@ -3,12 +3,13 @@ mxnet.test\_utils
 
 .. automodule:: mxnet.test_utils
 
-   
-   
+
+
    .. rubric:: Functions
 
    .. autosummary::
-   
+      :toctree: _autogen
+
       almost_equal
       almost_equal_ignore_nan
       assert_almost_equal
@@ -60,22 +61,22 @@ mxnet.test\_utils
       simple_forward
       var_check
       verify_generator
-   
-   
 
-   
-   
+
+
+
+
    .. rubric:: Classes
 
    .. autosummary::
-   
-      DummyIter
-   
-   
 
-   
-   
-   
+      DummyIter
+
+
+
+
+
+
 
 .. disqus::
    :disqus_identifier: mxnet.test_utils

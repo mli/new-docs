@@ -148,3 +148,6 @@ MobileNet
 
     MobileNet
     MobileNetV2
+
+.. disqus::
+   :disqus_identifier: mxnet.gluon.model_zoo

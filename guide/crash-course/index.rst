@@ -17,8 +17,8 @@ machine learning or other deep learning frameworks.
    5-predict
    6-use_gpus
 
-Next steps
-----------
+
+.. disqus::
 
 ..
    # add back the videos until apis are updated.

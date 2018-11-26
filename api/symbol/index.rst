@@ -1,6 +1,8 @@
-Symbol: ``mxnet.symbol``
+mxnet.symbol
 =========================
 
 .. toctree::
 
    mxnet.symbol.Symbol
+
+.. disqus::

@@ -1,5 +1,5 @@
-Adavanced Modules
-------------------
+Adavanced modules
+=================
 
 .. toctree::
 
@@ -10,3 +10,5 @@ Adavanced Modules
    mxnet.rtc
    mxnet.test_utils
    mxnet.util
+
+.. disqus::

@@ -18,9 +18,23 @@ Getting started
 
       Compare MXNet and PyTorch on implemeting a simple handwritten digits classifier.
 
+Next steps
+----------
+
+- To learn more about using MXNet to implement various deep learning algorithms
+  from scratch, we recommend the `Dive into Deep Learning
+  <https://diveintodeeplearning.org>`_ book.
+
+- If you are interested in building your projects based on state-of-the-art deep
+  learning algorithms and/or pre-trained models, please refer to the toolkits
+  in `our ecosystem. <../index.html#ecosystem>`_
+
+- Continue to check :doc:`../api/index </API reference.>`
+
 .. raw:: html
 
    <style> h1 {display: none;} </style>
+   <style>.localtoc { display: none; }</style>
 
 ..
    MXNet for deep learning algorithms

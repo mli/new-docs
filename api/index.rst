@@ -48,12 +48,9 @@ following 6 categories.
       Advanced APIs for hackers.
 
 
-All modules
------------
-
 .. toctree::
-   :maxdepth: 2
-   :glob:
+   :maxdepth: 1
+   :hidden:
 
    ndarray/index
    gluon/index
@@ -61,12 +58,5 @@ All modules
    symbol/index
    symbol-related/index
    advanced/index
-
-Put some C++ API here as a demo purpose. Should be removed later.
-
-.. toctree::
-   :maxdepth: 1
-
-   c_predict_api
 
 .. disqus::

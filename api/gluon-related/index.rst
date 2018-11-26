@@ -1,4 +1,4 @@
-Gluon-related modules
+Gluon related modules
 ======================
 
 .. toctree::
@@ -15,3 +15,5 @@ Gluon-related modules
    mxnet.initializer
    mxnet.lr_scheduler
    mxnet.metric
+
+.. disqus::

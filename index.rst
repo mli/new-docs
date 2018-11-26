@@ -23,7 +23,8 @@ Apache MXNet (incubating) Documents
       site only covers the Python frontend with a subset of tutorials. It is
       under fast developing. Check `What's new
       <https://github.com/mli/new-docs/wiki/What's-new>`_ for a summary about
-      what are changed and the `roadmap <https://github.com/mli/new-docs/projects/1>` towards mature.
+      what are changed and the `roadmap
+      <https://github.com/mli/new-docs/projects/1>`_ towards mature.
 
 .. raw:: html
 
