@@ -59,21 +59,28 @@ Documents
 .. container:: cards
 
    .. card::
-      :title: Dive into Deep Learning
-      :link: https://diveintodeeplearning.org
+      :title: Guide
+      :link: guide/index.html
 
-      An interactive book to learn deep learning for students and engineers.
+      Guidelines to use MXNet.
 
    .. card::
-      :title: A Gluon Crash Course
-      :link: guide/crash-course/index.html
+      :title: API
+      :link: api/index.html
 
-      Learn how to use Gluon, the flexible imperative frontend of mxnet, in 60-min.
+
+      API reference to all MXNet classes and methods.
 
 Ecosystem
 ---------
 
 .. container:: cards
+
+   .. card::
+      :title: Dive into Deep Learning
+      :link: https://diveintodeeplearning.org
+
+      An interactive book to learn deep learning for students and engineers.
 
    .. card::
       :title: GluonCV
@@ -145,7 +152,7 @@ Companies and universities using MXNet:
    <style>.section img { display: inline; margin: 1em; max-width: 120px; }</style>
 
 
-.. image:: https://d1.awsstatic.com/Deep%20Learning/Amazon.2f27bf2d14679b69e67745757101e49d0bb92183.png
+.. image:: https://merivisfoundation.org/wp-content/uploads/2018/02/Amazon-Logo-Transparent-PNG.png
 
 .. image:: https://d1.awsstatic.com/Deep%20Learning/Banjo.3e03a1433ba7f3349b7bd4222f76ecee9f3a89ee.png
 .. image:: https://d1.awsstatic.com/Deep%20Learning/Samsung_SDS.230e93bf56146745bb85a3154c05571de76dae74.png
