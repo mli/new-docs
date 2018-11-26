@@ -101,12 +101,6 @@ Ecosystem
       A seq2seq toolkit with a focus on Neural Machine Translation
 
    .. card::
-      :title: TVM
-      :link: https://tvm.ai/
-
-      An end to end deep learning compiler stack for CPUs, GPUs and specialized accelerators
-
-   .. card::
       :title: Keras
       :link: https://github.com/awslabs/keras-apache-mxnet/wiki
 
