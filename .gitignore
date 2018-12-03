@@ -5,8 +5,8 @@ build/**/*.md
 __pycache__
 /build.sh
 _autogen
-*ndarray
-*pickle
+*.ndarray
+*.pickle
 /365px-Golden_Retriever_medium-to-light-coat.jpg
 /net.params
 /synset.txt
