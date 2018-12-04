@@ -18,6 +18,17 @@ Getting started
 
       Compare MXNet and PyTorch on implemeting a simple handwritten digits classifier.
 
+Learning MXNet
+-----------------
+
+.. container:: cards
+
+   .. card::
+      :title: Module
+      :link: module/index.html
+
+      How to use each module in MXNet.
+
 Next steps
 ----------
 
