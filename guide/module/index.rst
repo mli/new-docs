@@ -11,27 +11,28 @@ In-depth guidelines for how to use NDArray and Gluon:
 .. toctree::
    :maxdepth: 2
 
-   ndarray
+   ndarray/index
    gluon/index
 
-Basic
------
+..
+   Basic
+   -----
 
-.. toctree::
-   :maxdepth: 1
+   .. toctree::
+      :maxdepth: 1
 
-   mxboard
-   gpus
+      mxboard
+      gpus
 
-Advanced
---------
+   Advanced
+   --------
 
 
-.. toctree::
-   :maxdepth: 1
+   .. toctree::
+      :maxdepth: 1
 
-   symbol
-   record-io
-   sparse
-   control-flow
-   distributed-training
+      symbol
+      record-io
+      sparse
+      control-flow
+      distributed-training
