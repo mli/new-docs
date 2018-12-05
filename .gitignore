@@ -12,3 +12,5 @@ _autogen
 /synset.txt
 *.pt
 **/raw/*-ubyte
+dogcat
+*.tar.gz
