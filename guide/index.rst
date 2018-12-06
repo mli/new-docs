@@ -101,10 +101,11 @@ Next steps
 
    crash-course/index
    to-mxnet/index
+   module/index
+
    ..
       image/index
       text/index
-      module/index
       performance/index
       deploy/index
       extend/index

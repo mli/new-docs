@@ -6,7 +6,7 @@ mxnet.gluon
 
    nn
    rnn
-   mxnet.gluon.losse
+   mxnet.gluon.loss
    mxnet.gluon.parameter
    mxnet.gluon.Trainer
    mxnet.gluon.data
