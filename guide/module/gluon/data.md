@@ -239,10 +239,14 @@ for X, y in data:
 
 ### Customize Sampling
 
-`DataLoader` reads examples either sequentially or uniformly randomly without
-replacement. We can change this behavior through customized samplers. An sampler
-is an iterator returning an sample index each time. For example, we create an
-sampler that first sequentially reads even indexes and then odd indexes.
+`DataLoader` reads examples either sequentially or
+uniformly randomly without
+replacement. We can change this behavior through
+customized samplers. An sampler
+is an iterator returning an sample index each
+time. For example, we create an
+sampler that first sequentially reads even
+indexes and then odd indexes.
 
 ```{.python .input  n=30}
 class MySampler():

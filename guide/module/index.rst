@@ -11,9 +11,15 @@ In-depth guidelines for how to use NDArray and Gluon:
 .. toctree::
    :maxdepth: 2
 
-   autograd
    ndarray/index
    gluon/index
+
+.. toctree::
+   :maxdepth: 2
+
+   autograd
+   lr_scheduler
+
 
 ..
    Basic

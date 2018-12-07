@@ -47,8 +47,7 @@ Next we show how to use a loss function to compute gradients.
 
 ```{.python .input}
 X = nd.random.uniform(shape=(2, 4)) 
-net = nn.Sequential() 
-net.add(nn.Dense(1))
+net = nn.Dense(1)
 net.initialize()
 with autograd.record():
     l =  loss(net(X), y)
@@ -60,7 +59,7 @@ gradients w.r.t. the loss function.
 
 ```{.python .input}
 l.backward()
-net[0].weight.grad()
+net.weight.grad()
 ```
 
 ## Visualize Loss Functions

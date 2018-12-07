@@ -8,6 +8,7 @@ Gluon
    init
    data
    loss
+   trainer
    custom-layer
    hybridize
    image-augmentation

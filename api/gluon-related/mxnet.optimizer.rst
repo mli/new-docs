@@ -26,9 +26,7 @@ Optimization methods
    SGD
    SGLD
    Signum
-   Test
    Updater
-   ccSGD
 
 Helper functions
 ----------------

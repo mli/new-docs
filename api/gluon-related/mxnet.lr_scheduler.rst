@@ -6,10 +6,11 @@ mxnet.lr\_scheduler
 .. autosummary::
    :toctree: _autogen
 
-   FactorScheduler
    LRScheduler
+   FactorScheduler
    MultiFactorScheduler
    PolyScheduler
+   CosineScheduler
 
 .. disqus::
    :disqus_identifier: mxnet.lr_scheduler
