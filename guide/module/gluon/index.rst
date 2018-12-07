@@ -7,6 +7,7 @@ Gluon
    parameters
    init
    data
+   loss
    custom-layer
    hybridize
-   data-augmentation
+   image-augmentation
