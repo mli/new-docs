@@ -1,12 +1,7 @@
-Guide
-=====
+Module
+======
 
-The documents in this unit dive into the details MXNet works.
-
-Essential
----------
-
-In-depth guidelines for how to use NDArray and Gluon:
+The documents in this unit dive into the details how each MXNet module works.
 
 .. toctree::
    :maxdepth: 2
