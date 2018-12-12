@@ -1,9 +1,11 @@
 # README
 
 Follow these steps to build the MXNet R website from within the Rsite/ parent directory 
+
 (homepage will appear in: Rsite/build/index.html)
 
 make clean
+
 make
 
 
@@ -57,15 +59,15 @@ If adding new object files that future tutorials will depend on, you must update
 
 ## Detailed descriptions of Makefile operations: 
 
-# build documentation:
+### build documentation:
 cd ./source/
 Rscript ./scripts/Rdoc2SphinxDoc.R
 
-# build tutorials:
+### build tutorials:
 cd ./source/tutorial/
 bash scripts/convertNotebooks.sh
 
-# build sphinx page:
+### build sphinx page:
 cd ./ # (must be in home directory containing source/ and build/ subdirectories)
 sphinx-build -b html source/ build/
 
@@ -88,7 +90,6 @@ Disqus does not work.
 
 
 ## Remaining Problems in underlying Rd documentation:
-(Anirudh is working to fix these)
 
 1) Biggest issue is many of the code examples (or “usage”) of certain functions are actually in Python, not R.
 See for example: mx.symbol.ones_like, mx.symbol.square, etc. There’s generally Python code appearing all over the place in the R documentation, which should probably be translated to R.

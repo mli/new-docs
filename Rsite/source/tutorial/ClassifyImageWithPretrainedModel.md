@@ -5,35 +5,44 @@
 MXNet is a flexible and efficient deep learning framework. One of the interesting things that a deep learning algorithm can do is classify real world images. 
 
 In this tutorial, we will show you how to leverage **mxnet** to load an out-of-the-box model that is capable of classifying objects in images, *without* requiring you to provide any training data of your own.
-Specifically, we demonstrate how to use a pre-trained Inception-BatchNorm network for classifying an image into 1 out of 1000 common classes. 
+Specifically, we demonstrate how to use a pre-trained Inception-BatchNorm network for classifying an image into 1 out of 1000 common classes. At the time it was proposed, this model achieved state-of-art object recognition accuracy on the large-scale ImageNet dataset. 
 
 For information about the model, see the paper:
 
 [Ioffe, Sergey, and Christian Szegedy. "Batch normalization: Accelerating deep network training by reducing internal covariate shift." arXiv:1502.03167 (2015)](http://arxiv.org/abs/1502.03167).
 
 
-
-The pre-trained Inception-BatchNorm network can be downloaded from [this link](http://data.mxnet.io/mxnet/data/Inception.zip). At the time of paper publication, this model achieved state-of-art object recognition accuracy on the large-scale ImageNet dataset. 
-Before we proceed, you *must* first download this ZIP file and place it in the current working directory (enter ``getwd()`` in R console to determine which directory this is). Next, unzip the file. There should now be a sub-folder titled ``Inception/`` inside the current working directory.
-
-We also need to load some required R packages:
+Let's now load some required R packages and download the pre-trained Inception-BatchNorm network:
 
 ```{.python .input  n=3}
 require(mxnet)
 require(imager) # for loading/processing images in R
+
+if (!file.exists('Inception.zip')) {
+    download.file(url='http://data.mxnet.io/mxnet/data/Inception.zip',
+                  destfile='Inception.zip', method='wget')
+}
+if (!dir.exists('Inception')) {
+    system("unzip Inception.zip")
+}
 ```
+
+The above code relies on the ``wget`` and ``unzip`` commands being installed on your machine. 
+If it fails, you can instead manually the pre-trained Inception-BatchNorm network from [this link](http://data.mxnet.io/mxnet/data/Inception.zip). 
+In this case, you *must* first download this ZIP file and unzip it inside the current working directory (enter ``getwd()`` in R console to determine which directory this is).
+At this point, there should now be a sub-folder titled ``Inception/`` inside the current working directory.
 
 ## Load the Pre-trained Model
 
 Use the provided model loading function to load the pre-trained neural network model into R:
 
-```{.python .input  n=7}
+```{.python .input  n=4}
 model = mx.model.load("Inception/Inception_BN", iteration=39)
 ```
 
 Also load in the mean image, which is needed for preprocessing:
 
-```{.python .input  n=8}
+```{.python .input  n=5}
 mean.img = as.array(mx.nd.load("Inception/mean_224.nd")[["mean_img"]])
 ```
 
@@ -41,12 +50,12 @@ mean.img = as.array(mx.nd.load("Inception/mean_224.nd")[["mean_img"]])
 
 Now, we are ready to classify a real image. In this example, we simply take the parrots image from the **imager** package. You can use another image, if you prefer. Load and plot the image:
 
-```{.python .input  n=10}
+```{.python .input  n=6}
 im <- load.image(system.file("extdata/parrots.png", package="imager"))
 plot(im)
 ```
 
-```{.json .output n=10}
+```{.json .output n=6}
 [
  {
   "data": {
@@ -102,21 +111,6 @@ max.idx <- max.col(t(prob))
 max.idx
 ```
 
-```{.json .output n=14}
-[
- {
-  "data": {
-   "text/html": "89",
-   "text/latex": "89",
-   "text/markdown": "89",
-   "text/plain": "[1] 89"
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
-```
-
 The index of the most-likely class doesn’t make much sense, so let’s see what it really means. 
 We read the names of the classes from the following file:
 
@@ -128,16 +122,6 @@ Let’s see what the image really is:
 
 ```{.python .input  n=17}
 print(paste("Predicted Top-class:", synsets[[max.idx]]))
-```
-
-```{.json .output n=17}
-[
- {
-  "name": "stdout",
-  "output_type": "stream",
-  "text": "[1] \"Predicted Top-class: n01818515 macaw\"\n"
- }
-]
 ```
 
 It’s a macaw!
