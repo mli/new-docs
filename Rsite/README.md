@@ -11,7 +11,7 @@ make
 
 You need to have necessary software installed, and Jupyter Notebook with R kernel and notedown compatibility (to compile tutorials).
 
-1) install MXNet R version:
+1) Install MXNet R version:
 http://mxnet.incubator.apache.org/install/index.html?platform=Linux&language=R&processor=CPU 
 
 2) Install other necessary R packages:
@@ -23,16 +23,19 @@ install.packages(c('mxnet', 'repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ',
 https://www.datacamp.com/community/blog/jupyter-notebook-r 
 https://github.com/aaren/notedown 
 
-Add the following to your Juypter config file:  c.NotebookApp.contents_manager_class = 'notedown.NotedownContentsManager'
+Add the following line to your Juypter config file (`~/.jupyter/jupyter_notebook_config.py`):  
+c.NotebookApp.contents_manager_class = 'notedown.NotedownContentsManager'
 
-3) Install the necessary mxtheme python package (used for website style):
+Then you can simply run jupyter notebook and edit .md files just as if they are standard notebook .ipynb files.
+
+4) Install the necessary mxtheme python package (used for website style):
 
 pip install https://github.com/mli/mx-theme/tarball/master
 
-4) Install sphinx & pandoc (used for processing Notebooks with Sphinx):  
+5) Install sphinx & pandoc (used for processing Notebooks with Sphinx):  
 http://pandoc.org/installing.html
 
-5) You will also need to have the .Rd documentation files already generated for the 'mxnet' R package.
+6) You will also need to have the .Rd documentation files already generated for the 'mxnet' R package.
 Up-to-date R documentation files can be obtained by building MXNet from the source:
 
 https://github.com/apache/incubator-mxnet 
@@ -43,7 +46,7 @@ Copy all of them into subdirectory named: source/api/man/   (replacing existing 
 
 You can check out: scripts/Rdoc2SphinxDoc.R to see locations of all files that the sphinx-documentation-generation script depends on.
 
-6) For the tutorials, in addition to the .md Notebook files, you must have the following files available in the same directory:  
+7) For the tutorials, in addition to the .md Notebook files, you must have the following files available in the same directory:  
 data/train.csv, data/test.csv (for DigitsClassification tutorial)
 Inception/Inception_BN-symbol.json (for ClassifyImageWithPretrainedModel tutorial)
 
