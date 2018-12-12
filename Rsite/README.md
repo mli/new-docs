@@ -1,6 +1,11 @@
 # README
 
-Follow these steps to build the MXNet R website.
+Follow these steps to build the MXNet R website from within the Rsite/ parent directory 
+(homepage will appear in: Rsite/build/index.html)
+
+make clean
+make
+
 
 ## Setup 
 
@@ -47,13 +52,7 @@ You should also ensure the file tutorial/index.rst lists all the tutorials you w
 If adding new object files that future tutorials will depend on, you must update the makefile to ensure they get copied into the mxnetRtutorials/ subdirectory which is subsequently zipped and made available for user-download (so they can run the Jupyter notebooks themselves).  
 
 
-## Commands to build the MXNet-R website: (homepage will appear in: ./build/index.html)
-
-make clean
-make
-
-
-Detailed descriptions: 
+## Detailed descriptions of Makefile operations: 
 
 # build documentation:
 cd ./source/
@@ -80,6 +79,41 @@ In index.rst R homepage:
 - Link to main mxnet site maybe should be updated to Mu's version. 
 - Installation instructions
 
-In tutorial/index.rst page:
-- TODO on how to download & run notebooks needs to be addressed.
+Sphinx theme: tabs at the top do not work on R site (i.e. Install, Guide, API).
 
+Disqus does not work.
+
+
+## Remaining Problems in underlying Rd documentation:
+(Anirudh is working to fix these)
+
+1) Biggest issue is many of the code examples (or “usage”) of certain functions are actually in Python, not R.
+See for example: mx.symbol.ones_like, mx.symbol.square, etc. There’s generally Python code appearing all over the place in the R documentation, which should probably be translated to R.
+ 
+2) mx.io.MNISTIter: “, optional” in description of prefetch.buffer argument (extra comma should be removed)
+ 
+3) mx.nd.log1p: bulleted list has nonuniform indentation levels
+ 
+4) mx.nd.relu: Description "Computes rectified linear" is missing "activation"
+ 
+5) mx.nd.cast.storage.Rd \details{} block begins too early.  This is actually a problem in many of the .Rd files: the \description{} and \details{} are actually contiguous blocks of text which have been arbitrarily split into these separate fields.  Where the split between \description{} and \details{} takes place should be more sensibly chosen (definitely not in the middle of a sentence or mathematical definition).  See also: mx.nd.dot, mx.nd.abs for other examples of this issue, which occurs all over the place.
+ 
+6) mx.nd.Embedding: contains link to python API.  Should probably specify this as “the Optimization API for the Python version of MXNet”
+ 
+7) mx.opt.sgd: “momentumvalue” should be “momentum value”
+ 
+8) predict.MXFeedForwardModel: description of argument “array.batch.size” is missing period or linebreak after “mx.gpu(i)”.
+ 
+9) mx.ctx.default: argument name "new, " should be “new” (without comma)
+ 
+10) rnn.graph.unroll: \description{} field starts in lower-case, while all other functions descriptions start upper-case.
+ 
+11) mx.nd.sgd.update: description "SDG" spelled wrong.
+ 
+12) There is both: mx.nd.ctc.loss and mx.symbol.ctc_loss (seems redundant and one should probably be removed from the R package)
+ 
+13) Function names ending in v1 are deprecated, e.g. “mx.nd.Convolution.v1” (should probably be removed from the R package)
+ 
+14) mx.symbol.pad is missing .Rd documentation (does not automatically link to mx.symbol.Pad documention in R), whereas mx.nd.pad properly links to mx.nd.Pad documentation.
+ 
+15) mx.symbol.Pad & mx.nd.Pad: "\title{pad:Pads" is missing space between 'pad:' and the subsequent description.  More generally, should probably remove the function name from \title{} blocks to standardize things, since the function name is sometimes listed there (followed by colon) and sometimes not.  However, please do not start including the function name in the \title{} field without colon, since my parser to convert the documentation into a Sphinx website currently critically relies on this property to hide the redundancy of the function name appearing again in the \title{} field.
