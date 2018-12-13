@@ -45,8 +45,8 @@ clean:
 	rm -f ./source/tutorial/*.json ;\
 	rm -f ./source/tutorial/*.txt ;\
 	rm -f ./source/tutorial/*.csv ;\
-	rm -f ./source/tutorial/data/sample_submission.csv ;\
 	rm -f ./source/tutorial/*.ndarrays ;\
 	rm -f ./source/tutorial/mxnetRtutorials.zip ;\
+        rm -rf ./source/tutorial/data/* ;\
 	rm -rf ./source/tutorial/Inception ;\
 	rm -f ./source/tutorial/Inception.zip

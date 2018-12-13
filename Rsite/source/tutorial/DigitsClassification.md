@@ -8,7 +8,24 @@ This tutorial shows how to use MXNet in R to develop neural network models for c
 
 ## Loading the Data
 
-First, let's download the data from [Kaggle](http://www.kaggle.com/c/digit-recognizer/data) and put it in a ``data/`` sub-folder inside the current working directory.  Because Kaggle requires user authentication, you must manually get the data yourself via the following steps:
+First, let's download the data from [Kaggle](http://www.kaggle.com/c/digit-recognizer/data) and put it in a ``data/`` sub-folder inside the current working directory.  
+
+```{.python .input  n=1}
+if (!dir.exists('data')) {
+    dir.create('data')
+}
+if (!file.exists('data/train.csv')) {
+    download.file(url='https://raw.githubusercontent.com/wehrley/Kaggle-Digit-Recognizer/master/train.csv',
+                  destfile='data/train.csv', method='wget')
+}
+if (!file.exists('data/test.csv')) {
+    download.file(url='https://raw.githubusercontent.com/wehrley/Kaggle-Digit-Recognizer/master/test.csv',
+                  destfile='data/test.csv', method='wget')
+}
+```
+
+The above commands rely on ``wget`` being installed on your machine.
+If they fail, you can instead manually get the data yourself via the following steps:
 
 1) Create a folder named ``data/`` in the current working directory (to see which directory this is, enter: ``getwd()`` in your current R console). 
 
@@ -16,9 +33,9 @@ First, let's download the data from [Kaggle](http://www.kaggle.com/c/digit-recog
 
 3) Finally, click on **Download All** to download the data to your computer, and copy the files ``train.csv`` and ``test.csv`` into the previously-created ``data/`` folder.
 
-After completing these steps, we can read the data into R and convert it to matrices:
+Once the downloads have completed, we can read the data into R and convert it to matrices:
 
-```{.python .input  n=1}
+```{.python .input  n=2}
 require(mxnet)
 train <- read.csv('data/train.csv', header=TRUE)
 test <- read.csv('data/test.csv', header=TRUE)
@@ -30,7 +47,7 @@ train_x <- t(train_features/255)
 test_x <- t(test_features/255)
 ```
 
-```{.json .output n=1}
+```{.json .output n=2}
 [
  {
   "name": "stderr",
@@ -44,7 +61,7 @@ Every image is represented as a single row in ``train.features``/``test.features
 
 Let's view an example image:
 
-```{.python .input  n=2}
+```{.python .input  n=3}
 i = 10 # change this value to view different examples from the training data
 
 pixels = matrix(train_x[,i],nrow=28, byrow=TRUE)
@@ -52,7 +69,7 @@ image(t(apply(pixels, 2, rev)) , col=gray((0:255)/255),
       xlab="", ylab="", main=paste("Label for this image:", train_y[i]))
 ```
 
-```{.json .output n=2}
+```{.json .output n=3}
 [
  {
   "data": {
@@ -68,11 +85,11 @@ image(t(apply(pixels, 2, rev)) , col=gray((0:255)/255),
 The proportion of each label within the training data is known to significantly affect the results of multi-class classification models.
 We can see that in our MNIST training set, the number of images from each digit is fairly evenly distributed:
 
-```{.python .input  n=3}
+```{.python .input  n=4}
 table(train_y)
 ```
 
-```{.json .output n=3}
+```{.json .output n=4}
 [
  {
   "data": {
@@ -88,7 +105,7 @@ table(train_y)
 
 Now that we have the data, let’s create a neural network model. Here, we can use the ``Symbol`` framework in MXNet to declare our desired network architecture:
 
-```{.python .input  n=4}
+```{.python .input  n=5}
 data <- mx.symbol.Variable("data")
 fc1 <- mx.symbol.FullyConnected(data, name="fc1", num_hidden=128)
 act1 <- mx.symbol.Activation(fc1, name="relu1", act_type="relu")
@@ -114,7 +131,7 @@ This is a standard fully-connected layer that takes in ``data`` as its input, ca
 We are almost ready to train the neural network we have defined. 
 Before we start the computation, let’s decide which device to use:
 
-```{.python .input  n=5}
+```{.python .input  n=6}
 devices <- mx.cpu()
 ```
 
@@ -122,7 +139,7 @@ This command tells **mxnet** to use the CPU for all neural network computations.
 
 Now, you can run the following command to train the neural network!
 
-```{.python .input  n=6}
+```{.python .input  n=7}
 mx.set.seed(0)
 model <- mx.model.FeedForward.create(softmax, X=train_x, y=train_y,
                                      ctx=devices, num.round=10, array.batch.size=100,
@@ -131,7 +148,7 @@ model <- mx.model.FeedForward.create(softmax, X=train_x, y=train_y,
                                         epoch.end.callback=mx.callback.log.train.metric(100))
 ```
 
-```{.json .output n=6}
+```{.json .output n=7}
 [
  {
   "name": "stderr",
@@ -150,13 +167,13 @@ By declaring we are interested in ``mx.metric.accuracy`` in the above command, t
 
 We can easily use our trained network to make predictions on the test data:
 
-```{.python .input  n=7}
+```{.python .input  n=8}
 preds <- predict(model, test_x)
 predicted_labels <- max.col(t(preds)) - 1
 table(predicted_labels)
 ```
 
-```{.json .output n=7}
+```{.json .output n=8}
 [
  {
   "name": "stderr",
@@ -178,7 +195,7 @@ There are 28,000 test examples, and our model produces 10 numbers for each examp
  
 Let's view a particular prediction:
 
-```{.python .input  n=8}
+```{.python .input  n=9}
 i = 2  # change this to view the predictions for different test examples
 
 class_probs_i = preds[,i]
@@ -188,7 +205,7 @@ image(t(apply(matrix(test_x[,i],nrow=28, byrow=TRUE), 2, rev)) , col=gray((0:255
       xlab="", ylab="", main=paste0("Predicted Label: ",predicted_labels[i], ".  Confidence: ", floor(max(class_probs_i)*100),"%"))
 ```
 
-```{.json .output n=8}
+```{.json .output n=9}
 [
  {
   "name": "stdout",
@@ -209,7 +226,7 @@ image(t(apply(matrix(test_x[,i],nrow=28, byrow=TRUE), 2, rev)) , col=gray((0:255
 With a little extra effort, we can create a CSV-formatted file that contains our predictions for all of the test data.
 After running the below command, you can submit the ``submission.csv`` file to the [Kaggle competition](https://www.kaggle.com/c/digit-recognizer/submit)!
 
-```{.python .input  n=9}
+```{.python .input  n=10}
 submission <- data.frame(ImageId=1:ncol(test_x), Label=predicted_labels)
 write.csv(submission, file='submission.csv', row.names=FALSE,  quote=FALSE)
 ```
@@ -280,16 +297,6 @@ model <- mx.model.FeedForward.create(lenet, X=train_array, y=train_y,
             learning.rate=0.05, momentum=0.9, wd=0.00001,
             eval.metric=mx.metric.accuracy,
             epoch.end.callback=mx.callback.log.train.metric(100))
-```
-
-```{.json .output n=13}
-[
- {
-  "name": "stderr",
-  "output_type": "stream",
-  "text": "Start training with 1 devices\n[1] Train-accuracy=0.552333333893191\n"
- }
-]
 ```
 
 Here, ``wd`` specifies a small amount of weight-decay (i.e. l2 regularization) should be employed while training our network parameters.
