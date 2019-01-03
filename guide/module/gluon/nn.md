@@ -47,8 +47,7 @@ contains two hidden layers, and we need a place to store parameters for it.
 1.
 Obviously it also needs to initialize these parameters as needed.
 
-## A Custom
-Block
+## A Custom Block
 
 The `nn.Block` class provides the functionality required for much of what
 we need. It is a model constructor provided in the `nn` module, which we can
