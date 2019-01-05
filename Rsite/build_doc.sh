@@ -7,6 +7,10 @@ if [ $# -ne 1 ]; then
     exit -1
 fi
 
+DIR=$1
+
+conda activate mxnet-docs
+
 cd Rsite
 
 # TODO(mli) remove EVAL=0
