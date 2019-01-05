@@ -16,3 +16,5 @@ dogcat
 *.tar.gz
 *.jpg
 *checkpoint.md
+*.ipynb_checkpoints*
+*.json
