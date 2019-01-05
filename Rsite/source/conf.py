@@ -167,8 +167,8 @@ html_theme_options = {
     'primary_color': 'blue',
     'accent_color': 'deep_orange',
     'header_links' : [
-        ('Python', 'http://beta.mxnet.io', True, 'fab fa-python'),
-        ("R", "http://beta.mxnet.io/index.html", True, 'fab fa-r-project'),
+        ('Python', 'https://beta.mxnet.io', True, 'fab fa-python'),
+        ("R", "http://beta.mxnet.io/r/index.html", True, 'fab fa-r-project'),
         ("GitHub", "https://github.com/apache/incubator-mxnet/", True, 'fab fa-github')
     ],
     # Render footer (Default: True)
