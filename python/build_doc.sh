@@ -19,4 +19,4 @@ rm -rf build/_build/
 make html
 
 rm -rf ../$DIR
-mv build/_build/ ../$DIR
+mv build/_build/html ../$DIR
