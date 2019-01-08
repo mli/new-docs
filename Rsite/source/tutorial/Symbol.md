@@ -26,26 +26,6 @@ net <- mx.symbol.Softmax(data=net, name="out")
 class(net)
 ```
 
-```{.json .output n=1}
-[
- {
-  "name": "stderr",
-  "output_type": "stream",
-  "text": "Loading required package: mxnet\n"
- },
- {
-  "data": {
-   "text/html": "'Rcpp_MXSymbol'",
-   "text/latex": "'Rcpp\\_MXSymbol'",
-   "text/markdown": "'Rcpp_MXSymbol'",
-   "text/plain": "[1] \"Rcpp_MXSymbol\"\nattr(,\"package\")\n[1] \"mxnet\""
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
-```
-
 Each symbol takes a (unique) string name (e.g. "data", "fc1", "fc2", "out" in the above example). 
 ``Variable`` often defines the inputs, or free variables. 
 Other symbols take a symbol as the input (``data`` argument), and may accept other hyper parameters, such as the number of hidden neurons (``num_hidden`` argument) or the activation type (``act_type`` argument).
@@ -54,21 +34,6 @@ A symbol can be viewed as a function that takes several arguments, whose names a
 
 ```{.python .input  n=2}
 arguments(net)
-```
-
-```{.json .output n=2}
-[
- {
-  "data": {
-   "text/html": "<ol class=list-inline>\n\t<li>'data'</li>\n\t<li>'fc1_weight'</li>\n\t<li>'fc1_bias'</li>\n\t<li>'fc2_weight'</li>\n\t<li>'fc2_bias'</li>\n\t<li>'out_label'</li>\n</ol>\n",
-   "text/latex": "\\begin{enumerate*}\n\\item 'data'\n\\item 'fc1\\_weight'\n\\item 'fc1\\_bias'\n\\item 'fc2\\_weight'\n\\item 'fc2\\_bias'\n\\item 'out\\_label'\n\\end{enumerate*}\n",
-   "text/markdown": "1. 'data'\n2. 'fc1_weight'\n3. 'fc1_bias'\n4. 'fc2_weight'\n5. 'fc2_bias'\n6. 'out_label'\n\n\n",
-   "text/plain": "[1] \"data\"       \"fc1_weight\" \"fc1_bias\"   \"fc2_weight\" \"fc2_bias\"  \n[6] \"out_label\" "
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
 ```
 
 The arguments are the parameters need by each symbol:
@@ -87,21 +52,6 @@ net <- mx.symbol.FullyConnected(data=data, weight=w, name="fc1", num_hidden=128)
 arguments(net)
 ```
 
-```{.json .output n=3}
-[
- {
-  "data": {
-   "text/html": "<ol class=list-inline>\n\t<li>'data'</li>\n\t<li>'myweight'</li>\n\t<li>'fc1_bias'</li>\n</ol>\n",
-   "text/latex": "\\begin{enumerate*}\n\\item 'data'\n\\item 'myweight'\n\\item 'fc1\\_bias'\n\\end{enumerate*}\n",
-   "text/markdown": "1. 'data'\n2. 'myweight'\n3. 'fc1_bias'\n\n\n",
-   "text/plain": "[1] \"data\"     \"myweight\" \"fc1_bias\""
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
-```
-
 ## More Complicated Composition of Symbols
 
 MXNet provides well-optimized symbols for commonly used layers in deep learning. 
@@ -114,21 +64,6 @@ net <- mx.symbol.FullyConnected(data=lhs + rhs, name="fc1", num_hidden=128)
 arguments(net)
 ```
 
-```{.json .output n=4}
-[
- {
-  "data": {
-   "text/html": "<ol class=list-inline>\n\t<li>'data1'</li>\n\t<li>'data2'</li>\n\t<li>'fc1_weight'</li>\n\t<li>'fc1_bias'</li>\n</ol>\n",
-   "text/latex": "\\begin{enumerate*}\n\\item 'data1'\n\\item 'data2'\n\\item 'fc1\\_weight'\n\\item 'fc1\\_bias'\n\\end{enumerate*}\n",
-   "text/markdown": "1. 'data1'\n2. 'data2'\n3. 'fc1_weight'\n4. 'fc1_bias'\n\n\n",
-   "text/plain": "[1] \"data1\"      \"data2\"      \"fc1_weight\" \"fc1_bias\"  "
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
-```
-
 We can construct a symbol more flexibly than by using the single forward composition, for example:
 
 ```{.python .input  n=5}
@@ -138,21 +73,6 @@ net2 <- mx.symbol.Variable("data2")
 net2 <- mx.symbol.FullyConnected(data=net2, name="net2", num_hidden=128)
 composed.net <- mx.apply(net, data=net2, name="compose")
 arguments(composed.net)
-```
-
-```{.json .output n=5}
-[
- {
-  "data": {
-   "text/html": "<ol class=list-inline>\n\t<li>'data2'</li>\n\t<li>'net2_weight'</li>\n\t<li>'net2_bias'</li>\n\t<li>'fc1_weight'</li>\n\t<li>'fc1_bias'</li>\n</ol>\n",
-   "text/latex": "\\begin{enumerate*}\n\\item 'data2'\n\\item 'net2\\_weight'\n\\item 'net2\\_bias'\n\\item 'fc1\\_weight'\n\\item 'fc1\\_bias'\n\\end{enumerate*}\n",
-   "text/markdown": "1. 'data2'\n2. 'net2_weight'\n3. 'net2_bias'\n4. 'fc1_weight'\n5. 'fc1_bias'\n\n\n",
-   "text/plain": "[1] \"data2\"       \"net2_weight\" \"net2_bias\"   \"fc1_weight\"  \"fc1_bias\"   "
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
 ```
 
 Above, ``net`` is used as a function to apply to an existing symbol net. The resulting ``composed.net`` will replace the original argument data with ``net2`` instead. 

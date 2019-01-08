@@ -46,18 +46,6 @@ d <- mx.nd.array(dr) # NDArray containing same values as dr
 d
 ```
 
-```{.json .output n=4}
-[
- {
-  "data": {
-   "text/plain": "     [,1] [,2] [,3]\n[1,]    1    3    5\n[2,]    2    4    6"
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
-```
-
 To view the numbers in an NDArray or process the array using R functions, we can simply convert it back to an R array via ``as.array``:
 
 ```{.python .input  n=5}
@@ -65,31 +53,6 @@ NDarrayObj <- mx.nd.ones(c(1, 3))
 RarrayObj <- as.array(NDarrayObj)
 class(RarrayObj)
 RarrayObj
-```
-
-```{.json .output n=5}
-[
- {
-  "data": {
-   "text/html": "'matrix'",
-   "text/latex": "'matrix'",
-   "text/markdown": "'matrix'",
-   "text/plain": "[1] \"matrix\""
-  },
-  "metadata": {},
-  "output_type": "display_data"
- },
- {
-  "data": {
-   "text/html": "<table>\n<tbody>\n\t<tr><td>1</td><td>1</td><td>1</td></tr>\n</tbody>\n</table>\n",
-   "text/latex": "\\begin{tabular}{lll}\n\t 1 & 1 & 1\\\\\n\\end{tabular}\n",
-   "text/markdown": "\n| 1 | 1 | 1 | \n\n\n",
-   "text/plain": "     [,1] [,2] [,3]\n[1,] 1    1    1   "
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
 ```
 
 ## Performing Basic Operations
@@ -101,39 +64,9 @@ a <- mx.nd.ones(c(2, 4)) * 2
 as.array(a)
 ```
 
-```{.json .output n=6}
-[
- {
-  "data": {
-   "text/html": "<table>\n<tbody>\n\t<tr><td>2</td><td>2</td><td>2</td><td>2</td></tr>\n\t<tr><td>2</td><td>2</td><td>2</td><td>2</td></tr>\n</tbody>\n</table>\n",
-   "text/latex": "\\begin{tabular}{llll}\n\t 2 & 2 & 2 & 2\\\\\n\t 2 & 2 & 2 & 2\\\\\n\\end{tabular}\n",
-   "text/markdown": "\n| 2 | 2 | 2 | 2 | \n| 2 | 2 | 2 | 2 | \n\n\n",
-   "text/plain": "     [,1] [,2] [,3] [,4]\n[1,] 2    2    2    2   \n[2,] 2    2    2    2   "
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
-```
-
 ```{.python .input  n=8}
 b <- mx.nd.ones(c(2, 4)) / 8
 as.array(b)
-```
-
-```{.json .output n=8}
-[
- {
-  "data": {
-   "text/html": "<table>\n<tbody>\n\t<tr><td>0.125</td><td>0.125</td><td>0.125</td><td>0.125</td></tr>\n\t<tr><td>0.125</td><td>0.125</td><td>0.125</td><td>0.125</td></tr>\n</tbody>\n</table>\n",
-   "text/latex": "\\begin{tabular}{llll}\n\t 0.125 & 0.125 & 0.125 & 0.125\\\\\n\t 0.125 & 0.125 & 0.125 & 0.125\\\\\n\\end{tabular}\n",
-   "text/markdown": "\n| 0.125 | 0.125 | 0.125 | 0.125 | \n| 0.125 | 0.125 | 0.125 | 0.125 | \n\n\n",
-   "text/plain": "     [,1]  [,2]  [,3]  [,4] \n[1,] 0.125 0.125 0.125 0.125\n[2,] 0.125 0.125 0.125 0.125"
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
 ```
 
 ```{.python .input  n=9}
@@ -141,39 +74,9 @@ c <- a + b
 as.array(c)
 ```
 
-```{.json .output n=9}
-[
- {
-  "data": {
-   "text/html": "<table>\n<tbody>\n\t<tr><td>2.125</td><td>2.125</td><td>2.125</td><td>2.125</td></tr>\n\t<tr><td>2.125</td><td>2.125</td><td>2.125</td><td>2.125</td></tr>\n</tbody>\n</table>\n",
-   "text/latex": "\\begin{tabular}{llll}\n\t 2.125 & 2.125 & 2.125 & 2.125\\\\\n\t 2.125 & 2.125 & 2.125 & 2.125\\\\\n\\end{tabular}\n",
-   "text/markdown": "\n| 2.125 | 2.125 | 2.125 | 2.125 | \n| 2.125 | 2.125 | 2.125 | 2.125 | \n\n\n",
-   "text/plain": "     [,1]  [,2]  [,3]  [,4] \n[1,] 2.125 2.125 2.125 2.125\n[2,] 2.125 2.125 2.125 2.125"
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
-```
-
 ```{.python .input  n=10}
 d <- c / a - 5
 as.array(d)
-```
-
-```{.json .output n=10}
-[
- {
-  "data": {
-   "text/html": "<table>\n<tbody>\n\t<tr><td>-3.9375</td><td>-3.9375</td><td>-3.9375</td><td>-3.9375</td></tr>\n\t<tr><td>-3.9375</td><td>-3.9375</td><td>-3.9375</td><td>-3.9375</td></tr>\n</tbody>\n</table>\n",
-   "text/latex": "\\begin{tabular}{llll}\n\t -3.9375 & -3.9375 & -3.9375 & -3.9375\\\\\n\t -3.9375 & -3.9375 & -3.9375 & -3.9375\\\\\n\\end{tabular}\n",
-   "text/markdown": "\n| -3.9375 | -3.9375 | -3.9375 | -3.9375 | \n| -3.9375 | -3.9375 | -3.9375 | -3.9375 | \n\n\n",
-   "text/plain": "     [,1]    [,2]    [,3]    [,4]   \n[1,] -3.9375 -3.9375 -3.9375 -3.9375\n[2,] -3.9375 -3.9375 -3.9375 -3.9375"
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
 ```
 
 We can also perform more complex matrix operations on NDArrays, such as matrix multiplication:
@@ -181,18 +84,6 @@ We can also perform more complex matrix operations on NDArrays, such as matrix m
 ```{.python .input  n=11}
 e <- mx.nd.dot(mx.nd.transpose(a), b)
 e
-```
-
-```{.json .output n=11}
-[
- {
-  "data": {
-   "text/plain": "     [,1] [,2]\n[1,]    1    1\n[2,]    1    1"
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
 ```
 
 If two ``NDArray`` objects are located on different devices, we need to explicitly move them to the same device before performing an operation that involves them both.
@@ -226,31 +117,6 @@ a <- ndlist[[1]]
 b <- ndlist[[2]]
 as.array(a)
 as.array(b)
-```
-
-```{.json .output n=13}
-[
- {
-  "data": {
-   "text/html": "<table>\n<tbody>\n\t<tr><td>1</td><td>1</td><td>1</td></tr>\n\t<tr><td>1</td><td>1</td><td>1</td></tr>\n</tbody>\n</table>\n",
-   "text/latex": "\\begin{tabular}{lll}\n\t 1 & 1 & 1\\\\\n\t 1 & 1 & 1\\\\\n\\end{tabular}\n",
-   "text/markdown": "\n| 1 | 1 | 1 | \n| 1 | 1 | 1 | \n\n\n",
-   "text/plain": "     [,1] [,2] [,3]\n[1,] 1    1    1   \n[2,] 1    1    1   "
-  },
-  "metadata": {},
-  "output_type": "display_data"
- },
- {
-  "data": {
-   "text/html": "<table>\n<tbody>\n\t<tr><td>0</td><td>0</td></tr>\n</tbody>\n</table>\n",
-   "text/latex": "\\begin{tabular}{ll}\n\t 0 & 0\\\\\n\\end{tabular}\n",
-   "text/markdown": "\n| 0 | 0 | \n\n\n",
-   "text/plain": "     [,1] [,2]\n[1,] 0    0   "
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
 ```
 
 Alternatively, we can directly save data to and load it from a distributed file system, such as Amazon S3 and HDFS, by issuing commands that look like:

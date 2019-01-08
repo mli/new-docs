@@ -187,16 +187,6 @@ model <- mx.model.FeedForward.create(symbol=network,
                                      )
 ```
 
-```{.json .output n=17}
-[
- {
-  "name": "stderr",
-  "output_type": "stream",
-  "text": "Start training with 1 devices\nBatch [100] Speed: 1814.27151161724 samples/sec Train-accuracy=0.1095999994874\nBatch [200] Speed: 1858.60514128075 samples/sec Train-accuracy=0.152899999972433\nBatch [300] Speed: 1767.86764629952 samples/sec Train-accuracy=0.388733332591752\nBatch [400] Speed: 1836.86742645454 samples/sec Train-accuracy=0.526175000397488\nBatch [500] Speed: 1784.53144617281 samples/sec Train-accuracy=0.611840000532567\nBatch [600] Speed: 1740.27054308106 samples/sec Train-accuracy=0.671633335072547\n[1] Train-accuracy=0.671633335072547\nBatch [100] Speed: 1870.49370899199 samples/sec Train-accuracy=0.971200010180473\nBatch [200] Speed: 1917.6756785252 samples/sec Train-accuracy=0.970200009346008\nBatch [300] Speed: 1861.31806825874 samples/sec Train-accuracy=0.972266676425934\nBatch [400] Speed: 1791.1186852109 samples/sec Train-accuracy=0.973775010108948\nBatch [500] Speed: 1861.70752723815 samples/sec Train-accuracy=0.974660010457039\nBatch [600] Speed: 1795.15488829673 samples/sec Train-accuracy=0.976116677125295\n[2] Train-accuracy=0.976116677125295\n"
- }
-]
-```
-
 ## Conclusion
 
 We have shown how to create a custom CSV Iterator by extending the class ``mx.io.CSVIter``. In our class, we iteratively read from a CSV file a batch of data that will be transformed and then processed in the stochastic gradient descent optimization. That way, we are able to manage CSV files that are bigger than the memory of the machine we are using.

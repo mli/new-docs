@@ -41,26 +41,6 @@ mse.test <- mean((test.y - pred[1,])^2)
 sprintf("MSE on test data: %f",mse.test)
 ```
 
-```{.json .output n=2}
-[
- {
-  "name": "stderr",
-  "output_type": "stream",
-  "text": "Loading required package: mxnet\nStart training with 1 devices\nWarning message in mx.model.select.layout.predict(X, model):\n\u201cAuto detect layout of input matrix, use rowmajor..\n\u201d"
- },
- {
-  "data": {
-   "text/html": "'MSE on test data: 0.250044'",
-   "text/latex": "'MSE on test data: 0.250044'",
-   "text/markdown": "'MSE on test data: 0.250044'",
-   "text/plain": "[1] \"MSE on test data: 0.250044\""
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
-```
-
 **mxnet** provides the following built-in loss functions (with corresponding appropriate output transformations):
 
 - ``LinearRegressionOutput``: seeks to estimate conditional expectations via the mean-squared-error loss.
@@ -111,16 +91,6 @@ model2 <- mx.model.FeedForward.create(lro2, X = train.x, y = train.y,
                                       epoch.end.callback = NULL)
 ```
 
-```{.json .output n=6}
-[
- {
-  "name": "stderr",
-  "output_type": "stream",
-  "text": "Start training with 1 devices\n"
- }
-]
-```
-
 Finally, we can evaluate the pseudo-Huber loss of our trained network on the test data.
 
 **Caution:** the output of ``mx.symbol.MakeLoss`` is the gradient of the loss with respect to the input data. 
@@ -142,24 +112,4 @@ losses.test <- apply(matrix(c(pred.huber[1,],test.y),nrow=2,byrow=T), MARGIN=2,
                      function(x,delta=1) (sqrt(1 + ((x[1]-x[2])/delta)^2) - 1) * delta^2
                     ) # since we don't need gradients, losses are computed via R arrays rather than Symbol objects 
 sprintf("Pseudo-Huber Loss on test data: %f", mean(losses.test))
-```
-
-```{.json .output n=8}
-[
- {
-  "name": "stderr",
-  "output_type": "stream",
-  "text": "Warning message in mx.model.select.layout.predict(X, model):\n\u201cAuto detect layout of input matrix, use rowmajor..\n\u201d"
- },
- {
-  "data": {
-   "text/html": "'Pseudo-Huber Loss on test data: 0.101444'",
-   "text/latex": "'Pseudo-Huber Loss on test data: 0.101444'",
-   "text/markdown": "'Pseudo-Huber Loss on test data: 0.101444'",
-   "text/plain": "[1] \"Pseudo-Huber Loss on test data: 0.101444\""
-  },
-  "metadata": {},
-  "output_type": "display_data"
- }
-]
 ```
