@@ -1,12 +1,12 @@
 API
 ===
 
-Overivew
+Overview
 --------
 
 This API section details functions, modules, and objects included in MXNet,
-describing what they are and what they do. We grouped all APIs into the
-following 6 categories.
+describing what they are and what they do. The APIs are grouped into the
+following categories:
 
 
 .. container:: cards
@@ -15,7 +15,7 @@ following 6 categories.
       :title: NDArray module
       :link: ndarray/index.html
 
-      Imperative APIs to manipulate multi-dimentional arrays.
+      Imperative APIs to manipulate multi-dimensional arrays.
 
    .. card::
       :title: Gluon module
@@ -27,13 +27,13 @@ following 6 categories.
       :title: Gluon-related modules
       :link: gluon-related/index.html
 
-      Modules including context and optimizer can be used with Gluon.
+      Modules, including context and optimizer, that can be used with Gluon.
 
    .. card::
       :title: Symbol module
       :link: symbol/index.html
 
-      Symbolic APIs for multi-dimentional arrays and neural network layers.
+      Symbolic APIs for multi-dimensional arrays and neural network layers.
 
    .. card::
       :title: Symbol-related modules
