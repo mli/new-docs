@@ -18,13 +18,13 @@ Apache MXNet (incubating) Documents
 
    .. note::
 
-      This a preview site for Apache MXNet aiming to replace the contents on
-      `https://mxnet.apache.org <https://mxnet.apache.org>`_. Currently, this
-      site only covers the Python frontend with a subset of tutorials. It is
-      under fast developing. Check `What's new
-      <https://github.com/mli/new-docs/wiki/What's-new>`_ for a summary about
-      what are changed and the `roadmap
-      <https://github.com/mli/new-docs/projects/1>`_.
+      This is a preview of the new website for Apache MXNet (incubating) that
+      will eventually replace `https://mxnet.apache.org <https://mxnet.apache.org>`_.
+      Currently this site focuses on the Python and R frontends with a subset of
+      tutorials. It is under fast development and we welcome contributions.
+      Check `What's New <https://github.com/mli/new-docs/wiki/What's-new>`_ for
+      a summary about what is changed and also look at the `roadmap
+      <https://github.com/mli/new-docs/projects/1>`_ for upcoming changes.
 
 .. raw:: html
 
@@ -35,8 +35,8 @@ Apache MXNet (incubating) Documents
    :link: guide/crash-course/index.html
    :is_head: true
 
-   Apache MXNet (incubating) aims for a flexible and efficient library for deep
-   learning. It's designed for both researcher to fast prototype ideas and
+   Apache MXNet (incubating) aims to be a flexible and efficient library for deep
+   learning. It's designed for both researchers to quickly prototype ideas as well as
    engineers to apply deep learning technologies to products.
 
 Install
@@ -62,7 +62,7 @@ Documents
       :title: Guide
       :link: guide/index.html
 
-      Guidelines to use MXNet.
+      Guides for using MXNet.
 
    .. card::
       :title: API
@@ -92,19 +92,19 @@ Ecosystem
       :title: GluonNLP
       :link: https://gluon-nlp.mxnet.io
 
-      A deep learning toolkit for natural language processing
+      A deep learning toolkit for natural language processing.
 
    .. card::
       :title: Sockeye
       :link: https://awslabs.github.io/sockeye/
 
-      A seq2seq toolkit with a focus on Neural Machine Translation
+      A seq2seq toolkit with a focus on Neural Machine Translation.
 
    .. card::
       :title: Keras
       :link: https://github.com/awslabs/keras-apache-mxnet/wiki
 
-      Keras with Apache MXNet backend.
+      Keras with Apache MXNet as its backend.
 
 Community
 ---------
@@ -121,14 +121,14 @@ Community
       :title: Disqus
       :link: https://mxnet.disqus.com
 
-      Comment and discuss this site to help us improve the document
+      Comment and discuss this site to help us improve the documentation
       quality.
 
    .. card::
       :title: Forum
       :link: https://discuss.mxnet.io/
 
-      Browse and join discussion on deep learning with MXNet.
+      Browse and join the discussion on deep learning with MXNet.
 
    .. card::
       :title: Slack

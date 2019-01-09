@@ -10,13 +10,13 @@ Getting started
       :title: A 60-minute crash course
       :link: crash-course/index.html
 
-      A quick overview of the core concept of MXNet.
+      A quick overview of the core concepts of MXNet.
 
    .. card::
       :title: For PyTorch users
       :link: to-mxnet/pytorch.html
 
-      Compare MXNet and PyTorch on implemeting a simple handwritten digits classifier.
+      Compare MXNet and PyTorch on implementing a simple handwritten digits classifier.
 
 Learning MXNet
 -----------------
@@ -38,9 +38,9 @@ Next steps
 
 - If you are interested in building your projects based on state-of-the-art deep
   learning algorithms and/or pre-trained models, please refer to the toolkits
-  in `our ecosystem. <../index.html#ecosystem>`_
+  in the `MXNet ecosystem <../index.html#ecosystem>`_.
 
-- Continue to check :doc:`../api/index </API reference.>`
+- Check out the `API Reference docs <../api/index.html>`_.
 
 .. raw:: html
 
