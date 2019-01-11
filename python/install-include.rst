@@ -90,7 +90,7 @@
 
                - Require `CUDA
                  <https://developer.nvidia.com/cuda-toolkit-archive>`_ is
-                 installed. Supported versions include 8.0, 9.0, 9.1, and 9.2.
+                 installed. Supported versions include 8.0, 9.0, and 9.2.
                - Hint: `cuDNN <https://developer.nvidia.com/cudnn>`_ is already
                  included in the MXNet binary, you don't need to install it.
 
