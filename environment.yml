@@ -14,7 +14,7 @@ dependencies:
   - nbsphinx
   - recommonmark
   - notedown
-  - mxnet-cu90==1.5.0b20190101
+  - mxnet-cu92==1.5.0b20190101
   - pypandoc
   - breathe
   - mock
