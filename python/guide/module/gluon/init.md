@@ -2,17 +2,14 @@
 
 <!-- adapted from diveintodeeplearning -->
 
-In the previous
-examples we played fast and loose with setting up our networks. In particular we
-did the following things that *shouldn't* work:
+In the previous examples we played fast and loose with setting up our networks.
+In particular we did the following things that *shouldn't* work:
 
-* We defined the network
-architecture with no regard to the input dimensionality.
-* We added layers
-without regard to the output dimension of the previous layer.
-* We even
-'initialized' these parameters without knowing how many parameters were were to
-initialize.
+* We defined the network architecture with no regard to the input
+  dimensionality.
+* We added layers without regard to the output dimension of the previous layer.
+* We even 'initialized' these parameters without knowing how many parameters
+  were were to initialize.
 
 All of those things sound impossible and indeed, they are. After
 all, there's no way MXNet (or any other framework for that matter) could predict
@@ -25,8 +22,7 @@ dimensionality is can greatly simplify statistical modeling. In what follows, we
 will discuss how this works using initialization as an example. After all, we
 cannot initialize variables that we don't know exist.
 
-## Instantiating a
-Network
+## Instantiating a Network
 
 Let's see what happens when we instantiate a network. We start with our
 trusty MLP as before.
@@ -85,10 +81,10 @@ outlined above.
 
 ## Deferred Initialization in Practice
 
-Now that we know how it
-works in theory, let's see when the initialization is actually triggered. In
-order to do so, we mock up an initializer which does nothing but report a debug
-message stating when it was invoked and with which paramers.
+Now that we know how it works in theory, let's see when the initialization is
+actually triggered. In order to do so, we mock up an initializer which does
+nothing but report a debug message stating when it was invoked and with which
+paramers.
 
 ```{.python .input  n=22}
 class MyInit(init.Initializer):
@@ -117,8 +113,7 @@ the shape of the weight parameters of all layers based on the shape of the
 input. Once the system has created these parameters, it calls the `MyInit`
 instance to initialize them before proceeding to the forward calculation.
 
-Of
-course, this initialization will only be called when completing the initial
+Of course, this initialization will only be called when completing the initial
 forward calculation. After that, we will not re-initialize when we run the
 forward calculation `net(x)`, so the output of the `MyInit` instance will not be
 generated again.
@@ -132,16 +127,14 @@ cause confusion. Before the first forward calculation, we were unable to
 directly manipulate the model parameters, for example, we could not use the
 `data` and `set_data` functions to get and modify the parameters. Therefore, we
 often force initialization by sending a sample observation through the network.
+
 ## Forced Initialization
 
-Deferred initialization does not occur if the system
-knows the shape of all parameters when calling the `initialize` function. This
-can occur in two cases:
+Deferred initialization does not occur if the system knows the shape of all
+parameters when calling the `initialize` function. This can occur in two cases:
 
-* We've already seen some data and we just want to
-reset the parameters.
-* We specificed all input and output dimensions of the
-network when defining it.
+* We've already seen some data and we just want to reset the parameters.
+* We specificed all input and output dimensions of the network when defining it.
 
 The first case works just fine, as illustrated below.
 
