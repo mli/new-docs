@@ -22,19 +22,23 @@ Start R in your terminal (Note: cannot use R studio here to ensure Jupyter kerne
 install.packages(c('mxnet', 'repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))
 
 3) Install Jupyter Notebook with R kernel and notedown compatibility:
+
 https://www.datacamp.com/community/blog/jupyter-notebook-r
+
 https://github.com/aaren/notedown
 
-Add the following line to your Juypter config file (`~/.jupyter/jupyter_notebook_config.py`):
+Also add the following line to your Juypter config file (`~/.jupyter/jupyter_notebook_config.py`):
+
 c.NotebookApp.contents_manager_class = 'notedown.NotedownContentsManager'
 
-Then you can simply run jupyter notebook and edit .md files just as if they are standard notebook .ipynb files.
+So that you can then simply run Jupyter notebook and edit .md files just as if they are standard notebook .ipynb files.
 
 4) Install the necessary mxtheme python package (used for website style):
 
 pip install https://github.com/mli/mx-theme/tarball/master
 
 5) Install sphinx & pandoc (used for processing Notebooks with Sphinx):
+
 http://pandoc.org/installing.html
 
 6) You will also need to have the .Rd documentation files already generated for the 'mxnet' R package.
@@ -49,44 +53,58 @@ Copy all of them into subdirectory named: source/api/man/   (replacing existing 
 You can check out: scripts/Rdoc2SphinxDoc.R to see locations of all files that the sphinx-documentation-generation script depends on.
 
 7) For the tutorials, in addition to the .md Notebook files, you must have the following files available in the same directory:
+
 data/train.csv, data/test.csv (for DigitsClassification tutorial)
+
 Inception/Inception_BN-symbol.json (for ClassifyImageWithPretrainedModel tutorial)
 
 You should also ensure the file tutorial/index.rst lists all the tutorials you wish to include on the website (and in the proper order).
 
-If adding new object files that future tutorials will depend on, you must update the makefile to ensure they get copied into the mxnetRtutorials/ subdirectory which is subsequently zipped and made available for user-download (so they can run the Jupyter notebooks themselves).
+Note: If creating future tutorials will depend on new object files, you must update the makefile to ensure these new object files get copied into the "mxnetRtutorials/" subdirectory which is subsequently zipped and made available for user-download (so they can run the Jupyter notebooks themselves).  
 
 
 ## Detailed descriptions of Makefile operations:
 
 ### build documentation:
+
 cd ./source/
+
 Rscript ./scripts/Rdoc2SphinxDoc.R
 
 ### build tutorials:
+
 cd ./source/tutorial/
+
 bash scripts/convertNotebooks.sh
 
 ### build sphinx page:
+
 cd ./ # (must be in home directory containing source/ and build/ subdirectories)
+
 sphinx-build -b html source/ build/
 
 
 ## TODOs:
 
 In ClassifyImageWithPretrainedModel.md tutorial:
-    - model-zoo link should be updated to new MXNet site ("Model Zoo"); as should link for downloading pre-trained network ("this link": http://data.mxnet.io/mxnet/data/Inception.zip).
+    model-zoo link should be updated to new MXNet site ("Model Zoo"); as should link for downloading pre-trained network ("this link": http://data.mxnet.io/mxnet/data/Inception.zip). 
 
 In Symbol.md tutorial:
-    - Link (Symbolic Configuration and Execution in Pictures) should be updated to point at new MXNet website.
+    Link (Symbolic Configuration and Execution in Pictures) should be updated to point at new MXNet website.
 
-In index.rst R homepage:
-- Link to main mxnet site maybe should be updated to Mu's version.
-- Installation instructions
+In index.rst R homepage:  
 
-Sphinx theme: tabs at the top do not work on R site (i.e. Install, Guide, API).
+- R-MXnet installation instructions missing. 
+
+- toctree table of contents should be updated to match Python page side-bar on: https://beta.mxnet.io/
 
 Disqus does not work.
+
+Makefile process should be streamlined.
+
+None of the R tutorial notebook output is currently being rendered in Sphinx.
+
+The link to download all Notebooks (on this page: http://beta.mxnet.io/r/tutorial/index.html) points to. empty zip directory.
 
 
 ## Remaining Problems in underlying Rd documentation:
