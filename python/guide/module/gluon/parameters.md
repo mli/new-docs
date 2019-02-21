@@ -1,15 +1,16 @@
-# Parameter Management
+# Parameters Management
 
 <!-- adapted from diveintodeeplearning -->
-<!-- add save/load parameters -->
 
-The ultimate goal of training deep networks is to find good parameter values for a given architecture. When everything is standard, the `nn.Sequential` class is a perfectly good tool for it. However, very few models are entirely standard and most scientists want to build things that are novel. This section shows how to manipulate parameters. In particular we will cover the following aspects:
+The ultimate goal of training deep neural networks is finding good parameter values for a given architecture. The `nn.Sequential` class is a perfect tool to work with standard models. However, very few models are entirely standard, and most scientists want to build novel things, which requires working with model parameters.
 
-* Accessing parameters for debugging, diagnostics, to visualize them or to save them is the first step to understanding how to work with custom models.
-* Secondly, we want to set them in specific ways, e.g. for initialization purposes. We discuss the structure of parameter initializers.
-* Lastly, we show how this knowledge can be put to good use by building networks that share some parameters.
+This section shows how to manipulate parameters. In particular we will cover the following aspects:
 
-As always, we start from our trusty Multilayer Perceptron with a hidden layer. This will serve as our choice for demonstrating the various features.
+* How to access parameters in order to debug, diagnose, visualize or save them. It is the first step to understand how to work with custom models.
+* Secondly, we will learn how to set parameters to specific values, e.g. how to initialize them. We will discuss the structure of parameter initializers.
+* Lastly, we will show how this knowledge can be used to build networks that share some parameters.
+
+As always, we start with a Multilayer Perceptron with a single hidden layer. We will use it to demonstrate the aspects mentioned above.
 
 ```{.python .input  n=1}
 from mxnet import init, nd
@@ -24,34 +25,38 @@ x = nd.random.uniform(shape=(2, 20))
 net(x)            # Forward computation.
 ```
 
-## Parameter Access
+## Parameters Access
 
-In the case of a Sequential class we can access the parameters with ease, simply by indexing each of the layers in the network. The params variable then contains the required data. Let's try this out in practice by inspecting the parameters of the first layer.
+In case of a Sequential class we can access the parameters simply by indexing each layer of the network. The `params` variable contains the required data. Let's try this out in practice by inspecting the parameters of the first layer.
 
 ```{.python .input  n=2}
 print(net[0].params)
 print(net[1].params)
 ```
 
-The output tells us a number of things. Firstly, the layer consists of two sets of parameters: `dense0_weight` and `dense0_bias`, as we would expect. They are both single precision and they have the necessary shapes that we would expect from the first layer, given that the input dimension is 20 and the output dimension 256. In particular the names of the parameters are very useful since they allow us to identify parameters *uniquely* even in a network of hundreds of layers and with nontrivial structure. The second layer is structured accordingly.
+The output tells us a number of things. Firstly, the layer consists of two sets of parameters: `dense0_weight` and `dense0_bias`, as we would expect. They are both single precision and they have the necessary shapes that we would expect from the first layer, given that the input dimension is 20 and the output dimension 256. The names of the parameters are very useful, because they allow us to identify parameters *uniquely* even in a network of hundreds of layers and with nontrivial structure. The second layer is structured in a similar way.
 
 ### Targeted Parameters
 
-In order to do something useful with the parameters we need to access them, though. There are several ways to do this, ranging from simple to general. Let's look at some of them.
+In order to do something useful with the parameters we need to access them. There are several ways to do this, ranging from simple to general. Let's look at some of them.
 
 ```{.python .input  n=3}
 print(net[1].bias)
 print(net[1].bias.data())
 ```
 
-The first returns the bias of the second layer. Sine this is an object containing data, gradients, and additional information, we need to request the data explicitly. Note that the bias is all 0 since we initialized the bias to contain all zeros. Note that we can also access the parameters by name, such as `dense0_weight`. This is possible since each layer comes with its own parameter dictionary that can be accessed directly. Both methods are entirely equivalent but the first method leads to much more readable code.
+The first line returns the bias of the second layer. Since this is an object containing data, gradients, and additional information, we need to request the data explicitly. To request the data we call `data` method on the parameter on the second line. Note that the bias is all 0 since we initialized the bias to contain all zeros.
+
+We can also access the parameter by name, such as `dense0_weight`. This is possible since each layer comes with its own parameter dictionary that can be accessed directly. Both methods are entirely equivalent, but the first method leads to more readable code.
 
 ```{.python .input  n=4}
 print(net[0].params['dense0_weight'])
 print(net[0].params['dense0_weight'].data())
 ```
 
-Note that the weights are nonzero. This is by design since they were randomly initialized when we constructed the network. `data` is not the only function that we can invoke. For instance, we can compute the gradient with respect to the parameters. It has the same shape as the weight. However, since we did not invoke backpropagation yet, the values are all 0.
+Note that the weights are nonzero as they were randomly initialized when we constructed the network.
+
+`data` is not the only function that we can invoke. For instance, we can compute the gradient with respect to the parameters. It has the same shape as the weight. However, since we did not invoke backpropagation yet, the values are all 0.
 
 ```{.python .input  n=5}
 net[0].weight.grad()
@@ -59,7 +64,7 @@ net[0].weight.grad()
 
 ### All Parameters at Once
 
-Accessing parameters as described above can be a bit tedious, in particular if we have more complex blocks, or blocks of blocks (or even blocks of blocks of blocks), since we need to walk through the entire tree in reverse order to how the blocks were constructed. To avoid this, blocks come with a method `collect_params` which grabs all parameters of a network in one dictionary such that we can traverse it with ease. It does so by iterating over all constituents of a block and calls `collect_params` on subblocks as needed. To see the difference consider the following:
+Accessing parameters as described above can be a bit tedious, in particular if we have more complex blocks, or blocks of blocks (or even blocks of blocks of blocks), since we need to walk through the entire tree in reverse order to learn how the blocks were constructed. To avoid this, blocks come with a method `collect_params` which grabs all parameters of a network in one dictionary such that we can traverse it with ease. It does so by iterating over all constituents of a block and calls `collect_params` on subblocks as needed. To see the difference consider the following:
 
 ```{.python .input  n=6}
 # parameters only for the first layer
@@ -68,13 +73,13 @@ print(net[0].collect_params())
 print(net.collect_params())
 ```
 
-This provides us with a third way of accessing the parameters of the network. If we wanted to get the value of the bias term of the second layer we could simply use this:
+This provides us with the third way of accessing the parameters of the network. If we want to get the value of the bias term of the second layer we could simply use this:
 
 ```{.python .input  n=7}
 net.collect_params()['dense1_bias'].data()
 ```
 
-Throughout the book we'll see how various blocks name their subblocks (Sequential simply numbers them). This makes it very convenient to use regular expressions to filter out the required parameters.
+By adding a regular expression as an argument to `collect_params` function, we can select only a particular set of parameters whose names are matched by the regular expression.
 
 ```{.python .input  n=8}
 print(net.collect_params('.*weight'))
@@ -112,15 +117,24 @@ print(rgnet.collect_params)
 print(rgnet.collect_params())
 ```
 
-Since the layers are hierarchically generated, we can also access them accordingly. For instance, to access the first major block, within it the second subblock and then within it, in turn the bias of the first layer, we perform the following.
+We can access layers following the hierarchy in which they are structured. For instance, if we want to access the bias of the first layer of the second subblock of the first major block, we could perform the following:
 
 ```{.python .input}
 rgnet[0][1][0].bias.data()
 ```
 
+### Saving and loading parameters
+
+In order to save parameters, we can use `save_parameters` method on the whole network or a particular subblock. The only parameter that is needed is the `file_name`. In a similar way, we can load parameters back from the file. We use `load_parameters` method for that:
+
+```{.python .input}
+rgnet.save_parameters('model.params')
+rgnet.load_parameters('model.params')
+```
+
 ## Parameter Initialization
 
-Now that we know how to access the parameters, let's look at how to initialize them properly. We discussed the need for [Initialization](../chapter_deep-learning-basics/numerical-stability-and-init.md) in the previous chapter. By default, MXNet initializes the weight matrices uniformly by drawing from $U[-0.07, 0.07]$ and the bias parameters are all set to $0$. However, we often need to use other methods to initialize the weights. MXNet's `init` module provides a variety of preset initialization methods, but if we want something out of the ordinary, we need a bit of extra work.
+Now that we know how to access the parameters, let's look at how to initialize them properly. By default, MXNet initializes the weight matrices uniformly by drawing from $U[-0.07, 0.07]$ and the bias parameters are all set to $0$. However, we often need to use other methods to initialize the weights. MXNet's `init` module provides a variety of preset initialization methods, but if we want something unusual, we need to do a bit of extra work.
 
 ### Built-in Initialization
 
@@ -151,7 +165,7 @@ print(net[0].weight.data()[0])
 
 ### Custom Initialization
 
-Sometimes, the initialization methods we need are not provided in the `init` module. At this point, we can implement a subclass of the `Initializer` class so that we can use it like any other initialization method. Usually, we only need to implement the `_init_weight` function and modify the incoming NDArray according to the initial result. In the example below, we  pick a decidedly bizarre and nontrivial distribution, just to prove the point. We draw the coefficients from the following distribution:
+Sometimes, the initialization methods we need are not provided in the `init` module. If this is the case, we can implement a subclass of the `Initializer` class so that we can use it like any other initialization method. Usually, we only need to implement the `_init_weight` function and modify the incoming NDArray according to the initial result. In the example below, we pick a nontrivial distribution, just to prove the point. We draw the coefficients from the following distribution:
 
 $$
 \begin{aligned}
@@ -184,7 +198,7 @@ net[0].weight.data()[0]
 
 ## Tied Parameters
 
-In some cases, we want to share model parameters across multiple layers. For instance when we want to find good word embeddings we may decide to use the same parameters both for encoding and decoding of words. We discussed one such case when we introduced [Blocks](model-construction.md). Let's see how to do this a bit more elegantly. In the following we allocate a dense layer and then use its parameters specifically to set those of another layer.
+In some cases, we want to share model parameters across multiple layers. For instance, when we want to find good word embeddings we may decide to use the same parameters both for encoding and decoding of words. In the code below, we allocate a dense layer and then use its parameters specifically to set those of another layer.
 
 ```{.python .input  n=14}
 net = nn.Sequential()
