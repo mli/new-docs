@@ -4,7 +4,7 @@
 
 One of the reasons for the success of deep learning can be found in the wide range of layers that can be used in a deep network. This allows for a tremendous degree of customization and adaptation. For instance, scientists have invented layers for images, text, pooling, loops, dynamic programming, even for computer programs. Sooner or later you will encounter a layer that doesn't exist yet in Gluon, or even better, you will eventually invent a new layer that works well for your problem at hand. This is when it's time to build a custom layer. This section shows you how.
 
-Defining a custom layer (aka Block) is as easy as subclassing `nn.Block` or `nn.HybridBlock` and implementing `forward`. To take advantage of the performance gains with `nn.HybridBlock` see see the section on [Hybridization](hybridize.html). We will discuss making custom layers using `nn.Block`, below.
+Defining a custom layer (aka Block) is as easy as subclassing `nn.Block` or `nn.HybridBlock` and implementing `forward`. To take advantage of the performance gains with `nn.HybridBlock` see the section on [Hybridization](hybridize.html). We will discuss making custom layers using `nn.Block`, below.
 
 ## Layers without Parameters
 
@@ -94,3 +94,4 @@ net.add(MyDense(8, in_units=64),
 net.initialize()
 net(nd.random.uniform(shape=(2, 64)))
 ```
+
