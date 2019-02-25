@@ -2,9 +2,20 @@
 
 <!-- adapted from diveintodeeplearning -->
 
-We start with a very simple block, namely the block for a
-multilayer perceptron. A common strategy would be to construct a two-layer
-network as follows:
+The previous chapters have seen us move from designing single neurons to entire
+layers of neurons. Neural network designs like
+[ResNet-152](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
+have a fair degree of regularity. They consist of *blocks* of repeated (or at
+least similarly designed) layers; these blocks then form the basis of more
+complex network designs.
+
+In this section, we'll talk about how to write code that makes such blocks on
+demand, just like a Lego factory generates blocks which can be combined to
+produce terrific artifacts.
+
+We start with a very simple block, namely the block for a multilayer
+perceptron. A common strategy would be to construct a two-layer network as
+follows:
 
 ```{.python .input  n=1}
 from mxnet import nd
@@ -25,7 +36,9 @@ activation and another 10 units governing the output. In particular, we used the
 inserted both layers. What exactly happens inside `nn.Sequential` has remained
 rather mysterious so far. In the following we will see that this really just
 constructs a block. These blocks can be combined into larger artifacts, often
-recursively.
+recursively. The diagram below shows how:
+
+![blocks](blocks.svg)
 
 In the following we will explain the various steps needed to go
 from defining layers to defining blocks (of one or more layers). To get started
@@ -34,18 +47,16 @@ behaves very much like a fancy layer. That is, it provides the following
 functionality:
 
 1. It needs to ingest data (the input).
-1. It needs to produce a
-meaningful output. This is typically encoded in what we will call the `forward`
-function. It allows us to invoke a block via `net(X)` to obtain the desired
-output. What happens behind the scenes is that it invokes `forward` to perform
-forward propagation.
-1. It needs to produce a gradient with regard to its input
-when invoking `backward`. Typically this is automatic.
-1. It needs to store
-parameters that are inherent to the block. For instance, the block above
-contains two hidden layers, and we need a place to store parameters for it.
-1.
-Obviously it also needs to initialize these parameters as needed.
+1. It needs to produce a meaningful output. This is typically encoded in what
+   we will call the `forward` function. It allows us to invoke a block via
+   `net(X)` to obtain the desired output. What happens behind the scenes is
+   that it invokes `forward` to perform forward propagation.
+1. It needs to produce a gradient with regard to its input when invoking
+   `backward`. Typically this is automatic.
+1. It needs to store parameters that are inherent to the block. For instance,
+   the block above contains two hidden layers, and we need a place to store
+   parameters for it.
+1. Obviously it also needs to initialize these parameters as needed.
 
 ## A Custom Block
 
@@ -80,15 +91,15 @@ simply by evaluating the hidden layer `self.hidden(x)` and subsequently by
 evaluating the output layer `self.output( ... )`. This is what we expect in the
 forward pass of this block.
 
-In order for the block to know what it needs to
-evaluate, we first need to define the layers. This is what the `__init__` method
-does. It first initializes all of the Block-related parameters and then
-constructs the requisite layers. This attached the coresponding layers and the
-required parameters to the class. Note that there is no need to define a
-backpropagation method in the class. The system automatically generates the
-`backward` method needed for back propagation by automatically finding the
-gradient. The same applies to the `initialize` method, which is generated
-automatically. Let's try this out:
+In order for the block to know what it needs to evaluate, we first need to
+define the layers. This is what the `__init__` method does. It first
+initializes all of the Block-related parameters and then constructs the
+requisite layers. This attached the coresponding layers and the required
+parameters to the class. Note that there is no need to define a backpropagation
+method in the class. The system automatically generates the `backward` method
+needed for back propagation by automatically finding the gradient. The same
+applies to the `initialize` method, which is generated automatically. Let's try
+this out:
 
 ```{.python .input  n=2}
 net = MLP()
@@ -105,17 +116,16 @@ great flexibility.
 
 ## A Sequential Block
 
-The Block class is a generic
-component describing dataflow. In fact, the Sequential class is derived from the
-Block class: when the forward computation of the model is a simple concatenation
-of computations for each layer, we can define the model in a much simpler way.
-The purpose of the Sequential class is to provide some useful convenience
-functions. In particular, the `add` method allows us to add concatenated Block
-subclass instances one by one, while the forward computation of the model is to
-compute these instances one by one in the order of addition.
-Below, we implement
-a `MySequential` class that has the same functionality as the Sequential class.
-This may help you understand more clearly how the Sequential class works.
+The Block class is a generic component describing dataflow. In fact, the
+Sequential class is derived from the Block class: when the forward computation
+of the model is a simple concatenation of computations for each layer, we can
+define the model in a much simpler way.  The purpose of the Sequential class is
+to provide some useful convenience functions. In particular, the `add` method
+allows us to add concatenated Block subclass instances one by one, while the
+forward computation of the model is to compute these instances one by one in
+the order of addition.  Below, we implement a `MySequential` class that has the
+same functionality as the Sequential class.  This may help you understand more
+clearly how the Sequential class works.
 
 ```{.python .input  n=3}
 class MySequential(nn.Block):
@@ -151,17 +161,15 @@ Indeed, it is no different than It can observed here that the use of the
 `MySequential` class is no different from the use of the Sequential class.
 
 
-##
-Blocks with Code
+## Blocks with Code
 
-Although the Sequential class can make model construction
-easier, and you do not need to define the `forward` method, directly inheriting
-the Block class can greatly expand the flexibility of model construction. In
-particular, we will use Python's control flow within the forward method. While
-we're at it, we need to introduce another concept, that of the *constant*
-parameter. These are parameters that are not used when invoking backprop. This
-sounds very abstract but here's what's really going on. Assume that we have some
-function
+Although the Sequential class can make model construction easier, and you do
+not need to define the `forward` method, directly inheriting the Block class
+can greatly expand the flexibility of model construction. In particular, we
+will use Python's control flow within the forward method. While we're at it, we
+need to introduce another concept, that of the *constant* parameter. These are
+parameters that are not used when invoking backprop. This sounds very abstract
+but here's what's really going on. Assume that we have some function
 
 $$f(\mathbf{x},\mathbf{w}) = 3 \cdot \mathbf{w}^\top \mathbf{x}.$$
 
@@ -170,6 +178,7 @@ this case 3 is a constant parameter. We could change 3 to something else, say
 $c$ via
 
 $$f(\mathbf{x},\mathbf{w}) = c \cdot \mathbf{w}^\top \mathbf{x}.$$
+
 Nothing has really changed, except that we can adjust the value of $c$. It is
 still a constant as far as $\mathbf{w}$ and $\mathbf{x}$ are concerned. However,
 since Gluon doesn't know about this beforehand, it's worth while to give it a
