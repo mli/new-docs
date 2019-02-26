@@ -7,7 +7,7 @@ Loss functions ared used to train a neural network and to compute the difference
 - classification: [SigmoidBinaryCrossEntropyLoss](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.SigmoidBinaryCrossEntropyLoss.html), [SoftmaxBinaryCrossEntropyLoss](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.SoftmaxBinaryCrossEntropyLoss.html) 
 - embeddings: [HingeLoss](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.HingeLoss.html)
 
-However, we may sometimes want to solve problems that require customized loss functions and this tutorial shows how we can do that in Gluon. We will show it at the example of contrastive loss which is typically used in Siamese networks.
+However, we may sometimes want to solve problems that require customized loss functions; this tutorial shows how we can do that in Gluon. We will show it at the example of contrastive loss which is typically used in Siamese networks.
 
 ```python
 import matplotlib.pyplot as plt
@@ -19,7 +19,7 @@ import random
 
 ### What is contrastive Loss
 
-[Contrastive loss](http://yann.lecun.com/exdb/publis/pdf/hadsell-chopra-lecun-06.pdf) is a distance-based loss function. During training pairs of images are fed into a model. If the images are similar the loss function will return 0, otherwise 1. 
+[Contrastive loss](http://yann.lecun.com/exdb/publis/pdf/hadsell-chopra-lecun-06.pdf) is a distance-based loss function. During training, pairs of images are fed into a model. If the images are similar, the loss function will return 0, otherwise 1. 
 
 <img src="contrastive_loss.jpeg" width="400">
 
@@ -29,7 +29,7 @@ import random
 
 The loss function uses a margin *m* which is has the effect that dissimlar pairs only contribute if their loss is within a certain margin. 
 
-In order to implement such a customized loss function in Gluon, we only need to define a new class that is inhertiting from the Loss base class. We then define the contrastive loss in the ```hybrid_forward```. This function takes the images ```image1```, ```image2``` and the label which defines whether  ```image1``` and ```image2``` are similar (=0) or  dissimilar (=1). The input F is either an ```mxnet.ndarry``` or an ```mxnet.symbol``` if we hybridize the network. Gluon's Loss base class is in fact a HybridBlock. This means we can either run fully imperatively or symbolically. When we hybridize our custom loss function, we can get performance speedups.
+In order to implement such a customized loss function in Gluon, we only need to define a new class that is inheriting from the Loss base class. We then define the contrastive loss in the `hybrid_forward`. This function takes the images `image1`, `image2` and the label which defines whether  `image1` and `image2` are similar (=0) or  dissimilar (=1). The input F is either an `mxnet.ndarry` or an `mxnet.symbol` if we hybridize the network. Gluon's Loss base class is in fact a HybridBlock. This means we can either run fully imperatively or symbolically. When we hybridize our custom loss function, we can get performance speedups.
 
 
 ```python
@@ -55,7 +55,7 @@ loss = ContrastiveLoss(margin=6.0)
 ```
 
 ### Define the Siamese network
-A Siamese network consists of 2 identical networks, that share the same weights. They are trained on pair of images and each network processes one image. The label defines whether the pair of images is similar or not. The Siamese network learns to differentiate between two input images. 
+A [Siamese network](https://papers.nips.cc/paper/769-signature-verification-using-a-siamese-time-delay-neural-network.pdf) consists of 2 identical networks, that share the same weights. They are trained on pair of images and each network processes one image. The label defines whether the pair of images is similar or not. The Siamese network learns to differentiate between two input images. 
 
 Our network consists of 2 convolutional and max pooling layers that downsample the input image. The output is then fed through a fully connected layer with 256 hidden units and another fully connected layer with 2 hidden units.
 
@@ -87,7 +87,7 @@ class Siamese(gluon.HybridBlock):
 
 ### Prepare the training data
 
-We train our network on the [Ominglot](http://www.omniglot.com/) dataset which is a collection of 1623 hand drawn characters from 50 alphabets. You can download it from [here](https://github.com/brendenlake/omniglot/tree/master/python). We need to create a dataset that contains a random set of similar and dissimilar images. We use Gluon's ```ImageFolderDataset``` where we overwrite ```__getitem__``` and randomly return similar and dissimilar pairs of images.
+We train our network on the [Ominglot](http://www.omniglot.com/) dataset which is a collection of 1623 hand drawn characters from 50 alphabets. You can download it from [here](https://github.com/brendenlake/omniglot/tree/master/python). We need to create a dataset that contains a random set of similar and dissimilar images. We use Gluon's `ImageFolderDataset` where we overwrite `__getitem__` and randomly return similar and dissimilar pairs of images.
 
 
 ```python
@@ -118,11 +118,9 @@ class GetImagePairs(mx.gluon.data.vision.ImageFolderDataset):
 
     def __len__(self):
         return super().__len__()
-    
-
 ```
 
-We train the network on a subset of the data, the  *Tifinagh* alphabet. Once the model is trained we test it on the *Inuktitut* alphabet.
+We train the network on a subset of the data, the  [*Tifinagh*](https://www.omniglot.com/writing/tifinagh.htm) alphabet. Once the model is trained we test it on the [*Inuktitut*](https://www.omniglot.com/writing/inuktitut.htm) alphabet.
 
 
 ```python
@@ -218,18 +216,20 @@ for i, data in enumerate(test_dataloader):
 ![png](CustomLossGluon2.png)
 
 
-### Common Pitfalls with custom loss functions
+### Common pitfalls with custom loss functions
 
 When customizing loss functions, we may encounter certain pitfalls. If the loss is not decreasing as expected or if forward/backward pass is crashing, then one should check the following:
 
-#### Activation function in the last layer:
-Verify whether the last network layer uses the correct activation function: for instance in binary classification tasks we need to apply a sigmoid on the output data. If we use this activation in the last layer and define a loss function like Gluon's SigmoidBinaryCrossEntropy, we would basically apply sigmoid twice and the loss would not converge as expected. If we don't define any activation function, Gluon will per default apply ```relu```.
+#### Activation function in the last layer
+Verify whether the last network layer uses the correct activation function: for instance in binary classification tasks we need to apply a sigmoid on the output data. If we use this activation in the last layer and define a loss function like Gluon's SigmoidBinaryCrossEntropy, we would basically apply sigmoid twice and the loss would not converge as expected. If we don't define any activation function, Gluon will per default apply a linear activation.
 
-####  Intermediate loss values:
-In our example, we computed the square root of squared distances between 2 images: ```F.sqrt(distances_squared)```. If images are very similar we take the sqare root of a value close to 0, which can lead to *NaN* values. Adding a small epsilon to ```distances_squared``` avoids this problem.
+####  Intermediate loss values
+In our example, we computed the square root of squared distances between 2 images: `F.sqrt(distances_squared)`. If images are very similar we take the sqare root of a value close to 0, which can lead to *NaN* values. Adding a small epsilon to `distances_squared avoids this problem.
 
-#### Shape of intermediate loss vectors:
-Computations like ```F.sum``` collapse dimensions and this could have side effects. In most cases having the wrong shape will lead to an error, as soon as we compare data with labels. But in some cases, we may be able to normally run the training, but it does not converge. For instance, if we don't set ```keepdims=True``` in our customized loss function, the example will run fine but not converge. 
+#### Shape of intermediate loss vectors
+In most cases having the wrong tensor shape will lead to an error, as soon as we compare data with labels. But in some cases, we may be able to normally run the training, but it does not converge. For instance, if we don't set `keepdims=True` in our customized loss function, the shape of the tensor changes. The example still runs fine but does not converge. 
+
+If you encounter a similar problem, then it is useful to check the tensor shape after each computation step in the loss function.
 
 #### Differentiable
 Backprogration requires the loss function to be differentiable. If the customized loss function cannot be differentiated the backward pass will crash.
