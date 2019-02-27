@@ -2,7 +2,7 @@
 
 ## Setup
 
-You need to have CUDA 9.0 installed. If you prefer to skip evaluation on GPUs, you can change `mxnet-cu90` into `mxnet` in the `environment.yml` file.
+You need to have CUDA 9.2 installed. If you prefer to skip evaluation on GPUs, you can change `mxnet-cu92` into `mxnet` in the `environment.yml` file.
 
 Run the following commands to setup the environment.
 
