@@ -150,10 +150,6 @@ plt.show()
 
 ```
 
-    Same: False
-
-
-
 ![png](CustomLossGluon1.png)
 
 
@@ -208,10 +204,7 @@ for i, data in enumerate(test_dataloader):
 
     break
 ```
-
-    Euclidean Distance: 2.494767 Test label 1.0
-
-
+Euclidean Distance: 2.494767 Test label 1.0
 
 ![png](CustomLossGluon2.png)
 
