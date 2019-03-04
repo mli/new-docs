@@ -174,9 +174,7 @@ net.initialize(init=MyInit())
 ## Parameter Initialization
 
 Now that we know how to access the parameters, let's look at how to initialize
-them properly. We discussed the need for
-[Initialization](../chapter_deep-learning-basics/numerical-stability-and-init.md)
-in the previous chapter. By default, MXNet initializes the weight matrices
+them properly. By default, MXNet initializes the weight matrices
 uniformly by drawing from $U[-0.07, 0.07]$ and the bias parameters are all set
 to $0$. However, we often need to use other methods to initialize the weights.
 MXNet's `init` module provides a variety of preset initialization methods, but
@@ -263,7 +261,7 @@ net[0].weight.data()[0]
 In some cases, we want to share model parameters across multiple layers. For
 instance when we want to find good word embeddings we may decide to use the
 same parameters both for encoding and decoding of words. We discussed one such
-case when we introduced [Blocks](model-construction.md). Let's see how to do
+case when we introduced `Blocks`. Let's see how to do
 this a bit more elegantly. In the following we allocate a dense layer and then
 use its parameters specifically to set those of another layer.
 
