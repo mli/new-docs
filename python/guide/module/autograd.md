@@ -146,7 +146,8 @@ When creating neural networks with MXNet Gluon it is assumed that you're interes
 Sometimes we don't need the gradients for all of the parameters though. One example would be 'freezing' the values of the parameters in certain layers. Since we don't need to update the values, we don't need the gradients. Using the `grad_req` property of a parameter and setting it to `'null`', we can indicate this to `autograd`, saving us computation time and memory.
 
 ```{.python .input  n=8}
-net[0].weight.grad_req = 'null'
+net = Dense(units=3)
+net.weight.grad_req = 'null'
 ```
 
 <p align="center">
@@ -184,6 +185,8 @@ We'll write a function as a toy example of a dynamic network. We'll add an `if` 
 
 
 ```{.python .input  n=10}
+import math
+
 def f(x):
     # going to change y but still want reference to x
     y = x
@@ -243,7 +246,7 @@ As an example, let's take $y=x^3$ (calculated with `mxnet`) and $z=y^2$. (calcul
 ```{.python .input  n=12}
 x = mx.nd.array([2,])
 x.attach_grad()
-# compute y inside of mxnet (with `autograd`)
+# compute y inside of mxnet (with autograd)
 with autograd.record():
     y = x**3
 # compute dz/dy outside of mxnet
