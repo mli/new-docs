@@ -1,4 +1,4 @@
-# Parameters Management
+# Parameter Management
 
 <!-- adapted from diveintodeeplearning -->
 
@@ -7,8 +7,8 @@ The ultimate goal of training deep neural networks is finding good parameter val
 This section shows how to manipulate parameters. In particular we will cover the following aspects:
 
 * How to access parameters in order to debug, diagnose, visualize or save them. It is the first step to understand how to work with custom models.
-* Secondly, we will learn how to set parameters to specific values, e.g. how to initialize them. We will discuss the structure of parameter initializers.
-* Lastly, we will show how this knowledge can be used to build networks that share some parameters.
+* We will learn how to set parameters to specific values, e.g. how to initialize them. We will discuss the structure of parameter initializers.
+* We will show how this knowledge can be used to build networks that share some parameters.
 
 As always, we start with a Multilayer Perceptron with a single hidden layer. We will use it to demonstrate the aspects mentioned above.
 
@@ -25,7 +25,7 @@ x = nd.random.uniform(shape=(2, 20))
 net(x)            # Forward computation.
 ```
 
-## Parameters Access
+## Parameter Access
 
 In case of a Sequential class we can access the parameters simply by indexing each layer of the network. The `params` variable contains the required data. Let's try this out in practice by inspecting the parameters of the first layer.
 
@@ -34,7 +34,7 @@ print(net[0].params)
 print(net[1].params)
 ```
 
-The output tells us a number of things. Firstly, the layer consists of two sets of parameters: `dense0_weight` and `dense0_bias`, as we would expect. They are both single precision and they have the necessary shapes that we would expect from the first layer, given that the input dimension is 20 and the output dimension 256. The names of the parameters are very useful, because they allow us to identify parameters *uniquely* even in a network of hundreds of layers and with nontrivial structure. The second layer is structured in a similar way.
+From the output we can see that the layer consists of two sets of parameters: `dense0_weight` and `dense0_bias`. They are both single precision and they have the necessary shapes that we would expect from the first layer, given that the input dimension is 20 and the output dimension 256. The names of the parameters are very useful, because they allow us to identify parameters *uniquely* even in a network of hundreds of layers and with nontrivial structure. The second layer is structured in a similar way.
 
 ### Targeted Parameters
 
@@ -56,7 +56,7 @@ print(net[0].params['dense0_weight'].data())
 
 Note that the weights are nonzero as they were randomly initialized when we constructed the network.
 
-`data` is not the only function that we can invoke. For instance, we can compute the gradient with respect to the parameters. It has the same shape as the weight. However, since we did not invoke backpropagation yet, the values are all 0.
+`data` is not the only method that we can invoke. For instance, we can compute the gradient with respect to the parameters. It has the same shape as the weight. However, since we did not invoke backpropagation yet, the values are all 0.
 
 ```{.python .input  n=5}
 net[0].weight.grad()
@@ -79,7 +79,7 @@ This provides us with the third way of accessing the parameters of the network. 
 net.collect_params()['dense1_bias'].data()
 ```
 
-By adding a regular expression as an argument to `collect_params` function, we can select only a particular set of parameters whose names are matched by the regular expression.
+By adding a regular expression as an argument to `collect_params` method, we can select only a particular set of parameters whose names are matched by the regular expression.
 
 ```{.python .input  n=8}
 print(net.collect_params('.*weight'))
@@ -165,7 +165,7 @@ print(net[0].weight.data()[0])
 
 ### Custom Initialization
 
-Sometimes, the initialization methods we need are not provided in the `init` module. If this is the case, we can implement a subclass of the `Initializer` class so that we can use it like any other initialization method. Usually, we only need to implement the `_init_weight` function and modify the incoming NDArray according to the initial result. In the example below, we pick a nontrivial distribution, just to prove the point. We draw the coefficients from the following distribution:
+Sometimes, the initialization methods we need are not provided in the `init` module. If this is the case, we can implement a subclass of the `Initializer` class so that we can use it like any other initialization method. Usually, we only need to implement the `_init_weight` method and modify the incoming NDArray according to the initial result. In the example below, we pick a nontrivial distribution, just to prove the point. We draw the coefficients from the following distribution:
 
 $$
 \begin{aligned}
