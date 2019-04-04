@@ -5,48 +5,48 @@ HybridBlock
 
 .. autoclass:: HybridBlock
 
-   
+
    .. automethod:: __init__
 
-   
+
    .. rubric:: Methods
 
    .. autosummary::
-   
+
       ~HybridBlock.__init__
-      ~HybridBlock.apply
-      ~HybridBlock.cast
-      ~HybridBlock.collect_params
+      ~Block.apply
+      ~Block.cast
+      ~Block.collect_params
       ~HybridBlock.export
-      ~HybridBlock.forward
+      ~Block.forward
       ~HybridBlock.hybrid_forward
       ~HybridBlock.hybridize
       ~HybridBlock.infer_shape
       ~HybridBlock.infer_type
-      ~HybridBlock.initialize
-      ~HybridBlock.load_parameters
-      ~HybridBlock.load_params
-      ~HybridBlock.name_scope
-      ~HybridBlock.register_child
-      ~HybridBlock.register_forward_hook
-      ~HybridBlock.register_forward_pre_hook
-      ~HybridBlock.save_parameters
-      ~HybridBlock.save_params
-      ~HybridBlock.summary
-   
-   
+      ~Block.initialize
+      ~Block.load_parameters
+      ~Block.load_params
+      ~Block.name_scope
+      ~Block.register_child
+      ~Block.register_forward_hook
+      ~Block.register_forward_pre_hook
+      ~Block.save_parameters
+      ~Block.save_params
+      ~Block.summary
 
-   
-   
+
+
+
+
    .. rubric:: Attributes
 
    .. autosummary::
-   
-      ~HybridBlock.name
-      ~HybridBlock.params
-      ~HybridBlock.prefix
-   
-   
+
+      ~Block.name
+      ~Block.params
+      ~Block.prefix
+
+
 
 .. disqus::
    :disqus_identifier: mxnet.gluon.nn.HybridBlock
