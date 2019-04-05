@@ -11,7 +11,13 @@ However, you may setup the website on macOS or Windows with or without a GPU.
 ### Prerequisites
 
 * [Conda](https://www.anaconda.com/distribution/#download-section) (install to PATH)
-* [CUDA 9.2](https://developer.nvidia.com/cuda-downloads) (for GPU builds only - not required)
+
+### GPU setup
+To run the full build, including tests of all tutorials,
+**you will need at least two GPUs**.
+Distributed training is a key feature of MXNet,
+so multiple GPUs are required for running through every tutorial.
+* [CUDA 9.2](https://developer.nvidia.com/cuda-downloads)
 
 ### CPU-only setup
 In the `environment.yml` file:
