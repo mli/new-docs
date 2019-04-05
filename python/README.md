@@ -32,7 +32,7 @@ In the `environment.yml` file:
 ### Windows Setup
 If you have a GPU and have installed CUDA 9.2 you can leave the MXNet dependency alone.
 Otherwise, in the `environment.yml` file:
-* Change `mxnet-cu92` to `mxnet` in the `environment.yml` file.
+* Change `mxnet-cu92` to `mxnet`.
 
 Install recommended software:
 * [git bash](https://gitforwindows.org/)
