@@ -163,18 +163,23 @@ Indeed, it is no different than It can observed here that the use of the
 
 ## Blocks with Code
 
-Although the Sequential class can make model construction easier, and you do
-not need to define the `forward` method, directly inheriting the Block class
-can greatly expand the flexibility of model construction. In particular, we
-will use Python's control flow within the forward method. While we're at it, we
-need to introduce another concept, that of the *constant* parameter. These are
-parameters that are not used when invoking backprop. This sounds very abstract
-but here's what's really going on. Assume that we have some function
+### Blocks
+The `Sequential` class can make model construction easier and does not
+require you to define the `forward` method; however, directly inheriting from
+its parent class, `Block`, can greatly expand the flexibility of model
+construction. For example, implementing the `forward` method means you can
+introduce control flow in the network. 
+
+### Constant parameters
+Now we'd like to introduce the notation of a *constant* parameter. These are
+parameters that are not used when invoking backpropagation. This sounds very
+abstract but here's what's really going on.
+Assume that we have some function
 
 $$f(\mathbf{x},\mathbf{w}) = 3 \cdot \mathbf{w}^\top \mathbf{x}.$$
 
-In
-this case 3 is a constant parameter. We could change 3 to something else, say
+In this case 3 is a constant parameter. We could change 3 to something else,
+say
 $c$ via
 
 $$f(\mathbf{x},\mathbf{w}) = c \cdot \mathbf{w}^\top \mathbf{x}.$$
@@ -254,12 +259,14 @@ chimera(x)
 
 ## Compilation
 
-The avid reader is probably starting to worry about the
-efficiency of this. After all, we have lots of dictionary lookups, code
-execution, and lots of other Pythonic things going on in what is supposed to be
-a high performance deep learning library. The problems of Python's [Global
-Interpreter Lock](https://wiki.python.org/moin/GlobalInterpreterLock) are well
-known. In the context of deep learning it means that we have a super fast GPU
+The reader may be starting to think about the efficiency of this Python code.
+After all, we have lots of dictionary lookups, code execution, and lots of
+other Pythonic things going on in what is supposed to be a high performance
+deep learning library. The problems of Python's [Global Interpreter
+Lock](https://wiki.python.org/moin/GlobalInterpreterLock) are well
+known. 
+
+In the context of deep learning it means that we have a super fast GPU
 (or multiple of them) which might have to wait until a puny single CPU core
 running Python gets a chance to tell it what to do next. This is clearly awful
 and there are many ways around it. The best way to speed up Python is by
