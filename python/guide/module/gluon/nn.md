@@ -178,7 +178,7 @@ Assume that we have some function
 
 $$f(\mathbf{x},\mathbf{w}) = 3 \cdot \mathbf{w}^\top \mathbf{x}.$$
 
-In this case 3 is a constant parameter. We could change 3 to something else,
+In this case $3$ is a constant parameter. We could change $3$ to something else,
 say
 $c$ via
 
