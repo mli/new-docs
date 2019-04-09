@@ -7,16 +7,16 @@ Getting started
 .. container:: cards
 
    .. card::
-      :title: A 60-minute crash course
-      :link: crash-course/index.html
+      :title: Gluon
+      :link: modules/gluon/index.html
 
-      A quick overview of the core concepts of MXNet.
+      MXNet's imperative interface for Python.
 
    .. card::
       :title: For PyTorch users
       :link: to-mxnet/pytorch.html
 
-      Compare MXNet and PyTorch on implementing a simple handwritten digits classifier.
+      Compares MXNet to PyTorch on implementing MNIST.
 
 Learning MXNet
 -----------------
@@ -24,10 +24,44 @@ Learning MXNet
 .. container:: cards
 
    .. card::
-      :title: Module
-      :link: module/index.html
+      :title: A 60-minute Gluon crash course
+      :link: crash-course/index.html
 
-      How to use each module in MXNet.
+      A quick overview of the core concepts of MXNet using the Gluon API.
+
+   .. card::
+      :title: NDArray API
+      :link: modules/ndarray/index.html
+
+      How to use the NDArray API to manipulate data.
+      A useful set of tutorials for beginners.
+
+   .. card::
+      :title: Autograd API
+      :link: modules/autograd.html
+
+      How to use Automatic Differentiation with the Autograd API.
+
+   .. card::
+      :title: Learning Rate
+      :link: modules/lr_scheduler.html
+
+      How to use the Learning Rate Scheduler.
+..
+   PLACEHOLDER
+   .. card::
+      :title: Core APIs
+      :link: modules/index.html
+
+      How to use MXNet's core functionality.
+
+   .. card::
+      :title: Core APIs
+      :link: modules/index.html
+
+      How to use MXNet's core functionality.
+   PLACEHOLDER
+..
 
 Next steps
 ----------
