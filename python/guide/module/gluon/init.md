@@ -175,10 +175,12 @@ net.initialize(init=MyInit())
 
 Now that we know how to access the parameters, let's look at how to initialize
 them properly. By default, MXNet initializes the weight matrices
-uniformly by drawing from $U[-0.07, 0.07]$ and the bias parameters are all set
-to $0$. However, we often need to use other methods to initialize the weights.
-MXNet's `init` module provides a variety of preset initialization methods, but
-if we want something out of the ordinary, we need a bit of extra work.
+uniformly by drawing random values with uniform-distribution between $-0.07$
+and $0.07$ ($U[-0.07, 0.07]$) and updates the bias parameters by setting them
+all to $0$.  However, we often need to use other methods to initialize the
+weights.  MXNet's `init` module provides a variety of preset initialization
+methods, but if we want something out of the ordinary, we need a bit of extra
+work.
 
 ### Built-in Initialization
 
@@ -192,7 +194,7 @@ net.initialize(init=init.Normal(sigma=0.01), force_reinit=True)
 net[0].weight.data()[0]
 ```
 
-If we wanted to initialize all parameters to 1, we could do this simply by
+If we wanted to initialize all parameters to $1$, we could do this simply by
 changing the initializer to `Constant(1)`.
 
 ```{.python .input  n=10}
@@ -203,7 +205,7 @@ net[0].weight.data()[0]
 If we want to initialize only a specific parameter in a different manner, we
 can simply set the initializer only for the appropriate subblock (or parameter)
 for that matter. For instance, below we initialize the second layer to a
-constant value of 42 and we use the `Xavier` initializer for the weights of the
+constant value of $42$ and we use the `Xavier` initializer for the weights of the
 first layer.
 
 ```{.python .input  n=11}
@@ -218,7 +220,7 @@ print(net[0].weight.data()[0])
 Sometimes, the initialization methods we need are not provided in the `init`
 module. At this point, we can implement a subclass of the `Initializer` class
 so that we can use it like any other initialization method. Usually, we only
-need to implement the `_init_weight` function and modify the incoming NDArray
+need to implement the `_init_weight` function and modify the incoming `NDArray`
 according to the initial result. In the example below, we  pick a decidedly
 bizarre and nontrivial distribution, just to prove the point. We draw the
 coefficients from the following distribution:
@@ -244,8 +246,8 @@ net.initialize(MyInit(), force_reinit=True)
 net[0].weight.data()[0]
 ```
 
-If even this functionality is insufficient, we can set parameters directly.
-Since `data()` returns an NDArray we can access it just like any other matrix.
+If this functionality is insufficient, we can even set parameters directly.
+Since `data()` returns an `NDArray` we can access it just like any other matrix.
 A note for advanced users - if you want to adjust parameters within an
 `autograd` scope you need to use `set_data` to avoid confusing the automatic
 differentiation mechanics.
