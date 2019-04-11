@@ -131,7 +131,7 @@ Following code plots some examples from the test dataset.
 
 
 ```python
-img1, img2, label = test_dataset[0]
+img1, img2, label = test[0]
 print("Same: {}".format(int(label.asscalar()) == 0))
 fig, (ax0, ax1) = plt.subplots(ncols=2, figsize=(10, 5)) 
 ax0.imshow(img1.asnumpy()[:,:,0], cmap='gray')
