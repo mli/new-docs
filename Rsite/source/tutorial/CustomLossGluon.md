@@ -113,14 +113,18 @@ We train the network on a subset of the data, the  [*Tifinagh*](https://www.omni
 
 ```python
 def transform(img0, img1, label):
-    return nd.transpose(img0.astype('float32'), (2,0,1))/255.0, nd.transpose(img1.astype('float32'), (2,0,1))/255.0, label
+    normalized_img0 = nd.transpose(img0.astype('float32'), (2, 0, 1))/255.0
+    normalized_img1 = nd.transpose(img1.astype('float32'), (2, 0, 1))/255.0
+    return normalized_img0, normalized_img1, label
 
 training_dir = "images_background/Tifinagh"
 testing_dir = "images_background/Inuktitut_(Canadian_Aboriginal_Syllabics)"
-train_dataset = GetImagePairs(training_dir)
-test_dataset = GetImagePairs(testing_dir)
-train_dataloader = gluon.data.DataLoader(train_dataset.transform(transform), shuffle=True, num_workers=2, batch_size=16)
-test_dataloader = gluon.data.DataLoader(test_dataset.transform(transform), shuffle=True, num_workers=2, batch_size=1)
+train = GetImagePairs(training_dir)
+test = GetImagePairs(testing_dir)
+train_dataloader = gluon.data.DataLoader(train.transform(transform),
+                                        shuffle=True, batch_size=16)
+test_dataloader = gluon.data.DataLoader(test.transform(transform),
+                                        shuffle=False, batch_size=1)
 ```
 
 Following code plots some examples from the test dataset. 
@@ -165,8 +169,8 @@ for epoch in range(10):
             loss_contrastive = loss(output1, output2, label)
         loss_contrastive.backward()
         trainer.step(image1.shape[0])
-        loss = loss_contrastive.mean().asscalar()
-        print("Epoch number {}\n Current loss {}\n".format(epoch, loss))
+        loss_mean = loss_contrastive.mean().asscalar()
+        print("Epoch number {}\n Current loss {}\n".format(epoch, loss_mean))
 
 ```
 
@@ -178,7 +182,7 @@ During inference we compute the Euclidean distance between the output vectors of
 for i, data in enumerate(test_dataloader):
     img1, img2, label = data
     output1, output2 = model(img1, img2)
-    dist_sq = mx.ndarray.sum(mx.ndarray.square(output1 - output2)).asscalar()
+    dist_sq = mx.ndarray.sum(mx.ndarray.square(output1 - output2))
     dist = mx.ndarray.sqrt(dist_sq).asscalar()
     print("Euclidean Distance:", dist, "Test label", label[0].asscalar())
     fig, (ax0, ax1) = plt.subplots(ncols=2, figsize=(10, 5))
