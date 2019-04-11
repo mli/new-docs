@@ -19,7 +19,7 @@ Compression
 
    float16
    int8
-   gradient-compression
+   gradient_compression
 
 Accelerated Backend
 -------------------
@@ -29,5 +29,5 @@ Accelerated Backend
    :maxdepth: 1
 
    mkl-dnn
-   tensor-rt
+   tensorRt
    tvm

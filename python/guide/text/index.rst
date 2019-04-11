@@ -1,16 +1,26 @@
 Text
 ====
 
-In this tutorial, we will train Google NMT on IWSLT 2015 English-Vietnamese Dataset.
+These tutorials will help you learn how to create and use models that work with text and other natural language processing tasks.
+
+.. container:: cards
+
+   .. card::
+      :title: Neural Machine Translation with GluonNLP
+      :link: gnmt.html
+
+      How to create a model that translates between English and Vietnamese.
+
+   .. card::
+      :title: Transformer Models with GluonNLP
+      :link: transformer.html
+
+      How to use a pretrained Transformer model and how to train one that translates between English and German.
+
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    gnmt
-
-In this tutorial, we will train Transformer machine translation model and evaluate the pretrained model using GluonNLP.
-
-.. toctree::
-   :maxdepth: 1
-
    transformer

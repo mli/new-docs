@@ -1,23 +1,30 @@
-Deploy
-======
+Deployment
+==========
 
-Deploy on cloud
----------------
+Deploy on AWS
+-------------
 
 .. toctree::
    :maxdepth: 1
 
-   cloud
-   s3
+   run-on-aws/use_ec2
+   run-on-aws/use_s3
+   run-on-aws/use_sagemaker
+
 
 Deploy into another language
 ----------------------------
 
 .. toctree::
    :maxdepth: 1
-   :glob:
 
-   export
    cpp
-   scala
+   export
    onnx
+   scala
+
+.. toctree::
+   :hidden:
+
+   cloud
+   

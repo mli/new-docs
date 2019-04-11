@@ -122,9 +122,7 @@ master_doc = 'index'
 # directories to ignore when looking for source files.
 exclude_patterns = ['templates',
                     # 'api',
-                    'guide/module/others', 'guide/guide', 'guide/performance',
-                    'guide/deploy','guide/performance',  'guide/extend', 'guide/image', 'guide/text',
-                    'blog']
+                    'guide/module/others', 'guide/guide', 'blog']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
