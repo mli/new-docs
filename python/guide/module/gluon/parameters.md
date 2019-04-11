@@ -16,13 +16,14 @@ As always, we start with a Multilayer Perceptron with a single hidden layer. We 
 from mxnet import init, nd
 from mxnet.gluon import nn
 
+
 net = nn.Sequential()
 net.add(nn.Dense(256, activation='relu'))
 net.add(nn.Dense(10))
-net.initialize()  # Use the default initialization method.
+net.initialize()  # Use the default initialization method
 
 x = nd.random.uniform(shape=(2, 20))
-net(x)            # Forward computation.
+net(x)            # Forward computation
 ```
 
 ## Parameter Access
@@ -45,7 +46,7 @@ print(net[1].bias)
 print(net[1].bias.data())
 ```
 
-The first line returns the bias of the second layer. Since this is an object containing data, gradients, and additional information, we need to request the data explicitly. To request the data we call `data` method on the parameter on the second line. Note that the bias is all 0 since we initialized the bias to contain all zeros.
+The first line returns the bias of the second layer. Since this is an object containing data, gradients, and additional information, we need to request the data explicitly. To request the data, we call `data` method on the parameter on the second line. Note that the bias is all 0 since we initialized the bias to contain all zeros.
 
 We can also access the parameter by name, such as `dense0_weight`. This is possible since each layer comes with its own parameter dictionary that can be accessed directly. Both methods are entirely equivalent, but the first method leads to more readable code.
 
@@ -64,12 +65,12 @@ net[0].weight.grad()
 
 ### All Parameters at Once
 
-Accessing parameters as described above can be a bit tedious, in particular if we have more complex blocks, or blocks of blocks (or even blocks of blocks of blocks), since we need to walk through the entire tree in reverse order to learn how the blocks were constructed. To avoid this, blocks come with a method `collect_params` which grabs all parameters of a network in one dictionary such that we can traverse it with ease. It does so by iterating over all constituents of a block and calls `collect_params` on subblocks as needed. To see the difference consider the following:
+Accessing parameters as described above can be a bit tedious, in particular if we have more complex blocks, or blocks of blocks (or even blocks of blocks of blocks), since we need to walk through the entire tree in reverse order to learn how the blocks were constructed. To avoid this, blocks come with a method `collect_params` which grabs all parameters of a network in one dictionary such that we can traverse it with ease. It does so by iterating over all constituents of a block and calls `collect_params` on sub-blocks as needed. To see the difference, consider the following:
 
 ```{.python .input  n=6}
-# parameters only for the first layer
+# Parameters only for the first layer
 print(net[0].collect_params())
-# parameters of the entire network
+# Parameters of the entire network
 print(net.collect_params())
 ```
 
@@ -141,8 +142,8 @@ Now that we know how to access the parameters, let's look at how to initialize t
 Let's begin with the built-in initializers. The code below initializes all parameters with Gaussian random variables.
 
 ```{.python .input  n=9}
-# force_reinit ensures that the variables are initialized again, regardless of whether they were
-# already initialized previously.
+# force_reinit ensures that the variables are initialized again,
+# regardless of whether they were already initialized previously
 net.initialize(init=init.Normal(sigma=0.01), force_reinit=True)
 net[0].weight.data()[0]
 ```
@@ -202,7 +203,8 @@ In some cases, we want to share model parameters across multiple layers. For ins
 
 ```{.python .input  n=14}
 net = nn.Sequential()
-# we need to give the shared layer a name such that we can reference its parameters
+# We need to give the shared layer a name such that we can reference
+# its parameters
 shared = nn.Dense(8, activation='relu')
 net.add(nn.Dense(8, activation='relu'),
         shared,
@@ -216,8 +218,9 @@ net(x)
 # Check whether the parameters are the same
 print(net[1].weight.data()[0] == net[2].weight.data()[0])
 net[1].weight.data()[0,0] = 100
-# And make sure that they're actually the same object rather than just having the same value.
+# And make sure that they're actually the same object rather
+# than just having the same value
 print(net[1].weight.data()[0] == net[2].weight.data()[0])
 ```
 
-The above exampe shows that the parameters of the second and third layer are tied. They are identical rather than just being equal. That is, by changing one of the parameters the other one changes, too. What happens to the gradients is quite ingenious. Since the model parameters contain gradients, the gradients of the second hidden layer and the third hidden layer are accumulated in the `shared.params.grad( )` during backpropagation.
+The above example shows that the parameters of the second and third layer are tied. They are identical rather than just being equal. That is, by changing one of the parameters the other one changes, too. What happens to the gradients is quite ingenious. Since the model parameters contain gradients, the gradients of the second hidden layer and the third hidden layer are accumulated in the `shared.params.grad( )` during backpropagation.
