@@ -7,26 +7,26 @@ The documents in this unit dive into the details how each MXNet module works.
 
    .. card::
       :title: Gluon
-      :link: modules/gluon/index.html
+      :link: gluon/index.html
 
       MXNet's imperative interface for Python.
 
    .. card::
       :title: NDArray API
-      :link: modules/ndarray/index.html
+      :link: ndarray/index.html
 
       How to use the NDArray API to manipulate data.
       A useful set of tutorials for beginners.
 
    .. card::
       :title: Autograd API
-      :link: modules/autograd.html
+      :link: autograd.html
 
       How to use Automatic Differentiation with the Autograd API.
 
    .. card::
       :title: Learning Rate
-      :link: modules/lr_scheduler.html
+      :link: lr_scheduler.html
 
       How to use the Learning Rate Scheduler.
 
