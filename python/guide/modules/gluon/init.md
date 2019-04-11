@@ -25,8 +25,7 @@ dimensionality is can greatly simplify statistical modeling. In what follows, we
 will discuss how this works using initialization as an example. After all, we
 cannot initialize variables that we don't know exist.
 
-## Instantiating a
-Network
+## Instantiating a Network
 
 Let's see what happens when we instantiate a network. We start with our
 trusty MLP as before.
@@ -132,6 +131,7 @@ cause confusion. Before the first forward calculation, we were unable to
 directly manipulate the model parameters, for example, we could not use the
 `data` and `set_data` functions to get and modify the parameters. Therefore, we
 often force initialization by sending a sample observation through the network.
+
 ## Forced Initialization
 
 Deferred initialization does not occur if the system
