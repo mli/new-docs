@@ -70,6 +70,7 @@ Training
 
       How to update neural network parameters using an optimization method.
 
+
 Advanced Topics
 ---------------
 
@@ -92,6 +93,25 @@ Advanced Topics
       :link: hybridize.html
 
       Speed up training with hybrid networks.
+
+
+Applications Topics
+-------------------
+
+.. container:: cards
+
+   .. card::
+      :title: Image Tutorials
+      :link: image/index.html
+
+      How to create deep learning models for images.
+
+   .. card::
+      :title: Text Tutorials
+      :link: text/index.html
+
+      How to create deep learning models for text.
+
 
 .. toctree::
    :hidden:

@@ -19,8 +19,8 @@ Getting started
       Guides that ease your transition to MXNet from other framework.
 
 
-Learning MXNet
---------------
+Packages & Modules
+------------------
 
 .. container:: cards
 
@@ -48,21 +48,6 @@ Learning MXNet
       :link: modules/lr_scheduler.html
 
       How to use the Learning Rate Scheduler.
-
-
-.. container:: cards
-
-   .. card::
-      :title: Image Tutorials
-      :link: image/index.html
-
-      How to create deep learning models for images.
-
-   .. card::
-      :title: Text Tutorials
-      :link: text/index.html
-
-      How to create deep learning models for text.
 
 
 Performance
@@ -227,14 +212,10 @@ Next steps
    :hidden:
    :maxdepth: 1
 
-   crash-course/index
-   deploy/index
-   extend/index
-   image/index
+   getting-started/index
    modules/index
    performance/index
-   run-on-aws/index
-   text/index
-   to-mxnet/index
+   deploy/index
+   extend/index
 
 .. disqus::

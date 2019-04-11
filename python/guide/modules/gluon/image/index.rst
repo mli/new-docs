@@ -1,5 +1,5 @@
-Image
-=====
+Image Tutorials
+=============== 
 
 These tutorials will help you learn how to create and use models that work with images and other computer vision tasks.
 

@@ -1,5 +1,5 @@
-Text
-====
+Text Tutorials
+==============
 
 These tutorials will help you learn how to create and use models that work with text and other natural language processing tasks.
 

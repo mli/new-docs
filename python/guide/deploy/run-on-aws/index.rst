@@ -1,8 +1,32 @@
 Run on AWS
 ==========
 
-This `tutorial <https://github.com/NRauschmayr/new-docs/blob/aws_updated/python/guide/run-on-aws/use_aws.md>`_ will guide you through Amazon SageMaker: a service that allows you to be up and running with MXNet in 5 minutes and to do Machine Learning at large scale in the quickest and easiest way possible.
-Deep Learning projects usually consist of a set of problem tasks: for instance you may have to create training datasets, train and evaulate your model, tune its hyperparameters and finally deploy the model to a production ready cluster. This workflow can be quite cumbersome and time consuming. For this reason AWS provides Amazon SageMaker a fully managed machine learning service that accelerates the overall Deep Learning workflow.
+The following tutorials will help you learn how to deploy MXNet on various AWS platforms.
 
-User who only need compute instances rather than a fully managed SageMaker should follow chapter `Run on an EC2 instance <https://github.com/NRauschmayr/gluon-crash-course/blob/run-on-aws-updated/use_ec2.md#run-on-an-ec2-instance>`_. EC2 provides specialized Deep Learning images so developers can start training their models right away without the hassle of installing driver and software frameworks.
+.. container:: cards
 
+   .. card::
+      :title: MXNet on EC2
+      :link: deploy/run-on-aws/use_ec2.html
+
+      How to deploy MXNet on an Amazon EC2 instance.
+
+   .. card::
+      :title: MXNet on SageMaker
+      :link: deploy/run-on-aws/use_sagemaker.html
+
+      How to run MXNet using Amazon SageMaker.
+
+   .. card::
+      :title: Training with Data from S3
+      :link: deploy/run-on-aws/use_s3.html
+
+      How to train with data from Amazon S3 buckets.
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   run-on-aws/use_ec2
+   run-on-aws/use_s3
+   run-on-aws/use_sagemaker
