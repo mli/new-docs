@@ -1,6 +1,7 @@
-# A Hybrid of Imperative and Symbolic Programming
+# Hybridize
 
 <!-- adapted from diveintodeeplearning -->
+## A Hybrid of Imperative and Symbolic Programming
 Imperative programming makes use of
 programming statements to change a program’s state. Consider the following
 example of simple imperative programming code.
