@@ -28,7 +28,7 @@ Packages & Modules
       :title: Gluon
       :link: packages/gluon/index.html
 
-      MXNet's imperative interface for Python.
+      MXNet's imperative interface for Python. If you're new to MXNet, start here!
 
    .. card::
       :title: NDArray API
@@ -36,6 +36,12 @@ Packages & Modules
 
       How to use the NDArray API to manipulate data.
       A useful set of tutorials for beginners.
+
+   .. card::
+      :title: Symbol API
+      :link: packages/symbol/index.html
+
+      How to use MXNet's Symbol API.
 
    .. card::
       :title: Autograd API
