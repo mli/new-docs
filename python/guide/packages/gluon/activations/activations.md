@@ -50,7 +50,7 @@ visualize_activation(mx.gluon.nn.Activation('sigmoid'))
 ```
 
 
-![png](img/sigmoid.png)
+![png](images/sigmoid.png)
 
 
 The sigmoid activation has since fallen out of use as the preferred activation function in designing neural networks due to some of its properties, shown in the plot above, like not being zero-centered and inducing vanishing gradients, that leads to poor performance during neural network training. Vanishing gradients here refers to the tendency of the gradient of the sigmoid function to be nearly zero for most input values. 
@@ -78,7 +78,7 @@ visualize_activation(mx.gluon.nn.Activation('tanh'))
 ```
 
 
-![png](img/tanh.png)
+![png](images/tanh.png)
 
 
 The use of tanh as activation functions in place of the logistic function was popularized by the success of the [LeNet architecture](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf) and the [methods paper](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf) by LeCun et al.
@@ -95,7 +95,7 @@ visualize_activation(mx.gluon.nn.Activation('softsign'))
 ```
 
 
-![png](img/softsign.png)
+![png](images/softsign.png)
 
 
 The softsign function is not a commonly used activation with most neural networks and still suffers from the vanishing gradient problem as seen in the graph above.
@@ -117,7 +117,7 @@ visualize_activation(mx.gluon.nn.Activation('relu'))
 ```
 
 
-![png](img/relu.png)
+![png](images/relu.png)
 
 
 As shown above, the ReLU activation mitigates the vanishing gradient problem associated with the sigmoid family of activations, by having a larger (infinite) range of values where its gradient is non-zero. However, one drawback of ReLU as an activation function is a phenomenon referred to as the 'Dying ReLU', where gradient-based parameter updates can happen in such a way that the gradient flowing through a ReLU unit is always zero and the connection is never activated. This can largely be addressed by ensuring that the tuning the learning rate to ensure that it's not set too large when training ReLU networks.
@@ -136,7 +136,7 @@ visualize_activation(mx.gluon.nn.Activation('softrelu'))
 ```
 
 
-![png](img/softrelu.png)
+![png](images/softrelu.png)
 
 
 ### Leaky ReLU
@@ -158,7 +158,7 @@ visualize_activation(mx.gluon.nn.LeakyReLU(0.05))
 ```
 
 
-![png](img/leakyrelu.png)
+![png](images/leakyrelu.png)
 
 
 As shown in the graph, the LeakyReLU's gradient is non-zero everywhere, in an attempt to address the ReLU's gradient being zero for all negative values.
@@ -174,7 +174,7 @@ visualize_activation(prelu)
 ```
 
 
-![png](img/prelu.png)
+![png](images/prelu.png)
 
 
 The activation function and activation gradient of PReLU have the same shape as LeakyRELU.
@@ -196,7 +196,7 @@ visualize_activation(mx.gluon.nn.ELU())
 ```
 
 
-![png](img/elu.png)
+![png](images/elu.png)
 
 
 ### SELU
@@ -217,7 +217,7 @@ visualize_activation(mx.gluon.nn.SELU())
 ```
 
 
-![png](img/selu.png)
+![png](images/selu.png)
 
 
 ### Swish
@@ -235,5 +235,4 @@ visualize_activation(mx.gluon.nn.Swish())
 ```
 
 
-![png](img/swish.png)
-
+![png](images/swish.png)
