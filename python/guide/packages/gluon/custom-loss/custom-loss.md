@@ -21,7 +21,7 @@ import random
 
 [Contrastive loss](http://yann.lecun.com/exdb/publis/pdf/hadsell-chopra-lecun-06.pdf) is a distance-based loss function. During training, pairs of images are fed into a model. If the images are similar, the loss function will return 0, otherwise 1. 
 
-<img src="contrastive_loss.jpeg" width="400">
+<img src="images/contrastive_loss.jpeg" width="400">
 
 *Y* is a binary label indicating similarity between training images. Contrastive loss uses the Euclidean distance *D* between images and is the sum of 2 terms: 
  - the loss for a pair of similar points
@@ -142,7 +142,7 @@ plt.show()
 
 ```
 
-![png](CustomLossGluon1.png)
+![png](images/inuktitut_1.png)
 
 
 ### Train the Siamese network
@@ -194,7 +194,7 @@ for i, data in enumerate(test_dataloader):
 
 ```
 
-![png](CustomLossGluon2.png)
+![png](images/inuktitut_2.png)
 
 
 ### Common pitfalls with custom loss functions
