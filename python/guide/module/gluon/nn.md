@@ -2,8 +2,10 @@
 
 <!-- adapted from diveintodeeplearning -->
 
-The previous chapters have seen us move from designing single neurons to entire
-layers of neurons. Neural network designs like
+As network complexity increases, we move from designing single to entire layers
+of neurons. 
+
+Neural network designs like
 [ResNet-152](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
 have a fair degree of regularity. They consist of *blocks* of repeated (or at
 least similarly designed) layers; these blocks then form the basis of more
@@ -21,6 +23,7 @@ follows:
 from mxnet import nd
 from mxnet.gluon import nn
 
+
 x = nd.random.uniform(shape=(2, 20))
 
 net = nn.Sequential()
@@ -30,58 +33,63 @@ net.initialize()
 net(x)
 ```
 
-This generates a network with a hidden layer of 256 units, followed by a ReLu
-activation and another 10 units governing the output. In particular, we used the
-`nn.Sequential` constructor to generate an empty network into which we then
-inserted both layers. What exactly happens inside `nn.Sequential` has remained
-rather mysterious so far. In the following we will see that this really just
-constructs a block. These blocks can be combined into larger artifacts, often
-recursively. The diagram below shows how:
+This generates a network with a hidden layer of $256$ units, followed by a ReLU
+activation and another $10$ units governing the output. In particular, we used
+the [`nn.Sequential`](/api/gluon/_autogen/mxnet.gluon.nn.Sequential.html#mxnet.gluon.nn.Sequential)
+constructor to generate an empty network into which we then inserted both
+layers. What exactly happens inside `nn.Sequential`
+has remained rather mysterious so far. In the following we will see that this
+really just constructs a block that is a container for other blocks. These
+blocks can be combined into larger artifacts, often recursively. The diagram
+below shows how:
 
-![blocks](blocks.svg)
+![Blocks can be used recursively to form larger artifacts](blocks.svg)
 
-In the following we will explain the various steps needed to go
-from defining layers to defining blocks (of one or more layers). To get started
-we need a bit of reasoning about software. For most intents and purposes a block
-behaves very much like a fancy layer. That is, it provides the following
-functionality:
+In the following we will explain the various steps needed to go from defining
+layers to defining blocks (of one or more layers):
 
-1. It needs to ingest data (the input).
-1. It needs to produce a meaningful output. This is typically encoded in what
+1. Blocks take data as input.
+1. Blocks store state in the form of parameters that are inherent to the block.
+   For instance, the block above contains two hidden layers, and we need a
+   place to store parameters for it.
+1. Blocks produce meaningful output. This is typically encoded in what
    we will call the `forward` function. It allows us to invoke a block via
    `net(X)` to obtain the desired output. What happens behind the scenes is
-   that it invokes `forward` to perform forward propagation.
-1. It needs to produce a gradient with regard to its input when invoking
+   that it invokes `forward` to perform forward propagation (also called
+   forward computation).
+1. Blocks initialize the parameters in a lazy fashion as part of the first
+   `forward` call.
+1. Blocks calculate a gradient with regard to their input when invoking
    `backward`. Typically this is automatic.
-1. It needs to store parameters that are inherent to the block. For instance,
-   the block above contains two hidden layers, and we need a place to store
-   parameters for it.
-1. Obviously it also needs to initialize these parameters as needed.
 
 ## A Custom Block
 
-The `nn.Block` class provides the functionality required for much of what
-we need. It is a model constructor provided in the `nn` module, which we can
-inherit to define the model we want. The following inherits the Block class to
-construct the multilayer perceptron mentioned at the beginning of this section.
-The `MLP` class defined here overrides the `__init__` and `forward` functions of
-the Block class. They are used to create model parameters and define forward
-computations, respectively. Forward computation is also forward propagation.
+The [`nn.Block`](/api/gluon/nn.html#blocks) class provides the functionality
+required for much of what we need. It is a model constructor provided in the
+`nn` module, which we can inherit to define the model we want. The following
+inherits the Block class to construct the multilayer perceptron mentioned at
+the beginning of this section.  The `MLP` class defined here overrides the
+`__init__` and `forward` functions of the Block class. They are used to create
+model parameters and define forward computations, respectively. Forward
+computation is also forward propagation.
 
 ```{.python .input  n=1}
-from mxnet import nd
-from mxnet.gluon import nn
-
 class MLP(nn.Block):
-    # Declare a layer with model parameters. Here, we declare two fully connected layers.
-    def __init__(self, **kwargs):
-        # Call the constructor of the MLP parent class Block to perform the necessary initialization. In this way,
-        # other function parameters can also be specified when constructing an instance, such as the model parameter, params, described in the following sections.
-        super(MLP, self).__init__(**kwargs)
-        self.hidden = nn.Dense(256, activation='relu')  # Hidden layer.
-        self.output = nn.Dense(10)  # Output layer.
+    # Declare a layer with model parameters. Here, we declare two fully
+    # connected layers.
 
-    # Define the forward computation of the model, that is, how to return the required model output based on the input x.
+    def __init__(self, **kwargs):
+        # Call the constructor of the MLP parent class Block to perform the
+        # necessary initialization. In this way, other function parameters can
+        # also be specified when constructing an instance, such as the model
+        # parameter, params, described in the following sections.
+        super(MLP, self).__init__(**kwargs)
+        self.hidden = nn.Dense(256, activation='relu')  # Hidden layer
+        self.output = nn.Dense(10)  # Output layer
+
+    # Define the forward computation of the model, that is, how to return the
+    # required model output based on the input x.
+
     def forward(self, x):
         return self.output(self.hidden(x))
 ```
@@ -179,8 +187,7 @@ Assume that we have some function
 $$f(\mathbf{x},\mathbf{w}) = 3 \cdot \mathbf{w}^\top \mathbf{x}.$$
 
 In this case $3$ is a constant parameter. We could change $3$ to something else,
-say
-$c$ via
+say $c$ via
 
 $$f(\mathbf{x},\mathbf{w}) = c \cdot \mathbf{w}^\top \mathbf{x}.$$
 
@@ -196,18 +203,25 @@ this looks like in practice.
 class FancyMLP(nn.Block):
     def __init__(self, **kwargs):
         super(FancyMLP, self).__init__(**kwargs)
-        # Random weight parameters created with the get_constant are not iterated during training (i.e. constant parameters).
+        # Random weight parameters created with the get_constant are not
+        # iterated during training (i.e. constant parameters).
+
         self.rand_weight = self.params.get_constant(
             'rand_weight', nd.random.uniform(shape=(20, 20)))
         self.dense = nn.Dense(20, activation='relu')
 
     def forward(self, x):
         x = self.dense(x)
-        # Use the constant parameters created, as well as the relu and dot functions of NDArray.
+        # Use the constant parameters created, as well as the ReLU and dot
+        # functions of NDArray.
+
         x = nd.relu(nd.dot(x, self.rand_weight.data()) + 1)
-        # Reuse the fully connected layer. This is equivalent to sharing parameters with two fully connected layers.
+        # Re-use the fully connected layer. This is equivalent to sharing
+        # parameters with two fully connected layers.
         x = self.dense(x)
-        # Here in Control flow, we need to call asscalar to return the scalar for comparison.
+        # Here in the control flow, we need to call `asscalar` to return the
+        # scalar for comparison.
+
         while x.norm().asscalar() > 1:
             x /= 2
         if x.norm().asscalar() < 0.8:
@@ -215,8 +229,8 @@ class FancyMLP(nn.Block):
         return x.sum()
 ```
 
-In this `FancyMLP` model, we used constant weight `Rand_weight` (note that it is
-not a model parameter), performed a matrix multiplication operation (`nd.dot<`),
+In this `FancyMLP` model, we used constant weight `rand_weight` (note that it is
+not a model parameter), performed a matrix multiplication operation (`nd.dot`),
 and reused the *same* `Dense` layer. Note that this is very different from using
 two dense layers with different sets of parameters. Instead, we used the same
 network twice. Quite often in deep networks one also says that the parameters
@@ -230,10 +244,10 @@ net.initialize()
 net(x)
 ```
 
-There's no reason why we couldn't mix and match these ways of build a network.
-Obviously the example below resembles more a chimera, or less charitably, a
-[Rube Goldberg Machine](https://en.wikipedia.org/wiki/Rube_Goldberg_machine).
-That said, it combines examples for building a block from individual blocks,
+There's no reason why we couldn't mix and match these ways of building a
+network. Obviously the example below resembles a [Rube Goldberg
+Machine](https://en.wikipedia.org/wiki/Rube_Goldberg_machine). That said, it
+combines examples for building a block from individual blocks,
 which in turn, may be blocks themselves. Furthermore, we can even combine
 multiple strategies inside the same forward function. To demonstrate this,
 here's the network.
@@ -257,7 +271,7 @@ chimera.initialize()
 chimera(x)
 ```
 
-## Compilation
+## Hybridization
 
 The reader may be starting to think about the efficiency of this Python code.
 After all, we have lots of dictionary lookups, code execution, and lots of
@@ -266,15 +280,14 @@ deep learning library. The problems of Python's [Global Interpreter
 Lock](https://wiki.python.org/moin/GlobalInterpreterLock) are well
 known. 
 
-In the context of deep learning it means that we have a super fast GPU
-(or multiple of them) which might have to wait until a puny single CPU core
-running Python gets a chance to tell it what to do next. This is clearly awful
-and there are many ways around it. The best way to speed up Python is by
-avoiding it altogether.
+In the context of deep learning, we often have highly performant GPUs that
+depend on CPUs running Python to tell them what to do. This mismatch can
+manifest in the form of GPU starvation when the CPUs can not provide
+instruction fast enough. We can improve this situation by deferring to a more
+performant language instead of Python when possible.
 
-Gluon does this by allowing for
-[Hybridization](./hybridize.md). In it, the Python interpreter executes the
-block the first time it's invoked. The Gluon runtime records what is happening
-and the next time around it short circuits any calls to Python. This can
-accelerate things considerably in some cases but care needs to be taken with
-control flow.
+Gluon does this by allowing for [Hybridization](./hybridize.md). In it, the
+Python interpreter executes the block the first time it's invoked. The Gluon
+runtime records what is happening and the next time around it short circuits
+any calls to Python. This can accelerate things considerably in some cases but
+care needs to be taken with [control flow](../../crash-course/3-autograd.md).
