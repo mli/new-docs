@@ -2,8 +2,9 @@
 
 <!-- adapted from diveintodeeplearning -->
 
-In the previous examples we played fast and loose with setting up our networks.
-In particular we did the following things that *shouldn't* work:
+In the [Neural Networks](nn.html) section we played fast and loose with setting
+up our networks. In particular we did the following things that *shouldn't*
+work:
 
 * We defined the network architecture with no regard to the input
   dimensionality.
@@ -11,19 +12,17 @@ In particular we did the following things that *shouldn't* work:
 * We even 'initialized' these parameters without knowing how many parameters
   were were to initialize.
 
-All of those things sound impossible and indeed, they are. After
-all, there's no way MXNet (or any other framework for that matter) could predict
-what the input dimensionality of a network would be. Later on, when working with
+All of those things sound impossible and indeed, they are. After all, there's
+no way MXNet (or any other framework for that matter) could predict what the
+input dimensionality of a network would be. Later on, when working with
 convolutional networks and images this problem will become even more pertinent,
-since the input dimensionality (i.e. the resolution of an image) will affect the
-dimensionality of subsequent layers at a long range. Hence, the ability to set
-parameters without the need to know at the time of writing the code what the
-dimensionality is can greatly simplify statistical modeling. In what follows,
-we will discuss how this works using initialization as an example. After all,
-we cannot initialize variables that we don't know exist.
+since the input dimensionality (i.e. the resolution of an image) will affect
+the dimensionality of subsequent layers. The ability to
+determine parameter dimensionality during run-time rather than at coding time
+greatly simplifies the process of doing deep learning. 
 
 In what follows, we will discuss how this works using initialization as an
-example.
+example. 
 
 ## Instantiating a Network
 
@@ -262,14 +261,14 @@ net[0].weight.data()[0]
 
 In some cases, we want to share model parameters across multiple layers. For
 instance when we want to find good word embeddings we may decide to use the
-same parameters both for encoding and decoding of words. We discussed one such
-case when we introduced `Blocks`. Let's see how to do
-this a bit more elegantly. In the following we allocate a dense layer and then
+same parameters both for encoding and decoding of words. Let's see how to do
+this a bit more elegantly. In the following we construct a dense layer and then
 use its parameters specifically to set those of another layer.
 
 ```{.python .input  n=14}
 net = nn.Sequential()
-# we need to give the shared layer a name such that we can reference its parameters
+# We need to give the shared layer a name such that we can reference its
+# parameters.
 shared = nn.Dense(8, activation='relu')
 net.add(nn.Dense(8, activation='relu'),
         shared,
@@ -280,17 +279,18 @@ net.initialize()
 x = nd.random.uniform(shape=(2, 20))
 net(x)
 
-# Check whether the parameters are the same
+# Check whether the parameters are the same.
 print(net[1].weight.data()[0] == net[2].weight.data()[0])
 net[1].weight.data()[0,0] = 100
-# And make sure that they're actually the same object rather than just having the same value.
+# And make sure that they're actually the same object rather than just having
+# the same value.
 print(net[1].weight.data()[0] == net[2].weight.data()[0])
 ```
 
-The above exampe shows that the parameters of the second and third layer are
+The above example shows that the parameters of the second and third layer are
 tied. They are identical rather than just being equal. That is, by changing one
 of the parameters the other one changes, too. What happens to the gradients is
 quite ingenious. Since the model parameters contain gradients, the gradients of
-the second hidden layer and the third hidden layer are accumulated in the
-`shared.params.grad( )` during backpropagation.
+the second hidden layer and the third hidden layer are accumulated in
+`shared.params.grad()` during backpropagation.
 
