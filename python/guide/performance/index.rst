@@ -20,7 +20,7 @@ Essential
       How to profile MXNet models.
 
    .. card::
-      :title: Tuning Numpy Operations
+      :title: Tuning NumPy Operations
       :link: numpy.html
 
       Gotchas using NumPy in MXNet.
@@ -51,22 +51,13 @@ Compression
 
       How to use gradient compression to reduce communication bandwidth and increase speed.
 
-   .. TBD Content
+   ..
+      TBD Content
       .. card::
          :title: Compression: int8
          :link: compression/int8.html
 
          How to use int8 in your model to boost training speed.
-   ..
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-
-   compression/float16
-   compression/gradient_compression
-   ..
-      compression/int8
    ..
 
 Accelerated Backend
@@ -80,7 +71,8 @@ Accelerated Backend
 
       How to use NVIDIA's TensorRT to boost inference performance.
 
-   .. TBD Content
+   ..
+      TBD Content
       .. card::
          :title: MKL-DNN
          :link: backend/mkl-dnn.html
@@ -98,8 +90,5 @@ Accelerated Backend
    :hidden:
    :maxdepth: 1
 
-   backend/tensorRt
-
-   ..
-      backend/mkl-dnn
-      backend/tvm
+   compression/index
+   backend/index
