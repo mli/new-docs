@@ -137,9 +137,7 @@ Applications Topics
    loss
    init
    parameters
-   ../lr_scheduler
    trainer
-   ../autograd
    naming
    custom-layer
    hybridize
