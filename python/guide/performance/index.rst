@@ -46,16 +46,17 @@ Compression
       How to use float16 in your model to boost training speed.
 
    .. card::
-      :title: Compression: int8
-      :link: index.html
-
-      How to use int8 in your model to boost training speed.
-
-   .. card::
       :title: Gradient Compression
       :link: gradient_compression.html
 
       How to use gradient compression to reduce communication bandwidth and increase speed.
+   ..
+      .. card::
+         :title: Compression: int8
+         :link: index.html
+
+         How to use int8 in your model to boost training speed.
+   ..
 
 .. toctree::
    :hidden:
@@ -71,23 +72,24 @@ Accelerated Backend
 .. container:: cards
 
    .. card::
-      :title: MKL-DNN
-      :link: mkl-dnn.html
-
-      How to get the most from your CPU by using Intel's MKL-DNN.
-
-   .. card::
       :title: TensorRT
       :link: index.html
 
       How to use NVIDIA's TensorRT to boost inference performance.
 
-   .. card::
-      :title: TVM
-      :link: tvm.html
+   ..
+      .. card::
+         :title: MKL-DNN
+         :link: mkl-dnn.html
 
-      How to use TVM to boost performance.
+         How to get the most from your CPU by using Intel's MKL-DNN.
 
+      .. card::
+         :title: TVM
+         :link: tvm.html
+
+         How to use TVM to boost performance.
+   ..
 
 .. toctree::
    :hidden:
