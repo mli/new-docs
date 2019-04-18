@@ -50,6 +50,13 @@ Compression
       :link: compression/gradient_compression.html
 
       How to use gradient compression to reduce communication bandwidth and increase speed.
+   ..
+      .. card::
+         :title: Compression: int8
+         :link: index.html
+
+         How to use int8 in your model to boost training speed.
+   ..
 
    ..
       TBD Content
