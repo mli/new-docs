@@ -4,7 +4,7 @@ Deployment
 The following tutorials will help you learn how to deploy MXNet on various
 platforms and in different language environments.
 
-Export
+Export_
 ------
 The following tutorials will help you learn export MXNet models.
 
@@ -22,7 +22,7 @@ The following tutorials will help you learn export MXNet models.
 
       How to export models trained with MXNet GluonCV.
 
-Inference
+Inference_
 ---------
 The following tutorials will help you learn how to deploy MXNet models for inference applications.
 
@@ -34,7 +34,13 @@ The following tutorials will help you learn how to deploy MXNet models for infer
 
       An example application that works with an exported MXNet GluonCV YOLO model.
 
-Cloud
+   .. card::
+      :title: Inference with Quantized Models
+      :link: https://gluon-cv.mxnet.io/build/examples_deployment/int8_inference.html
+
+      How to use quantized GluonCV models for inference on Intel Xeon Processors to gain higher performance.
+
+Cloud_
 -----
 The following tutorials will show you how to use MXNet on AWS.
 
@@ -65,3 +71,7 @@ The following tutorials will show you how to use MXNet on AWS.
    export/index
    inference/index
    run-on-aws/index
+
+.. _Export: export/index.html
+.. _Inference: inference/index.html
+.. _Cloud: run-on-aws/index.html
