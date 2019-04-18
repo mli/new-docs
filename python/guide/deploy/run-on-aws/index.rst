@@ -27,6 +27,6 @@ The following tutorials will help you learn how to deploy MXNet on various AWS p
    :hidden:
    :maxdepth: 1
 
-   run-on-aws/use_ec2
-   run-on-aws/use_s3
-   run-on-aws/use_sagemaker
+   use_ec2
+   use_sagemaker
+   use_s3

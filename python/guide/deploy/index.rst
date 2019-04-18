@@ -1,7 +1,48 @@
 Deployment
 ==========
 
-The following tutorials will help you learn how to deploy MXNet on various platforms and in different language environments.
+The following tutorials will help you learn how to deploy MXNet on various
+platforms and in different language environments.
+
+Export_
+------
+The following tutorials will help you learn export MXNet models.
+
+.. container:: cards
+
+   .. card::
+      :title: Export ONNX Models
+      :link: onnx.html
+
+      How to export an MXNet model to the ONNX model format.
+
+   .. card::
+      :title: Export with GluonCV
+      :link: https://gluon-cv.mxnet.io/build/examples_deployment/export_network.html
+
+      How to export models trained with MXNet GluonCV.
+
+Inference_
+---------
+The following tutorials will help you learn how to deploy MXNet models for inference applications.
+
+.. container:: cards
+
+   .. card::
+      :title: GluonCV Models in a C++ Inference Application
+      :link: https://gluon-cv.mxnet.io/build/examples_deployment/cpp_inference.html
+
+      An example application that works with an exported MXNet GluonCV YOLO model.
+
+   .. card::
+      :title: Inference with Quantized Models
+      :link: https://gluon-cv.mxnet.io/build/examples_deployment/int8_inference.html
+
+      How to use quantized GluonCV models for inference on Intel Xeon Processors to gain higher performance.
+
+Cloud_
+-----
+The following tutorials will show you how to use MXNet on AWS.
 
 .. container:: cards
 
@@ -23,49 +64,14 @@ The following tutorials will help you learn how to deploy MXNet on various platf
 
       How to train with data from Amazon S3 buckets.
 
-   .. card::
-      :title: ONNX Models
-      :link: onnx.html
-
-      How to export an MXNet model to the ONNX model format.
-
-      ..
-         PLACEHOLDER
-         .. card::
-            :title: Export
-            :link: export.html
-
-            How to export MXNet models.
-
-         .. card::
-            :title: C++
-            :link: cpp.html
-
-            How to use MXNet models in a C++ environment.
-
-         .. card::
-            :title: Scala and Java
-            :link: scala.html
-
-            How to use MXNet models in a Scala or Java environment.
-
-         .. card::
-            :title: C++
-            :link: cpp.html
-
-            How to use MXNet models in a C++ environment.
-         PLACEHOLDER
-      ..
-
-
 .. toctree::
    :hidden:
-   :maxdepth: 1
+   :maxdepth: 0
 
+   export/index
+   inference/index
    run-on-aws/index
-   onnx
 
-   ..
-      cpp
-      export
-      scala
+.. _Export: export/index.html
+.. _Inference: inference/index.html
+.. _Cloud: run-on-aws/index.html
