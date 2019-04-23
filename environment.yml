@@ -2,6 +2,7 @@ name: mxnet-docs
 channels:
 - pytorch
 dependencies:
+- pip
 - python
 - jupyter
 - sphinx
