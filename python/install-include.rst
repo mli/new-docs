@@ -12,23 +12,42 @@
       :act:`Local`
       :opt:`Cloud`
 
-   .. container:: cloud opt-group
+   .. container:: cloud
 
-      :title:`Provider:`
-      :act:`AWS`
+      .. container:: opt-group
 
-      .. container:: aws
+         :title:`Provider:`
+         :act:`Alibaba`
+         :opt:`AWS`
+         :opt:`Google Cloud`
+         :opt:`Microsoft Azure`
+         :opt:`Oracle Cloud`
 
-         .. admonition:: Instruction:
+      .. admonition:: Installation Guides:
 
-            There are several options you can access MXNet at AWS:
+         .. container:: alibaba
 
-            - `Deep Learning AMI
-              <https://aws.amazon.com/machine-learning/amis/>`_: Amazon machine
-              images with MXNet pre-installed, available for Ubuntu, Amazon
-              Linux, and Windows 2016.
-            - `Sagemaer <https://aws.amazon.com/sagemaker/>`_: a fully-managed
-              machine learning platform with MXNet integrated.
+               - `NVIDIA VM for Alibaba <https://docs.nvidia.com/ngc/ngc-alibaba-setup-guide/launching-nv-cloud-vm-console.html#launching-nv-cloud-vm-console>`_
+
+         .. container:: aws
+
+               - `AWS Deep Learning AMI
+                 <https://aws.amazon.com/machine-learning/amis/>`_: preinstalled Conda environments for Python 2 or 3 with MXNet, CUDA, cuDNN, MKL-DNN, and AWS Elastic Inference
+               - `Amazon SageMaker <https://aws.amazon.com/sagemaker/>`_: managed training and deployment of MXNet models
+               - `Dynamic Training on AWS <https://github.com/awslabs/dynamic-training-with-apache-mxnet-on-aws>`_: experimental manual EC2 setup or semi-automated CloudFormation setup
+               - `NVIDIA VM for AWS <https://aws.amazon.com/marketplace/pp/B076K31M1S>`_
+
+         .. container:: google-cloud
+
+               - `NVIDIA VM for Google Cloud <https://console.cloud.google.com/marketplace/details/nvidia-ngc-public/nvidia_gpu_cloud_image>`_
+
+         .. container:: microsoft-azure
+
+               - `NVIDIA VM for Azure <https://azuremarketplace.microsoft.com/en-us/marketplace/apps/nvidia.ngc_azure_17_11?tab=Overview>`_
+
+         .. container:: oracle-cloud
+
+               - `NVIDIA VM for Oracle Cloud <https://docs.cloud.oracle.com/iaas/Content/Compute/References/ngcimage.htm>`_
 
    .. container:: local
 
@@ -36,7 +55,7 @@
 
          :title:`OS:`
          :opt:`Linux`
-         :opt:`Macos`
+         :opt:`macOS`
          :opt:`Windows`
 
       .. container:: opt-group
@@ -58,15 +77,15 @@
 
             <div class="mdl-tooltip" data-mdl-for="native">Build-in backend for CPU.</div>
             <div class="mdl-tooltip" data-mdl-for="cuda">Required to run on Nvidia GPUs.</div>
-            <div class="mdl-tooltip" data-mdl-for="mkl-dnn">Accelarate Intel CPU performacne.</div>
-            <div class="mdl-tooltip" data-mdl-for="cuda-mkl-dnn">Enable both Nvidia CPUs and Inter CPU accelaration.</div>
+            <div class="mdl-tooltip" data-mdl-for="mkl-dnn">Accelerate Intel CPU performance.</div>
+            <div class="mdl-tooltip" data-mdl-for="cuda-mkl-dnn">Enable both Nvidia CPUs and Inter CPU acceleration.</div>
 
-      .. admonition:: Prerequisite:
+      .. admonition:: Prerequisites:
 
          .. container:: docker
 
-            - Require `docker <https://docs.docker.com/install/>`_ is installed
-              and it can be used by a non-root user.
+            - Requires `docker <https://docs.docker.com/install/>`_
+              and Docker can be used by a non-root user.
 
          .. container:: docker
 
@@ -78,8 +97,8 @@
 
          .. container:: pip
 
-            - Require `pip >= 9. <https://pip.pypa.io/en/stable/installing/>`_ is
-              installed. Both Python 2 and Python 3 are supported.
+            - Requires `pip >= 9. <https://pip.pypa.io/en/stable/installing/>`_.
+              Both Python 2 and Python 3 are supported.
             - Hint: append the flag ``--pre`` at the end of the command will
               install the nightly build.
             .. - Hint: refer to `Issue 8671
@@ -88,16 +107,16 @@
 
             .. container:: cuda cuda-mkl-dnn
 
-               - Require `CUDA
-                 <https://developer.nvidia.com/cuda-toolkit-archive>`_ is
-                 installed. Supported versions include 8.0, 9.0, and 9.2.
+               - Requires `CUDA
+                 <https://developer.nvidia.com/cuda-toolkit-archive>`_.
+                 Supported versions include 8.0, 9.0, and 9.2.
                - Hint: `cuDNN <https://developer.nvidia.com/cudnn>`_ is already
-                 included in the MXNet binary, you don't need to install it.
+                 included in the MXNet binary, so you don't need to install it.
 
             .. container:: mkl-dnn cuda-mkl-dnn
 
                - Hint: `MKL-DNN <https://01.org/mkl-dnn>`_ is already included in
-                 the MXNet binary, you don't need to install it.
+                 the MXNet binary, so you don't need to install it.
 
       .. admonition:: Command:
 
