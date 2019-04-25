@@ -11,6 +11,25 @@
       :title:`Platform:`
       :act:`Local`
       :opt:`Cloud`
+      :opt:`Devices`
+
+   .. container:: devices
+
+      .. container:: opt-group
+
+         :title:`Device:`
+         :act:`Raspberry Pi`
+         :opt:`Jetson`
+
+      .. admonition:: Installation Guides:
+
+         .. container:: raspberry-pi
+
+               - :doc:`install-pi`
+
+         .. container:: jetson
+
+               - :doc:`install-jetson`
 
    .. container:: cloud
 
