@@ -22,16 +22,17 @@ html: # build everything
 	zip -r mxnetRtutorials.zip mxnetRtutorials ;\
 	rm -rf mxnetRtutorials ;\
 	cd ../.. ;\
-	sphinx-build -b html source/ build/ ;\
+	sphinx-build -b html -j 8 source/ build/ ;\
 	cp ./source/tutorial/mxnetRtutorials.zip ./build/tutorial/mxnetRtutorials.zip
 
 
 htmlonly: # depends on .rst files and .ipynb files.
-	sphinx-build -b html source/ build/
+	sphinx-build -b html  -j 8  source/ build/
 
 documentation: # depends on man/ files.
 	cd source/ ;\
-	Rscript ./scripts/Rdoc2SphinxDoc.R
+	Rscript ./scripts/Rdoc2
+	Doc.R
 
 tutorials: # depends on .md files
 	cd source/tutorial/ ;\

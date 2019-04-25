@@ -10,7 +10,13 @@ However, you may setup the website on macOS or Windows with or without a GPU.
 
 ### Prerequisites
 
-* [Conda](https://www.anaconda.com/distribution/#download-section) (install to PATH)
+* [Conda >= 4.6.13](https://www.anaconda.com/distribution/#download-section) (install to PATH)
+
+You can update Conda with the following:
+
+```
+conda update conda
+```
 
 ### GPU setup
 To run the full build, including tests of all tutorials,
