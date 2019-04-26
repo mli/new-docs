@@ -10,13 +10,13 @@ Long Answer:
 
 Under the hood, neural networks are composed of operators (e.g. convolutions) which use parameters (e.g. weights in convolution kernels) for their computation, and it's our job to find the optimal values for these parameters. Gradients lead us to the solution!
 
-Gradients tell us what happens to a variable (increases/decrease and by how much), when we change another variable that it depends on. What we're interested in is the effect of changing each parameter on the performance of the network. We usually define performance using a loss metric that we try to minimize, i.e. a metric that tells us how bad the predictions of a network are given ground truth. As an example, for regression we might try to minimize the L2 loss (euclidean distance) between our predictions and true values, and for classification we minimize the cross-entropy loss. 
+Gradients tell us what happens to a variable (increases/decrease and by how much), when we change a another variable that it depends on. What we're interested in is the effect of changing a each parameter on the performance of the network. We usually define performance using a loss metric that we try to minimize, i.e. a metric that tells us how bad the predictions of a network are given ground truth. As an example, for regression we might try to minimize the L2 loss (eucliden distance) between our predictions and true values, and for classification we minimize the cross entropy loss. 
 
-Assuming we've calculated the gradient of each parameter with respect to the loss (details in next section), we can then use an optimizer such as Stochastic Gradient Descent to shift the parameters slightly in the *opposite direction* of the gradient. See [Optimizers](http://mxnet.incubator.apache.org/api/python/optimization/optimization.html) for more information on these methods. We repeat the process of calculating gradients and updating parameters over and over again, until the parameters of the network start to stabilize and converge to a good solution. 
+Assuming we've calculated the gradient of each parameter with repect to the loss (details in next section), we can then use an optimizer such as Stochastic Gradient Descent to shift the parameters slightly in the *opposite direction* of the gradient. See Optimizers for more information on these methods. We repeat the process of calculating gradients and updating parameters over and over again, until the parameters of the network start to stabalize and converge to a good solution. 
 
 ## How do we calculate gradients?
 
-We differentiate. MXNet Gluon uses Reverse Mode Automatic Differentiation (`autograd`) to backpropagate gradients from the loss metric to the network parameters.
+We differenciate. MXNet Gluon uses Reverse Mode Automatic Differenciation (`autograd`) to backprogate gradients from the loss metric to the network parameters.
 
 <p align="center">
     <img src="./imgs/autograd_forward_backward.png" alt="drawing" width="400"/>
@@ -24,11 +24,11 @@ We differentiate. MXNet Gluon uses Reverse Mode Automatic Differentiation (`auto
 
 Long Answer:
 
-One option would be to get out our calculus books and work out the gradients by hand. Who wants to do this though? It's time consuming and error prone for starters. Another option is Symbolic Differentiation, which calculates the formulas for each gradient, but this quickly leads to incredibly long formulas as networks get deeper and operators get more complex. We could use finite differencing, and try slight differences on each parameter and see how the loss metric responds, but this is computationally expensive and has poor numerical precision.
+One option would be to get out our calculus books and work out the gradients by hand. Who wants to do this though? It's time consuming and error prone for starters. Another option is Symbolic Differenciation, which calculates the formulas for each gradient, but this quickly leads to incredibly long formulas as networks get deeper and operators get more complex. We could use finite differencing, and try slight differences on each parameter and see how the loss metric responds, but this is computationally expensive and has poor numerical precision.
 
-What's the solution? Use automatic differentiation to backpropagate the gradients from the loss metric back to each of the parameters. Sometimes this is called reverse mode automatic differentiation, and it's very efficient in 'fan-in' situations where many parameters effect a single loss metric. Although forward mode automatic differentiation methods exist, they're suited to 'fan-out' situations where few parameters effect many metrics, which isn't the case for training neural networks.
+What's the solution? Use automatic differenciation to backpropagate the gradients from the loss metric back to each of the parameters. Sometimes this is called reverse mode automatic differenciation, and it's very efficient in 'fan-in' situations where many parameters effect a single loss metric. Although forward mode automatic differenciation methods exist, they're suited to 'fan-out' situations where few parameters effect many metrics, which isn't the case for training neural networks.
 
-## How does Automatic Differentiation (`autograd`) work?
+## How does Automatic Differenciation (`autograd`) work?
 
 Stage 1. Create a record of the operators used by the network to make predictions and calculate the loss metric. Called the 'forward pass' of training.
 Stage 2. Work backwards through this record and evaluate the partial derivatives of each operator, all the way back to the network parameters. Called the 'backward pass' of training.
@@ -43,19 +43,19 @@ Long Answer:
 
 All operators in MXNet have two methods defined: a `forward` method for executing the operator as expected, and a `backward` method that returns the partial derivative (the derivative of the output with respect to the input). On the vary rare occasion you need to implement your own custom operator, you'll define the same two methods.
 
-Automatic Differentiation creates a record of the operators used (i.e. the `forward` method calls) by the network to make predictions and calculate the loss metric. A graph structure is used to record this, capturing the inputs (including their value) and outputs for each operator and how the operators are related. We call this the 'forward pass' of training.
+Automatic Differenciation creates a record of the operators used (i.e. the `forward` method calls) by the network to make predictions and calculate the loss metric. A graph structure is used to record this, capturing the inputs (including their value) and outputs for each operator and how the operators are related. We call this the 'forward pass' of training.
 
-Automatic Differentiation then works backwards through each operator of the graph, calling the `backward` method on each operator to calculate the partial derivative and calculate the gradient of the loss metric with respect to the operator's input (which could be parameters). Usually we work backwards from the loss metric, and hence calculate the gradients of the loss metric, but this can be done from any output. We call this the 'backward pass' of training.
+Automatic Differenciation then works backwards through each operator of the graph, calling the `backward` method on each operator to calculate the partial derivative and calculate the gradient of the loss metric with respect to the operator's input (which could be parameters). Usually we work backwards from the loss metric, and hence calculate the gradients of the loss metric, but this can be done from any output. We call this the 'backward pass' of training.
 
-### What are the advantages of Automatic Differentiation (`autograd`)?
+### What are the advantages of Automatic Differenciation (`autograd`)?
 
-It's flexible, automatic and efficient. You can use [native Python control flow operators](#controlflow) such as `if` conditions and `while` loops and `autograd` will still be able to backpropogate the gradients correctly.
+It's flexible, automatic and efficient. You can use native Python control flow operators such as `if` conditions and `while` loops and `autograd` will still be able to backpropogate the gradients correctly.
 
 Long Answer:
 
-A huge benefit of using `autograd` is the flexibility it gives you when defining your network. You can change the operations on every iteration, and `autograd` will still be able to backpropagate the gradients correctly. You'll sometimes hear these called 'dynamic graphs', and are much more complex to implement in frameworks that require static graphs, such as TensorFlow.
+A huge benefit of using `autograd` is the flexibility it gives you when defining your network. You can change the operations on every iteration, and `autograd` will still be able to backpropogate the gradients correctly. You'll sometimes hear these called 'dynamic graphs', and are much more complex to implement in frameworks that require static graphs, such as TensorFlow.
 
-As suggested by the name, `autograd` is automatic and so the complexities of the backpropagation procedure are taken care of for you. All you have to do is tell `autograd` when you're [interested in recording gradients](#nonparamgrad), and specify what gradients you're interested in calculating: this will nearly always just be the gradient of the loss metric. And these gradient calculations will be performed efficiently too.
+As suggested by the name, `autograd` is automatic and so the complexities of the backpropogation procedure are taken care of for you. All you have to do is tell `autograd` when you're interested in recording gradients, and specify what gradients you're interested in calculating: this will nearly always just be the gradient of the loss metric. And these gradient calculations will be performed efficiently too.
 
 ## How do I use `autograd` in MXNet Gluon?
 
@@ -65,7 +65,7 @@ Step one is to import the `autograd` package.
 from mxnet import autograd
 ```
 
-As a simple example, we'll implement the regression model shown in the diagrams above, and later use `autograd` to automatically calculate the gradient of the loss with respect to each of the weight parameters.
+As a simple example, we'll implement the regression model shown in the diagrams above, and later use `autograd` to automatically calculate the gradient of the loss with repect to each of the weight parameters.
 
 ```{.python .input  n=2}
 from mxnet.gluon.nn import HybridSequential, Dense
@@ -98,14 +98,21 @@ Only operations that we want recorded are in the scope of the `autograd.record` 
 
 Remember: if `loss` isn't a single scalar value (e.g. could be a loss for each sample, rather than for whole batch) a `sum` operation will be applied implicitly before starting the backward propogation, and the gradients calculated will be of this `sum` with respect to the parameters.
 
-```{.python .input  n=4}
+```{.python .input  n=2}
 loss.backward()
 ```
 
 And that's it! All the `autograd` magic is complete. We should now have gradients for each parameter of the network, which will be used by the optimizer to update the parameter values for improved performance. Check out the gradients of the first layer for example:
 
-```{.python .input  n=5}
+```{.python .input  n=2}
 net[0].weight.grad()
+```
+
+```
+[[ 0.02796724  0.04661207]
+ [-0.02925276 -0.0487546 ]
+ [ 0.01434325  0.02390542]]
+<NDArray 3x2 @cpu(0)>
 ```
 
 ## Advanced: Switching between training vs inference modes
@@ -116,7 +123,7 @@ With MXNet Gluon, `autograd` is critical for switching between training and infe
 
 Creating a network of a single `Dropout` block will demonstrate this.
 
-```{.python .input  n=6}
+```{.python .input  n=2}
 import mxnet as mx
 
 net = mx.gluon.nn.Dropout(rate=0.5)
@@ -127,12 +134,28 @@ is_training = autograd.is_training()
 print('is_training:', is_training, output)
 ```
 
+```
+is_training: False 
+[[ 1.  1.  1.]
+ [ 1.  1.  1.]
+ [ 1.  1.  1.]]
+<NDArray 3x3 @cpu(0)>
+```
+
 We called `net` when `autograd` wasn't recording, so our network was in inference mode and thus we didn't see any dropout of the input (i.e. it's still ones). We can confirm the current mode by calling `autograd.is_training()`.
 
-```{.python .input  n=7}
+```{.python .input  n=2}
 with mx.autograd.record():
     output = net(data)
 print('is_training:', is_training, output)
+```
+
+```{.python .output  n=2}
+is_training: True 
+[[ 0.  0.  2.]
+ [ 2.  2.  2.]
+ [ 0.  0.  0.]]
+<NDArray 3x3 @cpu(0)>
 ```
 
 We called `net` while `autograd` was recording this time, so our network was in training mode and we see dropout of the input this time. Since the probability of dropout was 50%, the output is automatically scaled by 1/0.5=2 to preserve the average activation.
@@ -141,13 +164,12 @@ We can force some operators to behave as they would during training, even in inf
 
 ## Advanced: Skipping the calculation of parameter gradients
 
-When creating neural networks with MXNet Gluon it is assumed that you're interested in the gradients of the loss with respect to each of the network's parameters. We're usually training the whole network, so this is exactly what we want. When we call `net.initialize()`, the network parameters get (lazily) initalized and memory is also allocated for the gradients, essentially doubling the space required for each parameter. After performing a forward and backward pass through the network, we will have gradients for all of the parameters.
+When creating neural networks with MXNet Gluon it is assumed that you're interested in the gradients of the loss with respect to each of the network's parameters. We're usually training the whole network, so this is exactly what we want. When we call `net.initialize()`, the network parameters get (lazily) initalized and memory is also allocated for the gradients, esentially doubling the space required for each parameter. After performing a forward and backward pass through the network, we will have gradients for all of the parameters.
 
 Sometimes we don't need the gradients for all of the parameters though. One example would be 'freezing' the values of the parameters in certain layers. Since we don't need to update the values, we don't need the gradients. Using the `grad_req` property of a parameter and setting it to `'null`', we can indicate this to `autograd`, saving us computation time and memory.
 
-```{.python .input  n=8}
-net = Dense(units=3)
-net.weight.grad_req = 'null'
+```{.python .input  n=2}
+net[0].weight.grad_req = 'null'
 ```
 
 <p align="center">
@@ -156,16 +178,15 @@ net.weight.grad_req = 'null'
     </video>
 </p>
 
-<a name="nonparamgrad"></a>
 ## Advanced: Calculating non-parameter gradients
 
-Although it's most common to deal with network parameters (with `Parameter` being an MXNet Gluon abstraction), there are cases when you need to calculate the gradient with respect to thing that are not parameters (i.e. standard `ndarray`s). One example would be finding the gradient of the loss with respect to the input data to generate adversarial examples.
+Although it's most common to deal with network parameters (with `Parameter` being an MXNet Gluon abstraction), there are cases when you need to calculate the gradient with repect to thing that are not parameters (i.e. standard `ndarray`s). One example would be finding the gradient of the loss with respect to the input data to generate adversarial examples.
 
 With `autograd` it's simple, but there's one key difference compared to parameters: parameters are assumed to require gradients by default, non-parameters are not. We need to explicitly state that we require the gradient, and we do that by calling `.attach_grad()` on the `ndarray`. We can then access the gradient using `.grad` after the `backward` pass.
 
 As a simple example, let's take the case where $y=2x^2$ and use `autograd` to calculate gradient of $y$ with respect to $x$ at three different values of $x$. We could obviously work out the gradient by hand in this case as $dy/dx=4x$, but let's use this knowledge to check `autograd`. Given $x$ is an `ndarray` and not a `Parameter`, we need to call `x.attach_grad()`.
 
-```{.python .input  n=9}
+```{.python .input  n=2}
 x = array([1, 2, 3])
 x.attach_grad()
 with autograd.record():
@@ -174,19 +195,13 @@ y.backward()
 print(x.grad)
 ```
 
-<a name="controlflow"></a>
 ## Advanced: Using Python control flow
 
 As mentioned before, one of the main advantages of `autograd` is the ability to automatically calculate gradients of dynamic graphs (i.e. graphs where the operators could be different on every forward pass). One example of this would be applying a tree structured recurrent network to parse a sentence using its parse tree. And we can use Python control flow operators to create a dynamic flow that depends on the data.
 
-Warning: you can't `hybridize` Python control flow, to take advantage of symbolic graph optimizations, but you can use [Control Flow Operators](https://mxnet.incubator.apache.org/versions/master/tutorials/control_flow/ControlFlowTutorial.html) instead.
-
 We'll write a function as a toy example of a dynamic network. We'll add an `if` condition and a loop with a variable number of iterations, both of which will depend on the input data. Although these can now be used in static graphs (with conditional operators) it's still much more natural to use native control flow.
 
-
-```{.python .input  n=10}
-import math
-
+```
 def f(x):
     # going to change y but still want reference to x
     y = x
@@ -208,9 +223,9 @@ We can plot the resultant function for $x$ between 0 and 1, and we should recogn
     <img src="./imgs/autograd_control_flow.png" alt="drawing" width="400"/>
 </p>
 
-Using `autograd`, let's now find the gradient of this arbitrary function. We don't have a vectorized function in this case, because of the control flow, so let's also create a function to calculate the gradient using `autograd`.
+Using `autograd`, let's now find the gradient of this arbritrary function. We don't have a vectorized function in this case, because of the control flow, so let's also create a function to calculate the gradient using `autograd`.
 
-```{.python .input  n=11}
+```
 def get_grad(f, x):
     x.attach_grad()
     with autograd.record():
@@ -223,17 +238,22 @@ grads = [get_grad(f, x).asscalar() for x in xs]
 print(grads)
 ```
 
+```
+[0.0, 0.2, 0.40000001, 0.60000002, 0.80000001, 0.75, 1.08, 1.372, 0.0, 0.0]
+```
+
 <p align="center">
     <img src="./imgs/autograd_control_flow_grad.png" alt="drawing" width="400"/>
 </p>
 
 We can calculate the gradients by hand in this situation (since it's a toy example), and for the four segments discussed before we'd expect $2x$, $3x^2$, $4x^3$ and 0. As a spot check, for $x=0.6$ the hand calculated gradient would be $3x^2=1.08$, which equals `1.08` as computed by `autograd`.
 
+
 ## Advanced: Custom head gradients
 
 Most of the time `autograd` will be aware of the complete computational graph, and be able to calculate the gradients automatically. On a few rare occasions, you might have external post processing components (outside of MXNet Gluon) but still want to compute gradients with respect to MXNet Gluon network parameters.
 
-`autograd` enables this functionality by letting you pass in custom head gradients to `.backward()`. When nothing is specified (for the majority of cases), `autograd` will just use ones by default. Say we're interested in calculating $dz/dx$ but only calculate an intermediate variable $y$ using MXNet Gluon. We need to first calculate the head gradient $dz/dy$ (manually or otherwise), and then pass this to `.backward()`. `autograd` will then use this to calculate $dz/dx$, applying the chain rule.
+`autograd` enables this functionality by letting you pass in custom head gradients to `.backward()`. When nothing is specified (for the majority of cases), `autograd` will just used ones by default. Say we're interested in calculating $dz/dx$ but only calculate an intermediate variable $y$ using MXNet Gluon. We need to first calculate the head gradient $dz/dy$ (manually or otherwise), and then pass this to `.backward()`. `autograd` will then use this to calculate $dz/dx$, applying the chain rule.
 
 <p align="center">
     <video width="400" controls playsinline autoplay muted loop>
@@ -243,10 +263,11 @@ Most of the time `autograd` will be aware of the complete computational graph, a
 
 As an example, let's take $y=x^3$ (calculated with `mxnet`) and $z=y^2$. (calculated with `numpy`). We can manually calculate $dz/dy=2y$ (once again with `numpy`), and use this as the head gradient for `autograd` to automatically calculate $dz/dx$. Applying the chain rule by hand we could calculate $dz/dx=6x^5$, so for $x=2$ we expect $dz/dx=192$. Let's check to see whether `autograd` calculates the same.
 
-```{.python .input  n=12}
+```
+
 x = mx.nd.array([2,])
 x.attach_grad()
-# compute y inside of mxnet (with autograd)
+# compute y inside of mxnet (with `autograd`)
 with autograd.record():
     y = x**3
 # compute dz/dy outside of mxnet
@@ -257,4 +278,9 @@ dzdy_np = 2*y_np
 dzdy = mx.nd.array(dzdy_np)
 y.backward(dzdy)
 print(x.grad)
+```
+
+```
+[ 192.]
+<NDArray 1 @cpu(0)>
 ```
