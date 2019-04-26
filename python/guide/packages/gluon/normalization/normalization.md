@@ -18,7 +18,7 @@ One of the first applications of normalization is on the input data to the netwo
 * **Step 1** is to calculate the mean and standard deviation of the entire training dataset. You'll usually want to do this for each channel separately. Sometimes you'll see normalization on images applied per pixel, but per channel is more common.
 * **Step 2** is to use these statistics to normalize each batch for training and for inference too.
 
-Tip: A `BatchNorm` layer at the start of your network will have a similar effect (see next section). You won't need to manually calculate and keep track of the normalization statictics.
+Tip: A `BatchNorm` layer at the start of your network can have a similar effect (see 'Beta and Gamma' section for details on how this can be achieved). You won't need to manually calculate and keep track of the normalization statistics.
 
 Warning: You should calculate the normalization means and standard deviations using the training dataset only. Any leakage of information from you testing dataset will effect the reliability of your testing metrics.
 
@@ -53,7 +53,7 @@ Figure 1: `BatchNorm` on NCHW data | Figure 2: `BatchNorm` on NTC data
 ![alt](./imgs/NCHW_BN.png) | ![alt](./imgs/NTC_BN.png)
 (e.g. batch of images) using the default of `axis=1` | (e.g. batch of sequences) overriding the default with `axis=2` (or `axis=-1`)
 
-One of the most popular normalization techniques is batch normalization (often called BatchNorm). We normalize the activations **across all samples in a batch** for each of the channels independently. See Figure 1. We calculate two batch (or local) statistics for every channel to perform the normalization: the mean and variance of the activations in that channel for all samples in a batch. And we use these to shift and scale respectively.
+One of the most popular normalization techniques is Batch Normalization, usually called BatchNorm for short. We normalize the activations **across all samples in a batch** for each of the channels independently. See Figure 1. We calculate two batch (or local) statistics for every channel to perform the normalization: the mean and variance of the activations in that channel for all samples in a batch. And we use these to shift and scale respectively.
 
 Tip: we can use this at the start of a network to perform data normalization, although this is not exactly equivalent to the data normalization example seen above (that had fixed normalization statistics). With `BatchNorm` the normalization statistics depend on the batch, so could change each batch, and there can also be a post-normalization shift and scale.
 
@@ -144,11 +144,9 @@ print('running_vars:', net.running_var.data().asnumpy())
 
 #### Beta and Gamma
 
-As mentioned previously, there are two additional parameters in `BatchNorm` which are trainable in the typical fashion (with gradients). `beta` is used to shift and `gamma` is used to scale the normalized distribution, which allows the network to 'undo' the effects of normalization if required. You can prevent `beta` shifting by setting `center=False`, and prevent `gamma` scaling by setting `scale=False` when initializing the `BatchNorm` block.
+As mentioned previously, there are two additional parameters in `BatchNorm` which are trainable in the typical fashion (with gradients). `beta` is used to shift and `gamma` is used to scale the normalized distribution, which allows the network to 'undo' the effects of normalization if required.
 
-Watch out: zero centering and scaling to unit variance will still occur when setting `center=False` and `scale=False`. Only post normalization shifting and scaling will prevented.
-
-Advanced: when setting `center=False` and `scale=False`, the `grad_req` property of both `beta` and `gamma` are set to `null`, so they aren't updated.
+Advanced: Sometimes used for input normalization, you can prevent `beta` shifting and `gamma` scaling by setting the learning rate multipler (i.e. `lr_mult`) of these parameters to 0. Zero centering and scaling to unit variance will still occur, only post normalization shifting and scaling will prevented. See [this discussion post](https://discuss.mxnet.io/t/mxnet-use-batch-norm-for-input-scaling/3581/3) for details.
 
 We haven't updated these parameters yet, so they should still be as initialized. You can see the default for `beta` is 0 (i.e. not shift) and `gamma` is 1 (i.e. not scale), so the initial behaviour is to keep the distribution unit normalized.
 
