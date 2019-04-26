@@ -22,7 +22,7 @@ Tip: A `BatchNorm` layer at the start of your network can have a similar effect 
 
 Warning: You should calculate the normalization means and standard deviations using the training dataset only. Any leakage of information from you testing dataset will effect the reliability of your testing metrics.
 
-When using pre-trained models from the [Gluon Model Zoo](https://mxnet.incubator.apache.org/api/python/gluon/model_zoo.html) you'll usually see the normalization statistics used for training (i.e. statistics from Step 1). You'll want to use these statistics to normalize your own input data for fine-tuning or inference with these models. Using `transforms.Normalize` is one way of applying the normalization, and this should be used in the `Dataset`.
+When using pre-trained models from the [Gluon Model Zoo](https://mxnet.incubator.apache.org/api/python/gluon/model_zoo.html) you'll usually see the normalization statistics used for training (i.e. statistics from step 1). You'll want to use these statistics to normalize your own input data for fine-tuning or inference with these models. Using `transforms.Normalize` is one way of applying the normalization, and this should be used in the `Dataset`.
 
 ```python
 import mxnet as mx
@@ -50,7 +50,7 @@ Advanced: all of the following methods begin by normalizing certain input distri
 
 Figure 1: `BatchNorm` on NCHW data | Figure 2: `BatchNorm` on NTC data 
 - | - 
-![alt](./imgs/NCHW_BN.png) | ![alt](./imgs/NTC_BN.png)
+![](./imgs/NCHW_BN.png) | ![](./imgs/NTC_BN.png)
 (e.g. batch of images) using the default of `axis=1` | (e.g. batch of sequences) overriding the default with `axis=2` (or `axis=-1`)
 
 One of the most popular normalization techniques is Batch Normalization, usually called BatchNorm for short. We normalize the activations **across all samples in a batch** for each of the channels independently. See Figure 1. We calculate two batch (or local) statistics for every channel to perform the normalization: the mean and variance of the activations in that channel for all samples in a batch. And we use these to shift and scale respectively.
@@ -174,7 +174,7 @@ output = net(data)
 print(output)
 ```
 
-# Layer Normalization
+## Layer Normalization
 
 An alternative to `BatchNorm` that is better suited to recurrent networks (RNNs) is called `LayerNorm`. Unlike `BatchNorm` which normalizes across all samples of a batch per channel, `LayerNorm` normalizes **across all channels of a single sample**.
 
@@ -188,7 +188,7 @@ Remember: `LayerNorm` is intended to be used with data in NTC format so the defa
 
 Figure 3: `LayerNorm` on NCHW data | Figure 4: `LayerNorm` on NTC data 
 - | - 
-![alt](./imgs/NCHW_LN.png) | ![alt](./imgs/NTC_LN.png)
+![](./imgs/NCHW_LN.png) | ![](./imgs/NTC_LN.png)
 (e.g. batch of images) overriding the default with `axis=1` | (e.g. batch of sequences) using the default of `axis=-1`
 
 As an example, we'll apply `LayerNorm` to a batch of 2 samples, each with 4 time steps and 2 channels (in NTC format).
@@ -227,7 +227,7 @@ Watch out: `InstanceNorm` is better suited to convolutional networks (CNNs) than
 
 Figure 3: `InstanceNorm` on NCHW data | Figure 4: `InstanceNorm` on NTC data 
 - | - 
-![alt](./imgs/NCHW_IN.png) | ![alt](./imgs/NTC_IN.png)
+![](./imgs/NCHW_IN.png) | ![](./imgs/NTC_IN.png)
 (e.g. batch of images) using the default `axis=1` | (e.g. batch of sequences) overiding the default with `axis=2` (or `axis=-1` equivalently)
 
 As an example, we'll apply `InstanceNorm` to a batch of 2 samples, each with 2 channels, and both height and width of 2 (in NCHW format).

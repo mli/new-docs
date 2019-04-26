@@ -1,14 +1,14 @@
 # Automatic Differentiation
 
-### Why do we need to calculate gradients?
+## Why do we need to calculate gradients?
 
-#### Short Answer:
+### Short Answer:
 
 Gradients are fundamental to the process of training neural networks, and tell us how to change the parameters of the network to improve its performance.
 
 <p align="center"><img src="./imgs/autograd_gradient.png" alt="drawing" width="600"/></p>
 
-#### Long Answer:
+### Long Answer:
 
 Under the hood, neural networks are composed of operators (e.g. sums, products, convolutions, etc) some of which use parameters (e.g. the weights in convolution kernels) for their computation, and it's our job to find the optimal values for these parameters. Gradients lead us to the solution!
 
@@ -18,7 +18,7 @@ Assuming we've calculated the gradient of each parameter with respect to the los
 
 ## How do we calculate gradients?
 
-#### Short Answer:
+### Short Answer:
 
 We differentiate. [MXNet Gluon](http://beta.mxnet.io/api/gluon/index.html) uses Reverse Mode Automatic Differentiation (`autograd`) to backprogate gradients from the loss metric to the network parameters.
 
@@ -26,7 +26,7 @@ We differentiate. [MXNet Gluon](http://beta.mxnet.io/api/gluon/index.html) uses 
     <img src="./imgs/autograd_forward_backward.png" alt="drawing" width="600"/>
 </p>
 
-#### Long Answer:
+### Long Answer:
 
 One option would be to get out our calculus books and work out the gradients by hand. Who wants to do this though? It's time consuming and error prone for starters. Another option is [symbolic differentiation](https://www.cs.utexas.edu/users/novak/asg-symdif.html), which calculates the formulas for each gradient, but this quickly leads to incredibly long formulas as networks get deeper and operators get more complex. We could use finite differencing, and try slight differences on each parameter and see how the loss metric responds, but this is computationally expensive and can have poor [numerical precision](https://en.wikipedia.org/wiki/Finite_difference_coefficient).
 
@@ -34,7 +34,7 @@ What's the solution? Use automatic differentiation to backpropagate the gradient
 
 ## How does Automatic Differentiation (`autograd`) work?
 
-#### Short Answer:
+### Short Answer:
 
 Stage 1. Create a record of the operators used by the network to make predictions and calculate the loss metric. Called the 'forward pass' of training.
 Stage 2. Work backwards through this record and evaluate the partial derivatives of each operator, all the way back to the network parameters. Called the 'backward pass' of training.
@@ -45,7 +45,7 @@ Stage 2. Work backwards through this record and evaluate the partial derivatives
     </video>
 </p>
 
-#### Long Answer:
+### Long Answer:
 
 All operators in MXNet have two methods defined: a `forward` method for executing the operator as expected, and a `backward` method that returns the partial derivative (the derivative of the output with respect to the input). On the vary rare occasion you need to implement your own custom operator, you'll define the same two methods.
 
@@ -53,13 +53,13 @@ Automatic differentiation creates a record of the operators used (i.e. the `forw
 
 Automatic differentiation then works backwards through each operator of the graph, calling the `backward` method on each operator to calculate the partial derivative and calculate the gradient of the loss metric with respect to the operator's input (which could be parameters). Usually we work backwards from the loss metric, and hence calculate the gradients of the loss metric, but this can be done from any output. We call this the 'backward pass' of training.
 
-### What are the advantages of Automatic Differentiation (`autograd`)?
+## What are the advantages of Automatic Differentiation (`autograd`)?
 
-#### Short Answer:
+### Short Answer:
 
 It's flexible, automatic and efficient. You can use native Python control flow operators such as `if` conditions and `while` loops and `autograd` will still be able to backpropogate the gradients correctly.
 
-#### Long Answer:
+### Long Answer:
 
 A huge benefit of using `autograd` is the flexibility it gives you when defining your network. You can change the operations on every iteration, and `autograd` will still be able to backpropogate the gradients correctly. You'll sometimes hear these called 'dynamic graphs', and are much more complex to implement in frameworks that require static graphs, such as TensorFlow.
 

@@ -45,7 +45,7 @@ Packages & Modules
 
    .. card::
       :title: Autograd API
-      :link: packages/autograd.html
+      :link: packages/autograd/autograd.html
 
       How to use Automatic Differentiation with the Autograd API.
 
