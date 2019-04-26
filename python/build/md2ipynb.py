@@ -14,7 +14,7 @@ def md2ipynb():
     do_eval = int(os.environ.get('EVAL', True))
 
     reader = notedown.MarkdownReader(match='strict')
-    with open(input_fn, 'r') as f:
+    with open(input_fn, 'r', encoding="utf8") as f:
         notebook = reader.read(f)
     if do_eval:
         tic = time.time()

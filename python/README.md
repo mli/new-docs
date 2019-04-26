@@ -1,10 +1,50 @@
 # Python binding docs
 
+The following guide will help you build a local version of the website,
+so that you may work on and test any contributions.
+
 ## Setup
 
-You need to have CUDA 9.0 installed. If you prefer to skip evaluation on GPUs, you can change `mxnet-cu90` into `mxnet` in the `environment.yml` file.
+The default configuration requires a GPU and CUDA 9.2 and expects Ubuntu.
+However, you may setup the website on macOS or Windows with or without a GPU.
 
-Run the following commands to setup the environment.
+### Prerequisites
+
+* [Conda](https://www.anaconda.com/distribution/#download-section) (install to PATH)
+
+### GPU setup
+To run the full build, including tests of all tutorials,
+**you will need at least two GPUs**.
+Distributed training is a key feature of MXNet,
+so multiple GPUs are required for running through every tutorial.
+* [CUDA 9.2](https://developer.nvidia.com/cuda-downloads)
+
+### CPU-only setup
+In the `environment.yml` file:
+* Change `mxnet-cu92` to `mxnet`.
+
+### macOS setup
+In the `environment.yml` file:
+* Change `mxnet-cu92` to `mxnet`. (There is no CUDA package for mac anyway.)
+* Change `pytorch-cpu` to `pytorch`.
+* Change `torchvision-cpu` to `torchvision`.
+
+### Windows Setup
+If you have a GPU and have installed CUDA 9.2 you can leave the MXNet dependency alone.
+Otherwise, in the `environment.yml` file:
+* Change `mxnet-cu92` to `mxnet`.
+
+Install recommended software:
+* [git bash](https://gitforwindows.org/)
+* Be sure to install `Conda` in `PATH`
+* Install `make` from a `git bash` terminal with Admin rights
+    - [Install chocolatey](https://chocolatey.org/install)
+    - Use `choco to install make`
+* Restart terminals after installations to make sure PATH is set.
+    - The `choco`, `make`, and `conda` commands should work in `git bash`.
+
+### Conda environment setup
+Run the following commands from the project root (`new-docs`) to setup the environment.
 
 ```bash
 conda env create -f environment.yml
@@ -13,7 +53,9 @@ source activate mxnet-docs
 
 ## Build the docs
 
-To build without testing the notebooks (faster):
+* Change directories to `new-docs/python`.
+
+To build without GPUs and without testing the notebooks (faster):
 
 ```bash
 make EVAL=0
@@ -34,12 +76,11 @@ Each build may take a few minutes even without evaluation. To accelerate it, we 
 
 ## Check results
 
-If you build docs in a remote machine, you can
+To run a server to see the website:
 
-1. start a http server: `cd build/_build/html; python -m http.server`
-2. ssh to your machine with port forwarding: `ssh -L8000:localhost:8000 your_machine`
+1. Start a http server: `cd build/_build/html; python -m http.server`
+2. For viewing a remote machine, ssh to your machine with port forwarding: `ssh -L8000:localhost:8000 your_machine`
 3. Open http://localhost:8000 in your local machine
-
 
 ## Run tutorials
 
