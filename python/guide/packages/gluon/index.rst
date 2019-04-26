@@ -64,12 +64,25 @@ Training
 
       How to use the Learning Rate Scheduler.
 
+   ..
+      .. card::
+         :title: Optimizer
+         :link: optimizer.html
+
+         How to use optimizer.
+   ..
+
    .. card::
       :title: Trainer
       :link: trainer.html
 
       How to update neural network parameters using an optimization method.
 
+   .. card::
+      :title: Autograd API
+      :link: ../autograd.html
+
+      How to use Automatic Differentiation with the Autograd API.
 
 Advanced Topics
 ---------------
@@ -115,14 +128,18 @@ Applications Topics
 
 .. toctree::
    :hidden:
+   :maxdepth: 1
 
-   custom-layer
+   ../../crash-course
    data
-   hybridize
-   init
    image-augmentation
-   loss
-   naming
    nn
+   loss
+   init
    parameters
    trainer
+   naming
+   custom-layer
+   hybridize
+   image/index
+   text/index

@@ -1,5 +1,5 @@
-Gotchas using NumPy in Apache MXNet
-===================================
+Tuning NumPy Operations
+=======================
 
 The goal of this tutorial is to explain some common misconceptions about
 using `NumPy <http://www.numpy.org/>`__ arrays in Apache MXNet. We are

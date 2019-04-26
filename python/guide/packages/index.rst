@@ -1,7 +1,10 @@
-Modules
-=======
+Packages
+========
 
 The documents in this unit dive into the details how each MXNet module works.
+
+High Level APIs
+---------------
 
 .. container:: cards
 
@@ -9,7 +12,13 @@ The documents in this unit dive into the details how each MXNet module works.
       :title: Gluon
       :link: gluon/index.html
 
-      MXNet's imperative interface for Python.
+      MXNet's imperative interface for Python. If you're new to MXNet, start here!
+
+
+Shared APIs
+-----------
+
+.. container:: cards
 
    .. card::
       :title: NDArray API
@@ -17,6 +26,12 @@ The documents in this unit dive into the details how each MXNet module works.
 
       How to use the NDArray API to manipulate data.
       A useful set of tutorials for beginners.
+
+   .. card::
+      :title: Symbol API
+      :link: symbol/index.html
+
+      How to use MXNet's Symbol API.
 
    .. card::
       :title: Autograd API
@@ -30,6 +45,25 @@ The documents in this unit dive into the details how each MXNet module works.
 
       How to use the Learning Rate Scheduler.
 
+   ..
+      .. card::
+         :title: Optimizer
+         :link: optimizer.html
+
+         How to use optimizer.
+   ..
+
+Old APIs
+--------
+Currently supported, but not recommended APIs.
+
+.. container:: cards
+
+   .. card::
+      :title: Module
+      :link: module/index.html
+
+      MXNet's symbolic interface for Python.
 
 
 .. toctree::
@@ -37,6 +71,7 @@ The documents in this unit dive into the details how each MXNet module works.
 
    gluon/index
    ndarray/index
+   symbol/index
    autograd
    lr_scheduler
 

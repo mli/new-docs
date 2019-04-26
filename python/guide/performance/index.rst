@@ -20,7 +20,7 @@ Essential
       How to profile MXNet models.
 
    .. card::
-      :title: Tuning Numpy Operations
+      :title: Tuning NumPy Operations
       :link: numpy.html
 
       Gotchas using NumPy in MXNet.
@@ -41,29 +41,31 @@ Compression
 
    .. card::
       :title: Compression: float16
-      :link: float16.html
+      :link: compression/float16.html
 
       How to use float16 in your model to boost training speed.
 
    .. card::
-      :title: Compression: int8
-      :link: index.html
-
-      How to use int8 in your model to boost training speed.
-
-   .. card::
       :title: Gradient Compression
-      :link: gradient_compression.html
+      :link: compression/gradient_compression.html
 
       How to use gradient compression to reduce communication bandwidth and increase speed.
+   ..
+      .. card::
+         :title: Compression: int8
+         :link: index.html
 
-.. toctree::
-   :hidden:
-   :maxdepth: 1
+         How to use int8 in your model to boost training speed.
+   ..
 
-   float16
-   int8
-   gradient_compression
+   ..
+      TBD Content
+      .. card::
+         :title: Compression: int8
+         :link: compression/int8.html
+
+         How to use int8 in your model to boost training speed.
+   ..
 
 Accelerated Backend
 -------------------
@@ -71,28 +73,29 @@ Accelerated Backend
 .. container:: cards
 
    .. card::
-      :title: MKL-DNN
-      :link: mkl-dnn.html
-
-      How to get the most from your CPU by using Intel's MKL-DNN.
-
-   .. card::
       :title: TensorRT
-      :link: index.html
+      :link: backend/tensorRt.html
 
       How to use NVIDIA's TensorRT to boost inference performance.
 
-   .. card::
-      :title: TVM
-      :link: tvm.html
+   ..
+      TBD Content
+      .. card::
+         :title: MKL-DNN
+         :link: backend/mkl-dnn.html
 
-      How to use TVM to boost performance.
+         How to get the most from your CPU by using Intel's MKL-DNN.
 
+      .. card::
+         :title: TVM
+         :link: backend/tvm.html
+
+         How to use TVM to boost performance.
+   ..
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   mkl-dnn
-   tensorRt
-   tvm
+   compression/index
+   backend/index
