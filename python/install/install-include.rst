@@ -25,17 +25,17 @@
 
             .. card::
                :title: Installation Guide
-               :link: install-pi.html
+               :link: /install/install-pi.html
 
-                  How to install MXNet on a Raspberry Pi 3.
+               How to install MXNet on a Raspberry Pi 3.
 
          .. container:: jetson
 
             .. card::
                :title: Installation Guide
-               :link: install-jetson.html
+               :link: /install/install-jetson.html
 
-                  How to install MXNet on a Jetson TX.
+               How to install MXNet on a Jetson TX.
 
    .. container:: cloud
 
