@@ -5,7 +5,7 @@ Apache MXNet (incubating) Documents
    :maxdepth: 1
    :hidden:
 
-   install
+   install/index
    guide/index
    api/index
    ecosystem
