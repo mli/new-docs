@@ -21,15 +21,21 @@
          :act:`Raspberry Pi`
          :opt:`Jetson`
 
-      .. admonition:: Installation Guides:
-
          .. container:: raspberry-pi
 
-               - :link: install-pi.html
+            .. card::
+               :title: Installation Guide
+               :link: install-pi.html
+
+                  How to install MXNet on a Raspberry Pi 3.
 
          .. container:: jetson
 
-               - :link: install-jetson.html
+            .. card::
+               :title: Installation Guide
+               :link: install-jetson.html
+
+                  How to install MXNet on a Jetson TX.
 
    .. container:: cloud
 
