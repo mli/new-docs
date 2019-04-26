@@ -91,7 +91,8 @@ class MLP(nn.Block):
     # required model output based on the input x.
 
     def forward(self, x):
-        return self.output(self.hidden(x))
+        hidden_out = self.hidden(x)
+        return self.output(hidden_out)
 ```
 
 Let's look at it a bit more closely. The `forward` method invokes a network
@@ -102,11 +103,11 @@ forward pass of this block.
 In order for the block to know what it needs to evaluate, we first need to
 define the layers. This is what the `__init__` method does. It first
 initializes all of the Block-related parameters and then constructs the
-requisite layers. This attached the coresponding layers and the required
+requisite layers. This attaches the coresponding layers and the required
 parameters to the class. Note that there is no need to define a backpropagation
 method in the class. The system automatically generates the `backward` method
-needed for back propagation by automatically finding the gradient. The same
-applies to the `initialize` method, which is generated automatically. Let's try
+needed for back propagation by automatically finding the gradient (see the guide on [autograd](guide/packages/autograd.html)). The same
+applies to the [`initialize`](/api/gluon/_autogen/mxnet.gluon.nn.Block.initialize.html) method, which is generated automatically. Let's try
 this out:
 
 ```{.python .input  n=2}
@@ -115,7 +116,7 @@ net.initialize()
 net(x)
 ```
 
-As explained above, the block class can be quite versatile in terms of what it
+As explained above, the `Block` class can be quite versatile in terms of what it
 does. For instance, its subclass can be a layer (such as the `Dense` class
 provided by Gluon), it can be a model (such as the `MLP` class we just derived),
 or it can be a part of a model (this is what typically happens when designing
@@ -124,16 +125,16 @@ great flexibility.
 
 ## A Sequential Block
 
-The Block class is a generic component describing dataflow. In fact, the
-Sequential class is derived from the Block class: when the forward computation
-of the model is a simple concatenation of computations for each layer, we can
-define the model in a much simpler way.  The purpose of the Sequential class is
-to provide some useful convenience functions. In particular, the `add` method
-allows us to add concatenated Block subclass instances one by one, while the
-forward computation of the model is to compute these instances one by one in
-the order of addition.  Below, we implement a `MySequential` class that has the
-same functionality as the Sequential class.  This may help you understand more
-clearly how the Sequential class works.
+The `Block` class is a generic component describing dataflow. In fact, the
+`Sequential` class is derived from the `Block` class: when the forward
+computation of the model is a simple concatenation of computations for each
+layer, we can define the model in a much simpler way.  The purpose of the
+`Sequential` class is to provide some useful convenience functions. In
+particular, the `add` method allows us to add concatenated `Block` subclass
+instances one by one, while the forward computation of the model is to compute
+these instances one by one in the order of addition.  Below, we implement a
+`MySequential` class that has the same functionality as the `Sequential` class.
+This may help you understand more clearly how the `Sequential` class works.
 
 ```{.python .input  n=3}
 class MySequential(nn.Block):
@@ -169,14 +170,15 @@ Indeed, it is no different than It can observed here that the use of the
 `MySequential` class is no different from the use of the Sequential class.
 
 
-## Blocks with Code
+## Coding with `Blocks`
 
 ### Blocks
-The `Sequential` class can make model construction easier and does not
-require you to define the `forward` method; however, directly inheriting from
-its parent class, `Block`, can greatly expand the flexibility of model
-construction. For example, implementing the `forward` method means you can
-introduce control flow in the network. 
+The [`Sequential`](/api/gluon/_autogen/mxnet.gluon.nn.Sequential.html) class
+can make model construction easier and does not require you to define the
+`forward` method; however, directly inheriting from
+its parent class, [`Block`](/api/gluon/mxnet.gluon.nn.Block.html), can greatly
+expand the flexibility of model construction. For example, implementing the
+`forward` method means you can introduce control flow in the network. 
 
 ### Constant parameters
 Now we'd like to introduce the notation of a *constant* parameter. These are
