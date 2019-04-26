@@ -1,6 +1,0 @@
-NDArray
-========
-
-.. toctree::
-
-   ndarray

@@ -2,6 +2,8 @@ name: mxnet-docs
 channels:
 - pytorch
 dependencies:
+- conda>=4.6.13
+- pip
 - python
 - jupyter
 - sphinx
@@ -11,6 +13,8 @@ dependencies:
 - pytorch-cpu
 - torchvision-cpu
 - pip:
+  # using nbconvert master until v5.5 comes out
+  - git+https://github.com/jupyter/nbconvert@master
   - nbsphinx
   - recommonmark
   - notedown
