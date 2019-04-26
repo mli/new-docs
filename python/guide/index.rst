@@ -8,13 +8,13 @@ Getting started
 
    .. card::
       :title: A 60-minute Gluon crash course
-      :link: crash-course/index.html
+      :link: getting-started/crash-course/index.html
 
       A quick overview of the core concepts of MXNet using the Gluon API.
 
    .. card::
       :title: Moving from other frameworks
-      :link: to-mxnet/index.html
+      :link: getting-started/to-mxnet/index.html
 
       Guides that ease your transition to MXNet from other framework.
 
