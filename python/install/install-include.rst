@@ -11,6 +11,31 @@
       :title:`Platform:`
       :act:`Local`
       :opt:`Cloud`
+      :opt:`Devices`
+
+   .. container:: devices
+
+      .. container:: opt-group
+
+         :title:`Device:`
+         :act:`Raspberry Pi`
+         :opt:`Jetson`
+
+         .. container:: raspberry-pi
+
+            .. card::
+               :title: Installation Guide
+               :link: /install/install-pi.html
+
+               How to install MXNet on a Raspberry Pi 3.
+
+         .. container:: jetson
+
+            .. card::
+               :title: Installation Guide
+               :link: /install/install-jetson.html
+
+               How to install MXNet on a Jetson TX.
 
    .. container:: cloud
 
@@ -179,4 +204,4 @@
 .. raw:: html
 
    <style>.disabled { display: none; }</style>
-   <script type="text/javascript" src='_static/install-options.js'></script>
+   <script type="text/javascript" src='../_static/install-options.js'></script>
