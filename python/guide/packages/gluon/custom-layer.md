@@ -4,7 +4,7 @@
 
 One of the reasons for the success of deep learning can be found in the wide range of re-usable layers that can be used in a deep network. This allows for a tremendous degree of customization and adaptation. Sooner or later you will encounter a layer that doesn't exist yet in Gluon or one that you want to create. This is when it's time to build a custom layer. This section shows you how.
 
-Defining a layer is as easy as subclassing [`nn.Block`](/api/gluon/mxnet.gluon.nn.Block.html#mxnet.gluon.nn.Block) or [`nn.HybridBlock`](api/gluon/mxnet.gluon.nn.HybridBlock.html#mxnet.gluon.nn.HybridBlock) and implementing `forward` or `hybrid_forward`, respectively. To take advantage of the performance gains with `nn.HybridBlock` see the section on [Hybridization](hybridize.html). 
+Defining a layer is as easy as subclassing [`nn.Block`](/api/gluon/mxnet.gluon.nn.Block.html#mxnet.gluon.nn.Block) or [`nn.HybridBlock`](/api/gluon/mxnet.gluon.nn.HybridBlock.html#mxnet.gluon.nn.HybridBlock) and implementing `forward` or `hybrid_forward`, respectively. To take advantage of the performance gains with `nn.HybridBlock` see the section on [Hybridization](hybridize.html). 
 
 Note that we've gone through rationale for defining layers, but `nn.Block`'s work even for non-sequential network. In fact, you can use a `Block` to encapsualte any re-usable architecture you want.
 
