@@ -1,7 +1,9 @@
 all: html
 
 # markdown files that will not be evaluated, simply copy to build/
-PURE_MARKDOWN = ./README.md $(wildcard ./blog/*.md)
+PURE_MARKDOWN = 	./README.md \
+						$(wildcard ./blog/*.md) \
+						$(wildcard ./install/*.md)
 # markdown files that will be evaluated and then saved as ipynb files
 IPYNB_MARKDOWN = $(shell find . -not -path "./build/*" -name "*.md" | sort -h)
 # RST files will be simply coped to build/
