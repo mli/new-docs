@@ -25,11 +25,11 @@
 
          .. container:: raspberry-pi
 
-               - :doc:`install-pi`
+               - :link: install-pi.html
 
          .. container:: jetson
 
-               - :doc:`install-jetson`
+               - :link: install-jetson.html
 
    .. container:: cloud
 
