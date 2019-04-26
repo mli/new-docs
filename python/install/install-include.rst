@@ -198,4 +198,4 @@
 .. raw:: html
 
    <style>.disabled { display: none; }</style>
-   <script type="text/javascript" src='_static/install-options.js'></script>
+   <script type="text/javascript" src='../_static/install-options.js'></script>
