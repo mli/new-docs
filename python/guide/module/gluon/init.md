@@ -26,8 +26,8 @@ example.
 
 ## Instantiating a Network
 
-Let's see what happens when we instantiate a network. We start with our
-trusty multilayer perceptron as before.
+Let's see what happens when we instantiate a network. We start a 
+multilayer perceptron.
 
 ```{.python .input}
 from mxnet import init, nd
@@ -48,7 +48,6 @@ layer needs weights and bias, albeit of unspecified dimensionality. If we try
 accessing the parameters, that's exactly what happens.
 
 ```{.python .input}
-print(net.collect_params)
 print(net.collect_params())
 ```
 
@@ -73,13 +72,12 @@ some data do we see a difference. Let's try it out.
 
 ```{.python .input}
 x = nd.random.uniform(shape=(2, 20))
-net(x)            # Forward computation.
-
-net.collect_params()
+net(x)  # Forward computation
+print(net.collect_params())
 ```
 
 We see all the dimensions have been determined and the parameters initialized.
-This is because dimensional inference and parameter initialization have been
+This is because shape inference and parameter initialization have been
 performed in a lazy manner, so they are performed only when needed. In the
 above case, they are performed as a prerequisite to the forward computation.
 
@@ -99,16 +97,16 @@ solution to the three problems outlined above.
 Now that we know how it works in theory, let's see when the initialization is
 actually triggered. In order to do so, we mock up an initializer which does
 nothing but report a debug message stating when it was invoked and with which
-paramers.
+parameters.
 
 ```{.python .input  n=22}
-class MyInit(init.Initializer):
+class PrintInit(init.Initializer):
     def _init_weight(self, name, data):
         print('Init', name, data.shape)
         # The actual initialization logic is omitted here.
 
 net = getnet()
-net.initialize(init=MyInit())
+net.initialize(init=PrintInit())
 ```
 
 Note that, although `MyInit` will print information about the model parameters
@@ -149,7 +147,7 @@ Deferred initialization does not occur if the system knows the shape of all
 parameters when calling the `initialize` function. This can occur in two cases:
 
 * We've already seen some data and we just want to reset the parameters.
-* We specificed all input and output dimensions of the network when defining it.
+* We specified all input and output dimensions of the network or layer when defining it.
 
 The first case works just fine, as illustrated below.
 
@@ -172,14 +170,12 @@ net.initialize(init=MyInit())
 
 ## Parameter Initialization
 
-Now that we know how to access the parameters, let's look at how to initialize
-them properly. By default, MXNet initializes the weight matrices
-uniformly by drawing random values with uniform-distribution between $-0.07$
-and $0.07$ ($U[-0.07, 0.07]$) and updates the bias parameters by setting them
-all to $0$.  However, we often need to use other methods to initialize the
-weights.  MXNet's `init` module provides a variety of preset initialization
-methods, but if we want something out of the ordinary, we need a bit of extra
-work.
+By default, MXNet initializes the weight matrices uniformly by drawing random
+values with uniform-distribution between $-0.07$ and $0.07$ ($U[-0.07, 0.07]$)
+and updates the bias parameters by setting them all to $0$.  However, we often
+need to use other methods to initialize the weights.  MXNet's `init` module
+provides a variety of preset initialization methods, but if we want something
+out of the ordinary, we need a bit of extra work.
 
 ### Built-in Initialization
 
@@ -187,10 +183,10 @@ Let's begin with the built-in initializers. The code below initializes all
 parameters with Gaussian random variables.
 
 ```{.python .input  n=9}
-# force_reinit ensures that the variables are initialized again, regardless of whether they were
-# already initialized previously.
+# force_reinit ensures that the variables are initialized again, regardless of
+# whether they were already initialized previously.
 net.initialize(init=init.Normal(sigma=0.01), force_reinit=True)
-net[0].weight.data()[0]
+print(net[0].weight.data()[0])
 ```
 
 If we wanted to initialize all parameters to $1$, we could do this simply by
@@ -202,9 +198,9 @@ net[0].weight.data()[0]
 ```
 
 If we want to initialize only a specific parameter in a different manner, we
-can simply set the initializer only for the appropriate subblock (or parameter)
-for that matter. For instance, below we initialize the second layer to a
-constant value of $42$ and we use the `Xavier` initializer for the weights of the
+can simply set the initializer only for the appropriate subblock (or
+parameter). For instance, below we initialize the second layer to a constant
+value of $42$ and we use the `Xavier` initializer for the weights of the
 first layer.
 
 ```{.python .input  n=11}
