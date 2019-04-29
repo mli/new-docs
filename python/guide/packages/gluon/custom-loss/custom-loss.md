@@ -1,7 +1,6 @@
-
 # Custom Loss Blocks
 
-A critical component of training neural networks is the loss function. A loss function is a quantative measure of how bad the predictions of the network are when compared to ground truth labels. Given this score, a network can improve by iteratively updating its weights to minimise this loss. Some tasks use a combination of multiple loss functions, but often you'll just use one. MXNet Gluon provides a number of the most commonly used loss functions, and you'll choose certain functions depending on your network and task. Some common task and loss function pairs include:
+All neural networks need a loss function for training. A loss function is a quantative measure of how bad the predictions of the network are when compared to ground truth labels. Given this score, a network can improve by iteratively updating its weights to minimise this loss. Some tasks use a combination of multiple loss functions, but often you'll just use one. MXNet Gluon provides a number of the most commonly used loss functions, and you'll choose certain functions depending on your network and task. Some common task and loss function pairs include:
 
 - Regression: [L1Loss](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.L1Loss.html), [L2Loss](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.L2Loss.html) 
 - Classification: [SigmoidBinaryCrossEntropyLoss](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.SigmoidBinaryCrossEntropyLoss.html), [SoftmaxBinaryCrossEntropyLoss](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.SoftmaxBinaryCrossEntropyLoss.html) 
