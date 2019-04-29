@@ -35,7 +35,7 @@ Shared APIs
 
    .. card::
       :title: Autograd API
-      :link: autograd.html
+      :link: autograd/autograd.html
 
       How to use Automatic Differentiation with the Autograd API.
 
@@ -72,7 +72,7 @@ Currently supported, but not recommended APIs.
    gluon/index
    ndarray/index
    symbol/index
-   autograd
+   autograd/autograd
    lr_scheduler
 
 
