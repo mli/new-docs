@@ -1,5 +1,5 @@
 stage("Document") {
-  node {
+  node("linux-gpu") {
     ws('workspace/mxnet-new-docs') {
       checkout scm
       sh "conda env update -f environment.yml"
