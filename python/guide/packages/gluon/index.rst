@@ -90,7 +90,7 @@ Advanced Topics
 .. container:: cards
 
    .. card::
-      :title: Naming
+      :title: Ncaming
       :link: naming.html
 
       Best practices for the naming of things.
@@ -102,11 +102,28 @@ Advanced Topics
       A guide to implementing custom layers.
 
    .. card::
+      :title: Custom Layers for Beginners
+      :link: custom-layer.html
+
+      A guide to implementing custom layers for beginners.
+
+   .. card::
       :title: Hybridize
       :link: hybridize.html
 
       Speed up training with hybrid networks.
 
+   .. card::
+      :title: Custom Operators
+      :link: customop.html
+
+      Building custom operators with numpy.
+ 
+   .. card::
+      :title: Data Augmentation
+      :link: data_augmentation.html
+
+      A guide to data augmentation.
 
 Applications Topics
 -------------------
@@ -140,6 +157,9 @@ Applications Topics
    trainer
    naming
    custom-layer
+   custom_layer
+   data_augmentation
+   customop
    hybridize
    image/index
    text/index
