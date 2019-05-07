@@ -5,7 +5,7 @@ Apache MXNet (incubating) Documents
    :maxdepth: 1
    :hidden:
 
-   install
+   install/index
    guide/index
    api/index
    ecosystem
@@ -42,16 +42,16 @@ Apache MXNet (incubating) Documents
 Install
 -------
 
-.. Ignore prerequisite to make the index page concise, which will be shown at
+.. Ignore prerequisites to make the index page concise, which will be shown at
    the install page
 
 .. raw:: html
 
    <style>.admonition-prerequisite {display: none;}</style>
 
-.. include:: install-include.rst
+.. include:: install/install-include.rst
 
-Check :doc:`install` for more installation instructions and options.
+Check :doc:`install/index` for more installation instructions and options.
 
 Documents
 ---------

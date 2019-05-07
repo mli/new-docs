@@ -1,11 +1,11 @@
 
-## MXNet Activations Guide
+# Activation Blocks
 
 Deep neural networks are a way to express a nonlinear function with lots of parameters from input data to outputs. The nonlinearities that allow neural networks to capture complex patterns in data are referred to as activation functions. Over the course of the development of neural networks, several nonlinear activation functions have been introduced to make gradient-based deep learning tractable. 
 
 If you are looking to answer the question, 'which activation function should I use for my neural network model?', you should probably go with *ReLU*. Unless you're trying to implement something like a gating mechanism, like in LSTMs or GRU cells, then you should opt for sigmoid and/or tanh in those cells. However, if you have a working model architecture and you're trying to improve its performance by swapping out activation functions or treating the activation function as a hyperparameter, then you may want to try hand-designed activations like SELU or a function discovered by reinforcement learning and exhaustive search like Swish. This guide describes these activation functions and others implemented in MXNet in detail.
 
-### Visualizing Activations
+## Visualizing Activations
 In order to compare the various activation functions and to understand the nuances of their differences we have a snippet of code to plot the activation functions (used in the forward pass) and their gradients (used in the backward pass).
 
 
@@ -34,6 +34,7 @@ def visualize_activation(activation_fn):
 ## Sigmoids
 
 ### Sigmoid
+
 The sigmoid activation function, also known as the logistic function or logit function, is perhaps the most widely known activation owing to its [long history](https://web.stanford.edu/class/psych209a/ReadingsByDate/02_06/PDPVolIChapter8.pdf) in neural network training and appearance in logistic regression and kernel methods for classification. 
 
 The sigmoid activation is a non-linear function that transforms any real valued input to a value between 0 and 1, giving it a natural probabilistic interpretation. The sigmoid takes the form of the function below.
@@ -50,7 +51,7 @@ visualize_activation(mx.gluon.nn.Activation('sigmoid'))
 ```
 
 
-![png](images/sigmoid.png)
+![](images/sigmoid.png)
 
 
 The sigmoid activation has since fallen out of use as the preferred activation function in designing neural networks due to some of its properties, shown in the plot above, like not being zero-centered and inducing vanishing gradients, that leads to poor performance during neural network training. Vanishing gradients here refers to the tendency of the gradient of the sigmoid function to be nearly zero for most input values. 
@@ -78,7 +79,7 @@ visualize_activation(mx.gluon.nn.Activation('tanh'))
 ```
 
 
-![png](images/tanh.png)
+![](images/tanh.png)
 
 
 The use of tanh as activation functions in place of the logistic function was popularized by the success of the [LeNet architecture](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf) and the [methods paper](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf) by LeCun et al.
@@ -95,7 +96,7 @@ visualize_activation(mx.gluon.nn.Activation('softsign'))
 ```
 
 
-![png](images/softsign.png)
+![](images/softsign.png)
 
 
 The softsign function is not a commonly used activation with most neural networks and still suffers from the vanishing gradient problem as seen in the graph above.
@@ -117,7 +118,7 @@ visualize_activation(mx.gluon.nn.Activation('relu'))
 ```
 
 
-![png](images/relu.png)
+![](images/relu.png)
 
 
 As shown above, the ReLU activation mitigates the vanishing gradient problem associated with the sigmoid family of activations, by having a larger (infinite) range of values where its gradient is non-zero. However, one drawback of ReLU as an activation function is a phenomenon referred to as the 'Dying ReLU', where gradient-based parameter updates can happen in such a way that the gradient flowing through a ReLU unit is always zero and the connection is never activated. This can largely be addressed by ensuring that the tuning the learning rate to ensure that it's not set too large when training ReLU networks.
@@ -136,7 +137,7 @@ visualize_activation(mx.gluon.nn.Activation('softrelu'))
 ```
 
 
-![png](images/softrelu.png)
+![](images/softrelu.png)
 
 
 ### Leaky ReLU
@@ -158,7 +159,7 @@ visualize_activation(mx.gluon.nn.LeakyReLU(0.05))
 ```
 
 
-![png](images/leakyrelu.png)
+![](images/leakyrelu.png)
 
 
 As shown in the graph, the LeakyReLU's gradient is non-zero everywhere, in an attempt to address the ReLU's gradient being zero for all negative values.
@@ -174,7 +175,7 @@ visualize_activation(prelu)
 ```
 
 
-![png](images/prelu.png)
+![](images/prelu.png)
 
 
 The activation function and activation gradient of PReLU have the same shape as LeakyRELU.
@@ -196,7 +197,7 @@ visualize_activation(mx.gluon.nn.ELU())
 ```
 
 
-![png](images/elu.png)
+![](images/elu.png)
 
 
 ### SELU
@@ -217,7 +218,7 @@ visualize_activation(mx.gluon.nn.SELU())
 ```
 
 
-![png](images/selu.png)
+![](images/selu.png)
 
 
 ### Swish
@@ -235,4 +236,4 @@ visualize_activation(mx.gluon.nn.Swish())
 ```
 
 
-![png](images/swish.png)
+![](images/swish.png)

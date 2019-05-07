@@ -15,7 +15,7 @@ dependencies:
 - pip:
   # using nbconvert master until v5.5 comes out
   - git+https://github.com/jupyter/nbconvert@master
-  - nbsphinx
+  - nbsphinx>=0.4.2
   - recommonmark
   - notedown
   - mxnet-cu92==1.5.0b20190101

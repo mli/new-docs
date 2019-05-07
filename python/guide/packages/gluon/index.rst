@@ -41,6 +41,18 @@ Training
       How to use Layers and Blocks.
 
    .. card::
+      :title: Normalization Blocks
+      :link: normalization/normalization.html
+
+      Understand usage of normalization layers (such as BatchNorm).
+
+   .. card::
+      :title: Activation Blocks
+      :link: activations/activations.html
+   
+      Understand usage of activation layers (such as ReLU).
+
+   .. card::
       :title: Loss Functions
       :link: loss.html
 
@@ -80,7 +92,7 @@ Training
 
    .. card::
       :title: Autograd API
-      :link: ../autograd.html
+      :link: ../autograd/autograd.html
 
       How to use Automatic Differentiation with the Autograd API.
 
@@ -106,6 +118,12 @@ Advanced Topics
       :link: custom_layer_beginners.html
 
       A guide to implementing custom layers for beginners.
+
+   .. card::
+      :title: Custom Loss
+      :link: custom-loss/custom-loss.html
+
+      A guide to implementing custom losses.
 
    .. card::
       :title: Hybridize
@@ -151,7 +169,10 @@ Applications Topics
    data
    image-augmentation
    nn
+   normalization/normalization
+   activations/activations
    loss
+   custom-loss/custom-loss
    init
    parameters
    trainer

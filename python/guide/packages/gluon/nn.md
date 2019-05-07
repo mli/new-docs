@@ -2,13 +2,27 @@
 
 <!-- adapted from diveintodeeplearning -->
 
-We start with a very simple block, namely the block for a
-multilayer perceptron. A common strategy would be to construct a two-layer
-network as follows:
+As network complexity increases, we move from designing single to entire layers
+of neurons. 
+
+Neural network designs like
+[ResNet-152](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
+have a fair degree of regularity. They consist of *blocks* of repeated (or at
+least similarly designed) layers; these blocks then form the basis of more
+complex network designs.
+
+In this section, we'll talk about how to write code that makes such blocks on
+demand, just like a Lego factory generates blocks which can be combined to
+produce terrific artifacts.
+
+We start with a very simple block, namely the block for a multilayer
+perceptron. A common strategy would be to construct a two-layer network as
+follows:
 
 ```{.python .input  n=1}
 from mxnet import nd
 from mxnet.gluon import nn
+
 
 x = nd.random.uniform(shape=(2, 20))
 
@@ -19,60 +33,66 @@ net.initialize()
 net(x)
 ```
 
-This generates a network with a hidden layer of 256 units, followed by a ReLu
-activation and another 10 units governing the output. In particular, we used the
-`nn.Sequential` constructor to generate an empty network into which we then
-inserted both layers. What exactly happens inside `nn.Sequential` has remained
-rather mysterious so far. In the following we will see that this really just
-constructs a block. These blocks can be combined into larger artifacts, often
-recursively.
+This generates a network with a hidden layer of $256$ units, followed by a ReLU
+activation and another $10$ units governing the output. In particular, we used
+the [`nn.Sequential`](/api/gluon/_autogen/mxnet.gluon.nn.Sequential.html#mxnet.gluon.nn.Sequential)
+constructor to generate an empty network into which we then inserted both
+layers. What exactly happens inside `nn.Sequential`
+has remained rather mysterious so far. In the following we will see that this
+really just constructs a block that is a container for other blocks. These
+blocks can be combined into larger artifacts, often recursively. The diagram
+below shows how:
 
-In the following we will explain the various steps needed to go
-from defining layers to defining blocks (of one or more layers). To get started
-we need a bit of reasoning about software. For most intents and purposes a block
-behaves very much like a fancy layer. That is, it provides the following
-functionality:
+![Blocks can be used recursively to form larger artifacts](blocks.svg)
 
-1. It needs to ingest data (the input).
-1. It needs to produce a
-meaningful output. This is typically encoded in what we will call the `forward`
-function. It allows us to invoke a block via `net(X)` to obtain the desired
-output. What happens behind the scenes is that it invokes `forward` to perform
-forward propagation.
-1. It needs to produce a gradient with regard to its input
-when invoking `backward`. Typically this is automatic.
-1. It needs to store
-parameters that are inherent to the block. For instance, the block above
-contains two hidden layers, and we need a place to store parameters for it.
-1.
-Obviously it also needs to initialize these parameters as needed.
+In the following we will explain the various steps needed to go from defining
+layers to defining blocks (of one or more layers):
+
+1. Blocks take data as input.
+1. Blocks store state in the form of parameters that are inherent to the block.
+   For instance, the block above contains two hidden layers, and we need a
+   place to store parameters for it.
+1. Blocks produce meaningful output. This is typically encoded in what
+   we will call the `forward` function. It allows us to invoke a block via
+   `net(X)` to obtain the desired output. What happens behind the scenes is
+   that it invokes `forward` to perform forward propagation (also called
+   forward computation).
+1. Blocks initialize the parameters in a lazy fashion as part of the first
+   `forward` call.
+1. Blocks calculate a gradient with regard to their input when invoking
+   `backward`. Typically this is automatic.
 
 ## A Custom Block
 
-The `nn.Block` class provides the functionality required for much of what
-we need. It is a model constructor provided in the `nn` module, which we can
-inherit to define the model we want. The following inherits the Block class to
-construct the multilayer perceptron mentioned at the beginning of this section.
-The `MLP` class defined here overrides the `__init__` and `forward` functions of
-the Block class. They are used to create model parameters and define forward
-computations, respectively. Forward computation is also forward propagation.
+The [`nn.Block`](/api/gluon/nn.html#blocks) class provides the functionality
+required for much of what we need. It is a model constructor provided in the
+`nn` module, which we can inherit to define the model we want. The following
+inherits the Block class to construct the multilayer perceptron mentioned at
+the beginning of this section.  The `MLP` class defined here overrides the
+`__init__` and `forward` functions of the Block class. They are used to create
+model parameters and define forward computations, respectively. Forward
+computation is also forward propagation.
 
 ```{.python .input  n=1}
-from mxnet import nd
-from mxnet.gluon import nn
-
 class MLP(nn.Block):
-    # Declare a layer with model parameters. Here, we declare two fully connected layers.
-    def __init__(self, **kwargs):
-        # Call the constructor of the MLP parent class Block to perform the necessary initialization. In this way,
-        # other function parameters can also be specified when constructing an instance, such as the model parameter, params, described in the following sections.
-        super(MLP, self).__init__(**kwargs)
-        self.hidden = nn.Dense(256, activation='relu')  # Hidden layer.
-        self.output = nn.Dense(10)  # Output layer.
+    # Declare a layer with model parameters. Here, we declare two fully
+    # connected layers.
 
-    # Define the forward computation of the model, that is, how to return the required model output based on the input x.
+    def __init__(self, **kwargs):
+        # Call the constructor of the MLP parent class Block to perform the
+        # necessary initialization. In this way, other function parameters can
+        # also be specified when constructing an instance, such as the model
+        # parameter, params, described in the following sections.
+        super(MLP, self).__init__(**kwargs)
+        self.hidden = nn.Dense(256, activation='relu')  # Hidden layer
+        self.output = nn.Dense(10)  # Output layer
+
+    # Define the forward computation of the model, that is, how to return the
+    # required model output based on the input x.
+
     def forward(self, x):
-        return self.output(self.hidden(x))
+        hidden_out = self.hidden(x)
+        return self.output(hidden_out)
 ```
 
 Let's look at it a bit more closely. The `forward` method invokes a network
@@ -80,15 +100,15 @@ simply by evaluating the hidden layer `self.hidden(x)` and subsequently by
 evaluating the output layer `self.output( ... )`. This is what we expect in the
 forward pass of this block.
 
-In order for the block to know what it needs to
-evaluate, we first need to define the layers. This is what the `__init__` method
-does. It first initializes all of the Block-related parameters and then
-constructs the requisite layers. This attached the coresponding layers and the
-required parameters to the class. Note that there is no need to define a
-backpropagation method in the class. The system automatically generates the
-`backward` method needed for back propagation by automatically finding the
-gradient. The same applies to the `initialize` method, which is generated
-automatically. Let's try this out:
+In order for the block to know what it needs to evaluate, we first need to
+define the layers. This is what the `__init__` method does. It first
+initializes all of the Block-related parameters and then constructs the
+requisite layers. This attaches the coresponding layers and the required
+parameters to the class. Note that there is no need to define a backpropagation
+method in the class. The system automatically generates the `backward` method
+needed for back propagation by automatically finding the gradient (see the guide on [autograd](guide/packages/autograd.html)). The same
+applies to the [`initialize`](/api/gluon/_autogen/mxnet.gluon.nn.Block.initialize.html) method, which is generated automatically. Let's try
+this out:
 
 ```{.python .input  n=2}
 net = MLP()
@@ -96,7 +116,7 @@ net.initialize()
 net(x)
 ```
 
-As explained above, the block class can be quite versatile in terms of what it
+As explained above, the `Block` class can be quite versatile in terms of what it
 does. For instance, its subclass can be a layer (such as the `Dense` class
 provided by Gluon), it can be a model (such as the `MLP` class we just derived),
 or it can be a part of a model (this is what typically happens when designing
@@ -105,17 +125,16 @@ great flexibility.
 
 ## A Sequential Block
 
-The Block class is a generic
-component describing dataflow. In fact, the Sequential class is derived from the
-Block class: when the forward computation of the model is a simple concatenation
-of computations for each layer, we can define the model in a much simpler way.
-The purpose of the Sequential class is to provide some useful convenience
-functions. In particular, the `add` method allows us to add concatenated Block
-subclass instances one by one, while the forward computation of the model is to
-compute these instances one by one in the order of addition.
-Below, we implement
-a `MySequential` class that has the same functionality as the Sequential class.
-This may help you understand more clearly how the Sequential class works.
+The `Block` class is a generic component describing dataflow. In fact, the
+`Sequential` class is derived from the `Block` class: when the forward
+computation of the model is a simple concatenation of computations for each
+layer, we can define the model in a much simpler way.  The purpose of the
+`Sequential` class is to provide some useful convenience functions. In
+particular, the `add` method allows us to add concatenated `Block` subclass
+instances one by one, while the forward computation of the model is to compute
+these instances one by one in the order of addition.  Below, we implement a
+`MySequential` class that has the same functionality as the `Sequential` class.
+This may help you understand more clearly how the `Sequential` class works.
 
 ```{.python .input  n=3}
 class MySequential(nn.Block):
@@ -151,49 +170,58 @@ Indeed, it is no different than It can observed here that the use of the
 `MySequential` class is no different from the use of the Sequential class.
 
 
-##
-Blocks with Code
+## Coding with `Blocks`
 
-Although the Sequential class can make model construction
-easier, and you do not need to define the `forward` method, directly inheriting
-the Block class can greatly expand the flexibility of model construction. In
-particular, we will use Python's control flow within the forward method. While
-we're at it, we need to introduce another concept, that of the *constant*
-parameter. These are parameters that are not used when invoking backprop. This
-sounds very abstract but here's what's really going on. Assume that we have some
-function
+### Blocks
+The [`Sequential`](/api/gluon/_autogen/mxnet.gluon.nn.Sequential.html) class
+can make model construction easier and does not require you to define the
+`forward` method; however, directly inheriting from
+its parent class, [`Block`](/api/gluon/mxnet.gluon.nn.Block.html), can greatly
+expand the flexibility of model construction. For example, implementing the
+`forward` method means you can introduce control flow in the network. 
+
+### Constant parameters
+Now we'd like to introduce the notation of a *constant* parameter. These are
+parameters that are not used when invoking backpropagation. This sounds very
+abstract but here's what's really going on.
+Assume that we have some function
 
 $$f(\mathbf{x},\mathbf{w}) = 3 \cdot \mathbf{w}^\top \mathbf{x}.$$
 
-In
-this case 3 is a constant parameter. We could change 3 to something else, say
-$c$ via
+In this case $3$ is a constant parameter. We could change $3$ to something else,
+say $c$ via
 
 $$f(\mathbf{x},\mathbf{w}) = c \cdot \mathbf{w}^\top \mathbf{x}.$$
+
 Nothing has really changed, except that we can adjust the value of $c$. It is
 still a constant as far as $\mathbf{w}$ and $\mathbf{x}$ are concerned. However,
-since Gluon doesn't know about this beforehand, it's worth while to give it a
-hand (this makes the code go faster, too, since we're not sending the Gluon
-engine on a wild goose chase after a parameter that doesn't change).
-`get_constant` is the method that can be used to accomplish this. Let's see what
-this looks like in practice.
+Gluon doesn't know about this unless we create it with `get_constant`
+(this makes the code go faster, too, since we're not sending the Gluon engine
+on a wild goose chase after a parameter that doesn't change).
 
 ```{.python .input  n=5}
 class FancyMLP(nn.Block):
     def __init__(self, **kwargs):
         super(FancyMLP, self).__init__(**kwargs)
-        # Random weight parameters created with the get_constant are not iterated during training (i.e. constant parameters).
+
+        # Random weight parameters created with the get_constant are not
+        # iterated during training (i.e. constant parameters).
         self.rand_weight = self.params.get_constant(
             'rand_weight', nd.random.uniform(shape=(20, 20)))
         self.dense = nn.Dense(20, activation='relu')
 
     def forward(self, x):
         x = self.dense(x)
-        # Use the constant parameters created, as well as the relu and dot functions of NDArray.
+        # Use the constant parameters created, as well as the ReLU and dot
+        # functions of NDArray.
+
         x = nd.relu(nd.dot(x, self.rand_weight.data()) + 1)
-        # Reuse the fully connected layer. This is equivalent to sharing parameters with two fully connected layers.
+        # Re-use the fully connected layer. This is equivalent to sharing
+        # parameters with two fully connected layers.
         x = self.dense(x)
-        # Here in Control flow, we need to call asscalar to return the scalar for comparison.
+        # Here in the control flow, we need to call `asscalar` to return the
+        # scalar for comparison.
+
         while x.norm().asscalar() > 1:
             x /= 2
         if x.norm().asscalar() < 0.8:
@@ -201,8 +229,8 @@ class FancyMLP(nn.Block):
         return x.sum()
 ```
 
-In this `FancyMLP` model, we used constant weight `Rand_weight` (note that it is
-not a model parameter), performed a matrix multiplication operation (`nd.dot<`),
+In this `FancyMLP` model, we used constant weight `rand_weight` (note that it is
+not a model parameter), performed a matrix multiplication operation (`nd.dot`),
 and reused the *same* `Dense` layer. Note that this is very different from using
 two dense layers with different sets of parameters. Instead, we used the same
 network twice. Quite often in deep networks one also says that the parameters
@@ -216,10 +244,10 @@ net.initialize()
 net(x)
 ```
 
-There's no reason why we couldn't mix and match these ways of build a network.
-Obviously the example below resembles more a chimera, or less charitably, a
-[Rube Goldberg Machine](https://en.wikipedia.org/wiki/Rube_Goldberg_machine).
-That said, it combines examples for building a block from individual blocks,
+There's no reason why we couldn't mix and match these ways of building a
+network. Obviously the example below resembles a [Rube Goldberg
+Machine](https://en.wikipedia.org/wiki/Rube_Goldberg_machine). That said, it
+combines examples for building a block from individual blocks,
 which in turn, may be blocks themselves. Furthermore, we can even combine
 multiple strategies inside the same forward function. To demonstrate this,
 here's the network.
@@ -243,22 +271,23 @@ chimera.initialize()
 chimera(x)
 ```
 
-## Compilation
+## Hybridization
 
-The avid reader is probably starting to worry about the
-efficiency of this. After all, we have lots of dictionary lookups, code
-execution, and lots of other Pythonic things going on in what is supposed to be
-a high performance deep learning library. The problems of Python's [Global
-Interpreter Lock](https://wiki.python.org/moin/GlobalInterpreterLock) are well
-known. In the context of deep learning it means that we have a super fast GPU
-(or multiple of them) which might have to wait until a puny single CPU core
-running Python gets a chance to tell it what to do next. This is clearly awful
-and there are many ways around it. The best way to speed up Python is by
-avoiding it altogether.
+The reader may be starting to think about the efficiency of this Python code.
+After all, we have lots of dictionary lookups, code execution, and lots of
+other Pythonic things going on in what is supposed to be a high performance
+deep learning library. The problems of Python's [Global Interpreter
+Lock](https://wiki.python.org/moin/GlobalInterpreterLock) are well
+known. 
 
-Gluon does this by allowing for
-[Hybridization](./hybridize.md). In it, the Python interpreter executes the
-block the first time it's invoked. The Gluon runtime records what is happening
-and the next time around it short circuits any calls to Python. This can
-accelerate things considerably in some cases but care needs to be taken with
-control flow.
+In the context of deep learning, we often have highly performant GPUs that
+depend on CPUs running Python to tell them what to do. This mismatch can
+manifest in the form of GPU starvation when the CPUs can not provide
+instruction fast enough. We can improve this situation by deferring to a more
+performant language instead of Python when possible.
+
+Gluon does this by allowing for [Hybridization](./hybridize.md). In it, the
+Python interpreter executes the block the first time it's invoked. The Gluon
+runtime records what is happening and the next time around it short circuits
+any calls to Python. This can accelerate things considerably in some cases but
+care needs to be taken with [control flow](../../crash-course/3-autograd.md).
