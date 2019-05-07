@@ -103,7 +103,7 @@ Advanced Topics
 
    .. card::
       :title: Custom Layers for Beginners
-      :link: custom-layer.html
+      :link: custom_layer_beginners.html
 
       A guide to implementing custom layers for beginners.
 
@@ -157,7 +157,7 @@ Applications Topics
    trainer
    naming
    custom-layer
-   custom_layer
+   custom_layer_beginners
    data_augmentation
    customop
    hybridize
