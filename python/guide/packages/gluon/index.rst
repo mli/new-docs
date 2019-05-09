@@ -40,6 +40,12 @@ Data
       :link: customop.html
 
       Building custom operators with numpy.
+      
+   .. card::
+      :title: Data Augmentation
+      :link: data_augmentation.html
+
+      A guide to data augmentation.
 
 Training
 --------
@@ -137,11 +143,6 @@ Advanced Topics
 
       Speed up training with hybrid networks.
  
-   .. card::
-      :title: Data Augmentation
-      :link: data_augmentation.html
-
-      A guide to data augmentation.
 
 Applications Topics
 -------------------
