@@ -112,7 +112,7 @@ L2Loss also called Meaned Squared Error is a regression loss function that compu
 show_regression_loss(gloss.L2Loss())
 ```
 
-####[Huber Loss](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.HuberLosss)
+#### [Huber Loss](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.HuberLosss)
 
 HuberLoss  combines advantages of L1 and L2 loss. It calculates a smoothed L1 loss that is equal to L1 if the adbsolute error exceeds a threshold rho, otherwise it is equal to L2.
 
@@ -120,7 +120,7 @@ HuberLoss  combines advantages of L1 and L2 loss. It calculates a smoothed L1 lo
 show_regression_loss(gloss.HuberLoss(rho=1))
 ```
 
-####[Cross Entropy Loss with Sigmoid](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.SigmoidBinaryCrossEntropyLoss)
+#### [Cross Entropy Loss with Sigmoid](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.SigmoidBinaryCrossEntropyLoss)
 
 Binary Cross Entropy is a loss function used for binary classification problems e.g. classifying images into 2 classes.  Cross entropy measures the difference between two propbaility distributions. Before the loss is computed a sigmoid activation is applied. 
 
@@ -128,7 +128,7 @@ Binary Cross Entropy is a loss function used for binary classification problems 
 show_classification_loss(gloss.SigmoidBinaryCrossEntropyLoss())
 ```
 
-####[Cross Entropy Loss with Softmax](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.SigmoidBinaryCrossEntropyLoss)
+#### [Cross Entropy Loss with Softmax](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.SigmoidBinaryCrossEntropyLoss)
 
 In classification, we often apply the
 softmax operator to the predicted outputs to obtain prediction probabilities,
@@ -182,6 +182,6 @@ show_classification_loss(gloss.TripletLoss())
 
 
 
-####[CTC Loss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.CTCLoss)
+#### [CTC Loss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.CTCLoss)
 
 CTC Loss is the connectionist temporal classification loss. It is used to train recurrent neural networks with variable time dimension. It learns the alignment and labelling of input sequences. 
