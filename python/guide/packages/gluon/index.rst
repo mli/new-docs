@@ -36,12 +36,6 @@ Data
       Boost your training dataset with image augmentation.
       
    .. card::
-      :title: Custom Operators
-      :link: customop.html
-
-      Building custom operators with numpy.
-      
-   .. card::
       :title: Data Augmentation
       :link: data_augmentation.html
 
@@ -130,6 +124,12 @@ Advanced Topics
       :link: custom-layer.html
 
       A guide to implementing custom layers.
+      
+   .. card::
+      :title: Custom Operators
+      :link: customop.html
+
+      Building custom operators with numpy.
 
    .. card::
       :title: Custom Loss
