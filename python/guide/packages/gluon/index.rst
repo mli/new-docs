@@ -170,7 +170,7 @@ Applications Topics
    custom_layer_beginners
    data
    image-augmentation
-   customop
+   data_augmentation
    nn
    normalization/normalization
    activations/activations
@@ -181,7 +181,7 @@ Applications Topics
    trainer
    naming
    custom-layer
-   data_augmentation
+   customop
    hybridize
    image/index
    text/index
