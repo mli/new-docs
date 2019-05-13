@@ -160,11 +160,9 @@ The Logistic Loss function computes the performance of binary classification mod
 show_classification_loss(gloss.LogisticLoss())
 ```
 
-
-
 #### [Kullback-Leibler Divergence Loss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.KLDivLoss)
 
-The Kullback-Leibler divergence loss measures the divergence between two propbaility distributions by caclucating the cross entropy minus the entropy. 
+The Kullback-Leibler divergence loss measures the divergence between two propbaility distributions by caclucating the difference between cross entropy and entropy. It takes as input the probaility of true label and the probabilty of predicted label. The loss is large, if the prediced probality distribution is far from the groundtruth propability distribution. KL divergence is an asymmetric measure.
 
 ```python
 gloss.KLDivLoss()
@@ -174,14 +172,24 @@ gloss.KLDivLoss()
 
 #### [Triplet Loss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.TripletLoss)
 
-Triplet loss takes three input tensors and measures the relative similarity. It takes a positive and negative input tensor and the predicted tensos. The loss function minimizes the distance between similar inputs and maximizes the distance  between dissimilar inputs.
+Triplet loss takes three input tensors and measures the relative similarity. It takes a positive and negative input and the anchor. The loss function minimizes the distance between similar inputs and maximizes the distance  between dissimilar ones.  
+In the case of learning embeddings for images of characters, the network may get as input the following 3 images: 
 
-```
-show_classification_loss(gloss.TripletLoss())
-```
+![triplet_loss](triplet_loss.png)
 
-
+The network would learn to minimize the distance between the two `A`'s and maximize the distance between `A` and `Z`.
 
 #### [CTC Loss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.CTCLoss)
 
-CTC Loss is the connectionist temporal classification loss. It is used to train recurrent neural networks with variable time dimension. It learns the alignment and labelling of input sequences. 
+CTC Loss is the connectionist temporal classification loss. It is used to train recurrent neural networks with variable time dimension. It learns the alignment and labelling of input sequences. It takes a sequence as input and gives propabilies for each timestep. For instance in the followng image the word is not well algined with the 5 timesteps because of the different sizes of characters. CTC Loss finds for each timestep the highest propability e.g. `t1` presents with high propability a `C`. It combines the highes probliaites and returns the best path decoding.
+
+![ctc_loss](ctc_loss.png)
+
+#### [Cosine Embedding Loss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.CosineEmbeddingLoss)
+The cosine emebedding loss computes the cosine distance between two input vectors. Cosine distance measurs the similarity between two tensors and is typically used for learning nonlinear emebeddings. 
+
+#### [PoissonNLLLoss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.PoissonNLLLoss)
+This loss calculates the negative log likelihood for a target that follows a Poisson distribution. 
+
+
+
