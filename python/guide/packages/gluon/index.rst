@@ -11,6 +11,12 @@ Getting started
       :link: ../../crash-course/index.html
 
       Six 10-minute tutorials covering the core concepts of MXNet using the Gluon API.
+      
+   .. card::
+      :title: Custom Layers for Beginners
+      :link: custom_layer_beginners.html
+
+      A guide to implementing custom layers for beginners.
 
 Data
 ----
@@ -28,6 +34,12 @@ Data
       :link: image-augmentation.html
 
       Boost your training dataset with image augmentation.
+      
+   .. card::
+      :title: Data Augmentation
+      :link: data_augmentation.html
+
+      A guide to data augmentation.
 
 Training
 --------
@@ -102,7 +114,7 @@ Advanced Topics
 .. container:: cards
 
    .. card::
-      :title: Naming
+      :title: Ncaming
       :link: naming.html
 
       Best practices for the naming of things.
@@ -112,6 +124,12 @@ Advanced Topics
       :link: custom-layer.html
 
       A guide to implementing custom layers.
+      
+   .. card::
+      :title: Custom Operators
+      :link: customop.html
+
+      Building custom operators with numpy.
 
    .. card::
       :title: Custom Loss
@@ -124,7 +142,7 @@ Advanced Topics
       :link: hybridize.html
 
       Speed up training with hybrid networks.
-
+ 
 
 Applications Topics
 -------------------
@@ -149,8 +167,10 @@ Applications Topics
    :maxdepth: 1
 
    ../../crash-course
+   custom_layer_beginners
    data
    image-augmentation
+   data_augmentation
    nn
    normalization/normalization
    activations/activations
@@ -161,6 +181,7 @@ Applications Topics
    trainer
    naming
    custom-layer
+   customop
    hybridize
    image/index
    text/index
