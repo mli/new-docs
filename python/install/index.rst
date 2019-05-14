@@ -7,10 +7,10 @@ Install
 Next steps
 ----------
 
-- For new users: :doc:`guide/crash-course/index`. It contains a 60-minutes crash
-  course using Gluon that teaches you how to train a handwritten digits classifier.
-- For experienced users: :doc:`guide/index`. Check out the variety of MXNet guides.
-- For advanced users: :doc:`api/index`. Browse the MXNet classes and methods.
+- `Verify your MXNet installation <validate-mxnet.html>`_.
+- For new users: `60-minute Gluon crash course <../guide/getting-started/crash-course/index.html>`_.
+- For experienced users: `MXNet Guides. <../guide/getting-started/crash-course/index.html>`_.
+- For advanced users: `MXNet API. <../api/index.html>`_.
 
 ..
    TOOD: write a new directive `no-local-toc` for it
