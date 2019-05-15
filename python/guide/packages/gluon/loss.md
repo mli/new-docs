@@ -89,7 +89,7 @@ def show_regression_loss(loss):
 
 Then plot the classification losses with label values fixed to be 1.
 
-```python
+```{.python .input}
 def show_classification_loss(loss):
     x = nd.arange(-5, 5, .1)
     y = loss(x, nd.ones_like(x))
@@ -186,7 +186,7 @@ L = \sum_i \log(1 + \exp(- {pred}_i \cdot {label}_i))
 $$
 The log loss decreases the closer the prediction is to the actual label. It is sensitive to outliers, because incorrectly classified points are penalized more.
 
-```python
+```{.python .input}
 show_classification_loss(gloss.LogisticLoss())
 ```
 
@@ -245,16 +245,18 @@ $$
 
 Cosine distance measures the similarity between two tensors given a label and is typically used for learning nonlinear embeddings.  
 For instance in the following code example we measure the similarity between the input vectors `x` and `y`. Since they are the same the label equals `1`. The loss function returns $$ \sum_i 1 - {cos\_sim({input1}_i, {input2}_i)} $$ which is equal `0`.
-```python
+
+```{.python .input}
 x = mx.nd.array([1,0,1,0,1,0])
 y = mx.nd.array([1,0,1,0,1,0])
 label = mx.nd.array(1)
 loss = gluon.loss.CosineEmbeddingLoss()
 print(loss(x,y,label))
 ```
+
 Now let's make `y` the opposite of `x`, so we set the label `-1` and the function will return  $$ \sum_i cos\_sim(input1, input2) $$
 
-```python
+```{.python .input}
 x = mx.nd.array([1,0,1,0,1,0])
 y = mx.nd.array([0,1,0,1,0,1])
 label = mx.nd.array(-1)
