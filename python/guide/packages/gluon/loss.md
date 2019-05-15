@@ -91,7 +91,7 @@ Then plot the classification losses with label values fixed to be 1.
 
 ```python
 def show_classification_loss(loss):
-		x = nd.arange(-5, 5, .1)
+    x = nd.arange(-5, 5, .1)
     y = loss(x, nd.ones_like(x))
     plot(x, y) 
 ```
@@ -99,7 +99,8 @@ def show_classification_loss(loss):
 #### [L1 Loss](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.L1Loss)
 
 L1Loss also called mean abolsute error computes the sum of absolute distance between target values and the output of the neural network. It is defined as:
- $$ L = \sum_i \vert {label}_i - {pred}_i \vert. $$
+
+$$ L = \sum_i \vert {label}_i - {pred}_i \vert. $$
 
 It is a non-smooth function that can lead to non-convergence. It creates the same gradient for small and large loss values, which can be problematic for the learning process.
 
@@ -121,7 +122,7 @@ show_regression_loss(gloss.L2Loss())
 
 #### [Huber Loss](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.HuberLosss)
 
-HuberLoss  combines advantages of L1 and L2 loss. It calculates a smoothed L1 loss that is equal to L1 if the adbsolute error exceeds a threshold rho, otherwise it is equal to L2. It is defined as:
+HuberLoss  combines advantages of L1 and L2 loss. It calculates a smoothed L1 loss that is equal to L1 if the adsolute error exceeds a threshold $$\rho$$, otherwise it is equal to L2. It is defined as:
 $$ 
 \begin{split}L = \sum_i \begin{cases} \frac{1}{2 {rho}} ({label}_i - {pred}_i)^2 &
                    \text{ if } |{label}_i - {pred}_i| < {rho} \\
@@ -191,7 +192,7 @@ show_classification_loss(gloss.LogisticLoss())
 
 #### [Kullback-Leibler Divergence Loss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.KLDivLoss)
 
-The Kullback-Leibler divergence loss measures the divergence between two propbaility distributions by caclucating the difference between cross entropy and entropy. It takes as input the probaility of true label and the probabilty of predicted label. 
+The Kullback-Leibler divergence loss measures the divergence between two propbaility distributions by calculating the difference between cross entropy and entropy. It takes as input the probaility of true label and the probabilty of predicted label. 
 
 $$
 L = \sum_i {label}_i * \big[\log({label}_i) - {pred}_i\big]
@@ -264,17 +265,17 @@ print(loss(x,y,label))
 
 #### [PoissonNLLLoss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.PoissonNLLLoss)
 Poisson distribution is widely used for modelling count data. It is defined as:
-$$
+
 $$
 f(x) = \frac{\mu ^ {\kern 0.08 em x} e ^ {-\mu}} {x!} \qquad \qquad x = 0,1,2 , \ldots \,.
 $$
-$$
+
 
 For instance the count of cars in road traffic approximatly follows a Poisson distribution. Using an ordinary least squares model for Poisson distributed data would not work well because of two reasons: 
  - count data cannot be negative 
  - variance may not be constant
 
-Instead we can use a Poisson regression model, also known as log-linar model. Thereby the Poisson incident rate $$/mu$$ is 
+Instead we can use a Poisson regression model, also known as log-linear model. Thereby the Poisson incident rate $$\mu$$ is 
 modelled by a linear combination of unknown parameters.
 We can then use the PoissonNLLLoss which calculates the negative log likelihood for a target that follows a Poisson distribution. 
 
