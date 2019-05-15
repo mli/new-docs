@@ -263,7 +263,20 @@ print(loss(x,y,label))
 
 
 #### [PoissonNLLLoss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.PoissonNLLLoss)
-This loss calculates the negative log likelihood for a target that follows a Poisson distribution. 
+Poisson distribution is widely used for modelling count data. It is defined as:
+$$
+$$
+f(x) = \frac{\mu ^ {\kern 0.08 em x} e ^ {-\mu}} {x!} \qquad \qquad x = 0,1,2 , \ldots \,.
+$$
+$$
+
+For instance the count of cars in road traffic approximatly follows a Poisson distribution. Using an ordinary least squares model for Poisson distributed data would not work well because of two reasons: 
+ - count data cannot be negative 
+ - variance may not be constant
+
+Instead we can use a Poisson regression model, also known as log-linar model. Thereby the Poisson incident rate $$/mu$$ is 
+modelled by a linear combination of unknown parameters.
+We can then use the PoissonNLLLoss which calculates the negative log likelihood for a target that follows a Poisson distribution. 
 
 $$ L = \text{pred} - \text{target} * \log(\text{pred}) +\log(\text{target!}) $$
 
