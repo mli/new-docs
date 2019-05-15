@@ -1,6 +1,6 @@
 # MXNet for PyTorch users in 10 minutes
 
-[PyTorch](https://pytorch.org/) is a popular deep learning framework due to its easy-to-understand API and its completely imperative approach. Apache MXNet includes Gluon API which gives you the simplicity and flexibility of PyTorch and also allows you to hybridize your network to leverage performance optimizations of the symbolic graph.
+[PyTorch](https://pytorch.org/) is a popular deep learning framework due to its easy-to-understand API and its completely imperative approach. Apache MXNet includes the Gluon API which gives you the simplicity and flexibility of PyTorch and allows you to hybridize your network to leverage performance optimizations of the symbolic graph.
 
 In the next 10 minutes, we'll do a quick comparison between the two frameworks and show how small the learning curve can be when switching from PyTorch to Apache MXNet.
 
@@ -18,7 +18,7 @@ For MXNet we use pip:
 # !pip install mxnet
 ```
 
-Both PyTorch and Apache MXNet have separate packages if you want to use CUDA. To install Apache MXNet with GPU support, you need to specify CUDA version. For example the snippet below will install Apache MXNet with CUDA 9.2 support:
+To install Apache MXNet with GPU support, you need to specify CUDA version. For example, the snippet below will install Apache MXNet with CUDA 9.2 support:
 
 ```{.python .input}
 # !pip install mxnet-cuda92
@@ -211,4 +211,8 @@ As we saw above, Apache MXNet Gluon API and PyTorch are similar in use.
 
 ## Recommended Next Steps
 
-While Apache MXNet Gluon API is very similar to PyTorch, there are some extra functionality using which can make your code even faster. Check out [Hybridize tutorial](https://beta.mxnet.io/guide/packages/gluon/hybridize.html) to learn how to write imperative code which can be converted to symbolic one. Also, check out how to extend Apache MXNet with your own [custom layers](https://beta.mxnet.io/guide/extend/custom_layer.html).
+While Apache MXNet Gluon API is very similar to PyTorch, there are some extra functionality using which can make your code even faster. 
+
+* Check out [Hybridize tutorial](https://beta.mxnet.io/guide/packages/gluon/hybridize.html) to learn how to write imperative code which can be converted to symbolic one. 
+
+* Also, check out how to extend Apache MXNet with your own [custom layers](https://beta.mxnet.io/guide/extend/custom_layer.html).
