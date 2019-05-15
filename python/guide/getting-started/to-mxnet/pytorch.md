@@ -1,6 +1,6 @@
-# MXNet for PyTorch users in 10 minutes
+# PyTorch vs Apache MXNet
 
-[PyTorch](https://pytorch.org/) is a popular deep learning framework due to its easy-to-understand API and its completely imperative approach. Apache MXNet includes the Gluon API which gives you the simplicity and flexibility of PyTorch and allows you to hybridize your network to leverage performance optimizations of the symbolic graph.
+[PyTorch](https://pytorch.org/) is a popular deep learning framework due to its easy-to-understand API and its completely imperative approach. Apache MXNet includes the Gluon API which gives you the simplicity and flexibility of PyTorch and allows you to hybridize your network to leverage performance optimizations of the symbolic graph. As of April 2019, [NVidia performance benchmarks](https://developer.nvidia.com/deep-learning-performance-training-inference) show that Apache MXNet outperforms PyTorch by ~77% on training ResNet-50: 10,925 images per second vs. 6,175.
 
 In the next 10 minutes, we'll do a quick comparison between the two frameworks and show how small the learning curve can be when switching from PyTorch to Apache MXNet.
 
@@ -58,7 +58,7 @@ Both frameworks support multiple functions to create and manipulate tensors / ND
 
 After covering the basics of data creation and manipulation, let's dive deep and compare how model training is done in both frameworks. In order to do so, we are going to solve image classification task on MNIST data set using Multilayer Perceptron (MLP) in both frameworks. We divide the task in 4 steps.
 
-### 1 --- Read data
+### 1. Read data
 
 The first step is to obtain the data. We download the MNIST data set from the web and load it into memory so that we can read batches one by one.
 
@@ -91,7 +91,7 @@ Both frameworks allows you to download MNIST data set from their sources and spe
 
 The main difference between the code snippets is that MXNet uses [transform_first](http://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.Dataset.html) method to indicate that the data transformation is done on the first element of the data batch, the MNIST picture, rather than the second element, the label.
 
-### 2 --- Creating the model
+### 2. Creating the model
 
 Below we define a Multilayer Perceptron (MLP) with a single hidden layer
 and 10 units in the output layer.
@@ -128,7 +128,7 @@ We used the Sequential container to stack layers one after the other in order to
 
 With a Sequential block, layers are executed one after the other. To have a different execution model, with PyTorch you can inherit from `nn.Module` and then customize how the `.forward()` function is executed. Similarly, in Apache MXNet you can inherit from [nn.Block](http://beta.mxnet.io/api/gluon/mxnet.gluon.nn.Block.html) to achieve similar results.
 
-### 3 --- Loss function and optimization algorithm
+### 3. Loss function and optimization algorithm
 
 The next step is to define the loss function and pick an optimization algorithm. Both PyTorch and Apache MXNet provide multiple options to chose from, and for our particular case we are going to use the cross-entropy loss function and the Stochastic Gradient Descent (SGD) optimization algorithm.
 
@@ -149,7 +149,7 @@ mx_trainer = gluon.Trainer(mx_net.collect_params(),
 
 The code difference between frameworks is small. The main difference is that in Apache MXNet we use [Trainer](http://beta.mxnet.io/api/gluon/mxnet.gluon.Trainer.html) class, which accepts optimization algorithm as an argument. We also use [.collect_params()](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.nn.Block.collect_params.html) method to get parameters of the network.
 
-### 4 --- Training
+### 4. Training
 
 Finally, we implement the training algorithm. Note that the results for each run
 may vary because the weights will get different initialization values and the
@@ -207,11 +207,11 @@ Some of the differences in Apache MXNet when compared to PyTorch are as follows:
 
 ## Conclusion
 
-As we saw above, Apache MXNet Gluon API and PyTorch are similar in use.
+As we saw above, Apache MXNet Gluon API and PyTorch have many similarities. The main difference lies in terminology (Tensor vs. NDArray) and behavior of accumulating gradients: gradients are accumulated in PyTorch and overwritten in Apache MXNet. The rest of the code is very similar, and it is quite straightforward to move code from one framework to the other.
 
 ## Recommended Next Steps
 
-While Apache MXNet Gluon API is very similar to PyTorch, there are some extra functionality using which can make your code even faster. 
+While Apache MXNet Gluon API is very similar to PyTorch, there are some extra functionality that can make your code even faster.
 
 * Check out [Hybridize tutorial](https://beta.mxnet.io/guide/packages/gluon/hybridize.html) to learn how to write imperative code which can be converted to symbolic one. 
 
