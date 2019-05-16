@@ -9,6 +9,11 @@ KVStore
 
       How to use the KVStore API to use multiple GPUs when training a model.
 
+References
+-----------------
+
+- `KVStore API. <../api/gluon-related/mxnet.kvstore.html>`_
+
 .. toctree::
    :hidden:
    :glob:
