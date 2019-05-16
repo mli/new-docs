@@ -9,30 +9,21 @@ Essential
 
    .. card::
       :title: Improving Performance
-      :link: perf.html
+      :link: https://mxnet.incubator.apache.org/versions/master/faq/perf.html
 
       How to get the best performance from MXNet.
 
    .. card::
       :title: Profiler
-      :link: profiler.html
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/python/profiler.html
 
       How to profile MXNet models.
 
    .. card::
       :title: Tuning NumPy Operations
-      :link: numpy.html
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/gotchas_numpy_in_mxnet.html
 
       Gotchas using NumPy in MXNet.
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-
-   perf
-   profiler
-   numpy
-
 
 Compression
 -----------
