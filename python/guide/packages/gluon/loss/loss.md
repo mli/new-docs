@@ -208,7 +208,7 @@ For instance, in the following example we get a KL divergence of 0.02. We set ``
 output = mx.nd.array([[0.39056206, 1.3068528, 0.39056206, -0.30258512]])
 print('output.softmax(): {}'.format(output.softmax().asnumpy().tolist()))
 target_dist = mx.nd.array([[0.3, 0.4, 0.1, 0.2]])
-loss_fn = mx.gluon.loss.KLDivLoss(from_logits=False)
+loss_fn = gloss.KLDivLoss(from_logits=False)
 loss = loss_fn(output, target_dist)
 print('loss (kl divergence): {}'.format(loss.asnumpy().tolist()))
 ```
@@ -251,7 +251,7 @@ For instance in the following code example we measure the similarity between the
 x = mx.nd.array([1,0,1,0,1,0])
 y = mx.nd.array([1,0,1,0,1,0])
 label = mx.nd.array(1)
-loss = gluon.loss.CosineEmbeddingLoss()
+loss = gloss.CosineEmbeddingLoss()
 print(loss(x,y,label))
 ```
 
@@ -261,7 +261,7 @@ Now let's make `y` the opposite of `x`, so we set the label `-1` and the functio
 x = mx.nd.array([1,0,1,0,1,0])
 y = mx.nd.array([0,1,0,1,0,1])
 label = mx.nd.array(-1)
-loss = gluon.loss.CosineEmbeddingLoss()
+loss = gloss.CosineEmbeddingLoss()
 print(loss(x,y,label))
 ```
 
