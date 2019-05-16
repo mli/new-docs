@@ -276,7 +276,10 @@ $$ L = \text{pred} - \text{target} * \log(\text{pred}) +\log(\text{target!}) $$
 Some examples in a batch may be more important than others. We can apply weights to individual examples during the forward pass of the loss function using the `sample_weight` argument. All examples are weighted equally by default.
 
 ```{.python .input}
-loss(x, y, sample_weight=nd.array([1, 2]))
+x = nd.ones((2,))
+y = nd.ones((2,)) * 2
+loss = gloss.L2Loss()
+loss(x, y, nd.array([1, 2]))
 ```
 
 ## Conclusion
