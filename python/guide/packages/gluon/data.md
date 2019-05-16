@@ -2,9 +2,9 @@
 
 One of the most critical steps for model training and inference is loading the data: without data you can’t do deep learning! In this tutorial we use the `data` module to:
 
-1) define a [`Dataset`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.Dataset.html)
-2) use `transform`s to augment the dataset
-3) use a [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html) to iterate through the dataset in mini-batches
+1) Define a [`Dataset`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.Dataset.html)
+2) Use `transform`s to augment the dataset
+3) Use a [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html) to iterate through the dataset in mini-batches
 
 ## Getting started with [`Dataset`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.Dataset.html)s
 
@@ -70,11 +70,13 @@ transform_fn = RandomResizedCrop(size=(20, 20), scale=(0.6, 0.8))
 
 After defining `transform_fn`, we now need to apply it to the dataset. We call the `transform_first` method of our dataset to apply `transform_fn` to the first element of all samples. We had 2 elements per sample in our example, so we only apply `transform_fn` to the image and not the label.
 
+Advanced: `transform`, instead of `transform_first` can be used to transform all elements.
+
 ```
 dataset = dataset.transform_first(transform_fn)
 ```
 
-When we retrieve the same sample as before from the dataset, we now see an augmented version of the image (with the same label). We'd see a different augmented image every time we retrieve this sample.
+When we retrieve the same sample as before from the dataset, we now see an augmented version of the image (with the same label). We'd see a different augmented image every time we retrieve this sample because the transform is applied lazily by default.
 
 ```
 data_sample, label_sample = dataset[42]
@@ -84,7 +86,9 @@ plot(data_sample)
 
 ## Getting started with [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html)s
 
-Our `dataset` gives us individual samples, but we usually train neural networks on batches of samples. A [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html) retrieves samples from the `dataset` and stacks them into batches. At a minimum, all we need to specify is the number of samples we want in each batch, called the `batch_size`, but [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html)s have many other useful features. Shuffling data samples for training is as simple as setting `shuffle`.
+Our `dataset` gives us individual samples, but we usually train neural networks on batches of samples. A [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html) retrieves samples from the `dataset` and stacks them into batches. At a minimum, all we need to specify is the number of samples we want in each batch, called the `batch_size`, but [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html)s have many other useful features. Shuffling data samples for training is as simple as setting `shuffle`. 
+
+Advanced: A larger `batch_size` often speeds up training, but can lead to out-of-memory and convergence issues. 12345 is just for demonstration purposes: you'll more commonly use a smaller batch size (e.g. 128) but it depends on the model.
 
 ```
 dataloader = mx.gluon.data.DataLoader(dataset,
