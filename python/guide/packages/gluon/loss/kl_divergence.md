@@ -113,4 +113,4 @@ num_categories = dist_1.shape[0]
 divergence = kl_divergence(dist_1, dist_2)
 print('divergence: {}'.format(divergence))
 print('divergence * num_categories: {}'.format(divergence * num_categories))
-```
+``` 
