@@ -45,6 +45,12 @@ Shared APIs
 
       How to use the Learning Rate Scheduler.
 
+   .. card::
+      :title: KVStore API
+      :link: kvstore/index.html
+
+      How to use the KVStore API for distributed training.
+
    ..
       .. card::
          :title: Optimizer
