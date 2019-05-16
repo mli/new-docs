@@ -1,10 +1,12 @@
 # Loss functions
 
-A loss function measures the difference between predicted
-outputs and the
-according label. We can then run back propagation to compute the
-gradients. Let's first import the modules, where the `mxnet.gluon.loss` module
-is imported as `gloss` to avoid the commonly used name `loss`.
+Loss functions are used to train neural networks and to compute the difference between output and target variable. A critical component of training neural networks is the loss function. A loss function is a quantative measure of how bad the predictions of the network are when compared to ground truth labels. Given this score, a network can improve by iteratively updating its weights to minimise this loss. Some tasks use a combination of multiple loss functions, but often you'll just use one. MXNet Gluon provides a number of the most commonly used loss functions, and you'll choose certain loss functions depending on your network and task. Some common task and loss function pairs include:
+
+- regression: [L1Loss](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.L1Loss.html), [L2Loss](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.L2Loss.html) 
+- classification: [SigmoidBinaryCrossEntropyLoss](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.SigmoidBinaryCrossEntropyLoss.html), [SoftmaxBinaryCrossEntropyLoss](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.SoftmaxBinaryCrossEntropyLoss.html) 
+- embeddings: [HingeLoss](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.HingeLoss.html)
+
+We'll first import the modules, where the `mxnet.gluon.loss` module is imported as `gloss` to avoid the commonly used name `loss`.
 
 ```{.python .input}
 from IPython import display
@@ -14,8 +16,6 @@ from mxnet import nd, autograd
 from mxnet.gluon import nn, loss as gloss  
 ```
 
-
-
 ## Basic Usages
 
 Now let's create an instance of the $\ell_2$ loss, which is commonly used in regression tasks.
@@ -24,7 +24,7 @@ Now let's create an instance of the $\ell_2$ loss, which is commonly used in reg
 loss = gloss.L2Loss()
 ```
 
-And then feed two inputs to compute the elementalwise loss values.
+And then feed two inputs to compute the elementwise loss values.
 
 ```{.python .input}
 x = nd.ones((2,))
@@ -36,14 +36,6 @@ These values should be equal to the math definition: $0.5\|x-y\|^2$.
 
 ```{.python .input}
 .5 * (x - y)**2
-```
-
-In a mini-batch, some examples may be more important than others. We can apply
-weights to individual examples during the forward function (the default weight
-value is 1).
-
-```{.python .input}
-loss(x, y, nd.array([1, 2]))
 ```
 
 Next we show how to use a loss function to compute gradients.
@@ -66,11 +58,9 @@ print(net.weight.grad())
 
 ## Loss functions
 
-Most commonly used loss functions can be divided into 2 classes: regression and classification. Regression loss functions output real-values, while classification loss functions output a class.
+Most commonly used loss functions can be divided into 2 categories: regression and classification.
 
-Let's first visualize several regression losses. We
-visualize the loss values versus the predicted values with label values fixed to
-be 0.
+Let's first visualize several regression losses. We visualize the loss values versus the predicted values with label values fixed to be 0.
 
 ```{.python .input}
 def plot(x, y):
@@ -98,7 +88,7 @@ def show_classification_loss(loss):
 
 #### [L1 Loss](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.L1Loss)
 
-L1Loss also called mean absolute error computes the sum of absolute distance between target values and the output of the neural network. It is defined as:
+L1 Loss, also called Mean Absolute Error, computes the sum of absolute distance between target values and the output of the neural network. It is defined as:
 
 $$ L = \sum_i \vert {label}_i - {pred}_i \vert. $$
 
@@ -134,19 +124,20 @@ $$
 ```{.python .input}
 show_regression_loss(gloss.HuberLoss(rho=1))
 ```
-Huber Loss is for instance used in Deep Q-network. 
+
+An example of where Huber Loss is used can be found in [Deep Q Network](https://openai.com/blog/openai-baselines-dqn/).
 
 #### [Cross Entropy Loss with Sigmoid](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.SigmoidBinaryCrossEntropyLoss)
 
 Binary Cross Entropy is a loss function used for binary classification problems e.g. classifying images into 2 classes. Cross entropy measures the difference between two probability distributions and it is defined as:
 $$\sum_i -{(y\log(p) + (1 - y)\log(1 - p))} $$
-Before the loss is computed a sigmoid activation is applied per default. If your network has `sigmoid` activation as last layer, then you need set ```from_sigmoid``` to False, to avoid double sigmoid.
+Before the loss is computed a sigmoid activation is applied per default. If your network has `sigmoid` activation as last layer, then you need set ```from_sigmoid``` to False, to avoid applying the sigmoid function twice.
 
 ```{.python .input}
 show_classification_loss(gloss.SigmoidBinaryCrossEntropyLoss())
 ```
 
-#### [Cross Entropy Loss with Softmax](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.SigmoidBinaryCrossEntropyLoss)
+#### [Cross Entropy Loss with Softmax](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.SoftmaxCrossEntropyLoss)
 
 In classification, we often apply the
 softmax operator to the predicted outputs to obtain prediction probabilities,
@@ -155,10 +146,7 @@ and then apply the cross entropy loss against the true labels:
 $$ \begin{align}\begin{aligned}p = \softmax({pred})\\L = -\sum_i \sum_j {label}_j \log p_{ij}\end{aligned}\end{align}
 $$
 
-Running these two
-steps one-by-one, however, may lead to numerical instabilities. The `loss`
-module provides a single operators with softmax and cross entropy fused to avoid
-such problem.
+Running these two steps one-by-one, however, may lead to numerical instabilities. The `loss` module provides a single operators with softmax and cross entropy fused to avoid such problem.
 
 ```{.python .input}
 loss = gloss.SoftmaxCrossEntropyLoss()
@@ -169,7 +157,7 @@ loss(x, y)
 
 #### [Hinge Loss](https://mxnet.incubator.apache.org/api/python/gluon/loss.html#mxnet.gluon.loss.HingeLoss)
 
-Classification problems normally require a zero-one loss function, which assigns 0 loss to correct classifications and 1 otherwise. The problem of such a function is that it is hard to optimize and its gradients would be zero. Hinge Loss creates an upper bound on the zero-one loss function which makes it a convex and continuous function.  It is defined as:
+Commonly used in Support Vector Machines (SVMs), Hinge Loss is used to additionally penalize predictions that are correct but fall within a margin between classes (the region around a decision boundary). Unlike `SoftmaxCrossEntropyLoss`, it's rarely used for neural network training. It is defined as:
 
 $$
 L = \sum_i max(0, {margin} - {pred}_i \cdot {label}_i)
@@ -178,7 +166,7 @@ $$
 ```{.python .input}
 show_classification_loss(gloss.HingeLoss())
 ```
-Hinge loss is for training Support Vector Machines (SVMs).
+
 #### [Logistic Loss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.LogisticLoss)
 
 The Logistic Loss function computes the performance of binary classification models. 
@@ -193,13 +181,13 @@ show_classification_loss(gloss.LogisticLoss())
 
 #### [Kullback-Leibler Divergence Loss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.KLDivLoss)
 
-The Kullback-Leibler divergence loss measures the divergence between two probability distributions by calculating the difference between cross entropy and entropy. It takes as input the probabilty of predicted label and the probaility of true label. 
+The Kullback-Leibler divergence loss measures the divergence between two probability distributions by calculating the difference between cross entropy and entropy. It takes as input the probability of predicted label and the probability of true label.
 
 $$
 L = \sum_i {label}_i * \big[\log({label}_i) - {pred}_i\big]
 $$
 
-The loss is large, if the predicted probality distribution is far from the ground truth probability distribution. KL divergence is an asymmetric measure. KL divergence loss can be used in Variational Autoencoders (VAEs), and reinforcement learning policy networks such as Trust Region Policy Optimization (TRPO)
+The loss is large, if the predicted probability distribution is far from the ground truth probability distribution. KL divergence is an asymmetric measure. KL divergence loss can be used in Variational Autoencoders (VAEs), and reinforcement learning policy networks such as Trust Region Policy Optimization (TRPO)
 
 
 For instance, in the following example we get a KL divergence of 0.02. We set ```from_logits=False```, so the loss functions will apply ```log_softmax``` on the network output, before computing the KL divergence.
@@ -231,7 +219,7 @@ The network would learn to minimize the distance between the two `A`'s and maxim
 
 #### [CTC Loss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.CTCLoss)
 
-CTC Loss is the [connectionist temporal classification loss](https://distill.pub/2017/ctc/) . It is used to train recurrent neural networks with variable time dimension. It learns the alignment and labelling of input sequences. It takes a sequence as input and gives probabilities for each timestep. For instance, in the following image the word is not well algined with the 5 timesteps because of the different sizes of characters. CTC Loss finds for each timestep the highest probability e.g. `t1` presents with high probability a `C`. It combines the highest probapilities and returns the best path decoding. For an in-depth tutorial on how to use CTC-Loss in MXNet, check out this [example](https://github.com/apache/incubator-mxnet/tree/master/example/ctc).
+CTC Loss is the [connectionist temporal classification loss](https://distill.pub/2017/ctc/) . It is used to train recurrent neural networks with variable time dimension. It learns the alignment and labelling of input sequences. It takes a sequence as input and gives probabilities for each timestep. For instance, in the following image the word is not well aligned with the 5 timesteps because of the different sizes of characters. CTC Loss finds for each timestep the highest probability e.g. `t1` presents with high probability a `C`. It combines the highest probapilities and returns the best path decoding. For an in-depth tutorial on how to use CTC-Loss in MXNet, check out this [example](https://github.com/apache/incubator-mxnet/tree/master/example/ctc).
 
 ![ctc_loss](ctc_loss.png)
 
@@ -244,8 +232,8 @@ $$
 cos\_sim(input1, input2) = \frac{{input1}_i.{input2}_i}{||{input1}_i||.||{input2}_i||}\end{split}
 $$
 
-Cosine distance measures the similarity between two tensors given a label and is typically used for learning nonlinear embeddings.  
-For instance in the following code example we measure the similarity between the input vectors `x` and `y`. Since they are the same the label equals `1`. The loss function returns $$ \sum_i 1 - {cos\_sim({input1}_i, {input2}_i)} $$ which is equal `0`.
+Cosine distance measures the similarity between two arrays given a label and is typically used for learning nonlinear embeddings.  
+For instance, in the following code example we measure the similarity between the input vectors `x` and `y`. Since they are the same the label equals `1`. The loss function returns $$ \sum_i 1 - {cos\_sim({input1}_i, {input2}_i)} $$ which is equal `0`.
 
 ```{.python .input}
 x = mx.nd.array([1,0,1,0,1,0])
@@ -265,7 +253,6 @@ loss = gloss.CosineEmbeddingLoss()
 print(loss(x,y,label))
 ```
 
-
 #### [PoissonNLLLoss](https://mxnet.incubator.apache.org/versions/master/api/python/gluon/loss.html#mxnet.gluon.loss.PoissonNLLLoss)
 Poisson distribution is widely used for modelling count data. It is defined as:
 
@@ -284,5 +271,18 @@ We can then use the PoissonNLLLoss which calculates the negative log likelihood 
 
 $$ L = \text{pred} - \text{target} * \log(\text{pred}) +\log(\text{target!}) $$
 
+## Advanced: Weighted Loss
 
+Some examples in a batch may be more important than others. We can apply weights to individual examples during the forward pass of the loss function using the `sample_weight` argument. All examples are weighted equally by default.
 
+```{.python .input}
+loss(x, y, sample_weight=nd.array([1, 2]))
+```
+
+## Conclusion
+
+In this tutorial we saw an example of how to evaluate model performance using loss functions (during the forward pass). Crucially, we then saw how calculate parameter gradients (using `backward`) which would minimise this loss. You should now have a better understanding of when to apply different loss functions, especially for regression vs classification tasks.
+
+## Recommended Next Steps
+
+In addition to loss functions, which are used for explicit optimization, you might want to look at metrics that give useful evaluation feedback even if they're not explicitly optimized for in the same way as the loss. You might also want to learn more about the mechanics of the backpropagation stage in the autograd tutorial.
