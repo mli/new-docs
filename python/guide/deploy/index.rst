@@ -60,7 +60,7 @@ The following tutorials will show you how to use MXNet on AWS.
 
    .. card::
       :title: Training with Data from S3
-      :link: run-on-aws/use_s3.html
+      :link: https://mxnet.incubator.apache.org/versions/master/faq/s3_integration.html
 
       How to train with data from Amazon S3 buckets.
 

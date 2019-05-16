@@ -29,4 +29,3 @@ The following tutorials will help you learn how to deploy MXNet on various AWS p
 
    use_ec2
    use_sagemaker
-   use_s3
