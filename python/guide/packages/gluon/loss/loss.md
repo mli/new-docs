@@ -9,6 +9,7 @@ is imported as `gloss` to avoid the commonly used name `loss`.
 ```{.python .input}
 from IPython import display
 from matplotlib import pyplot as plt
+import mxnet as mx
 from mxnet import nd, autograd
 from mxnet.gluon import nn, loss as gloss  
 ```
