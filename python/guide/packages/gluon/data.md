@@ -1,325 +1,124 @@
 # Data
 
-The `data` module provides APIs to 1) load and parse datasets, 2)
-transform data examples, and 3) sample mini-batches for the training program.
-This tutorial will go through these three functionalities. Let's first import
-the modules needed, the key module is `mxnet.gluon.data`, which is imported as
-`gdata` to avoid the too commonly used name `data`.
+One of the most critical steps for model training and inference is loading the data: without data you can’t do deep learning! In this tutorial we use the `data` module to:
 
-```{.python .input  n=1}
-import numpy as np
-from matplotlib import pyplot as plt
-import tarfile
-import time
+1) Define a [`Dataset`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.Dataset.html)
+2) Use `transform`s to augment the dataset
+3) Use a [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html) to iterate through the dataset in mini-batches
 
-from mxnet import nd, image, io
-from mxnet.gluon import utils, data as gdata
+## Getting started with [`Dataset`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.Dataset.html)s
+
+Our very first step is to define the [`Dataset`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.Dataset.html). A [`Dataset`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.Dataset.html) is MXNet Gluon's interface to the data that's stored on disk (or elsewhere). Out of the box, MXNet Gluon comes with a number of common benchmarking datasets such as CIFAR-10 and MNIST. We'll use an MNIST variant, called FashionMNIST, to understand the role of the [`Dataset`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.Dataset.html). When we instantiate this benchmarking dataset, the data will be downloaded to disk and be ready to use.
+
+```
+import mxnet as mx
+
+dataset = mx.gluon.data.vision.FashionMNIST()
 ```
 
-## Load and Parse Datasets
+So how do we get data out of a [`Dataset`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.Dataset.html)? We index.
 
-To use a dataset, we first need to parse it into
-individual examples with the `NDArray` data type. The base class is `Dataset`,
-which defines two essential methods: `__getitem__` to access the i-th example
-and `__len__` to get the number of examples. 
-
-`ArrayDataset` is an
-implementation of `Dataset` that combines multiple array-like objects into a
-dataset. In the following example, we define NDArray features `X` with NDArray
-label `y`, and then create the dataset.
-
-```{.python .input  n=15}
-features = nd.random.uniform(shape=(10, 3))
-labels = nd.arange(10)
-dataset = gdata.ArrayDataset(features, labels)
+```
+sample = dataset[42]
 ```
 
-We can query the number examples in this dataset:
+Choosing a random index of 42 above, we get back a single sample from the dataset. A single sample usually contains multiple elements.
 
-```{.python .input}
-len(dataset)
+```
+len(sample)
 ```
 
-And access an arbitrary example with its index. The returned example is a list
-contains its features and label.
+Our sample has 2 elements in this case. We have the image as the first element and the label as the second. Although this is a common pattern, you should check the documentation (or implementation) of the dataset you're using.
 
-```{.python .input  n=11}
-sample = dataset[1]
-'features:', sample[0], 'label:', sample[1]
+We can unpack the sample into `data` and `label` and visualise our single sample.
+
+```
+data_sample, label_sample = sample
+print('Clothing Category #{}'.format(label_sample))
 ```
 
-Note that the label for each example is a scalar, it is automatically converted
-into numpy to make using as an index easy, e.g. we don't need to call
-`sample[1].asscalar()`.
+```
+import matplotlib.pyplot as plt
 
-```{.python .input}
-type(sample[1])
+plot = lambda s: plt.imshow(s[:,:,0].asnumpy(), cmap='gray')
+plot(data_sample)
 ```
 
-In addition, `ArrayDataset` can construct a dataset with any array-like objects,
-with an arbitrary number of arrays:
+We can access all of our samples in the dataset using the indexing method above, but usually we leave this to the [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html). We'll see an example of this shortly, but first we'll see how to change our dataset with `transform`s.
 
-```{.python .input  n=14}
-dataset2 = gdata.ArrayDataset(features, np.random.uniform(size=(10,1)), list(range(0,10)))
-sample = dataset2[1]
-type(sample[0]), type(sample[1]), type(sample[2])
+## Getting started with `transform`s
+
+Similar to `dataset`s which return individual samples, `transform`s give us a way to change individual samples of our `dataset`.
+
+#### Why would you want to do this?
+
+Most of the time, samples returned by the dataset aren't in quite the right format to be passed into a neural network. One common example is to have samples with a data type of `int8` when your network expects `float32`. Another common example with images is when you have an image with a dimension order of (height, width, channel) when you need (channel, height, width) for the network.
+
+Augmenting samples is also common practice: that is, randomly permuting existing samples to make new samples to reduce issues of network overfitting. Using image samples as an example, you could crop to random regions, flip from left to right or even jitter the brightness of the image.
+
+#### And how do you do it?
+
+We first define our transform and then apply it to our dataset.
+
+MXNet Gluon has a number of in-build transforms available at `mxnet.gluon.data.vision.transforms`, so let's use [`RandomResizedCrop`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.vision.transforms.RandomResizedCrop.html) as an example. We're specifying that we want a random crop that contains 60% to 80% of the original image, and then we want to scale this cropped region to 20px by 20px. You should notice we're instantiating a class that can be called like a function.
+
+```
+from mxnet.gluon.data.vision.transforms import RandomResizedCrop
+
+transform_fn = RandomResizedCrop(size=(20, 20), scale=(0.6, 0.8))
 ```
 
-### Predefined Datasets
+After defining `transform_fn`, we now need to apply it to the dataset. We call the `transform_first` method of our dataset to apply `transform_fn` to the first element of all samples. We had 2 elements per sample in our example, so we only apply `transform_fn` to the image and not the label.
 
-This module provides several commonly used datasets
-that will be automatically downloaded during creation. For example, we can
-obtain both the training and validation set of MNIST:
+Advanced: `transform`, instead of `transform_first` can be used to transform all elements.
 
-```{.python .input  n=2}
-mnist_train = gdata.vision.MNIST()
-mnist_valid = gdata.vision.MNIST(train=False)
-print('# of training examples =', len(mnist_train))
-print('# of validation examples =', len(mnist_valid))
+```
+dataset = dataset.transform_first(transform_fn)
 ```
 
-Obtaining one example is as similar as before:
+When we retrieve the same sample as before from the dataset, we now see an augmented version of the image (with the same label). We'd see a different augmented image every time we retrieve this sample because the transform is applied lazily by default.
 
-```{.python .input}
-sample = mnist_train[1]
-print('X shape:', sample[0].shape)
-print('y:', sample[1])
+```
+data_sample, label_sample = dataset[42]
+print('Clothing Category #{}'.format(label_sample))
+plot(data_sample)
 ```
 
-Besides MNIST, `mxnet.gluon.data.vision` provides these three datasets:
-FashionMNIST, CIFAR10,
-and CIFAR100.
+## Getting started with [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html)s
 
-<!-- TODO: RecordFileDataset,
-ImageRecordDataset -->
+Our `dataset` gives us individual samples, but we usually train neural networks on batches of samples. A [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html) retrieves samples from the `dataset` and stacks them into batches. At a minimum, all we need to specify is the number of samples we want in each batch, called the `batch_size`, but [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html)s have many other useful features. Shuffling data samples for training is as simple as setting `shuffle`. 
 
-### Load Individual Images
+Advanced: A larger `batch_size` often speeds up training, but can lead to out-of-memory and convergence issues. 12345 is just for demonstration purposes: you'll more commonly use a smaller batch size (e.g. 128) but it depends on the model.
 
-In vision tasks, the
-examples are often stored as individual images files. If we place images within
-each category in separate folders, then we can use `ImageFolderDataset` to load
-both images and labels. 
-
-Let's download a tiny image dataset as an example.
-
-```{.python .input}
-utils.download('https://github.com/dmlc/web-data/raw/master/mxnet/doc/dogcat.tar.gz')
-with tarfile.open('dogcat.tar.gz') as f:
-    f.extractall()
+```
+dataloader = mx.gluon.data.DataLoader(dataset,
+                                      batch_size=12345,
+                                      shuffle=True)
 ```
 
-Then check contents within this dataset:
+We iterate through the `dataloader` to get all the batches in our `dataset`, and we usually place the code for network training inside this loop. You'll notice that `data_batch` has an extra dimension at the start (compared with `data_sample`): this is often called the batch dimension.
 
-```{.python .input}
-# You may need to install the `tree' program, such as uncommenting the following line for Ubuntu:
-# !sudo apt-get install tree
-!tree dogcat    
+```
+for batch_idx, (data_batch, label_batch) in enumerate(dataloader):
+    print('Batch {} has shape {}'.format(batch_idx, data_batch.shape))
 ```
 
-As can be seen, it has two categories, dog and cat. Image files are placed in
-subfolders with categories as folder names. Now construct an
-`ImageFolderDataset` instance with specifying the dataset root folder.
+You might have noticed that the last batch contains fewer samples than the others. We had a remainder at the end and by default a [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html) keeps the incomplete batch (see `last_batch` argument).
 
-```{.python .input}
-dogcat = gdata.vision.ImageFolderDataset('./dogcat')
+We can plot a few (augmented) images from the last batch.
+
 ```
-
-We can access all categories through the attribute `synsets`:
-
-```{.python .input}
-dogcat.synsets
-```
-
-Next let's print a particular sample with its label:
-
-```{.python .input}
-sample = dogcat[1]
-plt.imshow(sample[0].asnumpy())
+plt.figure(1)
+plt.subplot(131); plot(data_batch[123])
+plt.subplot(132); plot(data_batch[234])
+plt.subplot(133); plot(data_batch[345])
 plt.show()
-'label:', dogcat.synsets[sample[1]]
 ```
 
-## Transform Data Examples
+## Conclusion
 
-The raw data examples often need to be transformed
-before feeding into a neural network. Class `Dataset` provides two methods
-`transform` and `transform_first` to allow users to specify the transformation
-methods.
+We've now seen all of the core components of the MXNet Gluon data pipeline. You should now understand the difference between [`Dataset`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.Dataset.html)s, that return individual samples, and [`DataLoader`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.data.DataLoader.html)s, that return batches of samples. You should also be able to transform your `dataset` for pre-processing or augmentation purposes.
 
-In the following example, we define a function to resize an image into
-200px height and 300px width. And then we pass it into the dataset through the
-`transform_first` method, which returns a new dataset with the transformations
-recorded.
+## Recommended Next Steps
 
-```{.python .input}
-def resize(x):
-    y = image.imresize(x, 300, 200)
-    print('resize', x.shape, 'into', y.shape)
-    return y
-dogcat_resized = dogcat.transform_first(resize)
-```
-
-As can be seen, transformations are applied when accessing examples, which is
-necessary when these transformations contain randomness. But we can also apply
-all transformations during creating the dataset.
-
-```{.python .input}
-dogcat_cached = dogcat.transform_first(resize, lazy=False)
-```
-
-So no transform is needed during accessing examples.
-
-```{.python .input}
-dogcat_cached[0][0].shape
-```
-
-Besides `transform_first`, we can apply transform to all entries in an example.
-The following examples add the label by 10 besides resizing an image:
-
-```{.python .input}
-dogcat_both = dogcat.transform(lambda x, y: (resize(x), y+10))
-dogcat_both[0][1]
-```
-
-The `vision.transform` submodule provide multiple pre-defined data
-transformation methods. For example, the following example chains the image
-resize and `ToTensor`, which transforms the data layout into (C x H x W) with
-float32 data type. Please refer to [Image Augmentation](./image-augmentation.md)
-for more details.
-
-```{.python .input  n=3}
-transforms = gdata.vision.transforms.Compose([
-    gdata.vision.transforms.Resize((24, 24)),
-    gdata.vision.transforms.ToTensor()])
-mnist_transformed = mnist_train.transform_first(transforms, lazy=True)
-(mnist_train[0][0].shape, '->', mnist_transformed[0][0].shape)
-```
-
-## Sample Mini-batches 
-
-If we train a neural network with mini-batch SGD, we
-need to sample a mini-batch for every iteration. Class `DataLoader` samples a
-dataset into mini-batches. In the following example, we create a `DataLoader`
-instance, which is an iterator that returns a mini-batch each time.
-
-```{.python .input  n=18}
-data = gdata.DataLoader(dataset, batch_size=4)
-for X, y in data:
-    print('X shape:', X.shape, '\ty:', y.asnumpy())
-```
-
-Since the number of examples can not be divided by the batch size, the last min-
-batch only has two examples. We can chose to ignore the last incomplete mini-
-batch:
-
-```{.python .input  n=19}
-data = gdata.DataLoader(dataset, batch_size=4, last_batch='discard')
-for X, y in data:
-    print('y:', y.asnumpy())
-```
-
-Or put it into the beginning of the next epoch:
-
-```{.python .input  n=23}
-data = gdata.DataLoader(dataset, batch_size=4, last_batch='rollover')
-for X, y in data:
-    print('epoch 0, y:', y.asnumpy())
-for X, y in data:
-    print('epoch 1, y:', y.asnumpy())
-```
-
-In mini-batch SGD, a mini-batch needs to consist of randomly sampled examples.
-We can set the `shuffle` argument to get random batches:
-
-```{.python .input}
-data = gdata.DataLoader(dataset, batch_size=4, shuffle=True)
-for X, y in data:
-    print('y:', y.asnumpy())
-```
-
-### Customize Sampling
-
-`DataLoader` reads examples either sequentially or
-uniformly randomly without
-replacement. We can change this behavior through
-customized samplers. An sampler
-is an iterator returning an sample index each
-time. For example, we create an
-sampler that first sequentially reads even
-indexes and then odd indexes.
-
-```{.python .input  n=30}
-class MySampler():
-    def __init__(self, length):
-        self.len = length
-    def __iter__(self):
-        for i in list(range(0,self.len,2))+list(range(1,self.len,2)):
-            yield i
-data = gdata.DataLoader(dataset, batch_size=4, sampler=MySampler(len(dataset)))
-for X, y in data:
-    print(y.asnumpy())
-```
-
-Similarly, we can change how a mini-batches is sampled through the
-`batch_sampler` argument. 
-
-### Multi-process
-
-Reading data is often one of the
-major performance bottlenecks. We can accelerate it through multi-process (only
-Linux and Macos are supported.) Let's first benchmark the time to read the MNIST
-training set:
-
-```{.python .input  n=7}
-tic = time.time()
-data = gdata.DataLoader(mnist_transformed, batch_size=64)
-for X, y in data:
-    pass
-'%.1f sec' % (time.time() - tic)
-```
-
-Now let's use 4 processes:
-
-```{.python .input  n=8}
-tic = time.time()
-data = gdata.DataLoader(mnist_transformed, batch_size=64, num_workers=4)
-for X, y in data:
-    pass
-'%.1f sec' % (time.time() - tic)
-```
-
-## Appendix: From `DataIter` to `DataLoader`
-
-Before Gluon's `DataLoader`, MXNet
-provides `DataIter` in the `io` module to read mini-batches. They are similar to
-each other but `DataLoader` often returns a tuple of `(feature, label)` for a
-mini-batches, while `DataIter` returns a `DataBatch`. The following example
-wraps a `DataIter` into a `DataLoader` so you can reuse the existing codes but
-enjoys the benefits of Gluon.
-
-```{.python .input}
-class DataIterLoader():
-    def __init__(self, data_iter):
-        self.data_iter = data_iter
-    def __iter__(self):
-        self.data_iter.reset()
-        return self
-    def __next__(self):
-        batch = self.data_iter.__next__()
-        assert len(batch.data) == len(batch.label) == 1
-        data = batch.data[0]
-        label = batch.label[0]
-        return data, label
-    def next(self):
-        return self.__next__() # for Python 2
-```
-
-Now create an `DataIter` instance, and then get the according `DataLoader`
-wrapper.
-
-```{.python .input}
-data_iter = io.NDArrayIter(data=features, label=labels, batch_size=4)
-data = DataIterLoader(data_iter)
-for X, y in data:
-    print('X shape:', X.shape, '\ty:', y.asnumpy())
-```
+We used presets and a lot of default values in this tutorial, but there are many other options and possibilities. You're likely to want to use your own dataset for training. You can learn more about this in the dedicated `Dataset` tutorial. We also have a tutorial on `transform`s with examples on how to compose transform operations. And last but not least, we have a very useful tutorial on `DataLoader`s. You'll often find that loading data can be the bottleneck to training, and this tutorial contains some useful tricks to speed up the data pipeline.
