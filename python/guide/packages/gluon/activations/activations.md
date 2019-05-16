@@ -243,7 +243,7 @@ visualize_activation(mx.gluon.nn.Swish())
 ## Summary
 
 * Activation functions introduce non-linearities to deep neural network that allow the models to capture complex interactions between features of the data.
-* ReLU is the activation function that is commonly used in many neural network architectures because of it's simplicity and performance.
+* ReLU is the activation function that is commonly used in many neural network architectures because of its simplicity and performance.
 * Sigmoids like the logistic (sigmoid) function and tanh where the first kinds of activation functions used in neural networks. They have since fallen out of use because of their tendency to saturate and have vanishing gradients.
 * Rectifiers like ReLU do not saturate like the Sigmoids and so address the vanishing gradient problem making them the de facto activation functions. ReLU however is still plagued by the dying ReLU problem.
 * LeakyReLU and PReLU are two similar approaches to improve ReLU and address the dying ReLU by introducing a parameter $\alpha$ (learned in PReLU) that leaks to the gradient of negative inputs
