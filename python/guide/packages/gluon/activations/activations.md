@@ -237,3 +237,24 @@ visualize_activation(mx.gluon.nn.Swish())
 
 
 ![swish activation and gradient](images/swish.png)
+
+
+
+## Summary
+
+* Activation functions introduce non-linearities to deep neural network that allow the models to capture complex interactions between features of the data.
+* ReLU is the activation function that is commonly used in many neural network architectures because of it's simplicity and performance.
+* Sigmoids like the logistic (sigmoid) function and tanh where the first kinds of activation functions used in neural networks. They have since fallen out of use because of their tendency to saturate and have vanishing gradients.
+* Rectifiers like ReLU do not saturate like the Sigmoids and so address the vanishing gradient problem making them the de facto activation functions. ReLU however is still plagued by the dying ReLU problem.
+* LeakyReLU and PReLU are two similar approaches to improve ReLU and address the dying ReLU by introducing a parameter $\alpha$ (learned in PReLU) that leaks to the gradient of negative inputs
+* MXNet also implements custom state-of-the-art activations like ELU, SELU and Swish.
+
+
+
+## Next Steps
+
+Activations are just one component of neural network architectures. Here are a few MXNet resources to learn more about activation functions and how they they combine with other components of neural nets.
+* Learn how to create a Neural Network with these activation layers and other neural network layers in the [gluon crash course](http://beta.mxnet.io/guide/getting-started/crash-course/2-nn.html).
+* Check out the guide to MXNet [gluon layers and blocks](http://beta.mxnet.io/guide/packages/gluon/nn.html) to learn about the other neural network layers in implemented in MXNet and how to create custom neural networks with these layers.
+* Also check out the [guide to normalization layers](http://beta.mxnet.io/guide/packages/gluon/normalization/normalization.html) to learn about neural network layers that normalize their inputs.
+* Finally take a look at the [Custom Layer guide](http://beta.mxnet.io/guide/packages/gluon/custom_layer_beginners.html) to learn how to implement your own custom activation layer.
