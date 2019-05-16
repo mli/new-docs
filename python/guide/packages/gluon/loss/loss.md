@@ -244,16 +244,10 @@ $$
 cos\_sim(input1, input2) = \frac{{input1}_i.{input2}_i}{||{input1}_i||.||{input2}_i||}\end{split}
 $$
 
-<<<<<<< HEAD:python/guide/packages/gluon/loss/loss.md
-Cosine distance measures the similarity between two arrays given a label and is typically used for learning nonlinear embeddings.  
-For instance, in the following code example we measure the similarity between the input vectors `x` and `y`. Since they are the same the label equals `1`. The loss function returns $$ \sum_i 1 - {cos\_sim({input1}_i, {input2}_i)} $$ which is equal `0`.
-```python
-=======
 Cosine distance measures the similarity between two tensors given a label and is typically used for learning nonlinear embeddings.  
 For instance in the following code example we measure the similarity between the input vectors `x` and `y`. Since they are the same the label equals `1`. The loss function returns $$ \sum_i 1 - {cos\_sim({input1}_i, {input2}_i)} $$ which is equal `0`.
 
 ```{.python .input}
->>>>>>> 411c93d3d1b1527f4e522fe21f28a6c1732deadb:python/guide/packages/gluon/loss.md
 x = mx.nd.array([1,0,1,0,1,0])
 y = mx.nd.array([1,0,1,0,1,0])
 label = mx.nd.array(1)
