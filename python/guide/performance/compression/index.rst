@@ -6,7 +6,7 @@ The following tutorials will help you learn how to use compression techniques wi
 
    .. card::
       :title: Compression: float16
-      :link: float16.html
+      :link: https://mxnet.incubator.apache.org/versions/master/faq/float16.html
 
       How to use float16 in your model to boost training speed.
 
