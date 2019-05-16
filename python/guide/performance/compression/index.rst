@@ -12,7 +12,7 @@ The following tutorials will help you learn how to use compression techniques wi
 
    .. card::
       :title: Gradient Compression
-      :link: gradient_compression.html
+      :link: https://mxnet.incubator.apache.org/versions/master/faq/gradient_compression.html
 
       How to use gradient compression to reduce communication bandwidth and increase speed.
 
@@ -33,10 +33,10 @@ The following tutorials will help you learn how to use compression techniques wi
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
+   :glob:
 
-   float16
-   gradient_compression
+   *
+   
    ..
       int8
    ..
