@@ -19,7 +19,7 @@ The following tutorials will help you learn how to deploy MXNet on various AWS p
 
    .. card::
       :title: Training with Data from S3
-      :link: use_s3.html
+      :link: https://mxnet.incubator.apache.org/versions/master/faq/s3_integration.html
 
       How to train with data from Amazon S3 buckets.
 
@@ -29,4 +29,3 @@ The following tutorials will help you learn how to deploy MXNet on various AWS p
 
    use_ec2
    use_sagemaker
-   use_s3
