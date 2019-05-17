@@ -22,6 +22,16 @@ Basic Image Tutorials
 
       How to use pretrained models to recognize what is in an image.
 
+Advanced Image Tutorials
+---------------------
+
+.. container:: cards
+
+   .. card::
+      :title: Image similarity search with InfoGAN
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/info_gan.html
+
+      Implementing an InfoGAN based on the MXNet Gluon.
 
 GluonCV Toolkit Tutorials
 -------------------------
