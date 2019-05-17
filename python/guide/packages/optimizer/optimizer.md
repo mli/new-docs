@@ -29,16 +29,16 @@ trainer = gluon.Trainer(net.collect_params(), optimizer='adam', optimizer_params
 ```
 
 ### What should I use?
-For many deep learning model architectures, the `'sgd'` and `'adam'` optimizers are a really good place to start. If you are implementing a deep learning model and trying to pick an optimizer, start with [`'sgd'`](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.SGD.html#mxnet.optimizer.SGD) as you will often get good enough results as long as your learning problem is tractable. If you already have a trainable model and you want to improve the convergence then you can try [`'adam'`](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.SGD.html#mxnet.optimizer.Adam). If you would like to improve your model training process further, there are a number of specialized optimizers out there with many of them already implemented in MXNet. This guide walks through these optimizers in some detail.
+For many deep learning model architectures, the `sgd` and `adam` optimizers are a really good place to start. If you are implementing a deep learning model and trying to pick an optimizer, start with [`'sgd'`](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.SGD.html#mxnet.optimizer.SGD) as you will often get good enough results as long as your learning problem is tractable. If you already have a trainable model and you want to improve the convergence then you can try [`'adam'`](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.SGD.html#mxnet.optimizer.Adam). If you would like to improve your model training process further, there are a number of specialized optimizers out there with many of them already implemented in MXNet. This guide walks through these optimizers in some detail.
 
 ## Stochastic Gradient Descent
 [Gradient descent](https://en.wikipedia.org/wiki/Gradient_descent) is a general purpose algorithm for minimizing a function using information from the gradient of the function with respect to its parameters. In deep learning, the function we are interested in minimizing is the [loss function](http://beta.mxnet.io/guide/packages/gluon/loss.html). Our model accepts training data as inputs and the loss function tells us how good our model predictions are. Since the training data can routinely consist of millions of examples, computing the loss gradient on the full batch of training data is very computationally expensive. Luckily, we can effectively approximate the full gradient with the gradient of the loss function on randomly chosen minibatches of our training data. This variant of gradient descent is [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent).
 
-Technically, stochastic gradient descent (sgd) refers to an online approximation of the gradient descent algorithm that computes the gradient of the loss function applied to a *single datapoint*, instead of your entire dataset, and uses this approximate gradient to update the model parameter values. However, in MXNet, and other deep learning frameworks, the sgd optimizer is agnostic to how many datapoints the loss function is applied to, and it is more effective to use a mini-batch loss gradient, as described earlier, instead of a single datapoint loss gradient.
+Technically, stochastic gradient descent (SGD) refers to an online approximation of the gradient descent algorithm that computes the gradient of the loss function applied to a *single datapoint*, instead of your entire dataset, and uses this approximate gradient to update the model parameter values. However, in MXNet, and other deep learning frameworks, the SGD optimizer is agnostic to how many datapoints the loss function is applied to, and it is more effective to use a mini-batch loss gradient, as described earlier, instead of a single datapoint loss gradient.
 
 ### [SGD optimizer](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.SGD.html#mxnet.optimizer.SGD)
 
-For an sgd optimizer initialized with learning rate $lr$, the update function accepts parameters (weights) $w_i$, and their gradients $grad(w_i)$, and performs the single update step:
+For an SGD optimizer initialized with learning rate $lr$, the update function accepts parameters (weights) $w_i$, and their gradients $grad(w_i)$, and performs the single update step:
 
 $$w_{i+1} = w_i + lr\cdot -grad(w_i)$$
 
@@ -49,22 +49,22 @@ visualized in the diagram shown below.
 </p>
 
 
-### weight decay
-The sgd update step can be modified by introducing an extra term that enforces a penalty on the size of the parameters. This is achieved by subtracting a fraction of the weight $\delta\cdot w$ during the weight update as shown below.
+### Weight decay
+The SGD update step can be modified by introducing an extra term that enforces a penalty on the size of the parameters. This is achieved by subtracting a fraction of the weight $\delta\cdot w$ during the weight update as shown below.
 
 $$w_{i+1} = w_i + lr\cdot (-grad(w_i) -\delta\cdot w_i)$$
 
 Introducing weight decay modifies the objective of the optimization problem by adding an implicit regularization term to penalizes large weights. Weight decay is discussed more extensively in this [paper](https://papers.nips.cc/paper/563-a-simple-weight-decay-can-improve-generalization.pdf).
 
-### momentum
-The convergence of the sgd optimizer can be accelerated by incorporating momentum. Originally proposed by [Polyak (1964)](https://www.sciencedirect.com/science/article/abs/pii/0041555364901375), sgd with momentum improves the approximation of the gradient term by incorporating the gradients from previous update steps. To achieve this, sgd with momentum stores and 'remembers' the update at each iteration to be included in the next iteration. In the equations below we denote the momentum history as $v$. 
+### Momentum
+The convergence of the  SGD optimizer can be accelerated by incorporating momentum. Originally proposed by [Polyak (1964)](https://www.sciencedirect.com/science/article/abs/pii/0041555364901375), SGD with momentum improves the approximation of the gradient term by incorporating the gradients from previous update steps. To achieve this, SGD with momentum stores and 'remembers' the update at each iteration to be included in the next iteration. In the equations below we denote the momentum history as $v$.
 
-For the first update the sgd optimizer with momentum performs the single update step:
+For the first update the SGD optimizer with momentum performs the single update step:
 
 $$ v_1= lr\cdot -grad(w_0)$$  
 $$ w_1= w_0 + v_1 $$
 
-For subsequent updates, sgd with momentum, with momentum parameter $\gamma$, performs the update step:
+For subsequent updates, SGD with momentum, with momentum parameter $\gamma$, performs the update step:
 
 $$ v_{i+1} = \gamma \cdot v_{i} + lr\cdot -grad(w_{i}) $$
 $$ w_{i+1} = w_i + v_{i+1} $$
@@ -76,7 +76,7 @@ This is also shown in the diagram below.
 </p>
 
 
-The use of sgd with momentum for learning in neural networks was introduced by Rumelhart, Hinton and Williams in [Learning Internal Representations by Error Propagation](https://dl.acm.org/citation.cfm?id=104279.104293).
+The use of SGD with momentum for learning in neural networks was introduced by Rumelhart, Hinton and Williams in [Learning Internal Representations by Error Propagation](https://dl.acm.org/citation.cfm?id=104279.104293).
 
 To create an SGD optimizer with momentum $\gamma$ and weight decay in MXNet simply use the following code.
 
@@ -87,13 +87,13 @@ sgd_optimizer = optimizer.SGD(learning_rate=0.1, wd=0., momentum=0.8)
 
 ### [Nesterov Accelerated Stochastic Gradient Descent](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.NAG.html#mxnet.optimizer.NAG)
 
-The momentum method of [Nesterov](https://goo.gl/M5xbuX) is a modification to sgd with momentum that allows for even faster convergence in practice. With Nesterov Accelerated gradient (nag) descent, the update term is derived from the gradient of the loss function with respect to *refined parameter values*. These refined parameter values are computed by performing a sgd update step using the momentum history as the gradient term.
+The momentum method of [Nesterov](https://goo.gl/M5xbuX) is a modification to SGD with momentum that allows for even faster convergence in practice. With Nesterov accelerated gradient (NAG) descent, the update term is derived from the gradient of the loss function with respect to *refined parameter values*. These refined parameter values are computed by performing a SGD update step using the momentum history as the gradient term.
 
-Alternatively, you can think of the nag optimizer as performing two update steps:
+Alternatively, you can think of the NAG optimizer as performing two update steps:
 * The first (internal) update step approximates uses the current momentum history $v_i$ to calculate the refined parameter values $(w_i + \gamma \cdot v_i)$. This is also known as the lookahead step. 
 * The second (actual) step uses the gradient of the loss function with respect to the lookahead parameter values from the first step and the current momentum history $v_i$ to obtain a new direction to update our original parameter values, like classical momentum.
 
-The nag optimizer with momentum parameter $\gamma$ performs the update step:
+The NAG optimizer with momentum parameter $\gamma$ performs the update step:
 
 $$ v_{i+1} = \gamma \cdot v_{i} + lr\cdot -grad(w_{i} + \gamma \cdot v_i) $$ 
 $$ w_{i+1} = w_i + v_{i+1} $$
@@ -103,9 +103,9 @@ $$ w_{i+1} = w_i + v_{i+1} $$
 </p>
 
 
-The effects of using nag over sgd and classical momentum are discussed in this [paper](http://proceedings.mlr.press/v28/sutskever13.pdf) by Sutskever et al.
+The effects of using NAG over SGD and classical momentum are discussed in this [paper](http://proceedings.mlr.press/v28/sutskever13.pdf) by Sutskever et al.
 
-The nag optimizer can be initialized in MXNet by using the code snippet below or by creating a trainer with argument `optimizer='nag'`.
+The NAG optimizer can be initialized in MXNet by using the code snippet below or by creating a trainer with argument `optimizer='nag'`.
 
 
 ```python
@@ -127,7 +127,7 @@ $$ w_{i+1} = w_i + \dfrac{lr}{\sqrt{g^2 + \epsilon}}\cdot -grad(w_i)$$
 
 The $\epsilon$ term is a tiny positive value introduced to avoid division by zero due to floating point issues.
 
-The overaching benefit of AdaGrad over sgd is that it ensures the overall convergence is more resilient to the choice of the global learning rate $lr$ especially in tasks, such as natural language processing some data is sparse but the parameters influenced by the sparse data are quite informative.
+The overaching benefit of AdaGrad over SGD is that it ensures the overall convergence is more resilient to the choice of the global learning rate $lr$ especially in tasks, such as natural language processing some data is sparse but the parameters influenced by the sparse data are quite informative.
 
 To instantiate the Adagrad optimizer in MXNet you can use the following line of code.
 
@@ -190,7 +190,7 @@ adadelta_optimizer = optimizer.AdaDelta(rho=0.9, epsilon=1e-07)
 ```
 
 ### [Adam](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.Adam.html)
-Adam, introduced by [Kingma and Ba](https://arxiv.org/abs/1412.6980), is one of the popular adaptive algorithms for deep learning. It combines elements of RMSProp with momentum sgd. Like RMSProp, Adam uses the RootMeanSquare of decaying average of historical gradients but also explicitly keeps track of a decaying average of momentum and uses that for the update step direction. Thus, adam accepts two hyperparameters $\beta_1$ and $\beta_2$ for momentum weighting and gradient RMS weighting respectively. Adam also accepts a global learning rate that's adaptively tuned to each parameter with the gradient RootMeanSquare. Finally, Adam also includes bias correction steps within the update that transform the biased estimates of first and second order moments, $v_{i+1}$ and $\mathbb{E}[g^2]_{i+1}$ to their unbiased counterparts $\tilde{v}_{i+1}$ and $\tilde{\mathbb{E}[g^2]}_{i+1}$
+Adam, introduced by [Kingma and Ba](https://arxiv.org/abs/1412.6980), is one of the popular adaptive algorithms for deep learning. It combines elements of RMSProp with momentum SGD. Like RMSProp, Adam uses the RootMeanSquare of decaying average of historical gradients but also explicitly keeps track of a decaying average of momentum and uses that for the update step direction. Thus, Adam accepts two hyperparameters $\beta_1$ and $\beta_2$ for momentum weighting and gradient RMS weighting respectively. Adam also accepts a global learning rate that's adaptively tuned to each parameter with the gradient RootMeanSquare. Finally, Adam also includes bias correction steps within the update that transform the biased estimates of first and second order moments, $v_{i+1}$ and $\mathbb{E}[g^2]_{i+1}$ to their unbiased counterparts $\tilde{v}_{i+1}$ and $\tilde{\mathbb{E}[g^2]}_{i+1}$
 
 The Adam optimizer performs the update step described the following equations:
 
@@ -208,7 +208,7 @@ adam_optimizer = optimizer.Adam(learning_rate=0.001, beta1=0.9, beta2=0.999, eps
 ```
 
 ### [Adamax](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.Adamax.html)
-Adamax is a variant of Adam also included in the original paper by [Kingma and Ba](https://arxiv.org/abs/1412.6980). Like Adam, Adamax maintains a moving average for first and second moments but Adamax uses the $L_{\infty}$ norm for the exponentially weighted average of the gradients, instead of the $L_2$ norm used in adam used to keep track of the gradient second moment. The $L_{\infty}$ norm of a vector is equivalent to take the maximum absolute value of elements in that vector.
+Adamax is a variant of Adam also included in the original paper by [Kingma and Ba](https://arxiv.org/abs/1412.6980). Like Adam, Adamax maintains a moving average for first and second moments but Adamax uses the $L_{\infty}$ norm for the exponentially weighted average of the gradients, instead of the $L_2$ norm used in Adam used to keep track of the gradient second moment. The $L_{\infty}$ norm of a vector is equivalent to take the maximum absolute value of elements in that vector.
 
 $$ v_{i+1} = \beta_1 \cdot v_{i} + (1 - \beta_1) \cdot grad(w_i) $$
 $$ g^\infty_{i+1} = \mathtt{max}(\beta_2\cdot g^\infty_{i},  |{grad(w_i)}|) $$
@@ -223,9 +223,9 @@ adamax_optimizer = optimizer.Adamax(learning_rate=0.002, beta1=0.9, beta2=0.999)
 ```
 
 ### [Nadam](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.Nadam.html)
-Nadam is also a variant of Adam and draws from the perspective that Adam can be viewed as a combination of RMSProp and classical Momentum (or Polyak Momentum). NAdam replaces the classical Momentum component of Adam with Nesterov Momentum (See [paper](http://cs229.stanford.edu/proj2015/054_report.pdf) by Dozat). The consequence of this is that the gradient used to update the weighted average of the momentum term is a lookahead gradient as is the case with nag.
+Nadam is also a variant of Adam and draws from the perspective that Adam can be viewed as a combination of RMSProp and classical Momentum (or Polyak Momentum). Nadam replaces the classical Momentum component of Adam with Nesterov Momentum (See [paper](http://cs229.stanford.edu/proj2015/054_report.pdf) by Dozat). The consequence of this is that the gradient used to update the weighted average of the momentum term is a lookahead gradient as is the case with NAG.
 
-The Nadam optimer performs the update step:
+The Nadam optimizer performs the update step:
 
 $$ v_{i+1} = \beta_1 \cdot v_{i} + (1 - \beta_1) \cdot grad(w_i + \beta_1 \cdot v_{i}) $$
 $$ \mathbb{E}[g^2]_{i+1} = \beta_2\cdot\mathbb{E}[g^2]_{i} + (1-\beta_2)\cdot [grad(w_{i})]^2 $$
@@ -244,7 +244,7 @@ nadam_optimizer = optimizer.Nadam(learning_rate=0.001, beta1=0.9, beta2=0.999, e
 
 Training very deep neural networks can be time consuming and as such it is very common now to see practitioners turn to distributed training on multiple processors on the same machine or even across a fleet of machines to parallelize network training because this can reduce neural network training time from days to minutes.
 
-While all the preceeding optimizers, from sgd to adam, can be readily used in the distributed setting, the following optimizers in MXNet provide extra features targeted at alleviating some of the problems associated with distributed training.
+While all the preceding optimizers, from SGD to Adam, can be readily used in the distributed setting, the following optimizers in MXNet provide extra features targeted at alleviating some of the problems associated with distributed training.
 
 ### [Signum](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.Signum.html)
 In distributed training, communicating gradients across multiple worker nodes can be expensive and create a performance bottleneck. The Signum optimizer addresses this problem by transmitting just the sign of each minibatch gradient instead of the full precision gradient. In MXNet, the signum optimizer implements two variants of compressed gradients described in the paper by [Bernstein et al](https://arxiv.org/pdf/1802.04434.pdf).
@@ -266,11 +266,11 @@ signum_optimizer = optimizer.Signum(learning_rate=0.01, momentum=0.9, wd_lh=0.0)
 ```
 
 ### [LBSGD](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.LBSGD.html)
-LBSGD stands for Large Batch Stochastic Gradient Descent and implements a technique where Layer-wise Adaptive Rate Scaling (LARS) is used to maintain a separate learning rate for each layer of the neural network. LBSGD has no additional modifications to sgd and performs the same parameter update steps as the sgd optimizer described above.
+LBSGD stands for Large Batch Stochastic Gradient Descent and implements a technique where Layer-wise Adaptive Rate Scaling (LARS) is used to maintain a separate learning rate for each layer of the neural network. LBSGD has no additional modifications to SGD and performs the same parameter update steps as the SGD optimizer described above.
 
-LBSGD was introduced by [You et al](https://arxiv.org/pdf/1708.03888.pdf) for distributed training with data-parallel synchronous sgd across multiple worker nodes to overcome the issue of reduced model accuracy when the number of workers, and by extension effective batch size, is increased.
+LBSGD was introduced by [You et al](https://arxiv.org/pdf/1708.03888.pdf) for distributed training with data-parallel synchronous SGD across multiple worker nodes to overcome the issue of reduced model accuracy when the number of workers, and by extension effective batch size, is increased.
 
-Here is how to initialize the LBSGD optmizer in MXNet.
+Here is how to initialize the LBSGD optimizer in MXNet.
 
 
 ```python
@@ -294,7 +294,7 @@ LBSGD has a number of extra keyword arguments described below
 
 ### [DCASGD](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.DCASGD.html)
 
-The DCASGD optimizer implements Delay Compensated Asynchronous Stochastic Gradient Descent by [Zheng et al](https://arxiv.org/pdf/1609.08326.pdf). In asynchronous distributed sgd, it is possible that a training worker node add its gradients too late to the global (parameter) server resulting in a delayed gradient being used to update the current parameters. DCASGD addresses this issue of delayed gradients by compensating for this delay in the parameter update steps.
+The DCASGD optimizer implements Delay Compensated Asynchronous Stochastic Gradient Descent by [Zheng et al](https://arxiv.org/pdf/1609.08326.pdf). In asynchronous distributed SGD, it is possible that a training worker node add its gradients too late to the global (parameter) server resulting in a delayed gradient being used to update the current parameters. DCASGD addresses this issue of delayed gradients by compensating for this delay in the parameter update steps.
 
 If $grad(w_i)$ denotes the delayed gradient, $w_{i+\tau}$ denotes the parameter values at the current iteration, and $\lambda$ is the delay scale factor, the DCASGD optimizer update function performs the update:
 
@@ -316,19 +316,19 @@ The class of optimization algorithms designed to tackle online learning problems
 
 FTRL stands for Follow the Regularized Leader and describes a family of algorithms originally designed for online learning tasks. 
 
-For each iteration, ftrl algorithms finds the next parameter by solving the following optimization problem which minimizes the total regret i.e the sum of the inner product all preceding gradients and next parameter. The optimization objective is regularized so that the next parameter is close (proximal) in $L2$ norm to the preceding parameter values and is sparse which is enforced by the $L1$ norm.
+For each iteration, FTRL algorithms finds the next parameter by solving the following optimization problem which minimizes the total regret i.e the sum of the inner product all preceding gradients and next parameter. The optimization objective is regularized so that the next parameter is close (proximal) in $L2$ norm to the preceding parameter values and is sparse which is enforced by the $L1$ norm.
 
 $$ w_{i+1} = \texttt{argmin}_{w} \left[\sum_{j=1}^{i} grad(w_i)\cdot w + \dfrac{1}{2}\sum_{j=1}^{i} \sigma_j \cdot ||w - w_j||_2^2 + \lambda ||w||_1\right]$$
 
-Due to the similarity of online learning and neural network training, there is an [equivalence](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37013.pdf) between variants of gradient descent and ftrl algorithms. In fact, the $w$ that minimizes FTRL with only $L_2$ regularization (i.e $\lambda$ in the equation above is set to 0) is exactly the $w$ derived from stochastic gradient descent update.
+Due to the similarity of online learning and neural network training, there is an [equivalence](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37013.pdf) between variants of gradient descent and FTRL algorithms. In fact, the $w$ that minimizes FTRL with only $L_2$ regularization (i.e $\lambda$ in the equation above is set to 0) is exactly the $w$ derived from stochastic gradient descent update.
 
-The version of FTRL implemented as an mxnet optimizer is from [McMahan et al](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41159.pdf) and encourages sparse parameters due to $L_1$ regularization. It performs the following update:
+The version of FTRL implemented as an MXNet optimizer is from [McMahan et al](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41159.pdf) and encourages sparse parameters due to $L_1$ regularization. It performs the following update:
 
 $$ z_{i+1} = z_i + \dfrac{\left(\sqrt{\eta_i + grad(w_i)^2} - \sqrt{\eta_i}\right) \cdot w_i}{lr}$$
 $$ \eta_{i+1} = \eta_i + grad(w_i)^2$$
 $$ w_{i+1} = (|z_{i+1}| > \lambda) \cdot \left[ \dfrac{-lr}{\beta + \sqrt{\eta_{i+1}}} (z_{i+1} - \lambda \cdot sign(z_{i+1}))\right] $$
 
-Here is how to initialize the ftrl optimizer in MXNet
+Here is how to initialize the FTRL optimizer in MXNet
 
 
 ```python
@@ -358,13 +358,13 @@ In MXNet, you can initialize the FTML optimizer using
 ftml_optimizer = optimizer.FTML(beta1=0.6, beta2=0.999, epsilon=1e-08)
 ```
 
-Here `beta1` and `beta2` are similar to the arguments in the adam optimizer.
+Here `beta1` and `beta2` are similar to the arguments in the Adam optimizer.
 
 ## Bayesian SGD
-A notable shortcoming of deep learning is that the model parameters learned after training are only point estimates, therefore deep learning model predictions have no information about uncertainty or confidence bounds. This is in contrast to a fully bayesian approach which incorporates prior distributions on the model parameters and estimates the model parameters as belonging to a posterior distribution. This approach allows the predictions of a bayesian model to have information about uncertainty, as you can sample different values from the posterior distribution to obtain different model parameters. One approach to close the bayesian gap in deep learning is to incorporate the gradient descent algorithm with properties that allow the model parameters to converge to a distribution instead of a single value or point estimate.
+A notable shortcoming of deep learning is that the model parameters learned after training are only point estimates, therefore deep learning model predictions have no information about uncertainty or confidence bounds. This is in contrast to a fully Bayesian approach which incorporates prior distributions on the model parameters and estimates the model parameters as belonging to a posterior distribution. This approach allows the predictions of a bayesian model to have information about uncertainty, as you can sample different values from the posterior distribution to obtain different model parameters. One approach to close the bayesian gap in deep learning is to incorporate the gradient descent algorithm with properties that allow the model parameters to converge to a distribution instead of a single value or point estimate.
 
 ### [SGLD](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.SGLD.html)
-Stochastic Gradient Langevin Dynamics or SGLD was introduced to allow uncertainties around model parameters to be captured directly during model training. With every update in SGLD, the learning rate decreases to zero and a gaussian noise of known variances is injected into the sgd step. This has the effect of having the training parameters converge to a sufficient statistic for a posterior distribution instead of simply a point estimate of the model parameters.
+Stochastic Gradient Langevin Dynamics or SGLD was introduced to allow uncertainties around model parameters to be captured directly during model training. With every update in SGLD, the learning rate decreases to zero and a gaussian noise of known variances is injected into the SGD step. This has the effect of having the training parameters converge to a sufficient statistic for a posterior distribution instead of simply a point estimate of the model parameters.
 
 SGLD performs the parameter update:
 
@@ -395,10 +395,10 @@ Step 3: Register your optimizer with `@register` decorator on your optimizer cla
 See the [source code](http://beta.mxnet.io/_modules/mxnet/optimizer/optimizer.html#NAG) for the NAG optimizer for a concrete example.
 
 ## Summary
-* MXNet implements many state-of-the-art optimizers which can be passed directly into a gluon trainer object. Calling `trainer.step` during model training uses the optimizers to update the model paramters.
+* MXNet implements many state-of-the-art optimizers which can be passed directly into a gluon trainer object. Calling `trainer.step` during model training uses the optimizers to update the model parameters.
 * Gradient descent algorithms minimize the loss function by using information from the gradient of the loss function and a learning rate hyperparameter.
-* Stochastic Gradient Descent is the backbone of deep learning optimization algorithms and simple sgd optimizers can be made really powerful by incorporating momentum, for example `sgd` with momentum and `nag`.
-* Adaptive learning rate methods compute per-parameter learning rates to make optimization less senstive to the choice of global learning rate. `adam` is a popular adaptive learning rate optimizer.
+* Stochastic Gradient Descent is the backbone of deep learning optimization algorithms and simple SGD optimizers can be made really powerful by incorporating momentum, for example `sgd` with momentum and `nag`.
+* Adaptive learning rate methods compute per-parameter learning rates to make optimization less sensitive to the choice of global learning rate. `adam` is a popular adaptive learning rate optimizer.
 * Certain MXNet optimizers like `Signum` and Large Batch SGD are well suited for large scale distributed training as they consider challenges specific these tasks.
 * MXNet also implements optimizers from active learning like `FTML`, `FTRL`, and optimizers for bayesian learning like `SGLD`.
 * Finally, it is easy to create a custom optimizer by following the patterns in the source code implementation for the optimizers that already exist in MXNet.
