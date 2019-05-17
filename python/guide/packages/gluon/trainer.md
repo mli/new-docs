@@ -2,17 +2,17 @@
 
 Training a neural network model consists of iteratively performing three simple steps. 
 
-The first step is the forward step which computes the loss.  In MXNet gluon, this first step is achieved by doing a forward pass by calling `net.forward(X)` or simply `net(X)` and then calling the loss function with the result of the forward pass and the labels. For example `l = loss_fn(net(X), y)`.
+The first step is the forward step which computes the loss.  In MXNet Gluon, this first step is achieved by doing a forward pass by calling `net.forward(X)` or simply `net(X)` and then calling the loss function with the result of the forward pass and the labels. For example `l = loss_fn(net(X), y)`.
 
-The second step is the backward step which computes the gradient of the loss with respect to the parameters. In gluon, this step is  achieved by doing the first step in an `autograd.record()` scope to record the computations needed to calculate the loss, and then calling `l.backward()` to compute the gradient of the loss with respect to the parameters.
+The second step is the backward step which computes the gradient of the loss with respect to the parameters. In Gluon, this step is  achieved by doing the first step in an [`autograd.record()`](http://beta.mxnet.io/guide/packages/autograd/autograd.html) scope to record the computations needed to calculate the loss, and then calling `l.backward()` to compute the gradient of the loss with respect to the parameters.
 
-The final step is to update the neural network model parameters using an optimization algorithm. In gluon this step is performed by the [`gluon.Trainer` API](http://beta.mxnet.io/api/gluon/mxnet.gluon.Trainer.html) and is the subject of this guide. The gluon trainer is instantiated with a set of learnable parameters and the optimization algorithm to learn those parameters and every training iteration, `trainer.step` updates the model parameters.
+The final step is to update the neural network model parameters using an optimization algorithm. In Gluon, this step is performed by the [`gluon.Trainer`](http://beta.mxnet.io/api/gluon/mxnet.gluon.Trainer.html) and is the subject of this guide. When creating a  Gluon `Trainer` you must provide a collection of parameters that need to be learnt. You also provide an `Optimizer` that will be used to update the parameters every training iteration when `trainer.step` is called.
 
 ## Basic Usage
 
 ### Network and Trainer
 
-To illustrate how to use the gluon Trainer we will create a simple perceptron model and create a Trainer using the perceptron model parameters and a simple optimizer - 'sgd' with learning rate as 1.
+To illustrate how to use the Gluon `Trainer` we will create a simple perceptron model and create a `Trainer ` instance using the perceptron model parameters and a simple optimizer - `sgd` with learning rate as 1.
 
 ```{.python .input}
 from mxnet import nd, autograd, optimizer
@@ -25,15 +25,9 @@ trainer = gluon.Trainer(net.collect_params(),
 
 ```
 
-The trainer constructor also accepts the following keyword arguments for :
-
-- `kvstore` – how key value store  should be created for multi-gpu and distributed training. Check out  [`mxnet.kvstore.KVStore`](http://beta.mxnet.io/api/gluon-related/mxnet.kvstore.KVStore.html#mxnet.kvstore.KVStore) for more information. String options are any of the following ['local', 'device', 'dist_device_sync', 'dist_device_async'].
-- `compression_params` – Specifies type of gradient compression and additional arguments depending on the type of compression being used. See [mxnet.KVStore.set_gradient_compression_method](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.kvstore.KVStore.set_gradient_compression.html#mxnet.kvstore.KVStore.set_gradient_compression) for more details on gradient compression.
-- `update_on_kvstore` – Whether to perform parameter updates on kvstore. If None, then trainer will choose the more suitable option depending on the type of kvstore.
-
 ### Forward and Backward Pass
 
-Before we can use the trainer we have created to update model parameters, we must first run the forward and backward passes. Here we implement a function to compute the first two steps (forward step and backward step) of training the perceptron on a random dataset.
+Before we can use the `trainer` we have created to update model parameters, we must first run the forward and backward passes. Here we implement a function to compute the first two steps (forward step and backward step) of training the perceptron on a random dataset.
 
 ```{.python .input}
 batch_size = 8
@@ -46,10 +40,11 @@ def forward_backward():
     with autograd.record():
         l = loss(net(X), y)
     l.backward()
+
 forward_backward()
 ```
 
-**Warning**: It is extremely important that the gradients of the loss function with respect to your model parameters are computed before running the trainer step. A common way to introduce bugs to your model training code is to omit the `loss.backward()`before the update step.
+**Warning**: It is extremely important that the gradients of the loss function with respect to your model parameters are computed before running `trainer step`. A common way to introduce bugs to your model training code is to omit the `loss.backward()`before the update step.
 
 
 
@@ -59,6 +54,8 @@ Before updating, let's check the current network parameters.
 curr_weight = net.weight.data().copy()
 print(curr_weight)
 ```
+
+### `Trainer` step
 
 Now we will call the `step` method to perform one update. It accepts the `batch_size` as an argument to normalize the gradients. We can see the network parameters have now changed.
 
@@ -77,13 +74,15 @@ print(curr_weight - net.weight.grad() * 1 / batch_size)
 
 
 
-## Using Optimizer Instance
+## Advanced Usage
 
-In the previous example, we use the string argument `'sgd'` to select the optimization method, and `optimizer_params` to specify the optimization method arguments. 
+### Using Optimizer Instance 
+
+In the previous example, we use the string argument `sgd` to select the optimization method, and `optimizer_params` to specify the optimization method arguments. 
 
 All pre-defined optimization methods can be passed in this way and the complete list of implemented optimizers is provided in the [`mxnet.optimizer`](http://beta.mxnet.io/api/gluon-related/mxnet.optimizer.html) module.
 
-However we can also pass an optimizer instance directly to the trainer. 
+However we can also pass an optimizer instance directly to the `Trainer` constructor. 
 
 For example:
 
@@ -98,9 +97,18 @@ trainer.step(batch_size)
 net.weight.data()
 ```
 
-For reference and implementation details about each optimizer, please refer to the [guide](http://beta.mxnet.io/guide/packages/optimizer/optimizer.html) for the `optimizer` module. The [Dive into Deep Learning](http://en.diveintodeeplearning.org/chapter_optimization/index.html) book also has a chapter dedicated to optimization methods and explains various key optimizers in great detail.
+For reference and implementation details about each optimizer, please refer to the [guide](http://beta.mxnet.io/guide/packages/optimizer/optimizer.html) for the `optimizer` module. 
 
-## Changing the Learning Rate
+### KVStore Options
+
+The `Trainer` constructor also accepts the following keyword arguments for :
+
+- `kvstore` – how key value store  should be created for multi-gpu and distributed training. Check out  [`mxnet.kvstore.KVStore`](http://beta.mxnet.io/api/gluon-related/mxnet.kvstore.KVStore.html#mxnet.kvstore.KVStore) for more information. String options are any of the following ['local', 'device', 'dist_device_sync', 'dist_device_async'].
+- `compression_params` – Specifies type of gradient compression and additional arguments depending on the type of compression being used. See [mxnet.KVStore.set_gradient_compression_method](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.kvstore.KVStore.set_gradient_compression.html#mxnet.kvstore.KVStore.set_gradient_compression) for more details on gradient compression.
+- `update_on_kvstore` – Whether to perform parameter updates on KVStore. If None, then the `Trainer` instance  will choose the more suitable option depending on the type of KVStore.
+
+### Changing the Learning Rate
+
 We set the initial learning rate when creating a trainer by passing the learning rate as an `optimizer_param`. However, sometimes we may need to change the learning rate during training, for example when doing an explicit learning rate warmup schedule.  The trainer instance provides an easy way to achieve this.
 
 The current training rate can be accessed through the `learning_rate` attribute.
@@ -118,16 +126,16 @@ trainer.learning_rate
 
 
 
-In addition, there are multiple pre-defined learning rate scheduling methods that are already implemented in the [`mxnet.lr_scheduler`](http://beta.mxnet.io/api/gluon-related/mxnet.lr_scheduler.html) module. The learning rate schedulers can be incorporated into your trainer by passing them in as an `optimizer_param` entry. Please refer to [the lr scheduler guide](../lr_scheduler.md) to learn more.
+In addition, there are multiple pre-defined learning rate scheduling methods that are already implemented in the [`mxnet.lr_scheduler`](http://beta.mxnet.io/api/gluon-related/mxnet.lr_scheduler.html) module. The learning rate schedulers can be incorporated into your trainer by passing them in as an `optimizer_param` entry. Please refer to the [LR scheduler guide](../lr_scheduler.md) to learn more.
 
 
 
 ## Summary
 
-* The MXNet Gluon Trainer API is used to update the parameters of a network with a particular optimization algorithm.
-* After the forward and backward pass, the model update step is done gluon using `trainer.step()`.
-* A gluon Trainer can be instantiated by passing in the name of the optimizer to use and the `optimizer_params` for that optimizer or alternatively by passing in an instance of `mxnet.optimizer.Optimizer`.
-* You can change the learning rate for a gluon Trainer by setting the member variable but gluon also provides a module for learning rate scheduling.
+* The MXNet Gluon `Trainer` API is used to update the parameters of a network with a particular optimization algorithm.
+* After the forward and backward pass, the model update step is done in Gluon using `trainer.step()`.
+* A Gluon `Trainer` can be instantiated by passing in the name of the optimizer to use and the `optimizer_params` for that optimizer or alternatively by passing in an instance of `mxnet.optimizer.Optimizer`.
+* You can change the learning rate for a Gluon `Trainer` by setting the member variable but Gluon also provides a module for learning rate scheduling.
 
 
 
@@ -135,7 +143,7 @@ In addition, there are multiple pre-defined learning rate scheduling methods tha
 
 While optimization and optimizers play a significant role in deep learning model training, there are still other important components to model training. Here are a few suggestions about where to look next.
 
-* The [optimizer API](http://beta.mxnet.io/api/gluon-related/mxnet.optimizer.html) and [guide](http://beta.mxnet.io/guide/packages/optimizer/optimizer.html) have information about all the different optimizers implemented in MXNet and their update steps.
+* The [Optimizer API](http://beta.mxnet.io/api/gluon-related/mxnet.optimizer.html) and [guide](http://beta.mxnet.io/guide/packages/optimizer/optimizer.html) have information about all the different optimizers implemented in MXNet and their update steps. The [Dive into Deep Learning](http://en.diveintodeeplearning.org/chapter_optimization/index.html) book also has a chapter dedicated to optimization methods and explains various key optimizers in great detail.
 
 - Take a look at the [guide to parameter initialization](http://beta.mxnet.io/guide/packages/gluon/init.html) in MXNet to learn about what initialization schemes are already implemented, and how to implement your custom initialization schemes.
 - Also check out this  [guide on parameter management](http://beta.mxnet.io/guide/packages/gluon/parameters.html) to learn about how to manage model parameters in gluon.
