@@ -141,7 +141,7 @@ plt.show()
 
 ```
 
-![](images/inuktitut_1.png)
+![example1](images/inuktitut_1.png)
 
 
 ### Train the Siamese network
@@ -193,7 +193,7 @@ for i, data in enumerate(test_dataloader):
 
 ```
 
-![](images/inuktitut_2.png)
+![example2](images/inuktitut_2.png)
 
 
 ### Common pitfalls with custom loss functions
