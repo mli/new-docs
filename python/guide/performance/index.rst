@@ -84,6 +84,35 @@ Accelerated Backend
          How to use TVM to boost performance.
    ..
 
+Distributed Training
+--------------------
+
+.. container:: cards
+
+   .. card::
+      :title: Distributed Training Using the KVStore API
+      :link: https://mxnet.incubator.apache.org/versions/master/faq/distributed_training.html
+
+      How to use the KVStore API to use multiple GPUs when training a model.
+
+   .. card::
+      :title: Training with Multiple GPUs Using Model Parallelism
+      :link: https://mxnet.incubator.apache.org/versions/master/faq/model_parallel_lstm.html
+
+      An overview of using multiple GPUs when training an LSTM.
+
+   .. card::
+      :title: Data Parallelism in MXNet
+      :link: https://mxnet.incubator.apache.org/versions/master/faq/multi_devices.html
+
+      An overview of distributed training strategies.
+
+   .. card::
+      :title: MXNet with Horovod
+      :link: https://github.com/apache/incubator-mxnet/tree/master/example/distributed_training-horovod
+
+      A set of example scripts demonstrating MNIST and ImageNet training with Horovod as the distributed training backend.
+
 .. toctree::
    :hidden:
    :maxdepth: 1
