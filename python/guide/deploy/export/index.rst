@@ -9,7 +9,7 @@ but you also have the option to export most models to the ONNX format.
 
    .. card::
       :title: Export ONNX Models
-      :link: onnx.html
+      :link: /guide/packages/onnx/export_mxnet_to_onnx.html
 
       How to export an MXNet model to the ONNX model format.
 
@@ -23,4 +23,3 @@ but you also have the option to export most models to the ONNX format.
    :hidden:
    :maxdepth: 1
 
-   onnx
