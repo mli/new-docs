@@ -1,7 +1,7 @@
 Getting Started
 ===============
 
-The following tutorials will learn how to use MXNet.
+The following tutorials teach how to use MXNet.
 
 .. container:: cards
 
@@ -10,6 +10,12 @@ The following tutorials will learn how to use MXNet.
       :link: crash-course/index.html
 
       A quick overview of the core concepts of MXNet using the Gluon API.
+
+   .. card::
+      :title: Linear Regression
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/python/linear-regression.html
+
+      A tutorial on implementing linear regression using MXNet APIs.
 
    .. card::
       :title: Moving from other frameworks

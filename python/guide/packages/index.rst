@@ -51,6 +51,18 @@ Shared APIs
 
       How to use the KVStore API for distributed training.
 
+   .. card::
+      :title: ONNX
+      :link: onnx/index.html
+
+      How to use Open Neural Network Exchange (ONNX) with MXNet.
+
+   .. card::
+      :title: Types of Data Augmentation
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/python/types_of_data_augmentation.html
+
+      How to use data augmentation to avoid overfitting.
+
    ..
       .. card::
          :title: Optimizer
@@ -79,6 +91,7 @@ Currently supported, but not recommended APIs.
    ndarray/index
    symbol/index
    autograd/autograd
+   onnx/index
    lr_scheduler
 
 

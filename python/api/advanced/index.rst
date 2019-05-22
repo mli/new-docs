@@ -1,4 +1,4 @@
-Adavanced modules
+Advanced modules
 =================
 
 .. toctree::
