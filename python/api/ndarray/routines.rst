@@ -292,7 +292,6 @@ Random Distribution
     random.randn
     random.shuffle
     random.uniform
-    mxnet.random.seed
 
 Linear Algebra
 ^^^^^^^^^^^^^^
