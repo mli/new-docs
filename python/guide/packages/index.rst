@@ -57,6 +57,12 @@ Shared APIs
 
       How to use MXNet's data APIs.
 
+   .. card::
+      :title: Visualizations
+      :link: viz/index.html
+
+      How to use MXNet's visualization features.
+
    ..
       .. card::
          :title: Optimizer
