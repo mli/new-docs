@@ -52,16 +52,22 @@ Shared APIs
       How to use the KVStore API for distributed training.
 
    .. card::
+      :title: Data APIs
+      :link: data/index.html
+
+      How to use MXNet's data APIs.
+
+   .. card::
+      :title: Visualizations
+      :link: viz/index.html
+
+      How to use MXNet's visualization features.
+
+   .. card::
       :title: ONNX
       :link: onnx/index.html
 
       How to use Open Neural Network Exchange (ONNX) with MXNet.
-
-   .. card::
-      :title: Types of Data Augmentation
-      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/python/types_of_data_augmentation.html
-
-      How to use data augmentation to avoid overfitting.
 
    ..
       .. card::
