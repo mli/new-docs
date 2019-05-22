@@ -51,6 +51,12 @@ Shared APIs
 
       How to use the KVStore API for distributed training.
 
+   .. card::
+      :title: Data APIs
+      :link: data/index.html
+
+      How to use MXNet's data APIs.
+
    ..
       .. card::
          :title: Optimizer
