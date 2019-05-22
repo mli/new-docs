@@ -63,6 +63,12 @@ Shared APIs
 
       How to use MXNet's visualization features.
 
+   .. card::
+      :title: ONNX
+      :link: onnx/index.html
+
+      How to use Open Neural Network Exchange (ONNX) with MXNet.
+
    ..
       .. card::
          :title: Optimizer
@@ -91,6 +97,7 @@ Currently supported, but not recommended APIs.
    ndarray/index
    symbol/index
    autograd/autograd
+   onnx/index
    lr_scheduler
 
 

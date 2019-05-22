@@ -9,6 +9,12 @@ Data
 
       How to create a dataset of images.
 
+   .. card::
+      :title: Types of Data Augmentation
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/python/types_of_data_augmentation.html
+
+      How to use data augmentation to avoid overfitting.
+      
 References
 ----------
 
