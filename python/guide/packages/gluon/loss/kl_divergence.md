@@ -2,7 +2,7 @@
 
 Kullback-Leibler (KL) Divergence is a measure of how one probability distribution is different from a second, reference probability distribution. Smaller KL Divergence values indicate more similar distributions and, since this loss function is differentiable, we can use gradient descent to minimize the KL divergence between network outputs and some target distribution. As an example, this can be used in Variational Autoencoders (VAEs), and reinforcement learning policy networks such as [Trust Region Policy Optimization (TRPO)](https://arxiv.org/abs/1502.05477).
 
-In MXNet Gluon, we can use [`KLDivLoss`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.KLDivLoss.html) to compare categorical distributions. One important thing to note is that the KL Divergence is an asymmetric measure: order matters and we should compare our predicted distribution with our target distribution in that order. Another thing to note is that there are two ways to use [`KLDivLoss`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.KLDivLoss.html) that depend on how we set `from_logits` (which has a default value of true).
+In MXNet Gluon, we can use [`KLDivLoss`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.KLDivLoss.html) to compare categorical distributions. One important thing to note is that the KL Divergence is an asymmetric measure (i.e. `KL(P,Q) != KL(Q,P)`): order matters and we should compare our predicted distribution with our target distribution in that order. Another thing to note is that there are two ways to use [`KLDivLoss`](https://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.KLDivLoss.html) that depend on how we set `from_logits` (which has a default value of true).
 
 As an example, let's compare a few categorical distributions (`dist_1`, `dist_2` and `dist_3`), each with 4 categories.
 
@@ -52,9 +52,12 @@ def kl_divergence(dist_a, dist_b):
 ```
 
 ```
-print("Distribution 1 compared with Distribution 2: {}".format(kl_divergence(dist_1, dist_2)))
-print("Distribution 1 compared with Distribution 3: {}".format(kl_divergence(dist_1, dist_3)))
-print("Distribution 1 compared with Distribution 1: {}".format(kl_divergence(dist_1, dist_1)))
+print("Distribution 1 compared with Distribution 2: {}".format(
+        kl_divergence(dist_1, dist_2)))
+print("Distribution 1 compared with Distribution 3: {}".format(
+        kl_divergence(dist_1, dist_3)))
+print("Distribution 1 compared with Distribution 1: {}".format(
+        kl_divergence(dist_1, dist_1)))
 ```
 
 As expected we see a smaller KL Divergence for distributions 1 & 2 than 1 & 3. And we also see the KL Divergence of a distribution with itself is 0.
@@ -81,7 +84,8 @@ def kl_divergence_not_from_logits(dist_a, dist_b):
 ```
 
 ```
-print("Distribution 1 compared with Distribution 2: {}".format(kl_divergence_not_from_logits(output, dist_2)))
+print("Distribution 1 compared with Distribution 2: {}".format(
+        kl_divergence_not_from_logits(output, dist_2)))
 ```
 
 ### Advanced: Common Support
@@ -94,7 +98,8 @@ dist_4 = np.array([0, 0.9, 0, 0.1])
 ```
 
 ```
-print("Distribution 4 compared with Distribution 1: {}".format(kl_divergence(dist_4, dist_1)))
+print("Distribution 4 compared with Distribution 1: {}".format(
+        kl_divergence(dist_4, dist_1)))
 ```
 
 We can see that the result is `nan`, which will obviously cause issues when calculating the gradient. One option is to add a small value `epsilon` to all of the probabilities, and this is already done for the target distribution (using the value of 1e-12).
