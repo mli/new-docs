@@ -399,11 +399,20 @@ Gluon provide several predefined metrics which can online evaluate the performan
 
 ### Data visualization
 
-TensorboardX (PyTorch) and dmlc-tensorboard (Gluon API) can be used to visualize your network and plot quantitative metrics about the execution of your graph.
+TensorboardX (PyTorch) and [MXBoard](https://github.com/awslabs/mxboard) (MXNet) can be used to visualize your network and plot quantitative metrics about the execution of your graph.
 
-| Function               | PyTorch                           | MXNet Gluon                                                                |
-|------------------------|-----------------------------------|----------------------------------------------------------------------------|
-| visualization    |  `writer = tensorboardX.SummaryWriter()`<br/>`...`<br/>`for name, param in model.named_parameters():`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`grad = param.clone().cpu().data.numpy()`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`writer.add_histogram(name, grad, n_iter)`<br/>`...`<br/>`writer.close()` |  `summary_writer = tensorboard.FileWriter('./logs/')`<br/>`...`<br/>`for name, param in net.collect_params():`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`grad = param.grad.asnumpy().flatten()`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`s = tensorboard.summary.histogram(name, grad)`<br/>&nbsp;&nbsp;&nbsp;&nbsp;`summary_writer.add_summary(s)`<br/>`...`<br/>`tensorboard.summary_writer.close()`    |
+| PyTorch                                        | MXNet                                          |
+| ---------------------------------------------- | ---------------------------------------------- |
+| `sw = tensorboardX.SummaryWriter()`            | `sw = mxboard.SummaryWriter()`                 |
+| `...`                                          | `...`                                          |
+| `for name, param in model.named_parameters():` | `for name, param in net.collect_params():`     |
+| `    grad = param.clone().cpu().data.numpy()`  | `    grad = param.grad.asnumpy().flatten()`    |
+| `    sw.add_histogram(name, grad, n_iter)`     | `    sw.add_histogram(tag=str(param),`         |
+| `...`                                          | `       values=grad,`                          |
+| `sw.close()`                                   | `       bins=200,`                             |
+|                                                | `       global_step=i)`                        |
+|                                                | `...`                                          |
+|                                                | `sw.close()`                                   |
 
 ## I/O and deploy
 
