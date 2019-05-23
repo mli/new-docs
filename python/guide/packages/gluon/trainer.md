@@ -27,7 +27,7 @@ trainer = gluon.Trainer(net.collect_params(),
 
 ### Forward and Backward Pass
 
-Before we can use the `trainer` we have created to update model parameters, we must first run the forward and backward passes. Here we implement a function to compute the first two steps (forward step and backward step) of training the perceptron on a random dataset.
+Before we can use the `trainer` to update model parameters, we must first run the forward and backward passes. Here we implement a function to compute the first two steps (forward step and backward step) of training the perceptron on a random dataset.
 
 ```{.python .input}
 batch_size = 8
@@ -57,7 +57,7 @@ print(curr_weight)
 
 ### `Trainer` step
 
-Now we will call the `step` method to perform one update. It accepts the `batch_size` as an argument to normalize the gradients. We can see the network parameters have now changed.
+Now we will call the `step` method to perform one update. We provide the `batch_size` as an argument to normalize the size of the gradients and make it independent of the batch size. Otherwise we'd get larger gradients with larger batch sizes. We can see the network parameters have now changed.
 
 ```{.python .input}
 trainer.step(batch_size)
@@ -104,7 +104,7 @@ For reference and implementation details about each optimizer, please refer to t
 The `Trainer` constructor also accepts the following keyword arguments for :
 
 - `kvstore` – how key value store  should be created for multi-gpu and distributed training. Check out  [`mxnet.kvstore.KVStore`](http://beta.mxnet.io/api/gluon-related/mxnet.kvstore.KVStore.html#mxnet.kvstore.KVStore) for more information. String options are any of the following ['local', 'device', 'dist_device_sync', 'dist_device_async'].
-- `compression_params` – Specifies type of gradient compression and additional arguments depending on the type of compression being used. See [mxnet.KVStore.set_gradient_compression_method](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.kvstore.KVStore.set_gradient_compression.html#mxnet.kvstore.KVStore.set_gradient_compression) for more details on gradient compression.
+- `compression_params` – Specifies type of gradient compression and additional arguments depending on the type of compression being used. See [`mxnet.KVStore.set_gradient_compression_method`](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.kvstore.KVStore.set_gradient_compression.html#mxnet.kvstore.KVStore.set_gradient_compression) for more details on gradient compression.
 - `update_on_kvstore` – Whether to perform parameter updates on KVStore. If None, then the `Trainer` instance  will choose the more suitable option depending on the type of KVStore.
 
 ### Changing the Learning Rate
