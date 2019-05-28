@@ -142,6 +142,8 @@
 
                - Hint: `MKL-DNN <https://01.org/mkl-dnn>`_ is already included in
                  the MXNet binary, so you don't need to install it.
+               - For detailed information on MKL and MKL-DNN,
+                 refer to the `MKLDNN_README <https://mxnet.incubator.apache.org/versions/master/tutorials/mkldnn/MKLDNN_README.html>`_.
 
       .. admonition:: Command:
 

@@ -18,6 +18,7 @@
 # Validate Your MXNet Installation
 
 - [Python](#python)
+- [Python with MKL](#python-with-mkl)
 - [Python with GPU](#python-with-gpu)
 - [Verify GPU training](#verify-gpu-training)
 
@@ -41,6 +42,9 @@ array([[ 3.,  3.,  3.],
        [ 3.,  3.,  3.]], dtype=float32)
 ```
 
+## Python with MKL
+
+Instructions for validating MKL or MKLDNN can be found in the [MKLDNN_README](https://mxnet.incubator.apache.org/versions/master/tutorials/mkldnn/MKLDNN_README.html#verify-whether-mkl-works).
 
 ## Python with GPU
 
@@ -64,7 +68,7 @@ Clone the MXNet repository to download all of the MXNet examples.
 git clone --recursive https://github.com/apache/incubator-mxnet.git mxnet
 ```
 
-From the `mxnet` directory run the following: 
+From the `mxnet` directory run the following:
 
 ```bash
 python example/image-classification/train_mnist.py --network lenet --gpus 0
