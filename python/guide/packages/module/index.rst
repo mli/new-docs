@@ -5,7 +5,7 @@ Module
 
    .. card::
       :title: Module API Intro
-      :link: module.html
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/basic/module.html
 
       How to use MXNet's Module API.
 
@@ -17,7 +17,7 @@ Module
 
    .. card::
       :title: Data Augmentation
-      :link: data_augmentation.html
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/python/data_augmentation.html
 
       How to augment data with the Module API.
 
