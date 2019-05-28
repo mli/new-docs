@@ -6,7 +6,7 @@ The following tutorials will help you learn how to use backend tools to boost pe
 
    .. card::
       :title: TensorRT
-      :link: tensorRt.html
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/tensorrt/inference_with_trt.html
 
       How to use NVIDIA's TensorRT to boost inference performance.
 
