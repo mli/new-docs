@@ -4,15 +4,16 @@ HybridBlock
 .. currentmodule:: mxnet.gluon.nn
 
 .. autoclass:: HybridBlock
+   :members:
+   :inherited-members:
 
-   
    .. automethod:: __init__
 
-   
+
    .. rubric:: Methods
 
    .. autosummary::
-   
+
       ~HybridBlock.__init__
       ~HybridBlock.apply
       ~HybridBlock.cast
@@ -33,20 +34,20 @@ HybridBlock
       ~HybridBlock.save_parameters
       ~HybridBlock.save_params
       ~HybridBlock.summary
-   
-   
 
-   
-   
+
+
+
+
    .. rubric:: Attributes
 
    .. autosummary::
-   
+
       ~HybridBlock.name
       ~HybridBlock.params
       ~HybridBlock.prefix
-   
-   
+
+
 
 .. disqus::
    :disqus_identifier: mxnet.gluon.nn.HybridBlock

@@ -4,7 +4,8 @@ HybridBlock
 .. currentmodule:: mxnet.gluon.nn
 
 .. autoclass:: HybridBlock
-
+   :members:
+   :inherited-members:
 
    HybridBlock inherits all methods and attributes from
    :py:class:`mxnet.gluon.nn.Block`. It adds the following additional methods:
