@@ -5,14 +5,15 @@ SymbolBlock
 
 .. autoclass:: SymbolBlock
 
-   
+   :members:
+   :inherited-members:   
    .. automethod:: __init__
 
-   
+
    .. rubric:: Methods
 
    .. autosummary::
-   
+
       ~SymbolBlock.__init__
       ~SymbolBlock.apply
       ~SymbolBlock.cast
@@ -34,20 +35,20 @@ SymbolBlock
       ~SymbolBlock.save_parameters
       ~SymbolBlock.save_params
       ~SymbolBlock.summary
-   
-   
 
-   
-   
+
+
+
+
    .. rubric:: Attributes
 
    .. autosummary::
-   
+
       ~SymbolBlock.name
       ~SymbolBlock.params
       ~SymbolBlock.prefix
-   
-   
+
+
 
 .. disqus::
    :disqus_identifier: mxnet.gluon.nn.SymbolBlock

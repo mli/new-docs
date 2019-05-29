@@ -4,7 +4,8 @@ HybridBlock
 .. currentmodule:: mxnet.gluon.nn
 
 .. autoclass:: HybridBlock
-
+   :members:
+   :inherited-members:
 
    .. automethod:: __init__
 
@@ -14,25 +15,25 @@ HybridBlock
    .. autosummary::
 
       ~HybridBlock.__init__
-      ~Block.apply
-      ~Block.cast
-      ~Block.collect_params
+      ~HybridBlock.apply
+      ~HybridBlock.cast
+      ~HybridBlock.collect_params
       ~HybridBlock.export
-      ~Block.forward
+      ~HybridBlock.forward
       ~HybridBlock.hybrid_forward
       ~HybridBlock.hybridize
       ~HybridBlock.infer_shape
       ~HybridBlock.infer_type
-      ~Block.initialize
-      ~Block.load_parameters
-      ~Block.load_params
-      ~Block.name_scope
-      ~Block.register_child
-      ~Block.register_forward_hook
-      ~Block.register_forward_pre_hook
-      ~Block.save_parameters
-      ~Block.save_params
-      ~Block.summary
+      ~HybridBlock.initialize
+      ~HybridBlock.load_parameters
+      ~HybridBlock.load_params
+      ~HybridBlock.name_scope
+      ~HybridBlock.register_child
+      ~HybridBlock.register_forward_hook
+      ~HybridBlock.register_forward_pre_hook
+      ~HybridBlock.save_parameters
+      ~HybridBlock.save_params
+      ~HybridBlock.summary
 
 
 
@@ -42,9 +43,9 @@ HybridBlock
 
    .. autosummary::
 
-      ~Block.name
-      ~Block.params
-      ~Block.prefix
+      ~HybridBlock.name
+      ~HybridBlock.params
+      ~HybridBlock.prefix
 
 
 

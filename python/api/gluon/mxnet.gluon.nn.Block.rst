@@ -4,7 +4,8 @@ Block
 .. currentmodule:: mxnet.gluon.nn
 
 .. autoclass:: Block
-
+   :members:
+   :inherited-members:
 
    ..
       .. automethod:: __init__
