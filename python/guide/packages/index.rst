@@ -98,8 +98,6 @@ Currently supported, but not recommended APIs.
    symbol/index
    autograd/autograd
    onnx/index
-   lr_scheduler
-
 
 ..
    Basic

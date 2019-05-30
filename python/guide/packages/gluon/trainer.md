@@ -1,6 +1,6 @@
 # Trainer
 
-Training a neural network model consists of iteratively performing three simple steps. 
+Training a neural network model consists of iteratively performing three simple steps.
 
 The first step is the forward step which computes the loss.  In MXNet Gluon, this first step is achieved by doing a forward pass by calling `net.forward(X)` or simply `net(X)` and then calling the loss function with the result of the forward pass and the labels. For example `l = loss_fn(net(X), y)`.
 
@@ -64,7 +64,7 @@ trainer.step(batch_size)
 print(net.weight.data())
 ```
 
-Since we used plain SGD, the update rule is $w = w - \eta/b \nabla \ell$, where $b$ is the batch size and $\nabla\ell$ is the gradient of the loss function with respect to the weights and $\eta$ is the learning rate. 
+Since we used plain SGD, the update rule is $w = w - \eta/b \nabla \ell$, where $b$ is the batch size and $\nabla\ell$ is the gradient of the loss function with respect to the weights and $\eta$ is the learning rate.
 
 We can verify it by running the following code snippet which is explicitly performing the SGD update.
 
@@ -76,13 +76,13 @@ print(curr_weight - net.weight.grad() * 1 / batch_size)
 
 ## Advanced Usage
 
-### Using Optimizer Instance 
+### Using Optimizer Instance
 
-In the previous example, we use the string argument `sgd` to select the optimization method, and `optimizer_params` to specify the optimization method arguments. 
+In the previous example, we use the string argument `sgd` to select the optimization method, and `optimizer_params` to specify the optimization method arguments.
 
 All pre-defined optimization methods can be passed in this way and the complete list of implemented optimizers is provided in the [`mxnet.optimizer`](http://beta.mxnet.io/api/gluon-related/mxnet.optimizer.html) module.
 
-However we can also pass an optimizer instance directly to the `Trainer` constructor. 
+However we can also pass an optimizer instance directly to the `Trainer` constructor.
 
 For example:
 
@@ -97,7 +97,7 @@ trainer.step(batch_size)
 net.weight.data()
 ```
 
-For reference and implementation details about each optimizer, please refer to the [guide](http://beta.mxnet.io/guide/packages/optimizer/optimizer.html) for the `optimizer` module. 
+For reference and implementation details about each optimizer, please refer to the [guide](http://beta.mxnet.io/guide/packages/optimizer/optimizer.html) for the `optimizer` module.
 
 ### KVStore Options
 
@@ -126,7 +126,7 @@ trainer.learning_rate
 
 
 
-In addition, there are multiple pre-defined learning rate scheduling methods that are already implemented in the [`mxnet.lr_scheduler`](http://beta.mxnet.io/api/gluon-related/mxnet.lr_scheduler.html) module. The learning rate schedulers can be incorporated into your trainer by passing them in as an `optimizer_param` entry. Please refer to the [LR scheduler guide](../lr_scheduler.md) to learn more.
+In addition, there are multiple pre-defined learning rate scheduling methods that are already implemented in the [`mxnet.lr_scheduler`](http://beta.mxnet.io/api/gluon-related/mxnet.lr_scheduler.html) module. The learning rate schedulers can be incorporated into your trainer by passing them in as an `optimizer_param` entry. Please refer to the [LR scheduler guide](https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/learning_rate_schedules.html) to learn more.
 
 
 
@@ -147,6 +147,5 @@ While optimization and optimizers play a significant role in deep learning model
 
 - Take a look at the [guide to parameter initialization](http://beta.mxnet.io/guide/packages/gluon/init.html) in MXNet to learn about what initialization schemes are already implemented, and how to implement your custom initialization schemes.
 - Also check out this  [guide on parameter management](http://beta.mxnet.io/guide/packages/gluon/parameters.html) to learn about how to manage model parameters in gluon.
-- Make sure to take a look at the [guide to scheduling learning rates](http://beta.mxnet.io/guide/packages/lr_scheduler.html) to learn how to create learning rate schedules to make your training converge faster.
+- Make sure to take a look at the [guide to scheduling learning rates](https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/learning_rate_schedules.html) to learn how to create learning rate schedules to make your training converge faster.
 - Finally take a look at the [KVStore API](http://beta.mxnet.io/api/gluon-related/mxnet.kvstore.KVStore.html#mxnet.kvstore.KVStore) to learn how parameter values are synchronized over multiple devices.
-
