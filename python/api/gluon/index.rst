@@ -1,28 +1,37 @@
 mxnet.gluon
 =======================
 
-.. toctree::
-   :hidden:
-   :maxdepth: 2
+The Gluon library in Apache MXNet provides a clear, concise, and simple API for deep learning.
+It makes it easy to prototype, build, and train deep learning models without sacrificing training speed.
 
-   nn
-   rnn
-   mxnet.gluon.loss
-   mxnet.gluon.parameter
-   mxnet.gluon.Trainer
-   mxnet.gluon.data
-   mxnet.gluon.data.vision
-   mxnet.gluon.model_zoo
-   mxnet.gluon.utils
+Example
+-------
 
+The following example shows how you might create a simple neural network with three layers:
+one input layer, one hidden layer, and one output layer.
+
+.. code-block:: python
+
+   net = gluon.nn.Sequential()
+   # When instantiated, Sequential stores a chain of neural network layers.
+   # Once presented with data, Sequential executes each layer in turn, using
+   # the output of one layer as the input for the next
+   with net.name_scope():
+       net.add(gluon.nn.Dense(256, activation="relu")) # 1st layer (256 nodes)
+       net.add(gluon.nn.Dense(256, activation="relu")) # 2nd hidden layer
+       net.add(gluon.nn.Dense(num_outputs))
+
+
+Tutorials
+---------
 
 .. container:: cards
 
    .. card::
-      :title: Gluon Tutorials
+      :title: Gluon Guide
       :link: ../../guide/packages/gluon/
 
-      The Gluon guide.
+      The Gluon guide. Start here!
 
    .. card::
       :title: Gluon-CV Toolkit
@@ -36,6 +45,12 @@ mxnet.gluon
 
       A Gluon add-on module for natural language processing.
 
+
+APIs and Packages
+-----------------
+
+Core Modules
+~~~~~~~~~~~~
 
 .. container:: cards
 
@@ -51,6 +66,8 @@ mxnet.gluon
 
       Recurrent neural network components.
 
+Training
+~~~~~~~~
 
 .. container:: cards
 
@@ -72,6 +89,8 @@ mxnet.gluon
 
       Functions for applying an optimizer on a set of parameters.
 
+Data
+~~~~
 
 .. container:: cards
 
@@ -94,6 +113,9 @@ mxnet.gluon
       A module for loading pre-trained neural network models.
 
 
+Utilities
+~~~~~~~~~
+
 .. container:: cards
 
    .. card::
@@ -103,3 +125,17 @@ mxnet.gluon
       A variety of utilities for training.
 
 .. disqus::
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   nn
+   rnn
+   mxnet.gluon.loss
+   mxnet.gluon.parameter
+   mxnet.gluon.Trainer
+   mxnet.gluon.data
+   mxnet.gluon.data.vision
+   mxnet.gluon.model_zoo
+   mxnet.gluon.utils
