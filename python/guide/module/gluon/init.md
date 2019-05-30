@@ -33,6 +33,7 @@ multilayer perceptron.
 from mxnet import init, nd
 from mxnet.gluon import nn
 
+
 def getnet():
     net = nn.Sequential()
     net.add(nn.Dense(256, activation='relu'))
@@ -86,10 +87,9 @@ dimensionality, $\mathbf{x} \in \mathbb{R}^{20}$ it was possible to define the
 weight matrix for the first layer, i.e. $\mathbf{W}_1 \in \mathbb{R}^{256 \times
 20}$. With that out of the way, we can progress to the second layer, define its
 dimensionality to be $10 \times 256$ and so on through the computational graph
-and bind all the dimensions as they become available. 
-
-Once this is known, we can proceed by initializing parameters. This is the
-solution to the three problems outlined above.
+and resolve all the dimensions as they become available. Once this is known, we
+can proceed by initializing parameters. This is the solution to the three
+problems outlined above.
 
 
 ## Deferred Initialization in Practice
@@ -111,9 +111,10 @@ net.initialize(init=PrintInit())
 
 Note that, although `MyInit` will print information about the model parameters
 when it is called, the above `initialize` function does not print any
-information after it has been executed.  Therefore there is no real
-initialization parameter when calling the `initialize` function. Next, we define
-the input and perform a forward calculation.
+information after it has been executed.  Therefore there is no actual
+initialization when calling the `initialize` function - this
++initialization is deferred until forward is called for the first time. Next,
+we define the input and perform a forward calculation.
 
 ```{.python .input  n=25}
 x = nd.random.uniform(shape=(2, 20))
@@ -147,7 +148,8 @@ Deferred initialization does not occur if the system knows the shape of all
 parameters when calling the `initialize` function. This can occur in two cases:
 
 * We've already seen some data and we just want to reset the parameters.
-* We specified all input and output dimensions of the network or layer when defining it.
+* We specified all input and output dimensions of the network or layer when
+  defining it.
 
 The first case works just fine, as illustrated below.
 
@@ -204,10 +206,16 @@ value of $42$ and we use the `Xavier` initializer for the weights of the
 first layer.
 
 ```{.python .input  n=11}
-net[1].initialize(init=init.Constant(42), force_reinit=True)
 net[0].weight.initialize(init=init.Xavier(), force_reinit=True)
-print(net[1].weight.data()[0,0])
+net[1].initialize(init=init.Constant(42), force_reinit=True)
+
+# First layer
 print(net[0].weight.data()[0])
+print(net[0].bias.data()[0])  # initialized to 0
+
+# Second layer
+print(net[1].weight.data()[0,0])
+print(net[1].bias.data()[0])  # initialized to 0
 ```
 
 ### Custom Initialization
@@ -215,10 +223,9 @@ print(net[0].weight.data()[0])
 Sometimes, the initialization methods we need are not provided in the `init`
 module. At this point, we can implement a subclass of the `Initializer` class
 so that we can use it like any other initialization method. Usually, we only
-need to implement the `_init_weight` function and modify the incoming `NDArray`
-according to the initial result. In the example below, we  pick a decidedly
-bizarre and nontrivial distribution, just to prove the point. We draw the
-coefficients from the following distribution:
+need to implement the `_init_weight` function to suit our needs. In the example
+below, we  pick a decidedly bizarre and nontrivial distribution, just to prove
+the point. We draw the coefficients from the following distribution:
 
 $$
 \begin{aligned}
@@ -284,9 +291,9 @@ print(net[1].weight.data()[0] == net[2].weight.data()[0])
 ```
 
 The above example shows that the parameters of the second and third layer are
-tied. They are identical rather than just being equal. That is, by changing one
-of the parameters the other one changes, too. What happens to the gradients is
-quite ingenious. Since the model parameters contain gradients, the gradients of
-the second hidden layer and the third hidden layer are accumulated in
-`shared.params.grad()` during backpropagation.
+tied. As Python objects, they are identical rather than just being equal.
+That is, by changing one of the parameters the other one changes, too. What
+happens to the gradients is quite ingenious. Since the model parameters contain
+gradients, the gradients of the second hidden layer and the third hidden layer
+are accumulated in `shared.params.grad` during backpropagation.
 
