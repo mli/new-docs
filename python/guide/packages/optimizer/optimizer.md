@@ -5,7 +5,7 @@ Deep learning models are comprised of a model architecture and the model paramet
 
 To learn the parameters, we start with an initialization scheme and iteratively refine the parameter initial values by moving them along a direction that is opposite to the (approximate) gradient of the loss function. The extent to which the parameters are updated in this direction is governed by a hyperparameter called the learning rate. This process, known as gradient descent, is the backbone of optimization algorithms in deep learning. In MXNet, this functionality is abstracted by the [Optimizer API](http://beta.mxnet.io/api/gluon-related/mxnet.optimizer.html).
 
-When training a deep learning model using the MXNet [gluon API](http://beta.mxnet.io/guide/packages/gluon/index.html), a gluon [Trainer](http://beta.mxnet.io/guide/packages/gluon/trainer.html) is initialized with the all the learnable parameters and the optimizer to be used to learn those parameters. A single step of iterative refinement of model parameters in MXNet is achieved by calling [`trainer.step`](http://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.Trainer.step.html) which in turn uses the gradient (and perhaps some state information) to update the parameters by calling `optimizer.update`. 
+When training a deep learning model using the MXNet [gluon API](http://beta.mxnet.io/guide/packages/gluon/index.html), a gluon [Trainer](http://beta.mxnet.io/guide/packages/gluon/trainer.html) is initialized with the all the learnable parameters and the optimizer to be used to learn those parameters. A single step of iterative refinement of model parameters in MXNet is achieved by calling [`trainer.step`](http://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.Trainer.step.html) which in turn uses the gradient (and perhaps some state information) to update the parameters by calling `optimizer.update`.
 
 Here is an example of how a trainer with an optimizer is created for, a simple Linear (Dense) Network.
 
@@ -61,7 +61,7 @@ The convergence of the  SGD optimizer can be accelerated by incorporating moment
 
 For the first update the SGD optimizer with momentum performs the single update step:
 
-$$ v_1= lr\cdot -grad(w_0)$$  
+$$ v_1= lr\cdot -grad(w_0)$$
 $$ w_1= w_0 + v_1 $$
 
 For subsequent updates, SGD with momentum, with momentum parameter $\gamma$, performs the update step:
@@ -90,12 +90,12 @@ sgd_optimizer = optimizer.SGD(learning_rate=0.1, wd=0., momentum=0.8)
 The momentum method of [Nesterov](https://goo.gl/M5xbuX) is a modification to SGD with momentum that allows for even faster convergence in practice. With Nesterov accelerated gradient (NAG) descent, the update term is derived from the gradient of the loss function with respect to *refined parameter values*. These refined parameter values are computed by performing a SGD update step using the momentum history as the gradient term.
 
 Alternatively, you can think of the NAG optimizer as performing two update steps:
-* The first (internal) update step approximates uses the current momentum history $v_i$ to calculate the refined parameter values $(w_i + \gamma \cdot v_i)$. This is also known as the lookahead step. 
+* The first (internal) update step approximates uses the current momentum history $v_i$ to calculate the refined parameter values $(w_i + \gamma \cdot v_i)$. This is also known as the lookahead step.
 * The second (actual) step uses the gradient of the loss function with respect to the lookahead parameter values from the first step and the current momentum history $v_i$ to obtain a new direction to update our original parameter values, like classical momentum.
 
 The NAG optimizer with momentum parameter $\gamma$ performs the update step:
 
-$$ v_{i+1} = \gamma \cdot v_{i} + lr\cdot -grad(w_{i} + \gamma \cdot v_i) $$ 
+$$ v_{i+1} = \gamma \cdot v_{i} + lr\cdot -grad(w_{i} + \gamma \cdot v_i) $$
 $$ w_{i+1} = w_i + v_{i+1} $$
 
 <p align="center">
@@ -140,7 +140,7 @@ adagrad_optimizer = optimizer.AdaGrad(learning_rate=0.1, eps=1e-07)
 
 RMSProp, introduced by [Tielemen and Hinton](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf), is similar to AdaGrad described above, but, instead of accumulating the sum of historical square gradients, maintains an exponential decaying average of the historical square gradients, in order to give more weighting to more recent gradients.
 
-For rmsprop, we introduce the term $\mathbb{E}[g^2]$ - the decaying average over past squared gradients and $\beta$ as the forgetting factor. The rmsprop optimizer performs the update given below. 
+For rmsprop, we introduce the term $\mathbb{E}[g^2]$ - the decaying average over past squared gradients and $\beta$ as the forgetting factor. The rmsprop optimizer performs the update given below.
 
 
 $$ \mathbb{E}[g^2]_{i+1} = \beta\cdot\mathbb{E}[g^2]_{i} + (1-\beta)\cdot [grad(w_{i})]^2 $$
@@ -195,7 +195,7 @@ Adam, introduced by [Kingma and Ba](https://arxiv.org/abs/1412.6980), is one of 
 The Adam optimizer performs the update step described the following equations:
 
 $$ v_{i+1} = \beta_1 \cdot v_{i} + (1 - \beta_1) \cdot grad(w_i) $$
-$$ \mathbb{E}[g^2]_{i+1} = \beta_2\cdot\mathbb{E}[g^2]_{i} + (1-\beta_2)\cdot [grad(w_{i})]^2 $$ 
+$$ \mathbb{E}[g^2]_{i+1} = \beta_2\cdot\mathbb{E}[g^2]_{i} + (1-\beta_2)\cdot [grad(w_{i})]^2 $$
 $$ \tilde{v}_{i+1} = \dfrac{v_{i+1}}{1 - (\beta_1)^{i+1}} $$
 $$ \tilde{\mathbb{E}[g^2]}_{i+1} = \dfrac{\mathbb{E}[g^2]_{i+1}}{1 - (\beta_2)^{i+1}} $$
 $$ w_{i+1} = w_i + \dfrac{lr}{\sqrt{\tilde{\mathbb{E}[g^2]}_{i+1}} + \epsilon} \cdot -\tilde{v}_{i+1} $$
@@ -274,12 +274,12 @@ Here is how to initialize the LBSGD optimizer in MXNet.
 
 
 ```python
-lbsgd_optimizer = optimizer.LBSGD(momentum=0.0, 
-                                  multi_precision=False, 
+lbsgd_optimizer = optimizer.LBSGD(momentum=0.0,
+                                  multi_precision=False,
                                   warmup_strategy='linear',
-                                  warmup_epochs=5, 
-                                  batch_scale=1, 
-                                  updates_per_epoch=32, 
+                                  warmup_epochs=5,
+                                  batch_scale=1,
+                                  updates_per_epoch=32,
                                   begin_epoch=0,
                                   num_epochs=60)
 ```
@@ -314,7 +314,7 @@ The class of optimization algorithms designed to tackle online learning problems
 
 ### [FTRL](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.Ftrl.html)
 
-FTRL stands for Follow the Regularized Leader and describes a family of algorithms originally designed for online learning tasks. 
+FTRL stands for Follow the Regularized Leader and describes a family of algorithms originally designed for online learning tasks.
 
 For each iteration, FTRL algorithms finds the next parameter by solving the following optimization problem which minimizes the total regret i.e the sum of the inner product all preceding gradients and next parameter. The optimization objective is regularized so that the next parameter is close (proximal) in $L2$ norm to the preceding parameter values and is sparse which is enforced by the $L1$ norm.
 
@@ -383,11 +383,11 @@ sgld_optimizer = optimizer.SGLD()
 
 If you would like to use a particular optimizer that is not yet implemented in MXNet or you have a custom optimization algorithm of your own that you would like to use to train your model, it is very straightforward to create a custom optimizer.
 
-Step 1: First create a function that is able to perform your desired updates given the weights, gradients and other state information. 
+Step 1: First create a function that is able to perform your desired updates given the weights, gradients and other state information.
 
 Step 2: You will have to write your own optimizer class that extends the [base optimizer class](http://beta.mxnet.io/api/gluon-related/_autogen/mxnet.optimizer.Optimizer.html#mxnet.optimizer.Optimizer) and override the following functions
 * `__init__`: accepts the parameters of your optimizer algorithm as inputs as saves them as member variables.
-* `create_state`: If your custom optimizer uses some additional state information besides the gradient, then you should implement a function that accepts the weights and returns the state. 
+* `create_state`: If your custom optimizer uses some additional state information besides the gradient, then you should implement a function that accepts the weights and returns the state.
 * `update`: Implement your optimizer update function using the function in Step 1
 
 Step 3: Register your optimizer with `@register` decorator on your optimizer class.
@@ -409,5 +409,5 @@ While optimization and optimizers play a significant role in deep learning model
 * Check out the guide to MXNet gluon [Loss functions](http://beta.mxnet.io/guide/packages/gluon/loss.html) and [custom losses](http://beta.mxnet.io/guide/packages/gluon/custom-loss/custom-loss.html) to learn about the loss functions optimized by these optimizers, see what loss functions are already implemented in MXNet and understand how to write your own custom loss functions.
 * Take a look at the [guide to parameter initialization](http://beta.mxnet.io/guide/packages/gluon/init.html) in MXNet to learn about what initialization schemes are already implemented, and how to implement your custom initialization schemes.
 * Also check out the [autograd guide](http://beta.mxnet.io/guide/packages/autograd/autograd.html) to learn about automatic differentiation and how gradients are automatically computed in MXNet.
-* Make sure to take a look at the [guide to scheduling learning rates](http://beta.mxnet.io/guide/packages/lr_scheduler.html) to learn how to create learning rate schedules to supercharge the convergence of your optimizer.
+* Make sure to take a look at the [guide to scheduling learning rates](https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/learning_rate_schedules.html) to learn how to create learning rate schedules to supercharge the convergence of your optimizer.
 * Finally take a look at the [KVStore API](http://beta.mxnet.io/api/gluon-related/mxnet.kvstore.KVStore.html#mxnet.kvstore.KVStore) to learn how parameter values are synchronized over multiple devices.

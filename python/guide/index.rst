@@ -51,7 +51,7 @@ Packages & Modules
 
    .. card::
       :title: Learning Rate
-      :link: packages/lr_scheduler.html
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/learning_rate_schedules.html
 
       How to use the Learning Rate Scheduler.
 

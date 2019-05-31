@@ -11,7 +11,7 @@ Getting started
       :link: ../../crash-course/index.html
 
       Six 10-minute tutorials covering the core concepts of MXNet using the Gluon API.
-      
+
    .. card::
       :title: Gluon - Neural network building blocks
       :link: https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/gluon.html
@@ -64,7 +64,7 @@ Data
       :link: image-augmentation.html
 
       Boost your training dataset with image augmentation.
-      
+
    .. card::
       :title: Data Augmentation
       :link: https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/data_augmentation.html
@@ -103,7 +103,7 @@ Training
    .. card::
       :title: Activation Blocks
       :link: activations/activations.html
-   
+
       Understand usage of activation layers (such as ReLU).
 
    .. card::
@@ -123,12 +123,6 @@ Training
       :link: parameters.html
 
       How to manage parameters.
-
-   .. card::
-      :title: Learning Rates
-      :link: ../lr_scheduler.html
-
-      How to use the Learning Rate Scheduler.
 
    .. card::
       :title: Learning Rate Finder
@@ -178,7 +172,7 @@ Advanced Topics
       :link: custom-layer.html
 
       A guide to implementing custom layers.
-      
+
    .. card::
       :title: Custom Operators
       :link: https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/customop.html
