@@ -56,13 +56,13 @@ Core Modules
 
    .. card::
       :title: gluon.nn
-      :link: nn/
+      :link: nn.html
 
       Neural network components.
 
    .. card::
       :title: gluon.rnn
-      :link: nn/
+      :link: rnn.html 
 
       Recurrent neural network components.
 
