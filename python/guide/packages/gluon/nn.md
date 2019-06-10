@@ -62,16 +62,65 @@ layers to defining blocks (of one or more layers):
 1. Blocks calculate a gradient with regard to their input when invoking
    `backward`. Typically this is automatic.
 
+## A Sequential Block
+
+The [`Block`](/api/gluon/nn.html#blocks) class is a generic component
+describing data flow. When the data flows through a sequence of blocks, each
+block applied to the output of the one before with the first block being
+applied on the input data itself, we have a special kind of block, namely the
+`Sequential` block. 
+
+`Sequential` has helper methods to manage the sequence, with `add` being the
+main one of interest allowing you to append blocks in sequence. Once the
+operations have been added, the forward computation of the model applies the
+blocks on the input data in the order they were added.  Below, we implement a
+`MySequential` class that has the same functionality as the `Sequential` class.
+This may help you understand more clearly how the `Sequential` class works.
+
+```{.python .input  n=3}
+class MySequential(nn.Block):
+    def __init__(self, **kwargs):
+        super(MySequential, self).__init__(**kwargs)
+
+    def add(self, block):
+        # Here, block is an instance of a Block subclass, and we assume it has a unique name. We save it in the
+        # member variable _children of the Block class, and its type is OrderedDict. When the MySequential instance
+        # calls the initialize function, the system automatically initializes all members of _children.
+        self._children[block.name] = block
+
+    def forward(self, x):
+        # OrderedDict guarantees that members will be traversed in the order they were added.
+        for block in self._children.values():
+            x = block(x)
+        return x
+```
+
+At its core is the `add` method. It adds any block to the ordered dictionary of
+children. These are then executed in sequence when forward propagation is
+invoked. Let's see what the MLP looks like now.
+
+```{.python .input  n=4}
+net = MySequential()
+net.add(nn.Dense(256, activation='relu'))
+net.add(nn.Dense(10))
+net.initialize()
+net(x)
+```
+
+Indeed, it is no different than It can observed here that the use of the
+`MySequential` class is no different from the use of the Sequential class.
+
+
 ## A Custom Block
 
-The [`nn.Block`](/api/gluon/nn.html#blocks) class provides the functionality
-required for much of what we need. It is a model constructor provided in the
-`nn` module, which we can inherit to define the model we want. The following
-inherits the Block class to construct the multilayer perceptron mentioned at
-the beginning of this section.  The `MLP` class defined here overrides the
-`__init__` and `forward` functions of the Block class. They are used to create
-model parameters and define forward computations, respectively. Forward
-computation is also forward propagation.
+It is easy to go beyond simple concatenation with `Sequential`. The
+`Block` class provides the functionality required to make such customizations.
+`Block` has a model constructor provided in the `nn` module, which we can
+inherit to define the model we want. The following inherits the `Block` class to
+construct the multilayer perceptron mentioned at the beginning of this section.
+The `MLP` class defined here overrides the `__init__` and `forward` functions
+of the Block class. They are used to create model parameters and define forward
+computations, respectively. Forward computation is also forward propagation.
 
 ```{.python .input  n=1}
 class MLP(nn.Block):
@@ -122,52 +171,6 @@ provided by Gluon), it can be a model (such as the `MLP` class we just derived),
 or it can be a part of a model (this is what typically happens when designing
 very deep networks). Throughout this chapter we will see how to use this with
 great flexibility.
-
-## A Sequential Block
-
-The `Block` class is a generic component describing dataflow. In fact, the
-`Sequential` class is derived from the `Block` class: when the forward
-computation of the model is a simple concatenation of computations for each
-layer, we can define the model in a much simpler way.  The purpose of the
-`Sequential` class is to provide some useful convenience functions. In
-particular, the `add` method allows us to add concatenated `Block` subclass
-instances one by one, while the forward computation of the model is to compute
-these instances one by one in the order of addition.  Below, we implement a
-`MySequential` class that has the same functionality as the `Sequential` class.
-This may help you understand more clearly how the `Sequential` class works.
-
-```{.python .input  n=3}
-class MySequential(nn.Block):
-    def __init__(self, **kwargs):
-        super(MySequential, self).__init__(**kwargs)
-
-    def add(self, block):
-        # Here, block is an instance of a Block subclass, and we assume it has a unique name. We save it in the
-        # member variable _children of the Block class, and its type is OrderedDict. When the MySequential instance
-        # calls the initialize function, the system automatically initializes all members of _children.
-        self._children[block.name] = block
-
-    def forward(self, x):
-        # OrderedDict guarantees that members will be traversed in the order they were added.
-        for block in self._children.values():
-            x = block(x)
-        return x
-```
-
-At its core is the `add` method. It adds any block to the ordered dictionary of
-children. These are then executed in sequence when forward propagation is
-invoked. Let's see what the MLP looks like now.
-
-```{.python .input  n=4}
-net = MySequential()
-net.add(nn.Dense(256, activation='relu'))
-net.add(nn.Dense(10))
-net.initialize()
-net(x)
-```
-
-Indeed, it is no different than It can observed here that the use of the
-`MySequential` class is no different from the use of the Sequential class.
 
 
 ## Coding with `Blocks`
