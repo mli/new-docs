@@ -23,8 +23,7 @@ greatly simplifies the process of doing deep learning.
 
 ## Instantiating a Network
 
-Let's see what happens when we instantiate a network. We start a 
-multilayer perceptron.
+Let's see what happens when we instantiate a network. We start by defining a multi-layer perceptron.
 
 ```{.python .input}
 from mxnet import init, nd
@@ -221,7 +220,7 @@ Sometimes, the initialization methods we need are not provided in the `init`
 module. At this point, we can implement a subclass of the `Initializer` class
 so that we can use it like any other initialization method. Usually, we only
 need to implement the `_init_weight` function to suit our needs. In the example
-below, we  pick a decidedly bizarre and nontrivial distribution, just to prove
+below, we pick a decidedly bizarre and nontrivial distribution, just to prove
 the point. We draw the coefficients from the following distribution:
 
 $$
@@ -289,8 +288,18 @@ print(net[1].weight.data()[0] == net[2].weight.data()[0])
 
 The above example shows that the parameters of the second and third layer are
 tied. As Python objects, they are identical rather than just being equal.
-That is, by changing one of the parameters the other one changes, too. What
+That is, by changing one of the parameters the other one changes too. What
 happens to the gradients is quite ingenious. Since the model parameters contain
 gradients, the gradients of the second hidden layer and the third hidden layer
 are accumulated in `shared.params.grad` during backpropagation.
 
+# Conclusion
+
+In this tutorial you learnt how to initialize a neural network, and should now
+understand the difference between deferred and forced initialization. Some more advanced
+cases you should now be aware of include custom initialization and tied parameters.
+
+# Recommended Next Steps
+
+* Check out the [API Docs](http://mxnet.incubator.apache.org/versions/master/api/python/optimization/optimization.html) on initialization for a list of avaliable initialization methods.
+* See [this tutorial](https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/naming.html) for more information on Gluon Parameters.
