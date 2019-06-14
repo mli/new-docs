@@ -221,7 +221,7 @@ There are however several operators that can help you with array manipulations l
 
 ### Data Type
 
-Sometimes one can be tempted to use conditionnal logic on the type of the input tensors however the following block:
+Sometimes one can be tempted to use conditional logic on the type of the input tensors however the following block:
 
 ```python
 def hybrid_forward(self, F, x):
@@ -232,11 +232,11 @@ def hybrid_forward(self, F, x):
 
 Would generate a `AttributeError: 'Symbol' object has no attribute 'dtype'`
 
-You cannot use the `dtype` of the symbol at runtime as symbols only describe operations and not the underlying data they operate on. One workaround is to pass the type as a constructor argument of your network and hence build the appropriate compute graph for each situation.
+You cannot use the `dtype` of the symbol at runtime. Symbols only describe operations and not the underlying data they operate on. One workaround is to pass the type as a constructor argument of your network and hence build the appropriate compute graph for each situation.
 
 ### Compute Context
 
-The same is true with the compute context and for the same reasons you cannot do:
+Similarly you cannot use the compute context of symbol for the same reason that symbols only describe the operations on the data and not the data (or context). You cannot do this:
 
 ```python
 def hybrid_forward(self, F, x):
@@ -258,9 +258,10 @@ def hybrid_forward(self, F, x):
     return x*x.shape[0]
 ```
 
-Trying to access the shape of a tensor in a hybridized block would get you this error: `AttributeError: 'Symbol' object has no attribute 'shape'`
+Trying to access the shape of a tensor in a hybridized block would result in this error: `AttributeError: 'Symbol' object has no attribute 'shape'`.
 
-Again, you cannot use the shape of the symbol at runtime as symbols only describe operations and not the underlying data they operate on. This will change in the future as MXNet will support [dynamic shape inference](https://cwiki.apache.org/confluence/display/MXNET/Dynamic+shape), and the shapes of symbols will be symbols themselves 
+Again, you cannot use the shape of the symbol at runtime as symbols only describe operations and not the underlying data they operate on. 
+Note: This will change in the future as Apache MXNet will support [dynamic shape inference](https://cwiki.apache.org/confluence/display/MXNET/Dynamic+shape), and the shapes of symbols will be symbols themselves 
 
 There are also a lot of operators that support special indices to help with most of the use-cases where you would want to access the shape information. For example, `F.reshape(x, (0,0,-1))` will keep the first two dimensions unchanged and collapse all further dimensions into the third dimension. See the documentation of the [`F.reshape`](http://beta.mxnet.io/api/ndarray/_autogen/mxnet.ndarray.reshape.html) for more details.
 
@@ -274,6 +275,15 @@ def hybrid_forward(self, F, x):
     return x
 ```
 
-Would get you this error `TypeError: 'Symbol' object does not support item assignment`
+Would get you this error `TypeError: 'Symbol' object does not support item assignment`.
 
 Direct item assignment is not possible in symbolic graph since it needs to be part of a computational graph. One way is to use add more inputs to your graph and use masking or the [`F.where`](http://beta.mxnet.io/api/ndarray/_autogen/mxnet.ndarray.where.html) operator.
+
+e.g to set the first element to 2 you can do:
+
+```python
+x = mx.nd.array([1,2,3])
+value = mx.nd.ones_like(x)*2
+condition = mx.nd.array([0,1,1])
+mx.nd.where(condition=condition, x=x, y=value)
+```
