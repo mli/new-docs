@@ -18,7 +18,7 @@ This content was extracted and simplified from the gluon tutorials in
 In this chapter, we'll get
 you going with the basic functionality. Don't worry if you don't understand any
 of the basic math, like element-wise operations or normal distributions. In the
-next two chapters we'll take another pass at NDArray, teaching you both the math
+next two chapters we'll take another pass at `NDArray`, teaching you both the math
 you'll need and how to realize it in code.
 
 To get started, let's import
@@ -26,31 +26,31 @@ To get started, let's import
 habit of setting a random seed so that you always get the same results that we
 do.
 
-```{.python .input}
+```python
 import mxnet as mx
 from mxnet import nd
 ```
 
-Let's start with a very simple 1-dimensional array with a {.python .input} list.
+Let's start with a very simple 1-dimensional array with a python list.
 
-```{.python .input}
+```python
 x = nd.array([1,2,3])
 print(x)
 ```
 
 Now a 2-dimensional array.
 
-```{.python .input}
+```python
 y = nd.array([[1,2,3,4], [1,2,3,4], [1,2,3,4]])
 print(y)
 ```
 
-Next, let's see how to create an NDArray, without any values initialized.
+Next, let's see how to create an `NDArray`, without any values initialized.
 Specifically, we'll create a 2D array (also called a *matrix*) with 3 rows and 4
 columns using the `.empty` function. We'll also try out `.full` which takes an
 additional parameter for what value you want to fill in the array.
 
-```{.python .input}
+```python
 x = nd.empty((3, 3))
 print(x)
 x = nd.full((3,3), 7)
@@ -70,7 +70,7 @@ different here (3,10) since the zeros may not produce anything different from
 empty... or use the two demonstrations to show something interesting or
 unique... when would I use one over the other?-->
 
-```{.python .input}
+```python
 x = nd.zeros((3, 10))
 print(x)
 ```
@@ -79,7 +79,7 @@ Similarly, `ndarray` has a function to create a matrix of all ones aptly named
 [ones](https://mxnet.incubator.apache.org/api/{.python
 .input}/ndarray.html?highlight=random_normal#mxnet.ndarray.ones).
 
-```{.python .input}
+```python
 x = nd.ones((3, 4))
 print(x)
 ```
@@ -96,7 +96,7 @@ Is it that important to introduce zero mean and unit variance right now?
 Describe more? Or how about explain which is which for the 0 and the 1 and what
 they're going to do... if it actually matters at this point. -->
 
-```{.python .input}
+```python
 y = nd.random_normal(0, 1, shape=(3, 4))
 print(y)
 ```
@@ -104,15 +104,15 @@ print(y)
 Sometimes you will want to copy an array by its shape but not its contents. You
 can do this with `.zeros_like`.
 
-```{.python .input}
+```python
 z = nd.zeros_like(y)
 print(z)
 ```
 
-As in NumPy, the dimensions of each NDArray are accessible via the `.shape`
+As in NumPy, the dimensions of each `NDArray` are accessible via the `.shape`
 attribute.
 
-```{.python .input}
+```python
 y.shape
 ```
 
@@ -122,13 +122,13 @@ how much memory the array occupies.
 <!-- is there a function for that or do you
 just do it manually? Should we show that? -->
 
-```{.python .input}
+```python
 y.size
 ```
 
 We can query the data type using `.dtype`.
 
-```{.python .input}
+```python
 y.dtype
 ```
 
@@ -137,7 +137,7 @@ precision, or you might want to use a different data type. You can force the
 data type when you create the array using a numpy type. This requires you to
 import numpy first.
 
-```{.python .input}
+```python
 import numpy as np
 a = nd.array([1,2,3])
 b = nd.array([1,2,3], dtype=np.int32)
@@ -150,7 +150,7 @@ happen on specific devices that you can set. You can compute on the CPU, GPU, a
 specific GPU, or all of the above depending on your situtation and preference.
 Using `.context` reveals the location of the variable.
 
-```{.python .input}
+```python
 y.context
 ```
 

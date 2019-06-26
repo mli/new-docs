@@ -208,12 +208,12 @@ print('y = ', y)
 print('x + y = ', x + y)
 ```
 
-While `y` is initially of shape (6),
+While `y` is initially of shape $6$,
 MXNet infers its shape to be (1,6),
 and then broadcasts along the rows to form a (3,6) matrix).
 You might wonder, why did MXNet choose to interpret `y` as a (1,6) matrix and not (6,1).
 That's because broadcasting prefers to duplicate along the left most axis.
-We can alter this behavior by explicitly giving `y` a 2D shape using `.reshape`.
+We can alter this behavior by explicitly giving `y` a $2$D shape using `.reshape`.
 You can also chain `.arange` and `.reshape` to do this in one step.
 
 ```{.python .input}
