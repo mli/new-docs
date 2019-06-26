@@ -156,4 +156,4 @@ y.context
 
 ## Next Up
 
-[NDArray Operations](02-ndarray-operations)
+[NDArray Operations](02-ndarray-operations.md)

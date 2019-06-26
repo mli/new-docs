@@ -240,4 +240,4 @@ print('id(a)=', id(a), 'id(x)=', id(x), 'id(y)=', id(y))
 
 ## Next Up
 
-[NDArray Contexts](03-ndarray-contexts)
+[NDArray Contexts](03-ndarray-contexts.md)

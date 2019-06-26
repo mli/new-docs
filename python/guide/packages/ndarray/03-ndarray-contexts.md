@@ -69,4 +69,4 @@ print(z)
 
 ## Next Up
 
-[Back to NDArray API Guides](index)
+[Back to NDArray API Guides](.)
