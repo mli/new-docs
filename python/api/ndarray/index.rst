@@ -23,23 +23,12 @@ Tutorials
 
 .. container:: cards
 
-   .. card::
-      :title: NDArray API Intro
-      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/ndarray.html
-
-      How to manipulate data with MXNet's multi-dimensional data format, NDArray.
 
    .. card::
-      :title: Imperative tensor operations
-      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/basic/ndarray.html
+      :title: NDArray Guide
+      :link: ../../guide/packages/ndarray/
 
-      A more detailed look at NDArray operations.
-
-   .. card::
-      :title: RowSparseNDArray
-      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/sparse/row_sparse.html
-
-      How to implement sparse tensors in NDArray.
+      The NDArray guide. Start here!
 
 
 

@@ -25,11 +25,10 @@ Tutorials
 .. container:: cards
 
    .. card::
-      :title: Symbol API Intro
-      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/basic/symbol.html
+      :title: Symbol Guide
+      :link: ../../guide/packages/symbol/
 
-      How to use MXNet's Symbol API.
-
+      The Symbol guide. Start here!
 
 Symbol Package
 ---------
