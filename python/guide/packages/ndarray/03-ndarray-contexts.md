@@ -3,9 +3,8 @@
 ## Overview
 This guide will introduce you to managing CPU versus GPU contexts for handling data.
 
-The content was
-extracted and simplified from the gluon tutorials in [The Straight
-Dope](https://gluon.mxnet.io/).
+This content was extracted and simplified from the gluon tutorials in
+[Dive Into Deep Learning](http://gluon.io/).
 
 ## Prerequisites
 * [MXNet installed (with GPU support) in a Python environment](../../../install/index.html?language=Python).
@@ -15,22 +14,14 @@ Dope](https://gluon.mxnet.io/).
 
 ## Managing Context
 
-In
-MXNet, every array has a context.
-One context could be the CPU.
-Other contexts
-might be various GPUs.
-Things can get even hairier when we deploy jobs across
-multiple servers.
-By assigning arrays to contexts intelligently,
-we can minimize
+In MXNet, every array has a context.
+One context could be the CPU. Other contexts might be various GPUs.
+Things can get even hairier when we deploy jobs across multiple servers.
+By assigning arrays to contexts intelligently, we can minimize
 the time spent transferring data between devices.
-For example, when training
-neural networks on a server with a GPU,
-we typically prefer for the model's
-parameters to live on the GPU.
-If you have a GPU, let's try initializing an
-array on the first GPU.
+For example, when training neural networks on a server with a GPU,
+we typically prefer for the model's parameters to live on the GPU.
+If you have a GPU, let's try initializing an array on the first GPU.
 Otherwise, use `ctx=mx.cpu()` in place of `ctx=gpu(0)`.
 
 ```{.python .input}
@@ -78,7 +69,4 @@ print(z)
 
 ## Next Up
 
-[Autograd](../autograd/)
-
-Or continue exploring more examples of
-NDArray: [NDArray Overview for Advanced Users](04-ndarray-advanced.md)
+[Back to NDArray API Guides](index)

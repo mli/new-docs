@@ -3,8 +3,8 @@
 ## Overview
 This guide will introduce you to MXNet's array operations.
 
-The content was extracted and simplified from the gluon tutorials in [The Straight
-Dope](https://gluon.mxnet.io/).
+This content was extracted and simplified from the gluon tutorials in
+[Dive Into Deep Learning](http://gluon.io/).
 
 ## Prerequisites
 * [MXNet installed in a Python environment](../../../install/index.html?language=Python).
@@ -240,4 +240,4 @@ print('id(a)=', id(a), 'id(x)=', id(x), 'id(y)=', id(y))
 
 ## Next Up
 
-[NDArray Contexts](ndarray-contexts.md)
+[NDArray Contexts](03-ndarray-contexts)

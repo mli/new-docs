@@ -5,9 +5,8 @@ This guide
 will introduce you to how data is handled with MXNet. You will learn the basics
 about MXNet's multi-dimensional array format, `ndarray`.
 
-The content was
-extracted and simplified from the gluon tutorials in [The Straight
-Dope](https://gluon.mxnet.io/).
+This content was extracted and simplified from the gluon tutorials in
+[Dive Into Deep Learning](http://gluon.io/).
 
 ## Prerequisites
 * [MXNet installed in a Python environment](../../../install/index.html?language=Python).
@@ -157,4 +156,4 @@ y.context
 
 ## Next Up
 
-[NDArray Operations](ndarray-operations.md)
+[NDArray Operations](02-ndarray-operations)
