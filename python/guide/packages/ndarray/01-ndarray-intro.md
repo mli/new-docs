@@ -146,8 +146,8 @@ c = nd.array([1.2, 2.3], dtype=np.float16)
 ```
 
 As you will come to learn in detail later, operations and memory storage will
-happen on specific devices that you can set. You can compute on the CPU, GPU, a
-specific GPU, or all of the above depending on your situtation and preference.
+happen on specific devices that you can set. You can compute on CPU(s), GPU(s), a
+specific GPU, or all of the above depending on your situation and preference.
 Using `.context` reveals the location of the variable.
 
 ```python
