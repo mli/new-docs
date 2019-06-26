@@ -1,7 +1,0 @@
-Community
-=========
-
-
-- forum
-- events
-- examples
