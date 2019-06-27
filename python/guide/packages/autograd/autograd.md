@@ -142,7 +142,7 @@ print('is_training:', is_training, output)
 
 We called `dropout` while `autograd` was recording this time, so our network was in training mode and we see dropout of the input this time. Since the probability of dropout was 50%, the output is automatically scaled by 1/0.5=2 to preserve the average activation.
 
-We can force some operators to behave as they would during training, even in inference mode. One example is setting `mode='always'` on the [`Dropout`](https://mxnet.incubator.apache.org/api/python/ndarray/ndarray.html?highlight=dropout#mxnet.ndarray.Dropout) operator, but this usage is uncommon.
+We can force some operators to behave as they would during training, even in inference mode. One example is setting `mode='always'` on the [Dropout](https://mxnet.incubator.apache.org/api/python/ndarray/ndarray.html?highlight=dropout#mxnet.ndarray.Dropout) operator, but this usage is uncommon.
 
 ## Advanced: Skipping the calculation of parameter gradients
 
