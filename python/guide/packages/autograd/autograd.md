@@ -6,15 +6,15 @@
 
 Gradients are fundamental to the process of training neural networks, and tell us how to change the parameters of the network to improve its performance.
 
-<p align="center"><img src="./imgs/autograd_gradient.png" alt="drawing" width="600"/></p>
+<p align="center"><img src="/_static/autograd/autograd_gradient.png" alt="drawing" width="600"/></p>
 
 ### Long Answer:
 
 Under the hood, neural networks are composed of operators (e.g. sums, products, convolutions, etc) some of which use parameters (e.g. the weights in convolution kernels) for their computation, and it's our job to find the optimal values for these parameters. Gradients lead us to the solution!
 
-Gradients tell us how much a given variable increases or decreases when we change a variable it depends on. What we're interested in is the effect of changing a each parameter on the performance of the network. We usually define performance using a loss metric that we try to minimize, i.e. a metric that tells us how bad the predictions of a network are given ground truth. As an example, for regression we might try to minimize the [L2 loss](http://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.L2Loss.html?highlight=l2#mxnet.gluon.loss.L2Loss) (also known as the Euclidean distance) between our predictions and true values, and for classification we minimize the [cross entropy loss](http://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.SoftmaxCrossEntropyLoss.html). 
+Gradients tell us how much a given variable increases or decreases when we change a variable it depends on. What we're interested in is the effect of changing a each parameter on the performance of the network. We usually define performance using a loss metric that we try to minimize, i.e. a metric that tells us how bad the predictions of a network are given ground truth. As an example, for regression we might try to minimize the [L2 loss](http://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.L2Loss.html?highlight=l2#mxnet.gluon.loss.L2Loss) (also known as the Euclidean distance) between our predictions and true values, and for classification we minimize the [cross entropy loss](http://beta.mxnet.io/api/gluon/_autogen/mxnet.gluon.loss.SoftmaxCrossEntropyLoss.html).
 
-Assuming we've calculated the gradient of each parameter with respect to the loss (details in next section), we can then use an optimizer such as [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) to shift the parameters slightly in the *opposite direction* of the gradient. See [Optimizers](http://beta.mxnet.io/api/gluon-related/mxnet.optimizer.html) for more information on these methods. We repeat the process of calculating gradients and updating parameters over and over again, until the parameters of the network start to stabilize and converge to a good solution. 
+Assuming we've calculated the gradient of each parameter with respect to the loss (details in next section), we can then use an optimizer such as [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) to shift the parameters slightly in the *opposite direction* of the gradient. See [Optimizers](http://beta.mxnet.io/api/gluon-related/mxnet.optimizer.html) for more information on these methods. We repeat the process of calculating gradients and updating parameters over and over again, until the parameters of the network start to stabilize and converge to a good solution.
 
 ## How do we calculate gradients?
 
@@ -23,7 +23,7 @@ Assuming we've calculated the gradient of each parameter with respect to the los
 We differentiate. [MXNet Gluon](http://beta.mxnet.io/api/gluon/index.html) uses Reverse Mode Automatic Differentiation (`autograd`) to backprogate gradients from the loss metric to the network parameters.
 
 <p style="text-align:center">
-    <img src="./imgs/autograd_forward_backward.png" alt="drawing" width="600"/>
+    <img src="/_static/autograd/autograd_forward_backward.png" alt="drawing" width="600"/>
 </p>
 
 ### Long Answer:
@@ -41,7 +41,7 @@ Stage 2. Work backwards through this record and evaluate the partial derivatives
 
 <p style="text-align:center">
     <video width="600" controls playsinline autoplay muted loop>
-        <source src="./imgs/autograd_graph.mp4" type="video/mp4">
+        <source src="/_static/autograd/autograd_graph.mp4" type="video/mp4">
     </video>
 </p>
 
@@ -158,7 +158,7 @@ net[0].weight.grad_req = 'null'
 
 <p style="text-align:center">
     <video width="600" controls playsinline autoplay muted loop>
-        <source src="./imgs/autograd_grad_req.mp4" type="video/mp4">
+        <source src="/_static/autograd/autograd_grad_req.mp4" type="video/mp4">
     </video>
 </p>
 
@@ -203,7 +203,7 @@ def f(x):
 We can plot the resultant function for $x$ between 0 and 1, and we should recognise certain functions in segments of $x$. Starting with a quadratic curve from 0 to 1/2, we have a cubic curve from 1/2 to 2/3, a quartic from 2/3 to 3/4 and finally a flatline.
 
 <p align="center">
-    <img src="./imgs/autograd_control_flow.png" alt="drawing" width="600"/>
+    <img src="/_static/autograd/autograd_control_flow.png" alt="drawing" width="600"/>
 </p>
 
 Using `autograd`, let's now find the gradient of this arbritrary function. We don't have a vectorized function in this case, because of the control flow, so let's also create a function to calculate the gradient using `autograd`.
@@ -222,7 +222,7 @@ print(grads)
 ```
 
 <p align="center">
-    <img src="./imgs/autograd_control_flow_grad.png" alt="drawing" width="600"/>
+    <img src="/_static/autograd/autograd_control_flow_grad.png" alt="drawing" width="600"/>
 </p>
 
 We can calculate the gradients by hand in this situation (since it's a toy example), and for the four segments discussed before we'd expect $2x$, $3x^2$, $4x^3$ and 0. As a spot check, for $x=0.6$ the hand calculated gradient would be $3x^2=1.08$, which equals `1.08` as computed by `autograd`.
@@ -236,7 +236,7 @@ Most of the time `autograd` will be aware of the complete computational graph, a
 
 <p style="text-align:center">
     <video width="600" controls playsinline autoplay muted loop>
-        <source src="./imgs/autograd_head_grad.mp4" type="video/mp4">
+        <source src="/_static/autograd/autograd_head_grad.mp4" type="video/mp4">
     </video>
 </p>
 
