@@ -6,7 +6,7 @@
 
 Gradients are fundamental to the process of training neural networks, and tell us how to change the parameters of the network to improve its performance.
 
-<p align="center"><img src="/_static/autograd/autograd_gradient.png" alt="drawing" width="600"/></p>
+![autograd-gradient](/_static/autograd/autograd_gradient.png)
 
 ### Long Answer:
 
@@ -22,9 +22,7 @@ Assuming we've calculated the gradient of each parameter with respect to the los
 
 We differentiate. [MXNet Gluon](http://beta.mxnet.io/api/gluon/index.html) uses Reverse Mode Automatic Differentiation (`autograd`) to backprogate gradients from the loss metric to the network parameters.
 
-<p style="text-align:center">
-    <img src="/_static/autograd/autograd_forward_backward.png" alt="drawing" width="600"/>
-</p>
+![forward-backward](/_static/autograd/autograd_forward_backward.png)
 
 ### Long Answer:
 
@@ -105,7 +103,7 @@ with autograd.record():
 
 Only operations that we want recorded are in the scope of the `autograd.record` context (since there is a computational overhead), and `autograd` should now have constructed a graph of these operations ready for the backward pass. We start the backward pass by calling the `backward` method on the quantity of interest, which in this case is `loss` since were trying to calculate the gradient of the loss with respect to the parameters.
 
-Remember: if `loss` isn't a single scalar value (e.g. could be a loss for each sample, rather than for whole batch) a `sum` operation will be applied implicitly before starting the backward propogation, and the gradients calculated will be of this `sum` with respect to the parameters.
+Remember: if `loss` isn't a single scalar value (e.g. could be a loss for each sample, rather than for whole batch) a `sum` operation will be applied implicitly before starting the backward propagation, and the gradients calculated will be of this `sum` with respect to the parameters.
 
 ```
 loss.backward()
@@ -202,9 +200,7 @@ def f(x):
 
 We can plot the resultant function for $x$ between 0 and 1, and we should recognise certain functions in segments of $x$. Starting with a quadratic curve from 0 to 1/2, we have a cubic curve from 1/2 to 2/3, a quartic from 2/3 to 3/4 and finally a flatline.
 
-<p align="center">
-    <img src="/_static/autograd/autograd_control_flow.png" alt="drawing" width="600"/>
-</p>
+![control-flow](/_static/autograd/autograd_control_flow.png)
 
 Using `autograd`, let's now find the gradient of this arbritrary function. We don't have a vectorized function in this case, because of the control flow, so let's also create a function to calculate the gradient using `autograd`.
 
@@ -221,9 +217,7 @@ grads = [get_grad(f, x).asscalar() for x in xs]
 print(grads)
 ```
 
-<p align="center">
-    <img src="/_static/autograd/autograd_control_flow_grad.png" alt="drawing" width="600"/>
-</p>
+![flow-grad](/_static/autograd/autograd_control_flow_grad.png)
 
 We can calculate the gradients by hand in this situation (since it's a toy example), and for the four segments discussed before we'd expect $2x$, $3x^2$, $4x^3$ and 0. As a spot check, for $x=0.6$ the hand calculated gradient would be $3x^2=1.08$, which equals `1.08` as computed by `autograd`.
 
