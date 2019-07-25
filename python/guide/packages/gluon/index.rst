@@ -83,6 +83,12 @@ Data
 
       A guide to the NDArray data structure.
 
+   .. card::
+      :title: Data Transforms
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/transforms.html
+
+      Transforming data before passing it to a network.
+
 Training
 --------
 
@@ -156,6 +162,24 @@ Training
 
       How to use Automatic Differentiation with the Autograd API.
 
+   .. card::
+      :title: Multiple GPUs training with Gluon API
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/multi_gpu.html
+
+      Training deep learning neural networks on multiple GPUs in a single machine.
+
+   .. card::
+      :title: Using AMP (Automatic Mixed Precision) in MXNet
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/amp/amp_tutorial.html
+
+      Getting started with mixed precision training using AMP for MXNet.
+
+   .. card::
+      :title: Generative Adversarial Network (GAN)¶
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/unsupervised_learning/gan.html
+
+      An introduction to using Generative Adversarial Networks (GANs) in unsupervised learning.
+
 Advanced Topics
 ---------------
 
@@ -209,6 +233,17 @@ Advanced Topics
 
       Advanced exploration of Learning Rate shapes.
 
+   .. card::
+      :title: Hybridize Gluon models with control flows
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/control_flow/ControlFlowTutorial.html
+
+      Using control flow operators in Gluon.
+
+   .. card::
+      :title: Gluon Performance Tips & Tricks¶
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/gluon/performance.html
+
+      Tips for speeding up training and inference.
 
 Applications Topics
 -------------------
@@ -227,6 +262,11 @@ Applications Topics
 
       How to create deep learning models for text.
 
+   .. card::
+      :title: Connectionist Temporal Classification
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/speech_recognition/ctc.html
+
+      Using Connectionist Temporal Classification (CTC) to train Recurrent Neural Networks (RNNs).
 
 .. toctree::
    :hidden:

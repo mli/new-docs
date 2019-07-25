@@ -83,6 +83,16 @@ Sentiment Analysis
 
       See how to fine-tune a pre-trained language model to perform sentiment analysis on movie reviews.
 
+.. container:: cards
+
+   .. card::
+      :title: Text Classification Using a Convolutional Neural Network on MXNet
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/nlp/cnn.html
+
+      Using convolutional neural networks for sentence sentiment classification.
+
+
+
 Sequence Sampling
 ---------------------
 

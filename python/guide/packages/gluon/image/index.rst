@@ -33,6 +33,18 @@ Advanced Image Tutorials
 
       Implementing an InfoGAN based on the MXNet Gluon.
 
+   .. card::
+      :title: Large Scale Image Classification
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/vision/large_scale_classification.html
+
+      Training large networks using multiple machines with multiple GPUs.
+
+   .. card::
+      :title: Visualizing Decisions of Convolutional Neural Networks
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/vision/cnn_visualization.html
+
+      Visualizing the predictions made by convolutional neural networks.
+
 GluonCV Toolkit Tutorials
 -------------------------
 

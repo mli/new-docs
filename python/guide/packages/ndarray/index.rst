@@ -64,6 +64,12 @@ NDArray
 
       How to train a linear regression model with sparse symbols.
 
+   .. card::
+      :title: Sparse NDArrays with Gluon
+      :link: https://mxnet.incubator.apache.org/versions/master/tutorials/sparse/train_gluon.html
+
+      Using Sparse NDArrays with the Gluon API.
+
 .. toctree::
    :hidden:
 
